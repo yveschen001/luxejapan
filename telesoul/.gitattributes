@@ -1,0 +1,6 @@
+# 锁定 match 页面相关文件
+src/app/match/* lockable
+src/app/match/page.tsx -diff
+
+# 标记为二进制文件，防止自动合并
+src/app/match/page.tsx binary 
