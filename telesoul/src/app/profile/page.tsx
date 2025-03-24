@@ -9,7 +9,7 @@ import {
   Gift, Diamond, Edit2, AlertCircle, ChevronRight, MessageCircle, 
   Settings, Facebook, Instagram, Twitter, Bell, Globe, Wallet,
   Camera, X, Check, Share2, ChevronDown, ChevronLeft, Save,
-  User, Heart, Cake, Ruler, Scale, Users2, Languages, MapPin, Copy
+  User, Heart, Cake, Ruler, Scale, Users2, Languages, MapPin, Copy, Moon
 } from 'lucide-react'
 import { toast } from 'sonner'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
@@ -21,6 +21,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
 import { Switch } from '@/components/ui/switch'
+import { useTheme } from 'next-themes'
 
 interface UserProfile {
   avatar: string
@@ -73,6 +74,7 @@ interface Transaction {
 
 export default function ProfilePage() {
   const router = useRouter()
+  const { theme, setTheme } = useTheme()
   const [user, setUser] = useState<UserProfile>({
     avatar: '/avatar.jpg',
     nickname: '张三',
@@ -685,13 +687,13 @@ export default function ProfilePage() {
             <div className="space-y-4">
               {/* 任务项 */}
               <div className="flex items-center p-4 bg-card border border-border rounded-xl">
-                <div className="flex-1 mr-4">
+                <div className="flex-1">
                   <div className="flex items-center justify-between mb-2">
                     <div className="text-base font-medium">完善個人資料</div>
                     <Button
                       variant="primary"
                       size="sm"
-                      className="h-8 px-3 rounded-full"
+                      className="h-8 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-full ml-auto"
                     >
                       去完成
                     </Button>
@@ -706,13 +708,13 @@ export default function ProfilePage() {
               </div>
 
               <div className="flex items-center p-4 bg-card border border-border rounded-xl">
-                <div className="flex-1 mr-4">
+                <div className="flex-1">
                   <div className="flex items-center justify-between mb-2">
                     <div className="text-base font-medium">完成 MBTI 測試</div>
                     <Button
                       variant="primary"
                       size="sm"
-                      className="h-8 px-3 rounded-full"
+                      className="h-8 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-full ml-auto"
                     >
                       去完成
                     </Button>
@@ -727,13 +729,13 @@ export default function ProfilePage() {
               </div>
 
               <div className="flex items-center p-4 bg-card border border-border rounded-xl">
-                <div className="flex-1 mr-4">
+                <div className="flex-1">
                   <div className="flex items-center justify-between mb-2">
                     <div className="text-base font-medium">發布動態</div>
                     <Button
                       variant="primary"
                       size="sm"
-                      className="h-8 px-3 rounded-full"
+                      className="h-8 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-full ml-auto"
                     >
                       去完成
                     </Button>
@@ -748,13 +750,13 @@ export default function ProfilePage() {
               </div>
 
               <div className="flex items-center p-4 bg-card border border-border rounded-xl">
-                <div className="flex-1 mr-4">
+                <div className="flex-1">
                   <div className="flex items-center justify-between mb-2">
                     <div className="text-base font-medium">綁定社交媒體</div>
                     <Button
                       variant="primary"
                       size="sm"
-                      className="h-8 px-3 rounded-full"
+                      className="h-8 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-full ml-auto"
                     >
                       去完成
                     </Button>
@@ -1025,6 +1027,22 @@ export default function ProfilePage() {
                 <Button variant="outline" className="flex-1">繁體中文</Button>
                 <Button variant="outline" className="flex-1">English</Button>
               </div>
+            </div>
+            {/* 主题设置 */}
+            <div className="flex items-center justify-between p-4 bg-card border border-border rounded-xl">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Moon className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <div className="text-base font-medium">深色模式</div>
+                  <div className="text-sm text-muted-foreground">切換深色/淺色主題</div>
+                </div>
+              </div>
+              <Switch
+                checked={theme === 'dark'}
+                onCheckedChange={(checked) => setTheme(checked ? 'dark' : 'light')}
+              />
             </div>
           </div>
         </DialogContent>

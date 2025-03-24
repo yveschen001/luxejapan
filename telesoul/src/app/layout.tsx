@@ -19,8 +19,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh-TW" className="light" suppressHydrationWarning>
+      <head />
       <body className={inter.className}>
-        <ThemeProvider defaultTheme="light" storageKey="app-theme">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           <div className="min-h-screen bg-background">
             {children}
             <ClientNav />
