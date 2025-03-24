@@ -1,7 +1,7 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
-import { BottomNav } from '../bottom-nav'
+import { BottomNav } from '@/components/bottom-nav'
 
 export function ClientNav() {
   const pathname = usePathname()

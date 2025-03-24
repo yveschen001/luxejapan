@@ -2,10 +2,33 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Heart, MessageCircle, Gift, Send, Search, Upload, Loader2, Plus, Image as ImageIcon, X, MessageSquare, Share2, MoreVertical, Camera } from 'lucide-react'
+import { Textarea } from '@/components/ui/textarea'
+import { Label } from '@/components/ui/label'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from '@/components/ui/dialog'
+import {
+  Camera,
+  Heart,
+  MessageCircle,
+  Search,
+  Loader2,
+  Share2,
+  MoreVertical,
+  Flag,
+  AlertTriangle,
+  CheckCircle2,
+  XCircle,
+} from 'lucide-react'
 import { GiftOverlay } from '@/components/ui/gift-overlay'
+import { toast } from 'sonner'
 
 interface Post {
   id: string
@@ -85,6 +108,18 @@ const mockPosts: Post[] = [
   }
 ]
 
+// 移除重複的樣式定義
+const buttonStyles = {
+  primary: 'bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600',
+  outline: 'border-gray-200 dark:border-gray-700',
+}
+
+const textStyles = {
+  small: 'text-sm',
+  tiny: 'text-xs',
+  medium: 'text-base',
+}
+
 export default function SquarePage() {
   const router = useRouter()
   const [posts, setPosts] = useState<Post[]>(mockPosts)
@@ -97,6 +132,10 @@ export default function SquarePage() {
   const [isUploading, setIsUploading] = useState(false)
   const [showUploadOptions, setShowUploadOptions] = useState(false)
   const [currentUserIsKYC] = useState(true) // 模拟当前用户是 KYC 认证用户
+  const [showPostDialog, setShowPostDialog] = useState(false)
+  const [selectedImage, setSelectedImage] = useState<string | null>(null)
+  const [postDescription, setPostDescription] = useState('')
+  const [isPosting, setIsPosting] = useState(false)
 
   // 模拟搜索功能
   const handleSearch = () => {
@@ -209,6 +248,66 @@ export default function SquarePage() {
     router.push(`/profile/${userId}`)
   }
 
+  // 處理發文
+  const handlePost = () => {
+    if (!selectedImage) {
+      toast.error('請選擇一張圖片')
+      return
+    }
+
+    setIsPosting(true)
+    // 模擬上傳延遲
+    setTimeout(() => {
+      const newPost: Post = {
+        id: Date.now().toString(),
+        imageUrl: selectedImage,
+        description: postDescription,
+        likes: 0,
+        comments: [],
+        user: {
+          id: 'currentUser',
+          name: 'Me',
+          avatar: 'https://i.pravatar.cc/150?img=3',
+          mbti: 'INFJ',
+          zodiac: '天秤座',
+          isKYC: true,
+          location: 'Taipei'
+        },
+        isLiked: false,
+        isUnderReview: true,
+        createdAt: new Date()
+      }
+      setPosts([newPost, ...posts])
+      setIsPosting(false)
+      setShowPostDialog(false)
+      setSelectedImage(null)
+      setPostDescription('')
+      
+      // 模擬審核通過
+      setTimeout(() => {
+        setPosts(posts => posts.map(post => {
+          if (post.id === newPost.id) {
+            return { ...post, isUnderReview: false }
+          }
+          return post
+        }))
+      }, 3000)
+    }, 1500)
+  }
+
+  // 處理圖片選擇
+  const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        setSelectedImage(reader.result as string)
+        setShowPostDialog(true)
+      }
+      reader.readAsDataURL(file)
+    }
+  }
+
   return (
     <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* 顶部搜索栏 */}
@@ -217,8 +316,9 @@ export default function SquarePage() {
           <Input
             type="text"
             placeholder="搜索广场内容"
-            className="pl-10"
+            className="pl-10 bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
           />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
         </div>
       </div>
 
@@ -227,18 +327,89 @@ export default function SquarePage() {
         <Button
           variant="primary"
           size="lg"
-          className="rounded-full shadow-lg"
+          className={`rounded-full shadow-lg ${buttonStyles.primary}`}
+          onClick={() => document.getElementById('image-upload')?.click()}
         >
           <Camera className="w-5 h-5" />
         </Button>
+        <input
+          id="image-upload"
+          type="file"
+          accept="image/*"
+          className="hidden"
+          onChange={handleImageSelect}
+        />
       </div>
+
+      {/* 發文對話框 */}
+      <Dialog open={showPostDialog} onOpenChange={setShowPostDialog}>
+        <DialogContent className="max-w-2xl p-0">
+          <DialogHeader className="p-4 border-b border-gray-200 dark:border-gray-700">
+            <DialogTitle className="text-lg font-semibold">發布新動態</DialogTitle>
+          </DialogHeader>
+          <div className="grid grid-cols-2 gap-0">
+            {/* 圖片預覽 */}
+            <div className="relative aspect-square bg-gray-100">
+              {selectedImage && (
+                <Image
+                  src={selectedImage}
+                  alt="Preview"
+                  fill
+                  className="object-cover"
+                />
+              )}
+            </div>
+            {/* 文字輸入 */}
+            <div className="p-4 space-y-4">
+              <div>
+                <Label htmlFor="description" className="text-sm font-medium">描述</Label>
+                <Textarea
+                  id="description"
+                  value={postDescription}
+                  onChange={(e) => setPostDescription(e.target.value)}
+                  placeholder="分享你的想法..."
+                  className="min-h-[200px] text-sm border-gray-200 dark:border-gray-700"
+                  maxLength={500}
+                />
+              </div>
+            </div>
+          </div>
+          <DialogFooter className="p-4 border-t border-gray-200 dark:border-gray-700">
+            <Button
+              variant="outline"
+              onClick={() => {
+                setShowPostDialog(false)
+                setSelectedImage(null)
+                setPostDescription('')
+              }}
+              className={textStyles.small}
+            >
+              取消
+            </Button>
+            <Button
+              onClick={handlePost}
+              disabled={isPosting || !selectedImage}
+              className={`${textStyles.small} ${buttonStyles.primary}`}
+            >
+              {isPosting ? (
+                <>
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  發布中...
+                </>
+              ) : (
+                '發布'
+              )}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       {/* 帖子列表 */}
       <div className="flex-1 overflow-y-auto">
         {posts.map((post) => (
           <div
             key={post.id}
-            className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700"
+            className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 mb-4"
           >
             {/* 用户信息 */}
             <div className="p-4 flex items-center justify-between">
@@ -249,13 +420,13 @@ export default function SquarePage() {
                 <img
                   src={post.user.avatar}
                   alt={post.user.name}
-                  className="w-10 h-10 rounded-full"
+                  className="w-8 h-8 rounded-full"
                 />
                 <div>
-                  <h3 className="font-semibold text-gray-900 dark:text-gray-100">
+                  <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-100">
                     {post.user.name}
                   </h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
                     {post.user.location} · {post.user.mbti} · {post.user.zodiac}
                   </p>
                 </div>
@@ -273,7 +444,7 @@ export default function SquarePage() {
                 <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
                   <div className="text-white text-center">
                     <Loader2 className="w-8 h-8 mx-auto mb-2 animate-spin" />
-                    <p>審核中...</p>
+                    <p className="text-sm">審核中...</p>
                   </div>
                 </div>
               )}
@@ -289,19 +460,19 @@ export default function SquarePage() {
                   }`}
                 >
                   <Heart className={`w-6 h-6 ${post.isLiked ? 'fill-current' : ''}`} />
-                  <span>{post.likes}</span>
+                  <span className="text-sm">{post.likes}</span>
                 </button>
                 <button
                   onClick={() => setShowCommentInput(post.id)}
                   className="flex items-center space-x-1 text-gray-500 dark:text-gray-400"
                 >
                   <MessageCircle className="w-6 h-6" />
-                  <span>{post.comments.length}</span>
+                  <span className="text-sm">{post.comments.length}</span>
                 </button>
               </div>
 
               {/* 描述文字 */}
-              <p className="text-gray-900 dark:text-gray-100 mb-2">
+              <p className="text-sm text-gray-900 dark:text-gray-100 mb-2">
                 {post.description}
               </p>
 
@@ -328,11 +499,12 @@ export default function SquarePage() {
                     value={newComment}
                     onChange={(e) => setNewComment(e.target.value)}
                     placeholder="發表評論..."
-                    className="flex-1"
+                    className="flex-1 text-sm"
                   />
                   <Button
                     onClick={() => handleComment(post.id)}
                     disabled={!newComment.trim()}
+                    className="text-sm bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
                   >
                     發送
                   </Button>

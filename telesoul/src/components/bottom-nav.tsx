@@ -17,7 +17,7 @@ export function BottomNav() {
   const pathname = usePathname()
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 flex h-16 items-center justify-around border-t bg-background">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 flex h-16 items-center justify-around border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       {navItems.map(({ href, icon: Icon, label }) => {
         const isActive = pathname === href || (href === '/chat' && pathname?.startsWith('/chat/'))
         return (
@@ -25,12 +25,12 @@ export function BottomNav() {
             key={href}
             href={href}
             className={cn(
-              'flex flex-col items-center gap-1',
+              'flex flex-col items-center gap-1 transition-colors hover:text-primary',
               isActive ? 'text-primary' : 'text-muted-foreground'
             )}
           >
             <Icon className="h-6 w-6" />
-            <span className="text-xs">{label}</span>
+            <span className="text-xs font-medium">{label}</span>
           </Link>
         )
       })}

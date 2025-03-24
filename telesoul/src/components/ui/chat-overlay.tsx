@@ -1,10 +1,11 @@
 import { useState, useRef, useEffect } from 'react'
 import { Button } from './button'
 import { Input } from './input'
-import { ChevronLeft, Send, Image, Smile, Paperclip, Gift, Coins, Play, Pause } from 'lucide-react'
+import { ChevronLeft, Send, Image, Smile, Paperclip, Gift, Coins, Play, Pause, Phone, PhoneOff } from 'lucide-react'
 import type { UserProfile } from '@/data/mockUsers'
 import { GiftOverlay } from './gift-overlay'
 import { useRouter } from 'next/navigation'
+import { VoiceCall } from './voice-call'
 
 interface Message {
   id: string
@@ -24,9 +25,17 @@ interface ChatOverlayProps {
   coins: number
   onGiftSend: (giftType: string, value: number) => void
   initialMessages?: Message[]
+  voiceCallComponent?: React.ReactNode
 }
 
-export function ChatOverlay({ user, onBack, coins, onGiftSend, initialMessages = [] }: ChatOverlayProps) {
+export function ChatOverlay({ 
+  user, 
+  onBack, 
+  coins, 
+  onGiftSend, 
+  initialMessages = [],
+  voiceCallComponent
+}: ChatOverlayProps) {
   const router = useRouter()
   const [messages, setMessages] = useState<Message[]>(initialMessages)
   const [newMessage, setNewMessage] = useState('')
@@ -237,6 +246,7 @@ export function ChatOverlay({ user, onBack, coins, onGiftSend, initialMessages =
               </div>
             </div>
             <div className="flex items-center space-x-4">
+              {voiceCallComponent}
               <div className="flex items-center text-yellow-500">
                 <Coins className="w-5 h-5 mr-1" />
                 <span className="font-medium">{coins}</span>

@@ -29,6 +29,18 @@ export interface UserProfile {
     twitter?: boolean
   }
   interests?: string[]
+  gender?: 'male' | 'female'
+  voiceCallEnabled?: 'all' | 'none' | 'matched'
+  isMatched?: boolean
+  isInCall: boolean
+  lastActive: string
+  voiceCallSchedule: {
+    [key: string]: {
+      enabled: boolean
+      start: string
+      end: string
+    }
+  }
 }
 
 const mockUsers: Record<string, UserProfile> = {
@@ -65,7 +77,21 @@ const mockUsers: Record<string, UserProfile> = {
       facebook: true,
       twitter: false
     },
-    interests: ['旅行', '攝影', '美食', '編程', '電影']
+    interests: ['旅行', '攝影', '美食', '編程', '電影'],
+    gender: 'male',
+    voiceCallEnabled: 'all',
+    isMatched: true,
+    isInCall: false,
+    lastActive: '剛剛',
+    voiceCallSchedule: {
+      monday: { enabled: true, start: '09:00', end: '22:00' },
+      tuesday: { enabled: true, start: '09:00', end: '22:00' },
+      wednesday: { enabled: true, start: '09:00', end: '22:00' },
+      thursday: { enabled: true, start: '09:00', end: '22:00' },
+      friday: { enabled: true, start: '09:00', end: '22:00' },
+      saturday: { enabled: true, start: '10:00', end: '23:00' },
+      sunday: { enabled: true, start: '10:00', end: '23:00' }
+    }
   },
   '2': {
     id: '2',
@@ -100,7 +126,21 @@ const mockUsers: Record<string, UserProfile> = {
       facebook: false,
       twitter: true
     },
-    interests: ['設計', '藝術', '攝影', '旅行', '音樂']
+    interests: ['設計', '藝術', '攝影', '旅行', '音樂'],
+    gender: 'female',
+    voiceCallEnabled: 'all',
+    isMatched: false,
+    isInCall: false,
+    lastActive: '剛剛',
+    voiceCallSchedule: {
+      monday: { enabled: true, start: '09:00', end: '22:00' },
+      tuesday: { enabled: true, start: '09:00', end: '22:00' },
+      wednesday: { enabled: true, start: '09:00', end: '22:00' },
+      thursday: { enabled: true, start: '09:00', end: '22:00' },
+      friday: { enabled: true, start: '09:00', end: '22:00' },
+      saturday: { enabled: true, start: '10:00', end: '23:00' },
+      sunday: { enabled: true, start: '10:00', end: '23:00' }
+    }
   }
 }
 

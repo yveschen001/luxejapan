@@ -1,95 +1,138 @@
 import * as React from "react"
+import * as SelectPrimitive from "@radix-ui/react-select"
+import { Check, ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { ChevronDown } from "lucide-react"
 
-export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
-  label?: string
-  error?: boolean
-  helperText?: string
-  startIcon?: React.ReactNode
-  endIcon?: React.ReactNode
-}
+const Select = SelectPrimitive.Root
 
-const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
-  ({ className, children, label, error, helperText, startIcon, endIcon, ...props }, ref) => {
-    return (
-      <div className="w-full">
-        {label && (
-          <label
-            htmlFor={props.id}
-            className={cn(
-              "block mb-2 text-sm font-medium",
-              error ? "text-red-500" : "text-gray-900 dark:text-gray-100"
-            )}
-          >
-            {label}
-          </label>
-        )}
-        <div className="relative">
-          {startIcon && (
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              {startIcon}
-            </div>
-          )}
-          <select
-            className={cn(
-              "block w-full rounded-lg transition-colors duration-200",
-              "appearance-none bg-white dark:bg-gray-800",
-              "border border-gray-200 dark:border-gray-700",
-              "text-gray-900 dark:text-gray-100",
-              "focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500",
-              "disabled:opacity-50 disabled:cursor-not-allowed",
-              error && "border-red-500 focus:ring-red-500 focus:border-red-500",
-              startIcon && "pl-10",
-              endIcon ? "pr-10" : "pr-8",
-              className
-            )}
-            ref={ref}
-            {...props}
-          >
-            {children}
-          </select>
-          <div className="absolute inset-y-0 right-0 pr-2 flex items-center pointer-events-none">
-            {endIcon || <ChevronDown className="h-5 w-5 text-gray-400" />}
-          </div>
-        </div>
-        {helperText && (
-          <p className={cn(
-            "mt-1.5 text-xs",
-            error ? "text-red-500" : "text-gray-500 dark:text-gray-400"
-          )}>
-            {helperText}
-          </p>
-        )}
-      </div>
-    )
+const SelectGroup = SelectPrimitive.Group
+
+const SelectValue = SelectPrimitive.Value
+
+const SelectTrigger = React.forwardRef<
+  React.ElementRef<typeof SelectPrimitive.Trigger>,
+  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger> & {
+    error?: string
+    label?: string
+    helperText?: string
   }
-)
+>(({ className, children, error, label, helperText, ...props }, ref) => (
+  <div className="w-full">
+    {label && (
+      <label className="mb-2 block text-sm font-medium text-foreground">
+        {label}
+      </label>
+    )}
+    <SelectPrimitive.Trigger
+      ref={ref}
+      className={cn(
+        "flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+        error && "border-destructive focus:ring-destructive",
+        className
+      )}
+      {...props}
+    >
+      {children}
+      <SelectPrimitive.Icon asChild>
+        <ChevronDown className="h-4 w-4 opacity-50" />
+      </SelectPrimitive.Icon>
+    </SelectPrimitive.Trigger>
+    {(error || helperText) && (
+      <p className={cn(
+        "mt-2 text-sm",
+        error ? "text-destructive" : "text-muted-foreground"
+      )}>
+        {error || helperText}
+      </p>
+    )}
+  </div>
+))
+SelectTrigger.displayName = SelectPrimitive.Trigger.displayName
 
-Select.displayName = "Select"
-
-export interface OptionProps extends React.OptionHTMLAttributes<HTMLOptionElement> {
-  children: React.ReactNode
-}
-
-const Option = React.forwardRef<HTMLOptionElement, OptionProps>(
-  ({ className, children, ...props }, ref) => {
-    return (
-      <option
+const SelectContent = React.forwardRef<
+  React.ElementRef<typeof SelectPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content>
+>(({ className, children, position = "popper", ...props }, ref) => (
+  <SelectPrimitive.Portal>
+    <SelectPrimitive.Content
+      ref={ref}
+      className={cn(
+        "relative z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+        position === "popper" &&
+          "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1",
+        className
+      )}
+      position={position}
+      {...props}
+    >
+      <SelectPrimitive.Viewport
         className={cn(
-          "py-2 px-3",
-          "text-gray-900 dark:text-gray-100",
-          className
+          "p-1",
+          position === "popper" &&
+            "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]"
         )}
-        ref={ref}
-        {...props}
       >
         {children}
-      </option>
-    )
-  }
-)
+      </SelectPrimitive.Viewport>
+    </SelectPrimitive.Content>
+  </SelectPrimitive.Portal>
+))
+SelectContent.displayName = SelectPrimitive.Content.displayName
 
-Option.displayName = "Option"
+const SelectLabel = React.forwardRef<
+  React.ElementRef<typeof SelectPrimitive.Label>,
+  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Label>
+>(({ className, ...props }, ref) => (
+  <SelectPrimitive.Label
+    ref={ref}
+    className={cn("py-1.5 pl-8 pr-2 text-sm font-semibold", className)}
+    {...props}
+  />
+))
+SelectLabel.displayName = SelectPrimitive.Label.displayName
 
-export { Select, Option } 
+const SelectItem = React.forwardRef<
+  React.ElementRef<typeof SelectPrimitive.Item>,
+  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Item>
+>(({ className, children, ...props }, ref) => (
+  <SelectPrimitive.Item
+    ref={ref}
+    className={cn(
+      "relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      className
+    )}
+    {...props}
+  >
+    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+      <SelectPrimitive.ItemIndicator>
+        <Check className="h-4 w-4" />
+      </SelectPrimitive.ItemIndicator>
+    </span>
+
+    <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
+  </SelectPrimitive.Item>
+))
+SelectItem.displayName = SelectPrimitive.Item.displayName
+
+const SelectSeparator = React.forwardRef<
+  React.ElementRef<typeof SelectPrimitive.Separator>,
+  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Separator>
+>(({ className, ...props }, ref) => (
+  <SelectPrimitive.Separator
+    ref={ref}
+    className={cn("-mx-1 my-1 h-px bg-muted", className)}
+    {...props}
+  />
+))
+SelectSeparator.displayName = SelectPrimitive.Separator.displayName
+
+export {
+  Select,
+  SelectGroup,
+  SelectValue,
+  SelectTrigger,
+  SelectContent,
+  SelectLabel,
+  SelectItem,
+  SelectSeparator,
+} 

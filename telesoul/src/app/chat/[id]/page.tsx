@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { getMockUser } from '@/data/mockUsers'
 import { ChatOverlay } from '@/components/ui/chat-overlay'
+import { VoiceCall } from '@/components/ui/voice-call'
+import { toast } from 'sonner'
 
 export interface ChatMessage {
   id: string
@@ -74,7 +76,12 @@ export default function ChatDetailPage() {
   const [mounted, setMounted] = useState(false)
   const [user, setUser] = useState<any>(null)
   const [messages, setMessages] = useState<ChatMessage[]>([])
-  const [coins, setCoins] = useState(1000)
+  const [coins, setCoins] = useState(100)
+  const [isCallActive, setIsCallActive] = useState(false)
+  const [callDuration, setCallDuration] = useState(0)
+  const [callTimer, setCallTimer] = useState<NodeJS.Timeout | null>(null)
+  const [coinDeductionTimer, setCoinDeductionTimer] = useState<NodeJS.Timeout | null>(null)
+  const [diamondRewardTimer, setDiamondRewardTimer] = useState<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
     setMounted(true)
@@ -85,7 +92,14 @@ export default function ChatDetailPage() {
     }
   }, [params.id])
 
-  if (!mounted || !user) return null
+  useEffect(() => {
+    return () => {
+      // 清理計時器
+      if (callTimer) clearInterval(callTimer)
+      if (coinDeductionTimer) clearInterval(coinDeductionTimer)
+      if (diamondRewardTimer) clearInterval(diamondRewardTimer)
+    }
+  }, [callTimer, coinDeductionTimer, diamondRewardTimer])
 
   const handleBack = () => {
     router.back()
@@ -93,38 +107,67 @@ export default function ChatDetailPage() {
 
   const handleGiftSend = (giftType: string, value: number) => {
     if (coins < value) {
-      alert('金幣不足，請先充值！')
+      toast.error('金幣不足！')
       return
     }
-
     setCoins(prev => prev - value)
-
-    const message: ChatMessage = {
-      id: `msg_${Date.now()}`,
-      content: giftType,
-      sender: 'user2',
-      timestamp: new Date().toISOString(),
-      type: 'gift',
-      gift: {
-        emoji: giftType,
-        value: value
-      }
-    }
-
-    setMessages(prev => [...prev, message])
-
-    // 模擬回覆
-    setTimeout(() => {
-      const reply: ChatMessage = {
-        id: `msg_${Date.now() + 1}`,
-        content: '謝謝你的禮物！',
-        sender: user.id,
-        timestamp: new Date().toISOString(),
-        type: 'text'
-      }
-      setMessages(prev => [...prev, reply])
-    }, 1000)
+    toast.success(`已發送 ${giftType} 禮物！`)
   }
+
+  const handleCallStart = () => {
+    if (coins < 10) {
+      toast.error('金幣不足，無法發起通話！')
+      return
+    }
+    setIsCallActive(true)
+    setCallDuration(0)
+    
+    // 開始計時
+    const timer = setInterval(() => {
+      setCallDuration(prev => prev + 1)
+    }, 1000)
+    setCallTimer(timer)
+
+    // 每分鐘扣除金幣
+    const coinTimer = setInterval(() => {
+      setCoins(prev => {
+        if (prev < 10) {
+          clearInterval(coinTimer)
+          handleCallEnd()
+          return 0
+        }
+        return prev - 10
+      })
+    }, 60000)
+    setCoinDeductionTimer(coinTimer)
+
+    // 每5分鐘獎勵鑽石
+    const diamondTimer = setInterval(() => {
+      toast.success('獲得1顆鑽石獎勵！')
+    }, 300000)
+    setDiamondRewardTimer(diamondTimer)
+  }
+
+  const handleCallEnd = () => {
+    setIsCallActive(false)
+    if (callTimer) clearInterval(callTimer)
+    if (coinDeductionTimer) clearInterval(coinDeductionTimer)
+    if (diamondRewardTimer) clearInterval(diamondRewardTimer)
+    setCallTimer(null)
+    setCoinDeductionTimer(null)
+    setDiamondRewardTimer(null)
+    toast.success(`通話結束，持續時間：${Math.floor(callDuration / 60)}分${callDuration % 60}秒`)
+  }
+
+  const handleCallAccept = () => {
+    toast.success('已接受通話請求')
+  }
+
+  const handleCallReject = () => {
+    toast.error('已拒絕通話請求')
+  }
+
+  if (!mounted || !user) return null
 
   return (
     <div className="h-screen">
@@ -134,7 +177,21 @@ export default function ChatDetailPage() {
         initialMessages={messages}
         onGiftSend={handleGiftSend}
         coins={coins}
+        voiceCallComponent={
+          <VoiceCall
+            user={user}
+            onCallStart={handleCallStart}
+            onCallEnd={handleCallEnd}
+            onCallAccept={handleCallAccept}
+            onCallReject={handleCallReject}
+          />
+        }
       />
+      {isCallActive && (
+        <div className="fixed bottom-4 right-4 bg-red-500 text-white px-4 py-2 rounded-full">
+          通話中：{Math.floor(callDuration / 60)}分{callDuration % 60}秒
+        </div>
+      )}
     </div>
   )
 } 
