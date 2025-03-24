@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Switch } from '@/components/ui/switch'
 import { Label } from '@/components/ui/label'
-import { ChevronLeft, Bell, Lock, Phone, Globe, Moon, Sun } from 'lucide-react'
+import { ChevronLeft, Bell, Lock, Phone, Globe, Moon, Sun, Save } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 
@@ -38,9 +38,9 @@ export default function SettingsPage() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="flex flex-col min-h-screen bg-background">
       {/* 头部导航 */}
-      <div className="flex items-center justify-between px-4 py-2 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+      <div className="sticky top-0 z-50 flex items-center justify-between px-4 py-3 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
         <div className="flex items-center">
           <Button
             variant="ghost"
@@ -50,27 +50,30 @@ export default function SettingsPage() {
           >
             <ChevronLeft className="w-6 h-6" />
           </Button>
-          <h1 className="text-lg font-semibold text-gray-900 dark:text-gray-100 ml-3">
+          <h1 className="text-lg font-semibold ml-3">
             設置
           </h1>
         </div>
-        <Button onClick={handleSave}>保存</Button>
+        <Button onClick={handleSave} className="gap-2">
+          <Save className="w-4 h-4" />
+          保存
+        </Button>
       </div>
 
-      <div className="container mx-auto p-4 space-y-6">
+      <div className="container mx-auto p-4 space-y-6 max-w-2xl">
         {/* 通话设置 */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+        <Card className="border-none shadow-none bg-transparent">
+          <CardHeader className="px-0">
+            <CardTitle className="flex items-center gap-2 text-lg">
               <Phone className="w-5 h-5" />
               通話設置
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-6">
-            <div className="flex items-center justify-between">
+          <CardContent className="px-0 space-y-6">
+            <div className="flex items-center justify-between p-4 rounded-lg bg-card">
               <div className="space-y-0.5">
-                <Label>允許語音通話</Label>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
+                <Label className="text-base">允許語音通話</Label>
+                <p className="text-sm text-muted-foreground">
                   開啟後其他用戶可以與您進行語音通話
                 </p>
               </div>
@@ -83,16 +86,16 @@ export default function SettingsPage() {
             {allowsVoiceCall && (
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <Label>通話時間設置</Label>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                  <Label className="text-base">通話時間設置</Label>
+                  <p className="text-sm text-muted-foreground">
                     設置您願意接聽通話的時間段
                   </p>
                 </div>
                 
                 {Object.entries(voiceCallSchedule).map(([day, schedule]) => (
-                  <div key={day} className="flex items-center gap-4">
+                  <div key={day} className="flex items-center gap-4 p-4 rounded-lg bg-card">
                     <div className="w-24">
-                      <Label className="capitalize">{day}</Label>
+                      <Label className="capitalize text-base">{day}</Label>
                     </div>
                     <Switch
                       checked={schedule.enabled}
@@ -138,27 +141,27 @@ export default function SettingsPage() {
         </Card>
 
         {/* 通知设置 */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+        <Card className="border-none shadow-none bg-transparent">
+          <CardHeader className="px-0">
+            <CardTitle className="flex items-center gap-2 text-lg">
               <Bell className="w-5 h-5" />
               通知設置
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="flex items-center justify-between">
+          <CardContent className="px-0 space-y-4">
+            <div className="flex items-center justify-between p-4 rounded-lg bg-card">
               <div className="space-y-0.5">
-                <Label>新消息通知</Label>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
+                <Label className="text-base">新消息通知</Label>
+                <p className="text-sm text-muted-foreground">
                   接收新消息的推送通知
                 </p>
               </div>
               <Switch defaultChecked />
             </div>
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between p-4 rounded-lg bg-card">
               <div className="space-y-0.5">
-                <Label>通話請求通知</Label>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
+                <Label className="text-base">通話請求通知</Label>
+                <p className="text-sm text-muted-foreground">
                   接收通話請求的推送通知
                 </p>
               </div>
@@ -168,27 +171,27 @@ export default function SettingsPage() {
         </Card>
 
         {/* 隐私设置 */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+        <Card className="border-none shadow-none bg-transparent">
+          <CardHeader className="px-0">
+            <CardTitle className="flex items-center gap-2 text-lg">
               <Lock className="w-5 h-5" />
               隱私設置
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="flex items-center justify-between">
+          <CardContent className="px-0 space-y-4">
+            <div className="flex items-center justify-between p-4 rounded-lg bg-card">
               <div className="space-y-0.5">
-                <Label>在線狀態</Label>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
+                <Label className="text-base">在線狀態</Label>
+                <p className="text-sm text-muted-foreground">
                   顯示您的在線狀態
                 </p>
               </div>
               <Switch defaultChecked />
             </div>
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between p-4 rounded-lg bg-card">
               <div className="space-y-0.5">
-                <Label>最後上線時間</Label>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
+                <Label className="text-base">最後上線時間</Label>
+                <p className="text-sm text-muted-foreground">
                   顯示您的最後上線時間
                 </p>
               </div>
@@ -198,18 +201,18 @@ export default function SettingsPage() {
         </Card>
 
         {/* 主题设置 */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+        <Card className="border-none shadow-none bg-transparent">
+          <CardHeader className="px-0">
+            <CardTitle className="flex items-center gap-2 text-lg">
               {isDarkMode ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
               主題設置
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="flex items-center justify-between">
+          <CardContent className="px-0">
+            <div className="flex items-center justify-between p-4 rounded-lg bg-card">
               <div className="space-y-0.5">
-                <Label>深色模式</Label>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
+                <Label className="text-base">深色模式</Label>
+                <p className="text-sm text-muted-foreground">
                   切換深色/淺色主題
                 </p>
               </div>
@@ -222,24 +225,26 @@ export default function SettingsPage() {
         </Card>
 
         {/* 语言设置 */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+        <Card className="border-none shadow-none bg-transparent">
+          <CardHeader className="px-0">
+            <CardTitle className="flex items-center gap-2 text-lg">
               <Globe className="w-5 h-5" />
               語言設置
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <Select defaultValue="zh-TW">
-              <SelectTrigger>
-                <SelectValue placeholder="選擇語言" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="zh-TW">繁體中文</SelectItem>
-                <SelectItem value="en-US">English</SelectItem>
-                <SelectItem value="ja-JP">日本語</SelectItem>
-              </SelectContent>
-            </Select>
+          <CardContent className="px-0">
+            <div className="p-4 rounded-lg bg-card">
+              <Select defaultValue="zh-TW">
+                <SelectTrigger>
+                  <SelectValue placeholder="選擇語言" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="zh-TW">繁體中文</SelectItem>
+                  <SelectItem value="en-US">English</SelectItem>
+                  <SelectItem value="ja-JP">日本語</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
           </CardContent>
         </Card>
       </div>

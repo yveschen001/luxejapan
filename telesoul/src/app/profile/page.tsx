@@ -3,11 +3,13 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { 
   Gift, Diamond, Edit2, AlertCircle, ChevronRight, MessageCircle, 
   Settings, Facebook, Instagram, Twitter, Bell, Globe, Wallet,
-  Camera, X, Check, Share2, ChevronDown
+  Camera, X, Check, Share2, ChevronDown, ChevronLeft, Save,
+  User, Heart, Cake, Ruler, Scale, Users2, Languages, MapPin, Copy
 } from 'lucide-react'
 import { toast } from 'sonner'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
@@ -15,6 +17,10 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Badge } from '@/components/ui/badge'
+import { Switch } from '@/components/ui/switch'
 
 interface UserProfile {
   avatar: string
@@ -26,9 +32,11 @@ interface UserProfile {
   zodiac: string
   chineseZodiac: string
   gender: 'male' | 'female'
+  birthday: string
   height: number
   weight: number
   race: string
+  language: string
   eyeColor: string
   interests: string[]
   relationshipGoal: string
@@ -46,6 +54,12 @@ interface UserProfile {
     likes: number
     comments: number
   }[]
+  name: string
+  location: string
+  voiceCallSchedule: {
+    [key: string]: { enabled: boolean; start: string; end: string }
+  }
+  walletAddress?: string
 }
 
 interface Transaction {
@@ -58,21 +72,24 @@ interface Transaction {
 }
 
 export default function ProfilePage() {
+  const router = useRouter()
   const [user, setUser] = useState<UserProfile>({
-    avatar: 'https://picsum.photos/200',
-    nickname: '小月',
+    avatar: '/avatar.jpg',
+    nickname: '张三',
     city: '台北',
-    bio: '喜歡旅行和美食的攝影愛好者',
+    bio: '热爱生活，享受当下',
     mbti: 'INFJ',
     mbtiDescription: '理想主义者 - 富有同情心、创造力和理想主义的性格类型',
     zodiac: '天蝎座',
     chineseZodiac: '兔',
-    gender: 'female',
-    height: 165,
-    weight: 50,
+    gender: 'male',
+    birthday: '1990-01-01',
+    height: 175,
+    weight: 70,
     race: '亚洲',
+    language: '中文',
     eyeColor: '黑色',
-    interests: ['旅行', '美食', '电影', '音乐', '摄影', '阅读'],
+    interests: ['旅行', '摄影', '美食', '音乐'],
     relationshipGoal: '长期',
     isKycVerified: false,
     hasLinkedWallet: false,
@@ -92,12 +109,24 @@ export default function ProfilePage() {
         likes: 18,
         comments: 3
       }
-    ]
+    ],
+    name: '张三',
+    location: '台北',
+    voiceCallSchedule: {
+      monday: { enabled: true, start: '09:00', end: '22:00' },
+      tuesday: { enabled: true, start: '09:00', end: '22:00' },
+      wednesday: { enabled: true, start: '09:00', end: '22:00' },
+      thursday: { enabled: true, start: '09:00', end: '22:00' },
+      friday: { enabled: true, start: '09:00', end: '22:00' },
+      saturday: { enabled: true, start: '10:00', end: '23:00' },
+      sunday: { enabled: true, start: '10:00', end: '23:00' }
+    },
+    walletAddress: 'EQD...xK9'
   })
 
   const [balance] = useState({
     coins: 280,
-    diamonds: user.gender === 'female' ? 1200 : 0
+    diamonds: 1200
   })
 
   const [transactions] = useState<Transaction[]>([
@@ -129,6 +158,8 @@ export default function ProfilePage() {
   const [showWalletDialog, setShowWalletDialog] = useState(false)
   const [showSettingsDialog, setShowSettingsDialog] = useState(false)
   const [showAvatarUpload, setShowAvatarUpload] = useState(false)
+  const [showScheduleDialog, setShowScheduleDialog] = useState(false)
+  const [showWalletBindDialog, setShowWalletBindDialog] = useState(false)
   const [allowSocialLink, setAllowSocialLink] = useState(false)
   const [notifications, setNotifications] = useState({
     messages: true,
@@ -137,355 +168,650 @@ export default function ProfilePage() {
     system: true
   })
 
+  const [copied, setCopied] = useState(false)
+
+  const handleBack = () => {
+    router.back()
+  }
+
+  const handleSave = () => {
+    setShowEditDialog(false)
+    toast.success('個人資料已更新')
+  }
+
+  const handleCancel = () => {
+    setShowEditDialog(false)
+  }
+
   const handleAvatarUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (file) {
-      // 這裡應該有實際的上傳邏輯
-      toast.success('頭像更新成功')
-      setShowAvatarUpload(false)
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        setUser(prev => ({
+          ...prev,
+          avatar: reader.result as string
+        }))
+        toast.success('頭像已更新')
+      }
+      reader.readAsDataURL(file)
+    }
+    setShowAvatarUpload(false)
+  }
+
+  const handleSocialLinkChange = (checked: boolean) => {
+    setAllowSocialLink(checked)
+    toast.success(checked ? '已允許其他人連結您的社交媒體' : '已取消允許其他人連結您的社交媒體')
+  }
+
+  const handleScheduleSave = () => {
+    setShowScheduleDialog(false)
+    toast.success('通話時間已更新')
+  }
+
+  const handleCopyAddress = () => {
+    if (user.walletAddress) {
+      navigator.clipboard.writeText(user.walletAddress)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+      toast.success('錢包地址已複製')
     }
   }
 
   const handleSocialMediaLink = (platform: keyof UserProfile['socialMedia']) => {
-    // 這裡應該有實際的社群媒體連結邏輯
     toast.success(`${platform} 連結成功`)
   }
 
+  // 添加兴趣选项
+  const interestOptions = [
+    '旅行', '攝影', '美食', '音樂', '電影', '閱讀', '運動', '健身', '瑜伽', '舞蹈',
+    '繪畫', '書法', '手工藝', '園藝', '寵物', '咖啡', '茶藝', '紅酒', '時尚', '購物',
+    '遊戲', '動漫', '科技', '投資', '烹飪', '露營', '登山', '游泳', '滑雪', '潛水'
+  ]
+
+  // 修改兴趣爱好的编辑功能
+  const handleInterestToggle = (interest: string) => {
+    setUser(prev => {
+      const currentInterests = prev.interests
+      if (currentInterests.includes(interest)) {
+        return {
+          ...prev,
+          interests: currentInterests.filter(i => i !== interest)
+        }
+      } else if (currentInterests.length < 5) {
+        return {
+          ...prev,
+          interests: [...currentInterests, interest]
+        }
+      } else {
+        toast.error('最多只能選擇5個興趣愛好')
+        return prev
+      }
+    })
+  }
+
   return (
-    <div className="container mx-auto px-4 py-6 max-w-md">
-      {/* 个人信息 */}
-      <div className="bg-gradient-to-br from-white to-blue-50 rounded-2xl p-6 shadow-lg">
-        <div className="flex items-start space-x-5">
-          <div className="relative">
-            <div className="w-[90px] h-[90px] relative rounded-full overflow-hidden shadow-md cursor-pointer"
-                 onClick={() => setShowAvatarUpload(true)}>
-              <Image
-                src={user.avatar}
-                alt={user.nickname}
-                fill
-                className="object-cover"
-                priority
-                sizes="90px"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.src = 'https://picsum.photos/200';
-                }}
-              />
-              <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-                <Camera className="w-6 h-6 text-white" />
-              </div>
-            </div>
-          </div>
-          <div className="flex-1">
-            <div className="text-2xl font-semibold mb-1 text-gray-800">{user.nickname}</div>
-            <div className="text-sm text-gray-500 mb-2">{user.city}</div>
-            <div className="text-sm text-gray-600 line-clamp-2">{user.bio}</div>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="mt-2 text-blue-600 hover:text-blue-700"
-              onClick={() => setShowEditDialog(true)}
-            >
-              <Edit2 className="w-4 h-4 mr-1" />
-              編輯資料
-            </Button>
-          </div>
+    <div className="flex flex-col min-h-screen bg-background text-foreground">
+      {/* 头部导航 */}
+      <div className="sticky top-0 z-50 flex items-center justify-between px-4 py-3 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
+        <div className="flex items-center">
           <Button
             variant="ghost"
             size="icon"
-            className="text-gray-500 hover:text-gray-700"
-            onClick={() => setShowSettingsDialog(true)}
+            onClick={handleBack}
+            className="-ml-2"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </Button>
+          <h1 className="text-2xl font-bold ml-3">
+            個人資料
+          </h1>
+        </div>
+        <div className="flex items-center gap-2">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => router.push('/profile/settings')}
           >
             <Settings className="w-5 h-5" />
           </Button>
-        </div>
-        
-        {/* MBTI结果 */}
-        <div className="mt-6 bg-white/80 backdrop-blur-sm rounded-xl p-5 border border-blue-100">
-          <div className="flex items-center justify-between mb-3">
-            <div className="text-xl font-semibold text-blue-600">{user.mbti}</div>
-            <Button variant="ghost" size="sm" className="text-blue-600 hover:bg-blue-50">
-              重新测试
+          {showEditDialog ? (
+            <>
+              <Button variant="outline" onClick={handleCancel} className="gap-2">
+                <X className="w-4 h-4" />
+                取消
+              </Button>
+              <Button onClick={handleSave} className="gap-2">
+                <Save className="w-4 h-4" />
+                保存
+              </Button>
+            </>
+          ) : (
+            <Button onClick={() => setShowEditDialog(true)} className="gap-2">
+              <Edit2 className="w-4 h-4" />
+              編輯
             </Button>
-          </div>
-          <p className="text-sm leading-relaxed text-gray-600">{user.mbtiDescription}</p>
+          )}
         </div>
       </div>
 
-      {/* 钱包信息 */}
-      <div className="mt-5 grid grid-cols-2 gap-4">
-        <div 
-          className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-5 shadow-lg cursor-pointer"
-          onClick={() => setShowWalletDialog(true)}
-        >
-          <div className="flex items-center space-x-3">
-            <div className="p-2.5 bg-white/20 rounded-xl">
-              <Gift className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <div className="text-sm font-medium text-white/80">金币余额</div>
-              <div className="text-2xl font-bold text-white">{balance.coins}</div>
-            </div>
-          </div>
-        </div>
-        {user.gender === 'female' && (
-          <div 
-            className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-5 shadow-lg cursor-pointer"
-            onClick={() => setShowWalletDialog(true)}
-          >
-            <div className="flex items-center space-x-3">
-              <div className="p-2.5 bg-white/20 rounded-xl">
-                <Diamond className="w-6 h-6 text-white" />
+      <div className="container mx-auto p-4 space-y-8 max-w-2xl">
+        {/* 头像和基本信息 */}
+        <Card className="border-none shadow-none bg-transparent">
+          <CardContent className="px-0">
+            <div className="flex flex-col items-center">
+              <div className="relative cursor-pointer mb-6" onClick={() => setShowAvatarUpload(true)}>
+                <Avatar className="w-32 h-32">
+                  <AvatarImage src={user.avatar} alt={user.nickname} />
+                  <AvatarFallback className="bg-primary/10">
+                    {user.nickname.substring(0, 2)}
+                  </AvatarFallback>
+                </Avatar>
+                {showEditDialog && (
+                  <div className="absolute bottom-0 right-0 p-2 rounded-full bg-background">
+                    <Camera className="w-5 h-5" />
+                  </div>
+                )}
               </div>
-              <div>
-                <div className="text-sm font-medium text-white/80">钻石余额</div>
-                <div className="text-2xl font-bold text-white">{balance.diamonds}</div>
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* 社交媒體綁定 */}
-      <div className="mt-5 bg-gradient-to-r from-pink-500 to-purple-600 rounded-2xl p-5 text-white shadow-lg">
-        <div className="flex items-start space-x-4">
-          <div className="p-2.5 bg-white/20 rounded-xl">
-            <Share2 className="w-6 h-6" />
-          </div>
-          <div className="flex-1">
-            <h3 className="text-xl font-semibold mb-2">綁定社交媒體增加你的可信度</h3>
-            <div className="flex space-x-3 mb-4">
-              <Button
-                variant="outline"
-                size="sm"
-                className="bg-white/10 hover:bg-white/20 border-white/20"
-                onClick={() => handleSocialMediaLink('facebook')}
-              >
-                <Facebook className="w-4 h-4 mr-2" />
-                Facebook
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                className="bg-white/10 hover:bg-white/20 border-white/20"
-                onClick={() => handleSocialMediaLink('instagram')}
-              >
-                <Instagram className="w-4 h-4 mr-2" />
-                Instagram
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                className="bg-white/10 hover:bg-white/20 border-white/20"
-                onClick={() => handleSocialMediaLink('twitter')}
-              >
-                <Twitter className="w-4 h-4 mr-2" />
-                X.com
-              </Button>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Checkbox
-                id="allowSocialLink"
-                checked={allowSocialLink}
-                onCheckedChange={(checked) => setAllowSocialLink(checked as boolean)}
-                className="border-white/20"
-              />
-              <Label htmlFor="allowSocialLink" className="text-sm text-white/90">
-                允許其他人連結我的社交媒體
-              </Label>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* 我的广场 */}
-      <div className="mt-5 bg-white rounded-2xl shadow-lg overflow-hidden">
-        <div className="px-5 py-4 border-b border-gray-100 flex justify-between items-center">
-          <h2 className="text-lg font-semibold text-gray-800">我的广场</h2>
-          <Link href="/square/my" className="text-sm font-medium text-blue-600 flex items-center hover:text-blue-700">
-            更多内容 <ChevronRight className="w-4 h-4 ml-1" />
-          </Link>
-        </div>
-        <div className="divide-y divide-gray-100">
-          {user.posts.slice(0, 5).map(post => (
-            <div key={post.id} className="p-5">
-              <div className="text-base text-gray-700 mb-3 leading-relaxed">{post.content}</div>
-              {post.image && (
-                <div className="relative w-full h-[240px] mb-3 rounded-xl overflow-hidden">
-                  <Image
-                    src={post.image}
-                    alt={post.content}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.src = 'https://picsum.photos/400/300?random=fallback';
-                    }}
+              <div className="text-center mb-8">
+                <div className="flex items-center justify-center gap-2 mb-3">
+                  {showEditDialog ? (
+                    <Input
+                      value={user.nickname}
+                      onChange={(e) => setUser(prev => ({ ...prev, nickname: e.target.value }))}
+                      className="text-center text-2xl font-bold w-48"
+                    />
+                  ) : (
+                    <h2 className="text-3xl font-bold">{user.name}</h2>
+                  )}
+                  {user.gender === 'male' ? (
+                    <User className="w-6 h-6 text-blue-500" />
+                  ) : (
+                    <Heart className="w-6 h-6 text-pink-500" />
+                  )}
+                </div>
+                {showEditDialog ? (
+                  <Input
+                    value={user.bio}
+                    onChange={(e) => setUser(prev => ({ ...prev, bio: e.target.value }))}
+                    placeholder="請輸入自我介紹"
+                    className="text-center"
                   />
+                ) : (
+                  <p className="text-lg text-muted-foreground">{user.bio}</p>
+                )}
+              </div>
+              
+              {/* 钱包信息 */}
+              {!showEditDialog && (
+                <div className="flex justify-center mb-8">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="h-12 px-6 gap-3 rounded-full hover:bg-primary/5"
+                    onClick={() => setShowWalletDialog(true)}
+                  >
+                    <Wallet className="w-5 h-5 text-primary" />
+                    <span className="font-medium">{balance.coins} 金幣</span>
+                  </Button>
                 </div>
               )}
-              <div className="flex items-center text-sm text-gray-500">
-                <span className="flex items-center mr-4">
-                  <span className="text-red-500 mr-1">❤️</span>
-                  <span>{post.likes}</span>
-                </span>
-                <span className="flex items-center">
-                  <span className="text-blue-500 mr-1">💬</span>
-                  <span>{post.comments}</span>
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
 
-      {/* 其他功能按钮 */}
-      <div className="mt-5 space-y-3">
-        <Button
-          variant="outline"
-          className="w-full justify-between h-14 text-base font-medium rounded-xl border-gray-200 hover:bg-gray-50"
-          onClick={() => setShowWalletDialog(true)}
-        >
-          <div className="flex items-center">
-            <Wallet className="w-5 h-5 mr-3 text-gray-500" />
-            <span>我的錢包</span>
-          </div>
-          <ChevronRight className="w-5 h-5 text-gray-400" />
-        </Button>
-      </div>
+              {/* 基本信息卡片网格 */}
+              {showEditDialog ? (
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 w-full">
+                  <div className="space-y-2">
+                    <Label>生日</Label>
+                    <Input
+                      type="date"
+                      value={user.birthday}
+                      onChange={(e) => setUser(prev => ({ ...prev, birthday: e.target.value }))}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>身高 (cm)</Label>
+                    <Input
+                      type="number"
+                      value={user.height}
+                      onChange={(e) => setUser(prev => ({ ...prev, height: parseInt(e.target.value) }))}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>體重 (kg)</Label>
+                    <Input
+                      type="number"
+                      value={user.weight}
+                      onChange={(e) => setUser(prev => ({ ...prev, weight: parseInt(e.target.value) }))}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>種族</Label>
+                    <Input
+                      value={user.race}
+                      onChange={(e) => setUser(prev => ({ ...prev, race: e.target.value }))}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>語言</Label>
+                    <Input
+                      value={user.language}
+                      onChange={(e) => setUser(prev => ({ ...prev, language: e.target.value }))}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>所在城市</Label>
+                    <Input
+                      value={user.city}
+                      onChange={(e) => setUser(prev => ({ ...prev, city: e.target.value }))}
+                    />
+                  </div>
+                </div>
+              ) : (
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 w-full">
+                  <div className="flex items-center gap-3 p-4 rounded-xl bg-card border border-border">
+                    <Cake className="w-5 h-5 text-muted-foreground" />
+                    <div>
+                      <div className="text-sm text-muted-foreground">生日</div>
+                      <div className="text-base font-medium">{user.birthday}</div>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center gap-3 p-4 rounded-xl bg-card border border-border">
+                    <Ruler className="w-5 h-5 text-muted-foreground" />
+                    <div>
+                      <div className="text-sm text-muted-foreground">身高</div>
+                      <div className="text-base font-medium">{user.height} cm</div>
+                    </div>
+                  </div>
 
-      {/* 編輯資料對話框 */}
-      <Dialog open={showEditDialog} onOpenChange={setShowEditDialog}>
-        <DialogContent className="max-w-md">
-          <DialogHeader>
-            <DialogTitle>編輯個人資料</DialogTitle>
-          </DialogHeader>
-          <div className="space-y-4">
-            <div>
-              <Label htmlFor="nickname">暱稱</Label>
-              <Input
-                id="nickname"
-                value={user.nickname}
-                onChange={(e) => setUser({ ...user, nickname: e.target.value })}
-                placeholder="請輸入暱稱"
-                maxLength={20}
-              />
+                  <div className="flex items-center gap-3 p-4 rounded-xl bg-card border border-border">
+                    <Scale className="w-5 h-5 text-muted-foreground" />
+                    <div>
+                      <div className="text-sm text-muted-foreground">體重</div>
+                      <div className="text-base font-medium">{user.weight} kg</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3 p-4 rounded-xl bg-card border border-border">
+                    <Users2 className="w-5 h-5 text-muted-foreground" />
+                    <div>
+                      <div className="text-sm text-muted-foreground">種族</div>
+                      <div className="text-base font-medium">{user.race}</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3 p-4 rounded-xl bg-card border border-border">
+                    <Languages className="w-5 h-5 text-muted-foreground" />
+                    <div>
+                      <div className="text-sm text-muted-foreground">語言</div>
+                      <div className="text-base font-medium">{user.language}</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3 p-4 rounded-xl bg-card border border-border">
+                    <MapPin className="w-5 h-5 text-muted-foreground" />
+                    <div>
+                      <div className="text-sm text-muted-foreground">城市</div>
+                      <div className="text-base font-medium">{user.city}</div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
-            <div>
-              <Label htmlFor="city">城市</Label>
-              <Input
-                id="city"
-                value={user.city}
-                onChange={(e) => setUser({ ...user, city: e.target.value })}
-                placeholder="請輸入你的城市"
-              />
-            </div>
-            <div>
-              <Label htmlFor="bio">自我介紹</Label>
-              <Input
-                id="bio"
-                value={user.bio}
-                onChange={(e) => setUser({ ...user, bio: e.target.value })}
-                placeholder="請輸入自我介紹（最多140字）"
-                maxLength={140}
-              />
-            </div>
-            <div>
-              <Label>身高</Label>
-              <div className="relative">
-                <select
-                  value={user.height}
-                  onChange={(e) => setUser({ ...user, height: Number(e.target.value) })}
-                  className="w-full p-2 border rounded-lg appearance-none pr-10"
-                >
-                  {Array.from({ length: 60 }, (_, i) => 140 + i * 5).map(height => (
-                    <option key={height} value={height}>{height} cm</option>
-                  ))}
-                </select>
-                <ChevronDown className="w-4 h-4 absolute right-3 top-3 text-gray-400" />
+          </CardContent>
+        </Card>
+
+        {/* MBTI 性格测试 */}
+        <Card className="border-none shadow-none bg-transparent">
+          <CardHeader className="px-0">
+            <CardTitle className="text-2xl font-bold">MBTI 性格測試</CardTitle>
+          </CardHeader>
+          <CardContent className="px-0">
+            <div className="space-y-4">
+              <div className="p-4 bg-card border border-border rounded-xl">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="text-base font-medium">{user.mbti}</div>
+                  {showEditDialog && (
+                    <Button variant="outline" onClick={() => {
+                      toast.success('已發送重新測試請求')
+                    }}>
+                      重新測試
+                    </Button>
+                  )}
+                </div>
+                <div className="text-sm text-muted-foreground">{user.mbtiDescription}</div>
               </div>
             </div>
-            <div>
-              <Label>體重</Label>
-              <div className="relative">
-                <select
-                  value={user.weight}
-                  onChange={(e) => setUser({ ...user, weight: Number(e.target.value) })}
-                  className="w-full p-2 border rounded-lg appearance-none pr-10"
-                >
-                  {Array.from({ length: 15 }, (_, i) => 40 + i * 5).map(weight => (
-                    <option key={weight} value={weight}>{weight} kg</option>
+          </CardContent>
+        </Card>
+
+        {/* 兴趣爱好 */}
+        <Card className="border-none shadow-none bg-transparent">
+          <CardHeader className="px-0">
+            <CardTitle className="text-2xl font-bold">興趣愛好</CardTitle>
+          </CardHeader>
+          <CardContent className="px-0">
+            {showEditDialog ? (
+              <div className="space-y-4">
+                <div className="text-sm text-muted-foreground">
+                  已選擇 {user.interests.length}/5 個興趣愛好
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {interestOptions.map((interest) => (
+                    <Badge
+                      key={interest}
+                      variant={user.interests.includes(interest) ? "default" : "outline"}
+                      className="cursor-pointer text-sm px-3 py-1"
+                      onClick={() => handleInterestToggle(interest)}
+                    >
+                      {interest}
+                    </Badge>
                   ))}
-                </select>
-                <ChevronDown className="w-4 h-4 absolute right-3 top-3 text-gray-400" />
+                </div>
               </div>
-            </div>
-            <div>
-              <Label>種族</Label>
-              <div className="relative">
-                <select
-                  value={user.race}
-                  onChange={(e) => setUser({ ...user, race: e.target.value })}
-                  className="w-full p-2 border rounded-lg appearance-none pr-10"
-                >
-                  {['亚洲', '欧美', '非洲', '拉丁', '其他'].map(race => (
-                    <option key={race} value={race}>{race}</option>
-                  ))}
-                </select>
-                <ChevronDown className="w-4 h-4 absolute right-3 top-3 text-gray-400" />
-              </div>
-            </div>
-            <div>
-              <Label>眼睛顏色</Label>
-              <div className="relative">
-                <select
-                  value={user.eyeColor}
-                  onChange={(e) => setUser({ ...user, eyeColor: e.target.value })}
-                  className="w-full p-2 border rounded-lg appearance-none pr-10"
-                >
-                  {['黑色', '棕色', '蓝色', '绿色', '其他'].map(color => (
-                    <option key={color} value={color}>{color}</option>
-                  ))}
-                </select>
-                <ChevronDown className="w-4 h-4 absolute right-3 top-3 text-gray-400" />
-              </div>
-            </div>
-            <div>
-              <Label>興趣愛好</Label>
-              <div className="grid grid-cols-3 gap-2 mt-2">
-                {['旅行', '美食', '电影', '音乐', '摄影', '阅读', '运动', '游戏',
-                  '艺术', '设计', '科技', '投资', '烹饪', '宠物', '瑜伽', '冥想'].map(interest => (
-                  <Button
-                    key={interest}
-                    variant={user.interests.includes(interest) ? 'primary' : 'outline'}
-                    size="sm"
-                    className="text-sm"
-                    onClick={() => {
-                      if (user.interests.includes(interest)) {
-                        setUser({ ...user, interests: user.interests.filter(i => i !== interest) })
-                      } else if (user.interests.length < 10) {
-                        setUser({ ...user, interests: [...user.interests, interest] })
-                      }
-                    }}
-                  >
+            ) : (
+              <div className="flex flex-wrap gap-2">
+                {user.interests.map((interest, index) => (
+                  <Badge key={index} variant="secondary" className="text-sm px-3 py-1">
                     {interest}
-                  </Button>
+                  </Badge>
                 ))}
               </div>
+            )}
+          </CardContent>
+        </Card>
+
+        {!showEditDialog && (
+          <>
+            {/* 社交媒體綁定 */}
+            <Card className="border-none shadow-none bg-transparent">
+              <CardHeader className="px-0">
+                <CardTitle className="text-2xl font-bold">社交媒體</CardTitle>
+              </CardHeader>
+              <CardContent className="px-0">
+                <div className="flex items-center justify-between p-4 bg-card border border-border rounded-xl">
+                  <div className="flex items-center gap-4">
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      className="h-12 w-12 rounded-xl hover:bg-primary/10"
+                      onClick={() => handleSocialMediaLink('facebook')}
+                    >
+                      <Facebook className="w-5 h-5" />
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      className="h-12 w-12 rounded-xl hover:bg-primary/10"
+                      onClick={() => handleSocialMediaLink('instagram')}
+                    >
+                      <Instagram className="w-5 h-5" />
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      className="h-12 w-12 rounded-xl hover:bg-primary/10"
+                      onClick={() => handleSocialMediaLink('twitter')}
+                    >
+                      <Twitter className="w-5 h-5" />
+                    </Button>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Checkbox
+                      id="allowSocialLink"
+                      checked={allowSocialLink}
+                      onCheckedChange={handleSocialLinkChange}
+                      className="border-primary data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground"
+                    />
+                    <Label htmlFor="allowSocialLink" className="text-sm text-muted-foreground">
+                      允許其他人連結我的社交媒體
+                    </Label>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* 我的广场 */}
+            <div className="bg-card border border-border rounded-2xl shadow-lg overflow-hidden">
+              <div className="px-6 py-4 border-b border-border">
+                <div className="flex justify-between items-center mb-4">
+                  <h2 className="text-2xl font-bold">我的广场</h2>
+                  <Link href="/square/my" className="text-sm font-medium text-primary flex items-center hover:text-primary/80">
+                    更多内容 <ChevronRight className="w-4 h-4 ml-1" />
+                  </Link>
+                </div>
+                <Tabs defaultValue="my" className="w-full">
+                  <TabsList className="w-full">
+                    <TabsTrigger value="my" className="flex-1">我的广场</TabsTrigger>
+                    <TabsTrigger value="liked" className="flex-1">喜欢的广场</TabsTrigger>
+                  </TabsList>
+                  <TabsContent value="my">
+                    <div className="divide-y divide-border">
+                      {user.posts.slice(0, 5).map(post => (
+                        <div key={post.id} className="p-6">
+                          <div className="text-base text-foreground mb-3 leading-relaxed">{post.content}</div>
+                          {post.image && (
+                            <div className="relative w-full h-[240px] mb-3 rounded-xl overflow-hidden">
+                              <Image
+                                src={post.image}
+                                alt={post.content}
+                                fill
+                                className="object-cover"
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                              />
+                            </div>
+                          )}
+                          <div className="flex items-center text-sm text-muted-foreground">
+                            <span className="flex items-center mr-4">
+                              <span className="text-red-500 mr-1">❤️</span>
+                              <span>{post.likes}</span>
+                            </span>
+                            <span className="flex items-center">
+                              <span className="text-blue-500 mr-1">💬</span>
+                              <span>{post.comments}</span>
+                            </span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </TabsContent>
+                  <TabsContent value="liked">
+                    <div className="divide-y divide-border">
+                      {user.posts.slice(0, 5).map(post => (
+                        <div key={post.id} className="p-6">
+                          <div className="flex items-center gap-3 mb-3">
+                            <Avatar className="w-8 h-8">
+                              <AvatarImage src={user.avatar} alt={user.nickname} />
+                              <AvatarFallback>{user.nickname.substring(0, 2)}</AvatarFallback>
+                            </Avatar>
+                            <div>
+                              <div className="text-sm font-medium">{user.nickname}</div>
+                              <div className="text-xs text-muted-foreground">2小時前</div>
+                            </div>
+                          </div>
+                          <div className="text-base text-foreground mb-3 leading-relaxed">{post.content}</div>
+                          {post.image && (
+                            <div className="relative w-full h-[240px] mb-3 rounded-xl overflow-hidden">
+                              <Image
+                                src={post.image}
+                                alt={post.content}
+                                fill
+                                className="object-cover"
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                              />
+                            </div>
+                          )}
+                          <div className="flex items-center text-sm text-muted-foreground">
+                            <span className="flex items-center mr-4">
+                              <span className="text-red-500 mr-1">❤️</span>
+                              <span>{post.likes}</span>
+                            </span>
+                            <span className="flex items-center">
+                              <span className="text-blue-500 mr-1">💬</span>
+                              <span>{post.comments}</span>
+                            </span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </TabsContent>
+                </Tabs>
+              </div>
             </div>
-            <Button className="w-full" onClick={() => setShowEditDialog(false)}>
-              保存
-            </Button>
+
+            {/* 其他功能按钮 */}
+            <div className="space-y-3">
+              <Button
+                variant="outline"
+                className="w-full justify-between h-14 text-base font-medium rounded-xl border-border hover:bg-muted"
+                onClick={() => setShowWalletDialog(true)}
+              >
+                <div className="flex items-center">
+                  <Wallet className="w-5 h-5 mr-3 text-muted-foreground" />
+                  <span>我的錢包</span>
+                </div>
+                <ChevronRight className="w-5 h-5 text-muted-foreground" />
+              </Button>
+            </div>
+          </>
+        )}
+
+        {/* 添加任务卡片 */}
+        <Card className="border-none shadow-none bg-transparent">
+          <CardHeader className="px-0">
+            <CardTitle className="text-2xl font-bold">每日任務</CardTitle>
+          </CardHeader>
+          <CardContent className="px-0">
+            <div className="space-y-4">
+              {/* 任务项 */}
+              <div className="flex items-center p-4 bg-card border border-border rounded-xl">
+                <div className="flex-1 mr-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="text-base font-medium">完善個人資料</div>
+                    <Button
+                      variant="primary"
+                      size="sm"
+                      className="h-8 px-3 rounded-full"
+                    >
+                      去完成
+                    </Button>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
+                      <div className="h-full bg-primary" style={{ width: '60%' }} />
+                    </div>
+                    <span className="text-sm text-muted-foreground">3/5</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex items-center p-4 bg-card border border-border rounded-xl">
+                <div className="flex-1 mr-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="text-base font-medium">完成 MBTI 測試</div>
+                    <Button
+                      variant="primary"
+                      size="sm"
+                      className="h-8 px-3 rounded-full"
+                    >
+                      去完成
+                    </Button>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
+                      <div className="h-full bg-primary" style={{ width: '0%' }} />
+                    </div>
+                    <span className="text-sm text-muted-foreground">0/1</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex items-center p-4 bg-card border border-border rounded-xl">
+                <div className="flex-1 mr-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="text-base font-medium">發布動態</div>
+                    <Button
+                      variant="primary"
+                      size="sm"
+                      className="h-8 px-3 rounded-full"
+                    >
+                      去完成
+                    </Button>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
+                      <div className="h-full bg-primary" style={{ width: '33%' }} />
+                    </div>
+                    <span className="text-sm text-muted-foreground">1/3</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex items-center p-4 bg-card border border-border rounded-xl">
+                <div className="flex-1 mr-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="text-base font-medium">綁定社交媒體</div>
+                    <Button
+                      variant="primary"
+                      size="sm"
+                      className="h-8 px-3 rounded-full"
+                    >
+                      去完成
+                    </Button>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
+                      <div className="h-full bg-primary" style={{ width: '0%' }} />
+                    </div>
+                    <span className="text-sm text-muted-foreground">0/2</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* 头像上传对话框 */}
+      <Dialog open={showAvatarUpload} onOpenChange={setShowAvatarUpload}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>更換頭像</DialogTitle>
+          </DialogHeader>
+          <div className="flex flex-col items-center gap-4">
+            <div className="relative w-32 h-32 rounded-full overflow-hidden mb-4">
+              <Image
+                src={user.avatar}
+                alt="當前頭像"
+                fill
+                className="object-cover"
+              />
+            </div>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleAvatarUpload}
+              className="hidden"
+              id="avatar-upload"
+            />
+            <label
+              htmlFor="avatar-upload"
+              className="cursor-pointer flex items-center justify-center w-full h-32 border-2 border-dashed rounded-lg hover:border-primary"
+            >
+              <div className="flex flex-col items-center gap-2">
+                <Camera className="w-8 h-8 text-muted-foreground" />
+                <span className="text-sm text-muted-foreground">點擊上傳新圖片</span>
+              </div>
+            </label>
           </div>
         </DialogContent>
       </Dialog>
 
-      {/* 錢包對話框 */}
+      {/* 钱包对话框 */}
       <Dialog open={showWalletDialog} onOpenChange={setShowWalletDialog}>
         <DialogContent className="max-w-md">
           <DialogHeader>
-            <DialogTitle>我的錢包</DialogTitle>
+            <DialogTitle className="text-2xl font-bold">我的錢包</DialogTitle>
           </DialogHeader>
           <Tabs defaultValue="coins">
             <TabsList className="grid w-full grid-cols-2">
@@ -493,25 +819,26 @@ export default function ProfilePage() {
               <TabsTrigger value="diamonds">鑽石</TabsTrigger>
             </TabsList>
             <TabsContent value="coins">
-              <div className="space-y-4">
-                <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div className="space-y-6">
+                <div className="flex items-center justify-between p-4 bg-muted rounded-xl">
                   <div>
-                    <div className="text-sm text-gray-500">金幣餘額</div>
+                    <div className="text-sm text-muted-foreground">金幣餘額</div>
                     <div className="text-2xl font-bold">{balance.coins}</div>
                   </div>
                   <Button>充值</Button>
                 </div>
-                <div className="space-y-2">
-                  <h3 className="font-medium">交易記錄</h3>
+                <div className="space-y-3">
+                  <h3 className="text-xl font-bold">交易記錄</h3>
                   {transactions
                     .filter(t => t.type !== 'withdraw')
+                    .slice(0, 5)
                     .map(transaction => (
-                      <div key={transaction.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                      <div key={transaction.id} className="flex items-center justify-between p-4 bg-muted rounded-xl">
                         <div>
-                          <div className="font-medium">{transaction.description}</div>
-                          <div className="text-sm text-gray-500">{transaction.date}</div>
+                          <div className="text-base font-medium">{transaction.description}</div>
+                          <div className="text-sm text-muted-foreground">{transaction.date}</div>
                         </div>
-                        <div className={`font-medium ${transaction.type === 'recharge' ? 'text-green-600' : 'text-red-600'}`}>
+                        <div className={`text-base font-medium ${transaction.type === 'recharge' ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
                           {transaction.type === 'recharge' ? '+' : '-'}{transaction.amount}
                         </div>
                       </div>
@@ -520,30 +847,55 @@ export default function ProfilePage() {
               </div>
             </TabsContent>
             <TabsContent value="diamonds">
-              <div className="space-y-4">
-                <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div className="space-y-6">
+                <div className="flex items-center justify-between p-4 bg-muted rounded-xl">
                   <div>
-                    <div className="text-sm text-gray-500">鑽石餘額</div>
+                    <div className="text-sm text-muted-foreground">鑽石餘額</div>
                     <div className="text-2xl font-bold">{balance.diamonds}</div>
                   </div>
-                  <Button>提現</Button>
+                  <div className="flex items-center gap-3">
+                    <div 
+                      className="flex items-center gap-2 px-3 py-2 rounded-lg bg-card hover:bg-muted cursor-pointer transition-colors"
+                      onClick={() => setShowWalletBindDialog(true)}
+                    >
+                      <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                        <svg 
+                          viewBox="0 0 24 24" 
+                          className="w-5 h-5 text-primary"
+                          fill="currentColor"
+                        >
+                          <path d="M12 2L2 7L12 12L22 7L12 2Z" />
+                          <path d="M2 17L12 22L22 17" />
+                          <path d="M2 12L12 17L22 12" />
+                        </svg>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-sm font-medium">TON 錢包</div>
+                        <div className="text-xs text-muted-foreground">
+                          {user.walletAddress ? user.walletAddress : '未綁定'}
+                        </div>
+                      </div>
+                    </div>
+                    <Button>提現</Button>
+                  </div>
                 </div>
-                <div className="space-y-2">
-                  <h3 className="font-medium">提現記錄</h3>
+                <div className="space-y-3">
+                  <h3 className="text-xl font-bold">提現記錄</h3>
                   {transactions
                     .filter(t => t.type === 'withdraw')
+                    .slice(0, 5)
                     .map(transaction => (
-                      <div key={transaction.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                      <div key={transaction.id} className="flex items-center justify-between p-4 bg-muted rounded-xl">
                         <div>
-                          <div className="font-medium">{transaction.description}</div>
-                          <div className="text-sm text-gray-500">{transaction.date}</div>
+                          <div className="text-base font-medium">{transaction.description}</div>
+                          <div className="text-sm text-muted-foreground">{transaction.date}</div>
                         </div>
                         <div className="flex items-center space-x-2">
-                          <span className="font-medium text-red-600">-{transaction.amount}</span>
+                          <span className="text-base font-medium text-red-600 dark:text-red-400">-{transaction.amount}</span>
                           <span className={`text-sm ${
-                            transaction.status === 'completed' ? 'text-green-600' :
-                            transaction.status === 'pending' ? 'text-yellow-600' :
-                            'text-red-600'
+                            transaction.status === 'completed' ? 'text-green-600 dark:text-green-400' :
+                            transaction.status === 'pending' ? 'text-yellow-600 dark:text-yellow-400' :
+                            'text-red-600 dark:text-red-400'
                           }`}>
                             {transaction.status === 'completed' ? '已完成' :
                              transaction.status === 'pending' ? '處理中' :
@@ -556,6 +908,70 @@ export default function ProfilePage() {
               </div>
             </TabsContent>
           </Tabs>
+        </DialogContent>
+      </Dialog>
+
+      {/* 添加钱包绑定对话框 */}
+      <Dialog open={showWalletBindDialog} onOpenChange={setShowWalletBindDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold">綁定 TON 錢包</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-6">
+            <div className="p-4 bg-muted rounded-xl">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                  <svg 
+                    viewBox="0 0 24 24" 
+                    className="w-5 h-5 text-primary"
+                    fill="currentColor"
+                  >
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" />
+                    <path d="M2 17L12 22L22 17" />
+                    <path d="M2 12L12 17L22 12" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="text-base font-medium">TON 錢包</div>
+                  <div className="text-sm text-muted-foreground">綁定後可進行鑽石提現</div>
+                </div>
+              </div>
+              <div className="space-y-2">
+                <Label>錢包地址</Label>
+                <div className="flex items-center gap-2">
+                  <Input
+                    value={user.walletAddress}
+                    onChange={(e) => setUser(prev => ({ ...prev, walletAddress: e.target.value }))}
+                    placeholder="請輸入 TON 錢包地址"
+                    className="font-mono"
+                  />
+                  <Button 
+                    variant="outline" 
+                    size="icon"
+                    onClick={handleCopyAddress}
+                    className="relative"
+                  >
+                    {copied ? (
+                      <Check className="w-4 h-4 text-green-500" />
+                    ) : (
+                      <Copy className="w-4 h-4" />
+                    )}
+                  </Button>
+                </div>
+              </div>
+            </div>
+            <div className="flex justify-end gap-2">
+              <Button variant="outline" onClick={() => setShowWalletBindDialog(false)}>
+                取消
+              </Button>
+              <Button onClick={() => {
+                setShowWalletBindDialog(false)
+                toast.success('錢包綁定成功')
+              }}>
+                確認綁定
+              </Button>
+            </div>
+          </div>
         </DialogContent>
       </Dialog>
 
@@ -614,24 +1030,73 @@ export default function ProfilePage() {
         </DialogContent>
       </Dialog>
 
-      {/* 頭像上傳對話框 */}
-      <Dialog open={showAvatarUpload} onOpenChange={setShowAvatarUpload}>
-        <DialogContent>
+      {/* 通话时间设置对话框 */}
+      <Dialog open={showScheduleDialog} onOpenChange={setShowScheduleDialog}>
+        <DialogContent className="max-w-lg">
           <DialogHeader>
-            <DialogTitle>更換頭像</DialogTitle>
+            <DialogTitle>設置通話時間</DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
-            <div className="flex flex-col items-center justify-center p-6 border-2 border-dashed rounded-lg">
-              <Camera className="w-12 h-12 text-gray-400 mb-4" />
-              <p className="text-sm text-gray-500">點擊或拖曳圖片至此處</p>
-              <input
-                type="file"
-                accept="image/*"
-                className="hidden"
-                onChange={handleAvatarUpload}
-              />
+            {Object.entries(user.voiceCallSchedule).map(([day, schedule]) => (
+              <div key={day} className="flex items-center gap-4 p-4 rounded-lg bg-card">
+                <div className="w-24">
+                  <Label className="capitalize text-base">{day}</Label>
+                </div>
+                <Switch
+                  checked={schedule.enabled}
+                  onCheckedChange={(checked) => {
+                    setUser(prev => ({
+                      ...prev,
+                      voiceCallSchedule: {
+                        ...prev.voiceCallSchedule,
+                        [day]: { ...prev.voiceCallSchedule[day], enabled: checked }
+                      }
+                    }))
+                  }}
+                />
+                {schedule.enabled && (
+                  <div className="flex items-center gap-2">
+                    <Input
+                      type="time"
+                      value={schedule.start}
+                      onChange={(e) => {
+                        setUser(prev => ({
+                          ...prev,
+                          voiceCallSchedule: {
+                            ...prev.voiceCallSchedule,
+                            [day]: { ...prev.voiceCallSchedule[day], start: e.target.value }
+                          }
+                        }))
+                      }}
+                      className="w-32"
+                    />
+                    <span>至</span>
+                    <Input
+                      type="time"
+                      value={schedule.end}
+                      onChange={(e) => {
+                        setUser(prev => ({
+                          ...prev,
+                          voiceCallSchedule: {
+                            ...prev.voiceCallSchedule,
+                            [day]: { ...prev.voiceCallSchedule[day], end: e.target.value }
+                          }
+                        }))
+                      }}
+                      className="w-32"
+                    />
+                  </div>
+                )}
+              </div>
+            ))}
+            <div className="flex justify-end gap-2">
+              <Button variant="outline" onClick={() => setShowScheduleDialog(false)}>
+                取消
+              </Button>
+              <Button onClick={handleScheduleSave}>
+                保存
+              </Button>
             </div>
-            <Button className="w-full">上傳</Button>
           </div>
         </DialogContent>
       </Dialog>
