@@ -1,0 +1,16 @@
+{
+  "version": "1.0.0",
+  "name": "示例腳本 9",
+  "createdAt": "2024-03-20T10:00:00Z",
+  "actions": [
+    {
+      "type": "click",
+      "target": "button9",
+      "position": {
+        "x": 900,
+        "y": 900
+      },
+      "delay": 1000
+    }
+  ]
+} 

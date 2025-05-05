@@ -1,0 +1,27 @@
+{
+  "version": "1.0",
+  "name": "Image Recognition Script",
+  "createdAt": "2025-05-02T14:35:21Z",
+  "actions": [
+    {
+      "type": "image",
+      "imageId": "login_button",
+      "action": "clickCenter",
+      "matchThreshold": 0.85,
+      "maxRetries": 3,
+      "interval": 500,
+      "delay": 0
+    },
+    {
+      "type": "image",
+      "imageId": "login_button",
+      "action": "clickCenter",
+      "matchThreshold": 0.85,
+      "maxRetries": 3,
+      "interval": 500,
+      "delay": 0,
+      "region": [100, 100, 200, 200],
+      "confidence": 0.95
+    }
+  ]
+} 

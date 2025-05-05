@@ -1,0 +1,99 @@
+name: AutoClicker CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: macos-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Swift
+      uses: swift-actions/setup-swift@v1
+      with:
+        swift-version: "5.9"
+    
+    - name: Install Dependencies
+      run: |
+        brew install swiftlint
+        brew install swiftformat
+        
+    - name: Check Project Structure
+      run: |
+        chmod +x scripts/check_project_structure.sh
+        ./scripts/check_project_structure.sh
+        
+    - name: Check Documentation
+      run: |
+        python3 scripts/check_docs.py
+        
+    - name: Check Code Style
+      run: |
+        swiftlint
+        swiftformat --lint .
+        
+    - name: Check Actor Isolation
+      run: |
+        chmod +x scripts/check_actor_isolation.sh
+        ./scripts/check_actor_isolation.sh
+        
+    - name: Check Shortcuts
+      run: |
+        python3 scripts/check_shortcuts.py
+        
+    - name: Check Data Schema
+      run: |
+        python3 scripts/check_data_schema.py
+        
+    - name: Build Project
+      run: |
+        xcodebuild clean build -scheme AutoClicker -destination 'platform=macOS'
+        
+    - name: Run Unit Tests
+      run: |
+        xcodebuild test -scheme AutoClicker -destination 'platform=macOS'
+        
+    - name: Run UI Tests
+      run: |
+        xcodebuild test -scheme AutoClickerUITests -destination 'platform=macOS'
+        
+    - name: Generate Changelog
+      run: |
+        python3 scripts/generate_changelog.py
+        
+    - name: Update Timestamps
+      run: |
+        chmod +x scripts/update_timestamps.sh
+        ./scripts/update_timestamps.sh
+        
+    - name: Run Auto Repair
+      run: |
+        chmod +x scripts/auto_run.sh
+        ./scripts/auto_run.sh
+        
+    - name: Check Final Checklist
+      run: |
+        grep -q "☐" docs/FINAL_CHECKLIST.md && exit 1 || exit 0
+        
+    - name: 測試覆蓋率報告
+      run: xcrun xccov view --report --json AutoClicker.xcodeproj || true
+      
+    - name: 規範自動化檢查
+      run: bash scripts/ci_code_check.sh
+      
+    - name: docs/ 結構同步檢查
+      run: bash scripts/ci_docs_check.sh
+
+    - name: PR Comment on Failure
+      if: failure()
+      uses: thollander/actions-comment-pull-request@v2
+      with:
+        message: |
+          🚨 自动化校验未通过，请检查 PR 详情和 CI 日志。
+          - 代码风格、数据结构、快捷键、文档等需符合 docs/ 规范。
+          - 详情见 Actions 日志和变更报告。 

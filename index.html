@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MysticTalk</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body x-data="app()">
+    <!-- 登录页面 -->
+    <div class="login-page" x-show="!isLoggedIn">
+        <div class="login-container">
+            <div class="logo-section">
+                <img src="/images/logo.svg" alt="MysticTalk" class="app-logo">
+                <h1>MysticTalk</h1>
+                <p>匿名社交新体验</p>
+            </div>
+            
+            <div class="login-buttons">
+                <button @click="loginWithTelegram" class="telegram-login-btn">
+                    <img src="/images/telegram-logo.svg" alt="Telegram" class="telegram-icon">
+                    使用 Telegram 登录
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主导航 -->
+    <nav class="bottom-nav">
+        <a href="#" @click.prevent="currentPage = 'home'" :class="{ active: currentPage === 'home' }">
+            <span class="nav-icon">🏠</span>
+            <span>首页</span>
+        </a>
+        <a href="#" @click.prevent="currentPage = 'chat'" :class="{ active: currentPage === 'chat' }">
+            <span class="nav-icon">💬</span>
+            <span>聊天</span>
+        </a>
+        <a href="#" @click.prevent="currentPage = 'tasks'" :class="{ active: currentPage === 'tasks' }">
+            <span class="nav-icon">📋</span>
+            <span>任务</span>
+        </a>
+        <a href="#" @click.prevent="currentPage = 'profile'" :class="{ active: currentPage === 'profile' }">
+            <span class="nav-icon">👤</span>
+            <span>我的</span>
+        </a>
+    </nav>
+
+    <!-- 页面容器 -->
+    <main class="page-container">
+        <!-- 首页 -->
+        <section x-show="currentPage === 'home'" class="page home-page">
+            <div class="random-match">
+                <button class="match-button" @click="startRandomMatch">
+                    🎲 随机匹配
+                </button>
+            </div>
+            
+            <div class="recent-matches">
+                <h2>最近匹配</h2>
+                <template x-for="user in recentMatches" :key="user.id">
+                    <div class="match-card">
+                        <img :src="user.avatar" :alt="user.name" class="clickable-avatar" @click="viewUserProfile(user)">
+                        <div class="user-info">
+                            <h3 x-text="user.name"></h3>
+                            <span class="mbti" x-text="user.mbti"></span>
+                        </div>
+                        <div class="actions">
+                            <button class="say-hi" @click="sayHi(user)">打招呼</button>
+                            <button class="send-gift" @click="showGiftOverlay = true">送礼物</button>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </section>
+
+        <!-- 个人资料页面 -->
+        <section x-show="currentPage === 'profile'" class="page profile-page">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <img :src="userProfile.avatar" :alt="userProfile.name">
+                    <button @click="editAvatar" class="edit-avatar-btn">更换头像</button>
+                </div>
+                <div class="profile-info">
+                    <h2 x-text="userProfile.name"></h2>
+                    <div class="profile-tags">
+                        <span class="tag" x-text="userProfile.mbti"></span>
+                        <span class="tag" x-text="userProfile.zodiac"></span>
+                        <span class="tag" x-text="userProfile.chineseZodiac"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-details" x-show="userProfile">
+                <div class="detail-item">
+                    <span class="label">国家/地区</span>
+                    <div class="value-with-flag">
+                        <template x-if="userProfile.countryCode">
+                            <img :src="'https://flagcdn.com/' + userProfile.countryCode.toLowerCase() + '.svg'" 
+                                 :alt="userProfile.country"
+                                 class="country-flag">
+                        </template>
+                        <span x-text="userProfile.country || '未知'"></span>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <span class="label">MBTI性格</span>
+                    <div class="value-with-action">
+                        <span x-text="userProfile.mbti"></span>
+                        <button @click="startMbtiTest" class="small-action-btn">重新测试</button>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <span class="label">性别</span>
+                    <span class="value" x-text="userProfile.gender"></span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">身高</span>
+                    <span class="value" x-text="userProfile.height + 'cm'"></span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">体重</span>
+                    <span class="value" x-text="userProfile.weight + 'kg'"></span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">发色</span>
+                    <span class="value" x-text="userProfile.hairColor"></span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">瞳色</span>
+                    <span class="value" x-text="userProfile.eyeColor"></span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">体型</span>
+                    <span class="value" x-text="userProfile.bodyType"></span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">寻找</span>
+                    <span class="value" x-text="userProfile.seeking"></span>
+                </div>
+            </div>
+
+            <div class="profile-interests">
+                <h3>兴趣爱好</h3>
+                <div class="interests-tags">
+                    <template x-for="interest in userProfile.interests" :key="interest">
+                        <span class="interest-tag" x-text="interest"></span>
+                    </template>
+                </div>
+            </div>
+
+            <div class="profile-actions">
+                <button @click="startEditProfile" class="edit-profile-btn">
+                    编辑资料
+                </button>
+                <button class="coins-btn">
+                    金币: <span x-text="userCoins"></span> 💰
+                </button>
+            </div>
+        </section>
+
+        <!-- 任务页面 -->
+        <section x-show="currentPage === 'tasks'" class="page tasks-page">
+            <!-- 添加邀請卡片 -->
+            <div class="invite-card">
+                <div class="invite-card-header">
+                    <div class="invite-info">
+                        <h3>邀請好友</h3>
+                        <p>已成功邀請: <span x-text="successfulInvites"></span> 人</p>
+                    </div>
+                    <button @click="currentPage = 'invite-details'" class="view-all-btn">
+                        查看詳情 →
+                    </button>
+                </div>
+                <div class="invite-actions">
+                    <button @click="showTelegramInvite = true" class="telegram-invite">
+                        📱 從 Telegram 好友邀請
+                    </button>
+                    <button @click="copyInviteLink()" class="copy-link">
+                        📋 複製邀請連結
+                    </button>
+                </div>
+            </div>
+
+            <div class="tasks-header">
+                <h2>每日任务</h2>
+                <div class="progress-bar">
+                    <div class="progress" :style="'width: ' + taskProgress + '%'"></div>
+                </div>
+                <div class="progress-text">
+                    今日进度: <span x-text="completedTasks"></span>/<span x-text="totalTasks"></span>
+                </div>
+            </div>
+
+            <div class="tasks-list">
+                <template x-for="task in dailyTasks" :key="task.id">
+                    <div class="task-card" :class="{ 'completed': task.completed }">
+                        <div class="task-info">
+                            <div class="task-title">
+                                <h3 x-text="task.title"></h3>
+                                <span class="reward" x-text="'💰 ' + task.reward"></span>
+                            </div>
+                            <p class="task-description" x-text="task.description"></p>
+                            <div class="task-progress" x-show="task.progress">
+                                <span x-text="task.progress.current + '/' + task.progress.total"></span>
+                            </div>
+                        </div>
+                        <button 
+                            @click="completeTask(task)"
+                            :disabled="task.completed"
+                            class="task-button"
+                            x-text="task.completed ? '已完成' : '完成'"
+                        ></button>
+                    </div>
+                </template>
+            </div>
+
+            <div class="weekly-challenges">
+                <h2>每周挑战</h2>
+                <template x-for="challenge in weeklyChallenges" :key="challenge.id">
+                    <div class="challenge-card">
+                        <div class="challenge-info">
+                            <h3 x-text="challenge.title"></h3>
+                            <p x-text="challenge.description"></p>
+                            <div class="challenge-progress">
+                                <div class="progress-bar">
+                                    <div class="progress" :style="'width: ' + (challenge.progress.current / challenge.progress.total * 100) + '%'"></div>
+                                </div>
+                                <span class="progress-text" x-text="challenge.progress.current + '/' + challenge.progress.total"></span>
+                            </div>
+                        </div>
+                        <div class="challenge-reward">
+                            <span class="coins" x-text="'💰 ' + challenge.reward"></span>
+                            <button 
+                                @click="claimReward(challenge)"
+                                :disabled="!challenge.canClaim"
+                                class="claim-button"
+                                x-text="challenge.claimed ? '已领取' : '领取'"
+                            ></button>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </section>
+
+        <!-- 聊天列表页面 -->
+        <section x-show="currentPage === 'chat'" class="chat-list-page">
+            <div class="chat-list-header">
+                <h2>聊天</h2>
+                <span class="coins-balance">
+                    <img src="/images/coin.svg" alt="金币">
+                    <span x-text="userCoins"></span>
+                </span>
+            </div>
+
+            <div class="chat-list">
+                <template x-for="chat in chatList" :key="chat.id">
+                    <div class="chat-item" @click="openChat(chat)">
+                        <div class="chat-avatar">
+                            <img :src="chat.avatar" :alt="chat.name">
+                        </div>
+                        <div class="chat-info">
+                            <div class="chat-header">
+                                <span class="chat-name" x-text="chat.name"></span>
+                                <span class="chat-time" x-text="formatTime(chat.lastMessageTime)"></span>
+                            </div>
+                            <div class="chat-preview" x-text="chat.lastMessage"></div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </section>
+
+        <!-- 聊天详情页面 -->
+        <section x-show="currentPage === 'chatDetail'" class="chat-detail-page">
+            <div class="chat-detail-header">
+                <button class="back-btn" @click="currentPage = 'chat'">
+                    <span class="icon-back">←</span>
+                </button>
+                <div class="chat-user-info">
+                    <span x-text="currentChat.name"></span>
+                </div>
+                <button class="gift-btn" @click="showGiftOverlay = true">
+                    🎁
+                </button>
+            </div>
+
+            <div class="chat-messages" x-ref="messageContainer">
+                <template x-for="(message, index) in currentChat.messages" :key="message.id">
+                    <div :class="{'message-group': true, 'self': message.isSelf}">
+                        <div class="message-avatar">
+                            <img :src="message.isSelf ? userProfile.avatar : currentChat.avatar" :alt="message.isSelf ? '我' : currentChat.name">
+                        </div>
+                        <div class="message-content">
+                            <!-- 显示日期（如果与上一条消息不是同一天） -->
+                            <div class="message-date" 
+                                 x-show="shouldShowDate(message, index, currentChat.messages)">
+                                <span x-text="formatDate(message.time)"></span>
+                            </div>
+                            <div class="message-bubble">
+                                <span x-text="message.content"></span>
+                            </div>
+                            <!-- 只显示具体时间，不显示日期 -->
+                            <div class="message-time">
+                                <span x-text="formatMessageTime(message.time)"></span>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+
+            <div class="chat-input">
+                <div class="coin-notice">
+                    发送消息将消耗 1 金币
+                    <span class="coin-balance" x-text="'余额: ' + userCoins"></span>
+                </div>
+                <div class="input-container">
+                    <input type="text" 
+                           x-model="newMessage" 
+                           placeholder="输入消息..."
+                           @keyup.enter="sendMessage">
+                    <button @click="sendMessage" 
+                            :disabled="!newMessage.trim() || userCoins < 1">
+                        发送
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 邀请页面 -->
+        <section x-show="currentPage === 'invite'" class="page invite-page">
+            <div class="invite-header">
+                <h2>邀请好友</h2>
+                <p>邀请好友加入，双方都可获得50金币奖励！</p>
+            </div>
+
+            <div class="invite-link-section">
+                <h3>分享邀请链接</h3>
+                <div class="invite-link-box">
+                    <input 
+                        type="text" 
+                        readonly 
+                        :value="'https://mystictalk.app/invite/' + userProfile.id"
+                        class="invite-link-input"
+                    >
+                    <button @click="copyInviteLink" class="copy-button">复制</button>
+                </div>
+            </div>
+
+            <div class="invite-telegram">
+                <button class="telegram-invite-btn" @click="inviteTelegramFriend">
+                    选择 Telegram 好友邀请
+                </button>
+            </div>
+
+            <div class="invite-history">
+                <h3>邀请记录</h3>
+                <div class="invited-list">
+                    <template x-for="friend in invitedFriends" :key="friend.id">
+                        <div class="invited-item">
+                            <img :src="friend.avatar" :alt="friend.name" class="clickable-avatar" @click="viewUserProfile(friend)">
+                            <div class="invited-info">
+                                <h4 x-text="friend.name"></h4>
+                                <span x-text="friend.status"></span>
+                            </div>
+                            <span class="invite-reward" x-show="friend.rewarded">
+                                +50 💰
+                            </span>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </section>
+
+        <!-- 添加邀請詳情頁面 -->
+        <section x-show="currentPage === 'invite-details'" class="page invite-details-page">
+            <div class="page-header">
+                <button class="back-btn" @click="currentPage = 'tasks'">← 返回</button>
+                <h2>邀請詳情</h2>
+            </div>
+
+            <div class="invite-stats">
+                <div class="stat-card">
+                    <span class="stat-label">總邀請人數</span>
+                    <span class="stat-value" x-text="totalInvites"></span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">成功加入</span>
+                    <span class="stat-value" x-text="successfulInvites"></span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">待接受邀請</span>
+                    <span class="stat-value" x-text="pendingInvites"></span>
+                </div>
+            </div>
+
+            <div class="invite-list">
+                <div class="list-header">
+                    <h3>邀請記錄</h3>
+                    <div class="filter-buttons">
+                        <button 
+                            @click="inviteFilter = 'all'"
+                            :class="{ active: inviteFilter === 'all' }"
+                        >全部</button>
+                        <button 
+                            @click="inviteFilter = 'success'"
+                            :class="{ active: inviteFilter === 'success' }"
+                        >已加入</button>
+                        <button 
+                            @click="inviteFilter = 'pending'"
+                            :class="{ active: inviteFilter === 'pending' }"
+                        >待接受</button>
+                    </div>
+                </div>
+
+                <template x-for="invite in filteredInvites" :key="invite.id">
+                    <div class="invite-record" :class="invite.status">
+                        <img :src="invite.avatar" :alt="invite.name" class="friend-avatar clickable-avatar" @click="viewUserProfile(invite)">
+                        <div class="invite-info">
+                            <div class="friend-name">
+                                <h4 x-text="invite.name"></h4>
+                                <span 
+                                    class="status-badge"
+                                    :class="invite.status"
+                                    x-text="getStatusText(invite.status)"
+                                ></span>
+                            </div>
+                            <p class="invite-time" x-text="invite.time"></p>
+                        </div>
+                        <div class="invite-reward" x-show="invite.status === 'success'">
+                            <span class="coin-reward">+50 💰</span>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </section>
+    </main>
+
+    <!-- 礼物选择弹窗 -->
+    <div class="gift-overlay" x-show="showGiftOverlay">
+        <div class="gift-container">
+            <div class="gift-header">
+                <h3>选择礼物</h3>
+                <button @click="showGiftOverlay = false">×</button>
+            </div>
+            <div class="gift-grid">
+                <template x-for="gift in gifts" :key="gift.id">
+                    <div class="gift-item" @click="sendGift(gift)">
+                        <div class="gift-emoji" x-text="gift.emoji"></div>
+                        <div class="gift-name" x-text="gift.name"></div>
+                        <div class="gift-price">
+                            <img src="/images/coin.svg" alt="金币">
+                            <span x-text="gift.price"></span>
+                        </div>
+                    </div>
+                </template>
+            </div>
+            <div class="gift-footer">
+                <span>当前余额：</span>
+                <img src="/images/coin.svg" alt="金币">
+                <span x-text="userCoins"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="edit-profile-overlay" x-show="showEditProfile">
+        <div class="edit-container">
+            <div class="edit-header">
+                <h3>编辑资料</h3>
+                <button class="close-btn" @click="showEditProfile = false">×</button>
+            </div>
+            
+            <div class="edit-form" x-show="showEditProfile && editingProfile">
+                <div class="form-group">
+                    <label>性别</label>
+                    <select x-model="editingProfile.gender">
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                        <option value="其他">其他</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>身高 (cm)</label>
+                    <div class="height-selector">
+                        <input 
+                            type="range" 
+                            x-model="editingProfile.height" 
+                            min="140" 
+                            max="220" 
+                            step="1"
+                        >
+                        <span x-text="editingProfile.height + ' cm'"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>体重 (kg)</label>
+                    <div class="weight-selector">
+                        <input 
+                            type="range" 
+                            x-model="editingProfile.weight" 
+                            min="40" 
+                            max="150" 
+                            step="1"
+                        >
+                        <span x-text="editingProfile.weight + ' kg'"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>发色</label>
+                    <select x-model="editingProfile.hairColor">
+                        <template x-for="color in hairColors" :key="color.value">
+                            <option :value="color.value" x-text="color.label"></option>
+                        </template>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>瞳色</label>
+                    <select x-model="editingProfile.eyeColor">
+                        <template x-for="color in eyeColors" :key="color.value">
+                            <option :value="color.value" x-text="color.label"></option>
+                        </template>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>体型</label>
+                    <select x-model="editingProfile.bodyType">
+                        <template x-for="type in bodyTypes" :key="type.value">
+                            <option :value="type.value" x-text="type.label"></option>
+                        </template>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>寻找</label>
+                    <select x-model="editingProfile.seeking">
+                        <option value="男性">男性</option>
+                        <option value="女性">女性</option>
+                        <option value="不限">不限</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>国家/地区</label>
+                    <div class="country-selector">
+                        <input 
+                            type="text" 
+                            x-model="countrySearch"
+                            placeholder="搜索国家..."
+                            @input="filterCountries"
+                            @focus="showCountryList = true"
+                        >
+                        <div class="country-list" 
+                             x-show="showCountryList" 
+                             @click.away="showCountryList = false">
+                            <template x-for="country in filteredCountries" :key="country.code">
+                                <div class="country-option" 
+                                     @click="selectCountry(country)">
+                                    <template x-if="country.code">
+                                        <img :src="'https://flagcdn.com/' + country.code.toLowerCase() + '.svg'" 
+                                             :alt="country.name"
+                                             class="country-flag">
+                                    </template>
+                                    <span x-text="country.name"></span>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>兴趣爱好 (最多选择10个)</label>
+                    <div class="interests-selector">
+                        <template x-for="interest in availableInterests" :key="interest">
+                            <label class="interest-checkbox">
+                                <input 
+                                    type="checkbox" 
+                                    :value="interest"
+                                    x-model="editingProfile.interests"
+                                    :disabled="editingProfile.interests.length >= 10 && !editingProfile.interests.includes(interest)"
+                                >
+                                <span x-text="interest"></span>
+                            </label>
+                        </template>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="edit-actions">
+                <button @click="showEditProfile = false">取消</button>
+                <button @click="saveProfile" class="save-button">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Telegram 好友邀請彈窗 -->
+    <div class="telegram-overlay" x-show="showTelegramInvite" @click.away="showTelegramInvite = false">
+        <div class="telegram-container">
+            <h3>選擇 Telegram 好友</h3>
+            <div class="search-box">
+                <input 
+                    type="search" 
+                    placeholder="搜索好友..." 
+                    x-model="friendSearch"
+                >
+            </div>
+            <div class="friends-list">
+                <template x-for="friend in filteredTelegramFriends" :key="friend.id">
+                    <div class="friend-item">
+                        <div class="friend-info">
+                            <img :src="friend.avatar" :alt="friend.name" class="clickable-avatar" @click="inviteTelegramFriend(friend)">
+                            <span x-text="friend.name"></span>
+                        </div>
+                        <button 
+                            @click="inviteTelegramFriend(friend)"
+                            :disabled="friend.invited"
+                            x-text="friend.invited ? '已邀請' : '邀請'"
+                        ></button>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+    <!-- 在 body 末尾添加用户资料预览弹窗 -->
+    <div class="user-preview-overlay" x-show="showUserPreview" @click.away="showUserPreview = false">
+        <div class="user-preview-container">
+            <button class="close-btn" @click="showUserPreview = false">×</button>
+            
+            <div class="user-preview-header">
+                <div class="preview-avatar">
+                    <img :src="previewUser.avatar" :alt="previewUser.name">
+                </div>
+                <div class="preview-basic-info">
+                    <h2 x-text="previewUser.name"></h2>
+                    <div class="preview-tags">
+                        <span class="tag" x-text="previewUser.mbti"></span>
+                        <span class="tag" x-text="previewUser.zodiac"></span>
+                        <span class="tag" x-text="previewUser.chineseZodiac"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="user-preview-details">
+                <div class="preview-item">
+                    <span class="label">国家/地区</span>
+                    <div class="value-with-flag">
+                        <img :src="'https://flagcdn.com/' + previewUser.countryCode.toLowerCase() + '.svg'" 
+                             :alt="previewUser.country"
+                             class="country-flag">
+                        <span x-text="previewUser.country"></span>
+                    </div>
+                </div>
+                <div class="preview-item">
+                    <span class="label">性别</span>
+                    <span class="value" x-text="previewUser.gender"></span>
+                </div>
+                <div class="preview-item">
+                    <span class="label">身高</span>
+                    <span class="value" x-text="previewUser.height + 'cm'"></span>
+                </div>
+                <div class="preview-item">
+                    <span class="label">体型</span>
+                    <span class="value" x-text="previewUser.bodyType"></span>
+                </div>
+                <div class="preview-item">
+                    <span class="label">发色</span>
+                    <span class="value" x-text="previewUser.hairColor"></span>
+                </div>
+                <div class="preview-item">
+                    <span class="label">瞳色</span>
+                    <span class="value" x-text="previewUser.eyeColor"></span>
+                </div>
+            </div>
+
+            <div class="user-preview-interests">
+                <h3>兴趣爱好</h3>
+                <div class="interests-tags">
+                    <template x-for="interest in previewUser.interests" :key="interest">
+                        <span class="interest-tag" x-text="interest"></span>
+                    </template>
+                </div>
+            </div>
+
+            <div class="preview-actions">
+                <button @click="sayHiToUser(previewUser)" class="action-btn primary">
+                    打招呼
+                </button>
+                <button @click="showGiftOverlay = true; showUserPreview = false" class="action-btn secondary">
+                    送礼物
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 在 body 中添加注册流程弹窗 -->
+    <div class="registration-overlay" x-show="showRegistration">
+        <div class="registration-container">
+            <div class="registration-progress">
+                <div class="progress-bar">
+                    <div class="progress" 
+                         :style="'width: ' + (registrationStep / (registrationSteps.length - 1) * 100) + '%'">
+                    </div>
+                </div>
+                <span class="step-counter" x-text="`${registrationStep + 1}/${registrationSteps.length}`"></span>
+            </div>
+
+            <div class="registration-content">
+                <h2 x-text="registrationSteps[registrationStep].title"></h2>
+                <p x-text="registrationSteps[registrationStep].description"></p>
+
+                <!-- 不同类型的输入界面 -->
+                <template x-if="registrationSteps[registrationStep].type === 'welcome'">
+                    <div class="welcome-step">
+                        <img src="/images/welcome.svg" alt="Welcome">
+                        <button @click="nextStep" class="primary-button">开始</button>
+                    </div>
+                </template>
+
+                <template x-if="registrationSteps[registrationStep].type === 'text'">
+                    <input 
+                        type="text" 
+                        x-model="registrationData[registrationSteps[registrationStep].field]"
+                        :placeholder="registrationSteps[registrationStep].description"
+                    >
+                </template>
+
+                <template x-if="registrationSteps[registrationStep].type === 'select'">
+                    <div class="select-options">
+                        <template x-for="option in registrationSteps[registrationStep].options" :key="option">
+                            <button 
+                                class="option-button"
+                                :class="{ 'selected': registrationData[registrationSteps[registrationStep].field] === option }"
+                                @click="registrationData[registrationSteps[registrationStep].field] = option"
+                                x-text="option"
+                            ></button>
+                        </template>
+                    </div>
+                </template>
+
+                <template x-if="registrationSteps[registrationStep].type === 'date'">
+                    <input 
+                        type="date" 
+                        x-model="registrationData.birthdate"
+                    >
+                </template>
+
+                <template x-if="registrationSteps[registrationStep].type === 'mbtiTest'">
+                    <div class="mbti-test-container">
+                        <!-- 使用现有的 MBTI 测试组件 -->
+                        <div x-show="!testCompleted">
+                            <!-- 现有的 MBTI 测试界面 -->
+                        </div>
+                    </div>
+                </template>
+
+                <template x-if="registrationSteps[registrationStep].type === 'bodyInfo'">
+                    <div class="body-info-inputs">
+                        <div class="height-input">
+                            <label>身高 (cm)</label>
+                            <input 
+                                type="range" 
+                                x-model="registrationData.height"
+                                min="140" 
+                                max="220"
+                            >
+                            <span x-text="registrationData.height + ' cm'"></span>
+                        </div>
+                        <div class="weight-input">
+                            <label>体重 (kg)</label>
+                            <input 
+                                type="range" 
+                                x-model="registrationData.weight"
+                                min="40" 
+                                max="150"
+                            >
+                            <span x-text="registrationData.weight + ' kg'"></span>
+                        </div>
+                    </div>
+                </template>
+
+                <template x-if="registrationSteps[registrationStep].type === 'appearance'">
+                    <div class="appearance-inputs">
+                        <div class="form-group">
+                            <label>发色</label>
+                            <select x-model="registrationData.hairColor">
+                                <template x-for="color in hairColors" :key="color.value">
+                                    <option :value="color.value" x-text="color.label"></option>
+                                </template>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>瞳色</label>
+                            <select x-model="registrationData.eyeColor">
+                                <template x-for="color in eyeColors" :key="color.value">
+                                    <option :value="color.value" x-text="color.label"></option>
+                                </template>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>体型</label>
+                            <select x-model="registrationData.bodyType">
+                                <template x-for="type in bodyTypes" :key="type.value">
+                                    <option :value="type.value" x-text="type.label"></option>
+                                </template>
+                            </select>
+                        </div>
+                    </div>
+                </template>
+
+                <template x-if="registrationSteps[registrationStep].type === 'interests'">
+                    <div class="interests-selector">
+                        <template x-for="interest in availableInterests" :key="interest">
+                            <label class="interest-checkbox">
+                                <input 
+                                    type="checkbox" 
+                                    :value="interest"
+                                    x-model="registrationData.interests"
+                                    :disabled="registrationData.interests.length >= 10 && !registrationData.interests.includes(interest)"
+                                >
+                                <span x-text="interest"></span>
+                            </label>
+                        </template>
+                    </div>
+                </template>
+            </div>
+
+            <div class="registration-actions">
+                <button 
+                    @click="previousStep"
+                    x-show="registrationStep > 0"
+                    class="secondary-button"
+                >上一步</button>
+                <button 
+                    @click="nextStep"
+                    class="primary-button"
+                    x-text="registrationStep === registrationSteps.length - 1 ? '完成' : '下一步'"
+                ></button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/js/app.js"></script>
+</html> 

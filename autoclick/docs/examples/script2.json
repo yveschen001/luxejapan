@@ -1,0 +1,22 @@
+{
+  "version": "1.0",
+  "name": "Keyboard Shortcut Script",
+  "createdAt": "2025-05-02T14:35:21Z",
+  "actions": [
+    {
+      "type": "keyboard",
+      "event": "keyDown",
+      "keyCode": 36,
+      "keyLabel": "Return",
+      "delay": 100
+    },
+    {
+      "type": "keyboard",
+      "event": "keyDown",
+      "keyCode": 36,
+      "keyLabel": "Return",
+      "modifiers": ["command", "shift"],
+      "delay": 100
+    }
+  ]
+} 

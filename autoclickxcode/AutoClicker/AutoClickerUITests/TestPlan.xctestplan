@@ -1,0 +1,34 @@
+{
+  "configurations" : [
+    {
+      "id" : "xctestplan-test-configuration-1",
+      "name" : "Test Configuration",
+      "options" : {
+        "targetForVariableExpansion" : {
+          "containerPath" : "container:AutoClicker.xcodeproj",
+          "identifier" : "AutoClicker",
+          "name" : "AutoClicker"
+        }
+      },
+      "testTargets" : [
+        {
+          "containerPath" : "container:AutoClickerTests/AutoClickerUITests/AutoClickerUITests.xctest",
+          "identifier" : "AutoClickerUITests",
+          "name" : "AutoClickerUITests"
+        }
+      ]
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : true,
+    "testExecutionOrdering" : "alphabetical"
+  },
+  "testTargets" : [
+    {
+      "containerPath" : "container:AutoClickerTests/AutoClickerUITests/AutoClickerUITests.xctest",
+      "identifier" : "AutoClickerUITests",
+      "name" : "AutoClickerUITests"
+    }
+  ],
+  "version" : 1
+} 

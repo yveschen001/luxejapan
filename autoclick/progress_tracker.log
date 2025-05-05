@@ -1,0 +1,92 @@
+=== 開始進度追蹤 ===
+時間: 2025年 5月 4日 週日 22時53分01秒 CST
+檢查項目結構...
+檢查項目結構...
+項目結構檢查完成
+檢查目錄結構...
+目錄結構檢查完成
+檢查文檔一致性...
+警告: FINAL_CHECKLIST.md 未检测到"自动化校验要求"区块
+警告: NEXT_TASKS.md 未检测到"自动化校验要求"区块
+警告: LocalTestPlan.md 未检测到"自动化校验要求"区块
+警告: REQUIREMENTS.md 未检测到"自动化校验要求"区块
+警告: ENVIRONMENT_CONFIG.md 未检测到"自动化校验要求"区块
+
+[自动化校验要求] SECURITY_POLICY.md:
+- PR/CI 流程需自动校验：
+  - 权限声明、敏感操作、合规性检查与本规范一致
+  - 主要文档变更需自动生成变更日志并通知团队
+
+警告: UI_GUIDELINES.md 未检测到"自动化校验要求"区块
+警告: MODULE_MANAGEMENT.md 未检测到"自动化校验要求"区块
+
+[自动化校验要求] STYLE_GUIDE.md:
+- PR/CI 流程需自动校验：
+  - 代码风格（SwiftLint）与本规范一致
+  - 命名、缩进、注释、结构等与本规范一致
+  - 主要文档变更需自动生成变更日志并通知团队
+
+
+[自动化校验要求] SHORTCUTS.md:
+- PR/CI 流程需自动校验：
+  - 快捷键唯一性、可用性、文档同步与本规范一致
+  - 主要文档变更需自动生成变更日志并通知团队
+
+
+[自动化校验要求] PROJECT_SYNC_PLAN.md:
+- PR/CI 流程需自動校驗：
+  - 目錄結構、文件路径与本规范一致
+  - 主要文档变更需自动生成变更日志并通知团队
+  - 测试模块完整性检查
+  - 文件引用关系检查
+  - 文档一致性检查
+  - 檢查所有 Service/Manager/單例類別 static let shared 屬性與 class 宣告，不可加上 @MainActor 或任何 actor 隔離標註，僅允許標註於 method。
+
+警告: APPSTORE_NOTES.md 未检测到"自动化校验要求"区块
+
+[自动化校验要求] DATA_SCHEMA.md:
+- PR/CI 流程需自动校验：
+  - 脚本导入/导出、数据完整性、兼容性测试与本规范一致
+  - 所有数据结构变更需自动触发相关测试
+  - 主要文档变更需自动生成变更日志并通知团队
+
+
+[自动化校验要求] CONTRIBUTING.md:
+- PR/CI 流程需自动校验：
+  - 代码风格（SwiftLint）与 `STYLE_GUIDE.md` 一致
+  - 数据格式与 `DATA_SCHEMA.md` 校验通过
+  - 所有新增/变更功能均有对应测试，且通过 `QA_AUTOCHECK.md` 验收
+  - 快捷键定义与 `SHORTCUTS.md` 一致
+  - 主要文档变更需自动生成变更日志并通知团队
+
+- 請參考 PROMPT_CHEATSHEET.md，統一使用標準提示語進行開發、測試、驗收、上架等協作。
+
+- 所有開發任務請參考 docs/PROJECT_PLAN_TODO.md 作為唯一任務來源。
+
+警告: PROJECT_PLAN_TODO.md 未检测到"自动化校验要求"区块
+
+[自动化校验要求] QA_AUTOCHECK.md:
+- PR/CI 流程需自动校验：
+  - 自动化测试、验收脚本与本规范一致
+  - 主要文档变更需自动生成变更日志并通知团队
+  - 变更自动触发相关测试与验收流程 
+
+### 單例與 Actor 隔離自動驗收
+- 檢查所有 Service/Manager/單例類別 static let shared 屬性與 class 宣告，不可加上 @MainActor 或任何 actor 隔離標註。
+- 只允許將 @MainActor 標註於需要主執行緒的 method。
+- 違反此規範將自動標記為驗收不通過，並提示修正。 
+
+### 圖像識別自動化測試
+1. 單元測試：ImageRecognitionService（ModernScreenCaptureService）支援模板比對、異常處理、權限檢查，所有截圖功能必須使用 ScreenCaptureKit，不得再出現 CGWindowListCreateImage 或 captureScreen 舊方法
+2. UI 測試：截圖、模板選取、比對流程全自動 
+
+### CI/CD 自動化驗收腳本
+1. 必須檢查所有 Swift 檔案，不得出現 CGWindowListCreateImage 或 captureScreen 舊方法，違規則自動阻擋合併。 
+
+### Notification.Name 擴展驗收
+- 所有 Notification.Name 擴展必須集中於 `AutoClicker/Extensions/Notification+Name.swift`，禁止於其他檔案重複定義。
+- CI/CD 應自動檢查是否有重複定義，違規則阻擋合併。
+
+警告: IMAGE_RECOGNITION_RULES.md 未检测到"自动化校验要求"区块
+警告: SPEC.md 未检测到"自动化校验要求"区块
+警告: UI_TESTS_PLAN.md 未检测到"自动化校验要求"区块

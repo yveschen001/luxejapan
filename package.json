@@ -1,0 +1,28 @@
+{
+  "name": "mystictalk",
+  "version": "1.0.0",
+  "description": "MysticTalk Registration Demo",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "check": "node check.js"
+  },
+  "dependencies": {
+    "@axe-core/puppeteer": "^4.10.1",
+    "bufferutil": "^4.0.9",
+    "child_process": "^1.0.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "fs": "^0.0.1-security",
+    "lighthouse": "^12.5.1",
+    "path": "^0.12.7",
+    "puppeteer": "^24.6.1",
+    "react-tailwindcss-datepicker": "^2.0.0",
+    "utf-8-validate": "^5.0.10"
+  },
+  "devDependencies": {
+    "chalk": "^5.4.1",
+    "inquirer": "^8.2.5",
+    "zustand": "^5.0.3"
+  }
+}

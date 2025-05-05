@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MysticTalk 注册流程演示</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .step {
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .step-number {
+            background: #007aff;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+        }
+        .preview {
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 10px;
+        }
+        img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>MysticTalk 注册流程演示</h1>
+    <p>用户通过 Telegram 首次登录后的注册流程</p>
+
+    <div class="step">
+        <div class="step-header">
+            <div class="step-number">1</div>
+            <h2>欢迎页面</h2>
+        </div>
+        <p>欢迎来到 MysticTalk，让我们开始创建你的个人资料</p>
+        <div class="preview">
+            <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='100'><rect width='100%' height='100%' fill='%23f0f0f0'/><text x='50%' y='50%' font-family='Arial' font-size='12' fill='%23666' text-anchor='middle'>欢迎页面示意图</text></svg>" alt="欢迎页面">
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-header">
+            <div class="step-number">2</div>
+            <h2>基本信息</h2>
+        </div>
+        <p>用户输入名字和性别</p>
+        <ul>
+            <li>名字输入框</li>
+            <li>性别选择：男/女/其他</li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <div class="step-header">
+            <div class="step-number">3</div>
+            <h2>生日信息</h2>
+        </div>
+        <p>选择出生日期（用于计算星座）</p>
+    </div>
+
+    <div class="step">
+        <div class="step-header">
+            <div class="step-number">4</div>
+            <h2>MBTI 性格测试</h2>
+        </div>
+        <p>简单的 MBTI 测试（12个核心问题）</p>
+    </div>
+
+    <div class="step">
+        <div class="step-header">
+            <div class="step-number">5</div>
+            <h2>身高体重</h2>
+        </div>
+        <p>使用滑块选择：</p>
+        <ul>
+            <li>身高范围：140cm - 220cm</li>
+            <li>体重范围：40kg - 150kg</li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <div class="step-header">
+            <div class="step-number">6</div>
+            <h2>外貌特征</h2>
+        </div>
+        <p>选择以下特征：</p>
+        <ul>
+            <li>发色：黑色/棕色/金色/红色/灰色/其他</li>
+            <li>瞳色：黑色/棕色/蓝色/绿色/灰色/其他</li>
+            <li>体型：偏瘦/普通/运动/健壮/偏胖/其他</li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <div class="step-header">
+            <div class="step-number">7</div>
+            <h2>兴趣爱好</h2>
+        </div>
+        <p>选择最多10个感兴趣的话题</p>
+        <div class="preview">
+            示例：旅行、摄影、美食、音乐、电影、运动、阅读、写作等
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-header">
+            <div class="step-number">8</div>
+            <h2>交友偏好</h2>
+        </div>
+        <p>选择期望结识的对象：</p>
+        <ul>
+            <li>男性</li>
+            <li>女性</li>
+            <li>不限</li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <div class="step-header">
+            <div class="step-number">✓</div>
+            <h2>完成注册</h2>
+        </div>
+        <p>注册完成后自动进入首页</p>
+    </div>
+
+    <footer style="margin-top: 40px; color: #666;">
+        <p>注意事项：</p>
+        <ul>
+            <li>每一步都可以返回修改</li>
+            <li>除了欢迎页面，其他步骤都需要填写才能继续</li>
+            <li>MBTI测试结果会自动保存</li>
+            <li>所有信息在完成注册后都可以在个人资料页面修改</li>
+        </ul>
+    </footer>
+</body>
+</html> 

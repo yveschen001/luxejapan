@@ -1,0 +1,274 @@
+=== 開始自動修復 ===
+時間: 2025年 5月 4日 週日 22時53分57秒 CST
+檢查並修復項目結構...
+檢查項目結構...
+項目結構檢查完成
+檢查目錄結構...
+目錄結構檢查完成
+檢查並修復文檔一致性...
+警告: FINAL_CHECKLIST.md 未检测到"自动化校验要求"区块
+警告: NEXT_TASKS.md 未检测到"自动化校验要求"区块
+警告: LocalTestPlan.md 未检测到"自动化校验要求"区块
+警告: REQUIREMENTS.md 未检测到"自动化校验要求"区块
+警告: ENVIRONMENT_CONFIG.md 未检测到"自动化校验要求"区块
+
+[自动化校验要求] SECURITY_POLICY.md:
+- PR/CI 流程需自动校验：
+  - 权限声明、敏感操作、合规性检查与本规范一致
+  - 主要文档变更需自动生成变更日志并通知团队
+
+警告: UI_GUIDELINES.md 未检测到"自动化校验要求"区块
+警告: MODULE_MANAGEMENT.md 未检测到"自动化校验要求"区块
+
+[自动化校验要求] STYLE_GUIDE.md:
+- PR/CI 流程需自动校验：
+  - 代码风格（SwiftLint）与本规范一致
+  - 命名、缩进、注释、结构等与本规范一致
+  - 主要文档变更需自动生成变更日志并通知团队
+
+
+[自动化校验要求] SHORTCUTS.md:
+- PR/CI 流程需自动校验：
+  - 快捷键唯一性、可用性、文档同步与本规范一致
+  - 主要文档变更需自动生成变更日志并通知团队
+
+
+[自动化校验要求] PROJECT_SYNC_PLAN.md:
+- PR/CI 流程需自動校驗：
+  - 目錄結構、文件路径与本规范一致
+  - 主要文档变更需自动生成变更日志并通知团队
+  - 测试模块完整性检查
+  - 文件引用关系检查
+  - 文档一致性检查
+  - 檢查所有 Service/Manager/單例類別 static let shared 屬性與 class 宣告，不可加上 @MainActor 或任何 actor 隔離標註，僅允許標註於 method。
+
+警告: APPSTORE_NOTES.md 未检测到"自动化校验要求"区块
+
+[自动化校验要求] DATA_SCHEMA.md:
+- PR/CI 流程需自动校验：
+  - 脚本导入/导出、数据完整性、兼容性测试与本规范一致
+  - 所有数据结构变更需自动触发相关测试
+  - 主要文档变更需自动生成变更日志并通知团队
+
+
+[自动化校验要求] CONTRIBUTING.md:
+- PR/CI 流程需自动校验：
+  - 代码风格（SwiftLint）与 `STYLE_GUIDE.md` 一致
+  - 数据格式与 `DATA_SCHEMA.md` 校验通过
+  - 所有新增/变更功能均有对应测试，且通过 `QA_AUTOCHECK.md` 验收
+  - 快捷键定义与 `SHORTCUTS.md` 一致
+  - 主要文档变更需自动生成变更日志并通知团队
+
+- 請參考 PROMPT_CHEATSHEET.md，統一使用標準提示語進行開發、測試、驗收、上架等協作。
+
+- 所有開發任務請參考 docs/PROJECT_PLAN_TODO.md 作為唯一任務來源。
+
+警告: PROJECT_PLAN_TODO.md 未检测到"自动化校验要求"区块
+
+[自动化校验要求] QA_AUTOCHECK.md:
+- PR/CI 流程需自动校验：
+  - 自动化测试、验收脚本与本规范一致
+  - 主要文档变更需自动生成变更日志并通知团队
+  - 变更自动触发相关测试与验收流程 
+
+### 單例與 Actor 隔離自動驗收
+- 檢查所有 Service/Manager/單例類別 static let shared 屬性與 class 宣告，不可加上 @MainActor 或任何 actor 隔離標註。
+- 只允許將 @MainActor 標註於需要主執行緒的 method。
+- 違反此規範將自動標記為驗收不通過，並提示修正。 
+
+### 圖像識別自動化測試
+1. 單元測試：ImageRecognitionService（ModernScreenCaptureService）支援模板比對、異常處理、權限檢查，所有截圖功能必須使用 ScreenCaptureKit，不得再出現 CGWindowListCreateImage 或 captureScreen 舊方法
+2. UI 測試：截圖、模板選取、比對流程全自動 
+
+### CI/CD 自動化驗收腳本
+1. 必須檢查所有 Swift 檔案，不得出現 CGWindowListCreateImage 或 captureScreen 舊方法，違規則自動阻擋合併。 
+
+### Notification.Name 擴展驗收
+- 所有 Notification.Name 擴展必須集中於 `AutoClicker/Extensions/Notification+Name.swift`，禁止於其他檔案重複定義。
+- CI/CD 應自動檢查是否有重複定義，違規則阻擋合併。
+
+警告: IMAGE_RECOGNITION_RULES.md 未检测到"自动化校验要求"区块
+警告: SPEC.md 未检测到"自动化校验要求"区块
+警告: UI_TESTS_PLAN.md 未检测到"自动化校验要求"区块
+修復文檔...
+✅ 更新 SPEC.md 時間戳
+✅ 更新 SHORTCUTS.md 時間戳
+✅ 更新 UI_GUIDELINES.md 時間戳
+✅ 更新 QA_AUTOCHECK.md 時間戳
+✅ 更新 APPSTORE_NOTES.md 時間戳
+✅ 更新 DATA_SCHEMA.md 時間戳
+✅ 更新 SECURITY_POLICY.md 時間戳
+✅ 更新 IMAGE_RECOGNITION_RULES.md 時間戳
+✅ 更新 STYLE_GUIDE.md 時間戳
+✅ 更新 CONTRIBUTING.md 時間戳
+✅ 更新 APPSTORE_NOTES.md 時間戳
+✅ 更新 CONTRIBUTING.md 時間戳
+✅ 更新 DATA_SCHEMA.md 時間戳
+✅ 更新 ENVIRONMENT_CONFIG.md 時間戳
+✅ 更新 FINAL_CHECKLIST.md 時間戳
+✅ 更新 IMAGE_RECOGNITION_RULES.md 時間戳
+✅ 更新 LocalTestPlan.md 時間戳
+✅ 更新 MODULE_MANAGEMENT.md 時間戳
+✅ 更新 NEXT_TASKS.md 時間戳
+✅ 更新 PROJECT_PLAN_TODO.md 時間戳
+✅ 更新 PROJECT_SYNC_PLAN.md 時間戳
+✅ 更新 QA_AUTOCHECK.md 時間戳
+✅ 更新 REQUIREMENTS.md 時間戳
+✅ 更新 SECURITY_POLICY.md 時間戳
+✅ 更新 SHORTCUTS.md 時間戳
+✅ 更新 SPEC.md 時間戳
+✅ 更新 STYLE_GUIDE.md 時間戳
+✅ 更新 UI_GUIDELINES.md 時間戳
+✅ 更新 UI_TESTS_PLAN.md 時間戳
+✅ 所有文檔時間戳更新完成
+已生成 CHANGELOG.md
+檢查並修復代碼風格...
+warning: Found a configuration for 'identifier_name' rule, but it is disabled in 'disabled_rules'.
+warning: Found a configuration for 'line_length' rule, but it is disabled in 'disabled_rules'.
+Correcting Swift files in current working directory
+Correcting 'ImageMatchViewModel.swift' (1/37)
+Correcting 'SettingsViewModel.swift' (2/37)
+Correcting 'PlaybackViewModel.swift' (4/37)
+Correcting 'RecorderViewModel.swift' (5/37)
+Correcting 'AutoClickerViewModel.swift' (6/37)
+Correcting 'AutoClickerApp.swift' (7/37)
+Correcting 'MainViewModel.swift' (3/37)
+Correcting 'ScriptStorageServiceTests.swift' (8/37)
+Correcting 'ShortcutSetting.swift' (9/37)
+Correcting 'MainViewTests.swift' (10/37)
+/Users/yichen/Downloads/cursor/autoclick/AutoClicker/App/AutoClickerApp.swift: Corrected trailing_whitespace 5 times
+Correcting 'ImageTemplate.swift' (11/37)
+Correcting 'Script.swift' (12/37)
+Correcting 'Notification+Name.swift' (14/37)
+Correcting 'ScriptEvent.swift' (13/37)
+Correcting 'SettingsView.swift' (15/37)
+/Users/yichen/Downloads/cursor/autoclick/AutoClicker/ViewModels/AutoClickerViewModel.swift: Corrected trailing_newline 1 time
+/Users/yichen/Downloads/cursor/autoclick/AutoClicker/ViewModels/AutoClickerViewModel.swift: Corrected trailing_whitespace 10 times
+Correcting 'RecorderView.swift' (16/37)
+Correcting 'ScriptListItemView.swift' (17/37)
+Correcting 'ImageMatchView.swift' (18/37)
+Correcting 'MainView.swift' (19/37)
+Correcting 'ContentView.swift' (20/37)
+Correcting 'ScriptActionPlayer.swift' (21/37)
+/Users/yichen/Downloads/cursor/autoclick/AutoClicker/Models/ImageTemplate.swift: Corrected trailing_whitespace 5 times
+Correcting 'DataManager.swift' (22/37)
+/Users/yichen/Downloads/cursor/autoclick/AutoClicker/ViewModels/MainViewModel.swift: Corrected trailing_whitespace 7 times
+Correcting 'KeyboardService.swift' (23/37)
+/Users/yichen/Downloads/cursor/autoclick/AutoClicker/Views/ContentView.swift: Corrected trailing_whitespace 5 times
+Correcting 'OnboardingService.swift' (24/37)
+/Users/yichen/Downloads/cursor/autoclick/AutoClicker/Views/SettingsView.swift: Corrected redundant_optional_initialization 1 time
+Correcting 'AccessibilityEventService.swift' (25/37)
+Correcting 'ShortcutManager.swift' (26/37)
+Correcting 'ImageRecognitionService.swift' (27/37)
+Correcting 'RecordingService.swift' (28/37)
+/Users/yichen/Downloads/cursor/autoclick/AutoClicker/Views/MainView.swift: Corrected trailing_whitespace 6 times
+/Users/yichen/Downloads/cursor/autoclick/AutoClicker/Views/MainView.swift: Corrected trailing_newline 1 time
+Correcting 'ClickService.swift' (29/37)
+/Users/yichen/Downloads/cursor/autoclick/AutoClicker/Views/ImageMatchView.swift: Corrected opening_brace 1 time
+Correcting 'ScriptStorageService.swift' (30/37)
+/Users/yichen/Downloads/cursor/autoclick/AutoClicker/Services/ClickService.swift: Corrected trailing_newline 1 time
+/Users/yichen/Downloads/cursor/autoclick/AutoClicker/Services/ClickService.swift: Corrected trailing_whitespace 11 times
+Correcting 'ErrorHandlingService.swift' (31/37)
+Correcting 'ModernScreenCaptureService.swift' (32/37)
+/Users/yichen/Downloads/cursor/autoclick/AutoClicker/Services/DataManager.swift: Corrected trailing_newline 1 time
+/Users/yichen/Downloads/cursor/autoclick/AutoClicker/Services/DataManager.swift: Corrected trailing_whitespace 69 times
+Correcting 'ScriptEngine.swift' (33/37)
+/Users/yichen/Downloads/cursor/autoclick/AutoClicker/Services/RecordingService.swift: Corrected trailing_whitespace 29 times
+/Users/yichen/Downloads/cursor/autoclick/AutoClicker/Services/RecordingService.swift: Corrected opening_brace 1 time
+Correcting 'PlaybackService.swift' (34/37)
+/Users/yichen/Downloads/cursor/autoclick/AutoClicker/Services/OnboardingService.swift: Corrected trailing_newline 1 time
+/Users/yichen/Downloads/cursor/autoclick/AutoClicker/Services/OnboardingService.swift: Corrected trailing_whitespace 36 times
+Correcting 'MouseService.swift' (35/37)
+/Users/yichen/Downloads/cursor/autoclick/AutoClicker/Services/AccessibilityEventService.swift: Corrected trailing_whitespace 27 times
+Correcting 'ScriptManager.swift' (36/37)
+/Users/yichen/Downloads/cursor/autoclick/AutoClicker/Services/ScriptEngine.swift: Corrected opening_brace 1 time
+Correcting 'LogService.swift' (37/37)
+/Users/yichen/Downloads/cursor/autoclick/AutoClicker/Services/ShortcutManager.swift: Corrected trailing_newline 1 time
+/Users/yichen/Downloads/cursor/autoclick/AutoClicker/Services/ShortcutManager.swift: Corrected unneeded_synthesized_initializer 1 time
+/Users/yichen/Downloads/cursor/autoclick/AutoClicker/Services/ShortcutManager.swift: Corrected trailing_whitespace 41 times
+/Users/yichen/Downloads/cursor/autoclick/AutoClicker/Services/ModernScreenCaptureService.swift: Corrected trailing_whitespace 20 times
+/Users/yichen/Downloads/cursor/autoclick/AutoClicker/Services/ModernScreenCaptureService.swift: Corrected unused_closure_parameter 1 time
+/Users/yichen/Downloads/cursor/autoclick/AutoClicker/Services/MouseService.swift: Corrected trailing_whitespace 3 times
+/Users/yichen/Downloads/cursor/autoclick/AutoClicker/Services/PlaybackService.swift: Corrected trailing_whitespace 30 times
+/Users/yichen/Downloads/cursor/autoclick/AutoClicker/Services/ScriptManager.swift: Corrected trailing_whitespace 14 times
+/Users/yichen/Downloads/cursor/autoclick/AutoClicker/Services/ErrorHandlingService.swift: Corrected syntactic_sugar 2 times
+/Users/yichen/Downloads/cursor/autoclick/AutoClicker/Services/ErrorHandlingService.swift: Corrected trailing_newline 1 time
+/Users/yichen/Downloads/cursor/autoclick/AutoClicker/Services/ErrorHandlingService.swift: Corrected trailing_whitespace 45 times
+/Users/yichen/Downloads/cursor/autoclick/AutoClicker/Services/ImageRecognitionService.swift: Corrected opening_brace 2 times
+/Users/yichen/Downloads/cursor/autoclick/AutoClicker/Services/ImageRecognitionService.swift: Corrected trailing_whitespace 31 times
+Done correcting 37 files!
+Running SwiftFormat...
+Reading swift-version file at /Users/yichen/Downloads/cursor/autoclick/.swift-version (version 5.9)
+SwiftFormat completed in 0.21s.
+19/65 files formatted.
+檢查並修復 Actor 隔離...
+[PASS] 無 @MainActor 標註於單例 class 或 shared，符合規範。
+檢查並修復快捷鍵衝突...
+冲突: 快捷键 默认快捷键 被多个功能共用: ['功能', '功能', '功能']
+修復快捷鍵衝突...
+檢查並修復數據模型...
+检查示例 1...
+JSON 示例结构完整。
+检查示例 2...
+缺少字段: ['version', 'name', 'createdAt', 'actions']
+检查示例 3...
+缺少字段: ['version', 'name', 'createdAt', 'actions']
+检查示例 4...
+缺少字段: ['version', 'name', 'createdAt', 'actions']
+检查示例 5...
+缺少字段: ['version', 'name', 'createdAt', 'actions']
+检查示例 6...
+缺少字段: ['version', 'name', 'createdAt', 'actions']
+检查示例 7...
+缺少字段: ['version', 'name', 'createdAt', 'actions']
+检查示例 8...
+JSON 示例结构完整。
+检查示例 9...
+JSON 示例结构完整。
+修復數據模型...
+檢查並修復單元測試...
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test -scheme AutoClicker -destination platform=macOS
+
+Resolve Package Graph
+
+Fetching from https://github.com/apple/swift-log.git
+
+Fetching from https://github.com/apple/swift-argument-parser.git (cached)
+
+Creating working copy of package ‘swift-log’
+
+Checking out 1.6.3 of package ‘swift-log’
+
+Creating working copy of package ‘swift-argument-parser’
+
+Checking out 1.5.0 of package ‘swift-argument-parser’
+
+Source files for target AutoClicker should be located under 'Sources/AutoClicker', 'Sources', or a custom sources path can be set with the 'path' property in Package.swifttarget 'AutoClicker' referenced in product 'AutoClicker' is empty
+Resolved source packages:
+  autoclick: (null)
+
+2025-05-04 22:54:05.801 xcodebuild[10201:1789417] Writing error result bundle to /var/folders/3p/1w60w6hx0tb65lw8n0xzk7p80000gn/T/ResultBundle_2025-04-05_22-54-0005.xcresult
+xcodebuild: error: Could not resolve package dependencies:
+  target 'AutoClicker' referenced in product 'AutoClicker' is empty
+
+修復單元測試...
+檢查並修復 UI 測試...
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test -scheme AutoClickerUITests -destination platform=macOS
+
+Resolve Package Graph
+Source files for target AutoClicker should be located under 'Sources/AutoClicker', 'Sources', or a custom sources path can be set with the 'path' property in Package.swifttarget 'AutoClicker' referenced in product 'AutoClicker' is empty
+
+Resolved source packages:
+  autoclick: (null)
+
+2025-05-04 22:54:07.299 xcodebuild[10306:1789931] Writing error result bundle to /var/folders/3p/1w60w6hx0tb65lw8n0xzk7p80000gn/T/ResultBundle_2025-04-05_22-54-0007.xcresult
+xcodebuild: error: Could not resolve package dependencies:
+  target 'AutoClicker' referenced in product 'AutoClicker' is empty
+
+修復 UI 測試...
+更新最終檢查清單...
+修復最終檢查清單...
+=== 自動修復完成 ===
+時間: 2025年 5月 4日 週日 22時54分07秒 CST

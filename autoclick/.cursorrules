@@ -1,0 +1,347 @@
+# 📁 本文件遵循 docs/ENVIRONMENT_CONFIG.md 中的规范
+
+<!-- DO NOT MODIFY: This file defines critical rules for AI behavior, project architecture, and acceptance testing. -->
+
+# Cursor 开发规范
+
+## 🎯 开发目标
+- 自动化开发流程
+- 自动化测试
+- 自动化修复
+- 自动化验收
+- 稳定开发
+- 可视化调试
+- 上架指导
+
+## 🔄 开发流程
+
+### 1. 初始化阶段
+- 检查项目结构完整性
+- 验证依赖项
+- 设置开发环境
+- 配置 CI/CD 流程
+- 设置本地存储路径
+- 配置权限请求流程
+- 设置本地化支持
+
+### 2. 开发阶段
+- 遵循 MVVM 架构
+- 使用 SwiftUI 构建界面
+- 实现核心功能模块
+- 编写单元测试
+- 进行代码审查
+- 实现快捷键系统
+- 开发图像识别功能
+- 实现本地化支持
+
+### 3. 测试阶段
+- 运行自动化测试
+- 进行性能测试
+- 进行 UI 测试
+- 进行集成测试
+- 测试快捷键功能
+- 测试图像识别准确性
+- 测试并行执行机制
+- 测试本地化支持
+
+### 4. 修复阶段
+- 分析测试报告
+- 定位问题
+- 自动修复简单问题
+- 复杂问题提供修复建议
+- 优化性能问题
+- 修复权限问题
+- 改进错误处理
+- 修复本地化问题
+
+### 5. 验收阶段
+- 检查功能完整性
+- 验证性能指标
+- 确认 UI 规范
+- 检查安全性
+- 验证快捷键功能
+- 测试图像识别效果
+- 检查本地存储功能
+- 验证本地化支持
+
+## 📝 开发规范
+
+### 1. 代码规范
+- 使用 SwiftLint 进行代码检查
+- 遵循 Swift 官方编码规范
+- 使用清晰的命名规范
+- 添加必要的注释
+- 实现错误处理机制
+- 使用类型安全
+- 遵循 SOLID 原则
+- 使用 guard 和 do-catch 保护关键操作
+
+### 2. 架构规范
+- 使用 MVVM 架构
+- 遵循 SOLID 原则
+- 实现依赖注入
+- 使用协议编程
+- 实现模块化设计
+- 使用响应式编程
+- 实现数据绑定
+- 隔离核心服务模块
+
+### 3. 测试规范
+- 单元测试覆盖率 > 80%
+- 编写 UI 测试用例
+- 进行性能测试
+- 实现自动化测试
+- 测试快捷键功能
+- 测试图像识别
+- 测试并行执行
+- 测试本地化支持
+
+### 4. 文档规范
+- 保持文档更新
+- 编写 API 文档
+- 更新 CHANGELOG
+- 维护 README
+- 编写用户指南
+- 记录快捷键说明
+- 更新错误处理文档
+- 维护本地化文档
+
+## 🛠 工具配置
+
+### 1. 开发工具
+- Xcode
+- SwiftLint
+- SwiftFormat
+- Fastlane
+- Instruments
+- Console.app
+- Network Link Conditioner
+- Localization Editor
+
+### 2. 测试工具
+- XCTest
+- XCUITest
+- Instruments
+- GitHub Actions
+- Performance Testing
+- UI Testing
+- Integration Testing
+- Localization Testing
+
+### 3. 调试工具
+- LLDB
+- Instruments
+- Console.app
+- Network Link Conditioner
+- Memory Graph
+- Time Profiler
+- Energy Log
+- Localization Debugger
+
+## 📊 性能指标
+
+### 1. 响应时间
+- 启动时间 < 2s
+- 录制延迟 < 50ms
+- 图像识别 < 100ms
+- 快捷键响应 < 10ms
+- 脚本加载 < 200ms
+- 图像加载 < 100ms
+- 事件处理 < 20ms
+- 本地化加载 < 100ms
+
+### 2. 资源使用
+- CPU 使用率 < 30%
+- 内存使用 < 200MB
+- 电池影响 < 5%
+- 磁盘使用 < 100MB
+- 网络使用 0
+- GPU 使用率 < 20%
+- 文件 I/O < 10MB/s
+- 本地化资源 < 10MB
+
+### 3. 稳定性
+- 崩溃率 < 0.1%
+- 错误处理率 100%
+- 数据保存成功率 100%
+- 快捷键响应率 100%
+- 图像识别准确率 > 95%
+- 脚本执行成功率 100%
+- 权限获取成功率 100%
+- 本地化加载成功率 100%
+
+## 🔍 调试指南
+
+### 1. 日志记录
+- 使用统一日志系统
+- 记录关键操作
+- 记录错误信息
+- 记录性能数据
+- 记录快捷键事件
+- 记录图像识别结果
+- 记录权限状态
+- 记录本地化状态
+
+### 2. 调试工具
+- 使用 Instruments 分析性能
+- 使用 Console.app 查看日志
+- 使用 Network Link Conditioner 模拟网络
+- 使用 LLDB 进行调试
+- 使用 Memory Graph 分析内存
+- 使用 Time Profiler 分析性能
+- 使用 Energy Log 分析能耗
+- 使用 Localization Debugger 调试本地化
+
+### 3. 问题定位
+- 分析崩溃报告
+- 检查性能数据
+- 查看用户反馈
+- 复现问题场景
+- 分析快捷键冲突
+- 检查图像识别问题
+- 验证权限状态
+- 检查本地化问题
+
+## 🚀 上架准备
+
+### 1. App Store 审核
+- 准备隐私政策
+- 准备应用截图
+- 准备应用描述
+- 准备技术支持
+- 准备权限说明
+- 准备功能说明
+- 准备更新说明
+- 准备本地化说明
+
+### 2. 版本管理
+- 遵循语义化版本
+- 更新 CHANGELOG
+- 准备发布说明
+- 设置版本号
+- 管理分支策略
+- 处理合并请求
+- 管理发布流程
+- 管理本地化版本
+
+### 3. 监控系统
+- 设置崩溃报告
+- 配置性能监控
+- 设置用户反馈
+- 配置分析工具
+- 监控快捷键使用
+- 监控图像识别性能
+- 监控权限状态
+- 监控本地化状态
+
+## 📈 持续改进
+
+### 1. 性能优化
+- 定期性能分析
+- 优化资源使用
+- 改进算法效率
+- 优化用户体验
+- 优化快捷键响应
+- 优化图像识别
+- 优化脚本执行
+- 优化本地化加载
+
+### 2. 功能迭代
+- 收集用户反馈
+- 分析使用数据
+- 规划新功能
+- 优化现有功能
+- 改进快捷键系统
+- 增强图像识别
+- 优化脚本功能
+- 完善本地化支持
+
+### 3. 质量保证
+- 定期代码审查
+- 更新测试用例
+- 改进错误处理
+- 优化文档
+- 改进快捷键体验
+- 优化图像识别
+- 提升稳定性
+- 完善本地化质量
+
+# 🚫 Immutable Contract Files
+You must never modify or regenerate any of the following critical markdown files:
+- SPEC.md
+- SHORTCUTS.md
+- UI_GUIDELINES.md
+- QA_AUTOCHECK.md
+- APPSTORE_NOTES.md
+- DATA_SCHEMA.md
+- SECURITY_POLICY.md
+- IMAGE_RECOGNITION_RULES.md
+- STYLE_GUIDE.md
+- CONTRIBUTING.md
+
+These files define non-negotiable standards, contracts, and rules. Any behavior that violates them is considered incorrect.
+
+# 📝 Prompt Cheatsheet Reference
+For all AI assistants and team members:
+Please refer to PROMPT_CHEATSHEET.md for standardized development, testing, and review prompts.
+All prompt usage、AI 交互、規範查詢，請以此文件為準。
+
+# 📋 Project Plan Reference
+For all development, testing, and acceptance tasks:
+Please refer to docs/PROJECT_PLAN_TODO.md as the single source of truth for all core features, prompts, and acceptance criteria.
+
+## 📁 文件引用
+- 開發任務追蹤：docs/NEXT_TASKS.md
+- 專案同步計劃：docs/PROJECT_SYNC_PLAN.md
+- 自動化測試規範：docs/QA_AUTOCHECK.md
+- UI 設計規範：docs/UI_GUIDELINES.md
+- 圖像識別規則：docs/IMAGE_RECOGNITION_RULES.md
+- 安全策略：docs/SECURITY_POLICY.md
+- 數據結構：docs/DATA_SCHEMA.md
+- 最終檢查清單：docs/FINAL_CHECKLIST.md
+- 本地測試計劃：docs/LocalTestPlan.md
+- App Store 說明：docs/APPSTORE_NOTES.md
+- 貢獻指南：docs/CONTRIBUTING.md
+- 快捷鍵說明：docs/SHORTCUTS.md
+- 專案規格：docs/SPEC.md
+- 風格指南：docs/STYLE_GUIDE.md
+- UI 測試計劃：docs/UI_TESTS_PLAN.md
+
+## 🔄 開發流程
+1. 每次啟動時，先檢查 docs/NEXT_TASKS.md 中的任務狀態
+2. 驗收上次任務成果，比對對應規範文件
+3. 若通過驗收，更新任務狀態
+4. 若未通過，自動修復並重驗
+5. 開始下一個任務，建立所需文件並比對規則
+
+## 📝 代碼規範
+- 遵循 Swift 官方編碼規範
+- 使用 SwiftLint 進行代碼檢查
+- 保持代碼風格一致性
+- 添加必要的註釋
+- 實現錯誤處理機制
+
+## 🧪 測試要求
+- 單元測試覆蓋率 > 80%
+- UI 測試完整覆蓋主要功能
+- 自動化測試流程
+- 定期性能測試
+
+## 🔍 驗收標準
+- 符合所有規範文件要求
+- 通過自動化測試
+- 性能指標達標
+- 文檔完整更新
+
+## 🔄 更新日誌
+### v1.0.0
+- 初始規範文件
+- 定義開發流程
+- 建立驗收標準
+- 完善測試要求
+
+### v1.1.0
+- 添加 NEXT_TASKS.md 引用
+- 優化開發流程
+- 完善驗收標準
+- 提升自動化程度 
