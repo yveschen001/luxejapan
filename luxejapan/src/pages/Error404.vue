@@ -7,7 +7,7 @@
         :to="localePath('/')" 
         class="error-404__link"
         data-test="back-to-home"
-        aria-label="返回首页"
+        :aria-label="$t('nav.home')"
       >
         {{ $t('error.backToHome') }}
       </router-link>
