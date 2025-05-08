@@ -1,0 +1,117 @@
+{
+  "nav": {
+    "home": "首頁",
+    "about": "關於我們",
+    "services": "服務項目",
+    "processFaq": "流程與常見說明",
+    "serviceNotes": "服務須知",
+    "testimonials": "客戶評價",
+    "contact": "聯絡我們",
+    "switchLang": "切換語言"
+  },
+  "hero": {
+    "title": "Luxe Japan 頂級菁英伴遊",
+    "subtitle": "體驗日本最尊榮的高端伴遊與奢華服務。",
+    "cta": "探索更多"
+  },
+  "services": {
+    "title": "服務項目",
+    "subtitle": "為您量身打造的尊榮體驗",
+    "inhomeTitle": "到府服務",
+    "inhomeDesc": "專屬到府伴遊，尊榮私密，根據您的需求量身打造頂級體驗。",
+    "companionTitle": "戀人伴遊",
+    "companionDesc": "菁英伴侶陪伴，浪漫時光，締造難忘回憶。",
+    "clubTitle": "私人會所",
+    "clubDesc": "尊享頂級私人會所與專屬場所，體驗非凡尊榮。"
+  },
+  "gallery": {
+    "title": "精選畫廊",
+    "subtitle": "尊榮時刻，永恆回憶",
+    "img1": { "alt": "日本奢華體驗", "caption": "優雅時刻" },
+    "img2": { "alt": "文化深度體驗", "caption": "文化沉浸" },
+    "img3": { "alt": "專屬場所通道", "caption": "尊貴專屬" }
+  },
+  "footer": {
+    "rights": "版權所有。",
+    "privacy": "隱私政策",
+    "terms": "服務條款",
+    "contact": "聯絡我們"
+  },
+  "about": {
+    "title": "關於我們",
+    "subtitle": "追求卓越，締造傳奇",
+    "philosophyTitle": "品牌理念",
+    "philosophyDesc": "我們堅信為每一位貴賓提供最高等級的奢華、隱私與專屬服務。",
+    "commitmentTitle": "服務承諾",
+    "commitmentDesc": "我們團隊致力於卓越、保密，並創造難忘的尊榮體驗。",
+    "valuesTitle": "核心價值",
+    "values": {
+      "discretion": "絕對保密",
+      "excellence": "卓越服務",
+      "luxury": "尊榮體驗",
+      "trust": "誠信可靠"
+    }
+  },
+  "contact": {
+    "title": "聯絡我們",
+    "subtitle": "隨時為您提供專業服務",
+    "form": {
+      "name": "姓名",
+      "email": "電子郵件",
+      "phone": "電話",
+      "message": "訊息內容",
+      "submit": "送出"
+    },
+    "info": {
+      "title": "聯絡資訊",
+      "line": "Line",
+      "telegram": "Telegram",
+      "email": "電子郵件",
+      "social": "社群媒體"
+    }
+  },
+  "serviceNotes": {
+    "title": "服務須知",
+    "subtitle": "重要服務說明與規範",
+    "notes": {
+      "title": "服務注意事項",
+      "note1": "所有服務均需提前預約，以確保最佳服務品質",
+      "note2": "我們提供24小時專業客服支援",
+      "note3": "所有服務均嚴格遵守保密協議",
+      "note4": "可根據客戶需求提供客製化服務方案"
+    },
+    "privacy": {
+      "title": "隱私保護",
+      "desc": "我們嚴格遵守隱私保護規範，確保客戶資料安全"
+    }
+  },
+  "testimonials": {
+    "title": "真實客戶體驗分享",
+    "subtitle": "來自世界各地的客戶真實評價"
+  },
+  "processFaq": {
+    "title": "流程與常見說明",
+    "subtitle": "了解我們的服務流程",
+    "process": {
+      "title": "服務流程",
+      "step1": "預約諮詢",
+      "step2": "方案確認",
+      "step3": "服務執行",
+      "step4": "滿意度回饋"
+    },
+    "faq": {
+      "title": "常見問題",
+      "q1": "如何預約服務？",
+      "a1": "可透過Line、Telegram或電子郵件進行預約",
+      "q2": "服務時間如何安排？",
+      "a2": "我們提供24小時預約服務，可根據您的需求安排",
+      "q3": "如何確保服務品質？",
+      "a3": "我們嚴格篩選服務人員，確保提供最優質的服務"
+    }
+  },
+  "serviceCards": {
+    "homeComfortAlt": "到府溫柔慰藉服務示意圖",
+    "tokyoLoverAlt": "東京戀人漫遊服務示意圖",
+    "luxuryNightAlt": "奢華私人會所夜宴服務示意圖"
+  }
+} 

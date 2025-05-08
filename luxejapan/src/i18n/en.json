@@ -1,0 +1,53 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "processFaq": "Process & FAQ",
+    "serviceNotes": "Service Notes",
+    "testimonials": "Testimonials",
+    "contact": "Contact",
+    "switchLang": "Switch Language"
+  },
+  "hero": {
+    "title": "Luxe Japan Elite Escorts",
+    "subtitle": "Experience the finest companionship and luxury services in Japan.",
+    "cta": "Discover More"
+  },
+  "services": {
+    "title": "Our Services",
+    "inhomeTitle": "In-home Service",
+    "inhomeDesc": "Enjoy luxury and privacy with our exclusive in-home escort service, tailored to your needs.",
+    "companionTitle": "Companion Service",
+    "companionDesc": "Experience romantic companionship and memorable moments with our elite partners.",
+    "clubTitle": "Private Club",
+    "clubDesc": "Access to exclusive private clubs and venues for a truly distinguished experience."
+  },
+  "gallery": {
+    "title": "Gallery",
+    "img1": { "alt": "Luxury experience in Japan", "caption": "Elegant moments" },
+    "img2": { "alt": "Cultural experience", "caption": "Cultural immersion" },
+    "img3": { "alt": "Exclusive venue access", "caption": "Exclusive access" }
+  },
+  "testimonials": {
+    "title": "Real Client Experiences",
+    "subtitle": "Authentic testimonials from clients worldwide"
+  },
+  "footer": {
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "rights": "All rights reserved"
+  },
+  "about": {
+    "title": "About Us",
+    "philosophyTitle": "Brand Philosophy",
+    "philosophyDesc": "We believe in providing the highest level of luxury, privacy, and personalized service for every client.",
+    "commitmentTitle": "Service Commitment",
+    "commitmentDesc": "Our team is dedicated to excellence, discretion, and creating unforgettable experiences."
+  },
+  "serviceCards": {
+    "homeComfortAlt": "In-home comfort service illustration",
+    "tokyoLoverAlt": "Tokyo lover experience illustration",
+    "luxuryNightAlt": "Luxury private club night illustration"
+  }
+} 

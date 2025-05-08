@@ -12,9 +12,9 @@ defineProps({
 
 <style scoped>
 .section-container {
-  max-width: 1200px;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 3rem 1.5rem;
+  padding: 2rem;
   background: var(--color-background);
   border-radius: 1.5rem;
   box-shadow: 0 2px 8px rgba(45,27,77,0.04);

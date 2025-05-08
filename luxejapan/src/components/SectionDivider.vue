@@ -6,21 +6,29 @@
 
 <style scoped>
 .section-divider-block {
-  background: var(--color-primary);
   width: 100vw;
   min-width: 100%;
-  height: 32px;
+  height: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-left: 50%;
   transform: translateX(-50%);
   padding: 0;
+  background: transparent;
 }
 .section-divider {
   width: 100%;
   max-width: 1200px;
-  height: 10px;
+  height: 2px;
   display: block;
+}
+@media (min-width: 600px) {
+  .section-divider-block {
+    height: 14px;
+  }
+  .section-divider {
+    height: 3px;
+  }
 }
 </style> 
