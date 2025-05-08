@@ -5,19 +5,14 @@
     itemscope 
     itemtype="https://schema.org/ItemList"
   >
-    <h2 id="service-cases-title" class="service-cases__title">服務案例</h2>
+    <h2 id="service-cases-title" class="service-cases__title">{{$t('services.title')}}</h2>
     <div class="service-cases__grid">
-      <article 
-        class="service-case"
-        itemscope 
-        itemtype="https://schema.org/Service"
-        itemprop="itemListElement"
-      >
+      <article v-for="(item, i) in tm('serviceCards.cases')" :key="'service-case-'+i" class="service-case" itemscope itemtype="https://schema.org/Service" itemprop="itemListElement">
         <picture>
           <img 
             class="service-case__img" 
-            src="/images/about-bg.jpg" 
-            :alt="$t('serviceCards.homeComfortAlt')"
+            :src="item.img" 
+            :alt="item.alt"
             loading="lazy"
             width="600"
             height="400"
@@ -26,54 +21,8 @@
           />
         </picture>
         <div class="service-case__content">
-          <h3 class="service-case__name" itemprop="name">到府溫柔慰藉</h3>
-          <p class="service-case__desc" itemprop="description">從 90 分鐘的初見 開始，彷彿一場甜蜜邂逅。伴遊佳人輕步上門，悄然出現在您指定的飯店或民宿。短短時光中，您將感受日本女性的纖細溫柔—她輕撫發絲、柔聲低語，用浪漫的眼神洗滌旅途的疲憊與孤寂，讓您彷彿回到戀愛中的暖心時刻。</p>
-        </div>
-      </article>
-      <article 
-        class="service-case"
-        itemscope 
-        itemtype="https://schema.org/Service"
-        itemprop="itemListElement"
-      >
-        <picture>
-          <img 
-            class="service-case__img" 
-            src="/images/testimonials-bg.jpg" 
-            :alt="$t('serviceCards.tokyoLoverAlt')"
-            loading="lazy"
-            width="600"
-            height="400"
-            decoding="async"
-            itemprop="image"
-          />
-        </picture>
-        <div class="service-case__content">
-          <h3 class="service-case__name" itemprop="name">東京戀人漫遊</h3>
-          <p class="service-case__desc" itemprop="description">與心儀佳人約會於飯店樓下私廊餐廳，共赴一場美食與微醺的前奏。隨後漫步櫻花盛放的街道，穿梭於霓虹閃爍的巷弄，探索東京獨特風情。夜幕低垂時，攜手回到您的私密空間，享受更深度的交流與心靈契合，讓彼此的心靠得更近，甜蜜溫度一再升華。</p>
-        </div>
-      </article>
-      <article 
-        class="service-case"
-        itemscope 
-        itemtype="https://schema.org/Service"
-        itemprop="itemListElement"
-      >
-        <picture>
-          <img 
-            class="service-case__img" 
-            src="/images/process-faq-bg.jpg" 
-            :alt="$t('serviceCards.luxuryNightAlt')"
-            loading="lazy"
-            width="600"
-            height="400"
-            decoding="async"
-            itemprop="image"
-          />
-        </picture>
-        <div class="service-case__content">
-          <h3 class="service-case__name" itemprop="name">奢華私人會所夜宴</h3>
-          <p class="service-case__desc" itemprop="description">預約專屬於您的 頂級私人會所，沉浸於低調奢華的夜色之中。從知名調酒師的調製細膩調酒，到眾多日本美女優雅陪伴，為您譜寫一晚無與倫比的浪漫序章。您亦可攜友作客，或舉辦小型慶生、商務聯誼；更可在配備按摩浴缸的 VIP 套房內舉辦比基尼派對，讓水花與情誼同時迸發。只需於行前告知您的心願，我們即刻為您量身訂製，讓每一刻都符合您的夢想與品味。</p>
+          <h3 class="service-case__name" itemprop="name">{{ item.title }}</h3>
+          <p class="service-case__desc" itemprop="description">{{ item.desc }}</p>
         </div>
       </article>
     </div>
@@ -82,6 +31,9 @@
 
 <script setup>
 import { onMounted } from 'vue';
+import { useI18n } from 'vue-i18n';
+
+const { tm } = useI18n();
 
 // 添加結構化數據
 onMounted(() => {

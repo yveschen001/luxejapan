@@ -28,12 +28,18 @@ export function useSeo(seo) {
     if (seo.image) setMeta('og:image', seo.image, true);
     // canonical
     setLink('canonical', seo.canonical || window.location.origin + route.fullPath);
+    
+    // 动态生成 alternates
+    const pathWithoutLocale = route.path.replace(/^\/[^/]+/, '');
+    const alternates = {
+      'en': `/en${pathWithoutLocale}`,
+      'zh-tw': `/zh-tw${pathWithoutLocale}`
+    };
+    
     // hreflang
-    if (seo.alternates) {
-      Object.entries(seo.alternates).forEach(([lang, href]) => {
-        setLink('alternate', window.location.origin + href, lang);
-      });
-    }
+    Object.entries(alternates).forEach(([lang, href]) => {
+      setLink('alternate', window.location.origin + href, lang);
+    });
   });
 }
 
@@ -47,10 +53,12 @@ function setMeta(name, content, property = false) {
   }
   el.setAttribute('content', content);
 }
+
 function getMeta(name) {
   const el = document.head.querySelector(`meta[name="${name}"]`);
   return el ? el.getAttribute('content') : '';
 }
+
 function setLink(rel, href, hreflang) {
   let el = document.head.querySelector(`link[rel="${rel}"]${hreflang ? `[hreflang="${hreflang}"]` : ''}`);
   if (!el) {

@@ -1,92 +1,230 @@
 {
   "nav": {
     "home": "Home",
-    "about": "About",
+    "about": "About Us",
     "services": "Services",
     "processFaq": "Process & FAQ",
     "serviceNotes": "Service Notes",
     "testimonials": "Testimonials",
-    "contact": "Contact",
+    "contact": "Contact Us",
     "switchLang": "Switch Language"
   },
   "hero": {
     "title": "Luxe Japan Elite Escorts",
-    "subtitle": "Experience the finest companionship and luxury services in Japan.",
-    "cta": "Discover More"
+    "subtitle": "Experience Japan's most prestigious luxury escort and companionship services.",
+    "cta": "Explore More"
   },
   "services": {
     "title": "Our Services",
-    "inhomeTitle": "In-home Service",
-    "inhomeDesc": "Enjoy luxury and privacy with our exclusive in-home escort service, tailored to your needs.",
-    "companionTitle": "Companion Service",
-    "companionDesc": "Experience romantic companionship and memorable moments with our elite partners.",
+    "subtitle": "Tailored luxury experiences for you",
+    "inhomeTitle": "In-Home Escort",
+    "inhomeDesc": "Exclusive in-home escort, privacy and luxury, tailored to your needs for a top-tier experience.",
+    "companionTitle": "Companion Escort",
+    "companionDesc": "Elite companions for romantic moments and unforgettable memories.",
     "clubTitle": "Private Club",
-    "clubDesc": "Access to exclusive private clubs and venues for a truly distinguished experience."
+    "clubDesc": "Enjoy exclusive private clubs and venues for an extraordinary experience."
   },
   "gallery": {
     "title": "Gallery",
-    "img1": { "alt": "Luxury experience in Japan", "caption": "Elegant moments" },
-    "img2": { "alt": "Cultural experience", "caption": "Cultural immersion" },
-    "img3": { "alt": "Exclusive venue access", "caption": "Exclusive access" }
-  },
-  "testimonials": {
-    "title": "Real Client Experiences",
-    "subtitle": "Authentic testimonials from clients worldwide"
+    "subtitle": "Prestigious Moments, Lasting Memories",
+    "img1": { "alt": "Luxury experience in Japan", "caption": "Elegant Moments" },
+    "img2": { "alt": "Cultural immersion", "caption": "Cultural Immersion" },
+    "img3": { "alt": "Exclusive venue access", "caption": "Exclusive Access" }
   },
   "footer": {
+    "rights": "All rights reserved.",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
-    "rights": "All rights reserved"
+    "contact": "Contact Us"
   },
   "about": {
     "title": "About Us",
+    "subtitle": "Pursuing Excellence, Creating Legends",
     "philosophyTitle": "Brand Philosophy",
-    "philosophyDesc": "We believe in providing the highest level of luxury, privacy, and personalized service for every client.",
+    "philosophyDesc": "We believe in providing every guest with the highest level of luxury, privacy, and personalized service.",
     "commitmentTitle": "Service Commitment",
-    "commitmentDesc": "Our team is dedicated to excellence, discretion, and creating unforgettable experiences."
+    "commitmentDesc": "Our team is dedicated to excellence, discretion, and creating unforgettable experiences.",
+    "valuesTitle": "Core Values",
+    "values": {
+      "discretion": "Absolute Discretion",
+      "excellence": "Excellence in Service",
+      "luxury": "Prestigious Experience",
+      "trust": "Integrity & Reliability"
+    },
+    "story": {
+      "paragraphs": [
+        "{brand} was co-founded by Director Nan, a 'Michelin-level secret inspector' in the Japanese escort industry, and Mr. Bando, an expert in high-end Asian travel. Director Nan is not only a connoisseur but also conducts premium service reviews for top media; Mr. Bando has years of experience planning bespoke trips for elite clients. After years of hands-on experience and research, we discovered:",
+        "Therefore, our mission is 'Client First—honestly selecting the most elite beauties to meet your every need,' creating a truly premium escort service.",
+        "Thanks to the support of our distinguished clients, {brand} has earned the trust of Japan's affluent class. With our extensive network, we select from: models and talents from top agencies, famous university students and postgraduates, renowned Tokyo bar hostesses, and elegant women from leading companies and the beauty industry.",
+        "In our recruitment, we value not only appearance and figure, but also require excellent manners, professionalism, and grace. All our companions are outstanding in social skills, cheerful, intelligent, and of impeccable character—ensuring every encounter is memorable."
+      ],
+      "list": [
+        "The market is full of misleading ads—'expensive but not as advertised,' 'fake photos,' 'bait-and-switch,' or 'the same companion under multiple brands' are all too common;",
+        "Many quality providers refuse foreign guests, and trust or communication barriers greatly impact the experience;",
+        "Elite clients often have to coordinate with multiple providers and details themselves, making it hard to enjoy a seamless, worry-free service."
+      ],
+      "experienceTitle": "Service Experience",
+      "experienceParagraph": "At {brand}, you never have to worry about car rentals, legal issues, or language barriers. Our dedicated concierge will guide you every step of the way:",
+      "experienceList": [
+        "Luxury transfers: from airport to hotel, chauffeured by Toyota Alphard, LEXUS LM, or Rolls-Royce;",
+        "Seamless itinerary: all routes and bookings are managed for you, so you can fully relax;",
+        "Thoughtful companionship: enjoy beautiful moments with our handpicked companions—whether cherry blossom viewing, wine tasting, karaoke, or private relaxation, every detail is handled for you."
+      ],
+      "ending": "Just relax and enjoy unforgettable moments with your ideal companion—leave the rest to {brand}."
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Always here to provide professional service",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "message": "Message",
+      "submit": "Submit"
+    },
+    "info": {
+      "title": "Contact Info",
+      "line": "Line",
+      "telegram": "Telegram",
+      "email": "Email",
+      "social": "Social Media"
+    }
+  },
+  "serviceNotes": {
+    "title": "Service Notes",
+    "subtitle": "Important Service Information & Guidelines",
+    "notes": {
+      "title": "Service Reminders",
+      "note1": "All services must be booked in advance to ensure the best quality.",
+      "note2": "We provide 24/7 professional customer support.",
+      "note3": "All services strictly adhere to confidentiality agreements.",
+      "note4": "Customized service plans available upon request."
+    },
+    "privacy": {
+      "title": "Privacy Protection",
+      "desc": "We strictly follow privacy protection standards to ensure client data security."
+    }
+  },
+  "testimonials": {
+    "title": "Real Client Experiences",
+    "subtitle": "Authentic reviews from clients worldwide",
+    "list": [
+      {"nickname": "JohnP", "location": "Taiwan", "content": "I never expected the girl to be so wonderful—truly elegant and refined, I was a bit shy! As soon as I opened the door, I saw a beautiful Japanese lady. Contrary to my first impression, she was very friendly and had a lovely smile. Thank you, Miss Kuroki, for such a wonderful day. Looking forward to next time!"},
+      {"nickname": "EmL", "location": "Hong Kong", "content": "First time trying—thanks to the manager for booking a cherry blossom terrace restaurant and the beautiful Miss Asahina as my companion. Great scenery and great company—an unforgettable memory!"},
+      {"nickname": "PG", "location": "Taiwan", "content": "Traveled solo to Mt. Fuji—never thought a beautiful companion could be 'delivered' to my hot spring inn. Thanks to Miss Hashimoto and the manager for the two-hour drive!"},
+      {"nickname": "HansM", "location": "China", "content": "Finally tried my first 3-person experience—next time I want to try 4, maybe even play mahjong, haha!"},
+      {"nickname": "OliW", "location": "Australia", "content": "A rare relaxing night. I met the most beautiful 'No.1 Beauty' of my life, and the service was so attentive... Seeing her kneel to serve me, I almost felt bad! Definitely want to book her again!"},
+      {"nickname": "WeiJun", "location": "Singapore", "content": "Tall model figure! Gentle, elegant, and mature charm. Her massage skills are top-notch—absolutely nothing to complain about!"},
+      {"nickname": "XiaoYing", "location": "Taiwan", "content": "Just landed and got into the LM, and the beauty was already waiting in the seat next to me, wearing the OL secretary outfit and black stockings I requested, with a few buttons undone on purpose. On the way to the hotel, I couldn't help but hold her hand... a bit naughty... We went straight to the hotel for some passion. Thank you, Miss Amane, for even preparing two pairs of stockings (sorry I accidentally tore them!)."},
+      {"nickname": "Jun", "location": "Taiwan", "content": "I thought my Cosplay request was a bit much, but it really happened—with blue hair! Thank you, Miss Uehara, for perfectly recreating my favorite anime character. Sorry for breaking the hair accessory—I might have been too rough!"},
+      {"nickname": "MartinC", "location": "Canada", "content": "This time I challenged both stamina and taste: three days, three different beauties—155cm, 165cm, and 175cm. Each had her own style and depth. Manager, you worked hard!"},
+      {"nickname": "SaA", "location": "UAE", "content": "The private jacuzzi club was really special. Thanks to the manager for arranging a 1-man, 10-women bikini birthday party—my most unforgettable, exhausting, and happiest birthday ever!"},
+      {"nickname": "NiR", "location": "Russia", "content": "My first time with a Japanese AV actress—Japanese service is truly meticulous, like a fine restaurant, flawless in every way."},
+      {"nickname": "ThaboS", "location": "South Africa", "content": "Thanks to the manager for arranging the Tokyo Bay yacht party—the sea view was amazing, and Miss Mizuno's service was first-class. The rocking of the boat made it even more special—speechless!"}
+    ]
+  },
+  "processFaq": {
+    "title": "Process & FAQ",
+    "subtitle": "Learn about our service process",
+    "process": {
+      "title": "Service Process",
+      "step1": "Consultation & Booking",
+      "step2": "Plan Confirmation",
+      "step3": "Service Execution",
+      "step4": "Feedback & Satisfaction"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": "How do I book a service?",
+      "a1": "You can book via Line, Telegram, or email.",
+      "q2": "How is service time arranged?",
+      "a2": "We offer 24/7 booking and can arrange according to your needs.",
+      "q3": "How do you ensure service quality?",
+      "a3": "We rigorously select our staff to ensure the highest quality service."
+    },
+    "fullProcess": [
+      {"title": "Online Consultation", "desc": "Contact us via LINE or our website form with your needs: date, time, location, style preferences... Our concierge will respond quickly and confirm all details."},
+      {"title": "Plan Confirmation & Quotation", "desc": "Based on your chosen companion, service duration, and extras (like airport pickup, private parties), we'll provide a personalized quote."},
+      {"title": "Payment & Booking Completion", "desc": "We accept Japanese yen cash, USDT (at the day's rate), and more. We recommend USDT to minimize fees. Once payment is complete, your exclusive time and companion are reserved."},
+      {"title": "Exclusive Welcome", "desc": "On the day of service, from airport pickup, itinerary planning, and warm welcome to final drop-off, we provide seamless support so you can simply enjoy."}
+    ],
+    "fullFaq": [
+      {"q": "What is the approximate service price?", "a": "Minimum: 100,000 JPY / 90 minutes (varies by companion). For extras like airport pickup, private parties, or hot spring bookings, additional charges apply."},
+      {"q": "Can I try before committing?", "a": "Absolutely! We recommend starting with our basic plan: 100,000 JPY / 90 minutes + about 4,000 JPY for transportation, to experience our professionalism and care."},
+      {"q": "Can I change companions if I don't feel a connection?", "a": "If a companion clearly violates rules or provides poor service, she can be replaced or canceled immediately. For personal preference changes, we cannot arrange replacements or refunds on the same day. Please contact us for assistance if needed."},
+      {"q": "I don't speak Japanese—how do I communicate?", "a": "No worries! Our concierge will communicate your needs in advance, and we can assist with real-time translation via Google Translate or ChatGPT on-site."},
+      {"q": "What payment methods are available?", "a": "Cash (JPY), USDT (converted at Taishin Bank's daily rate). We recommend USDT for the lowest fees and maximum convenience."},
+      {"q": "Why do you need so much info for a first booking?", "a": "To protect your and our companions' safety and privacy, we need to confirm your basic info (phone number, hotel address, etc.) and comply with Japanese law."},
+      {"q": "Is 'full service' legal for outcall escorts in Japan?", "a": "Japanese law only allows non-penetrative services; 'full service' is prohibited. However, if mutual chemistry naturally leads to more, that's personal freedom. If you have concerns, let us know and we'll explain the risks."},
+      {"q": "Can I book 3P or group experiences?", "a": "Group bookings can be arranged with advance notice, but suitable companions are limited and fees usually start at 1.2x per person. Please contact us at least 72 hours in advance for such requests."},
+      {"q": "Why can't I book on the same day?", "a": "Most of our companions have other jobs and need time to prepare. We recommend booking in advance to secure your preferred time and companion."},
+      {"q": "Why don't you show faces in photos?", "a": "Many companions have other professional careers. To protect their privacy and reputation, we only show body and outfit samples, not real faces."},
+      {"q": "No response after adding LINE?", "a": "Please make sure you've added us successfully, then send a message or emoji to trigger a notification—we'll reply right away."}
+    ]
   },
   "serviceCards": {
-    "homeComfortAlt": "In-home comfort service illustration",
-    "tokyoLoverAlt": "Tokyo lover experience illustration",
-    "luxuryNightAlt": "Luxury private club night illustration"
+    "homeComfortAlt": "In-home comfort escort illustration",
+    "tokyoLoverAlt": "Tokyo lover escort illustration",
+    "luxuryNightAlt": "Luxury private club night escort illustration",
+    "cases": [
+      {
+        "title": "In-Home Comfort Escort",
+        "desc": "Begin with a 90-minute encounter, like a sweet rendezvous. Your companion arrives gracefully at your hotel or residence, bringing gentle care and warmth. In a short time, you'll experience the delicate tenderness of Japanese women—soft touches, gentle whispers, and romantic gazes that wash away travel fatigue and loneliness, making you feel the warmth of falling in love again.",
+        "img": "/images/about-bg.jpg",
+        "alt": "In-home comfort escort service illustration"
+      },
+      {
+        "title": "Tokyo Lover Stroll",
+        "desc": "Meet your ideal companion for a date at a hotel lounge or private restaurant, sharing a gourmet meal and a touch of wine. Then stroll through cherry blossom-lined streets and neon-lit alleys, exploring Tokyo's unique charm. As night falls, return hand-in-hand to your private space for deeper connection and intimacy, letting your hearts grow closer and the sweetness rise.",
+        "img": "/images/testimonials-bg.jpg",
+        "alt": "Tokyo lover stroll service illustration"
+      },
+      {
+        "title": "Luxury Private Club Night",
+        "desc": "Reserve your exclusive luxury private club and immerse yourself in a night of understated elegance. From masterfully crafted cocktails by renowned bartenders to the company of elegant Japanese beauties, enjoy an unforgettable romantic evening. Host friends, celebrate birthdays, or hold business mixers; even throw a bikini party in a VIP suite with a jacuzzi—let your wishes be known, and we'll tailor every moment to your dreams and tastes.",
+        "img": "/images/process-faq-bg.jpg",
+        "alt": "Luxury private club night service illustration"
+      }
+    ]
   },
   "terms": {
     "title": "Terms of Service",
-    "intro": "Welcome to Elysee Japan Elite Escorts (hereinafter referred to as 'our establishment'). To ensure the safety and rights of both parties, please carefully read and comply with the following terms:",
+    "intro": "Welcome to Luxe Japan Elite Escorts (hereinafter referred to as 'the Company'). To ensure the safety and rights of both parties, please read and comply with the following terms:",
     "sections": [
-      { "title": "I. Health and Hygiene", "content": "Clients must complete bathing and oral hygiene before the scheduled service and truthfully disclose their health status. If a client shows symptoms of fever, respiratory infection, skin contact infectious disease, or sexually transmitted disease, or if our companion has reasonable concerns about such conditions, the companion has the right to immediately terminate the service. During the service, if any infectious disease or discomfort is discovered, our establishment reserves the right to suspend and cancel subsequent arrangements." },
-      { "title": "II. Respect and Safety", "content": "Please use safety protection (such as condoms) throughout the service. Any refusal or forced engagement in unagreed activities will result in immediate service termination. Please trim long nails and address dry, rough skin conditions that may cause harm to our companions. Any form of violence, pulling, excessive cruelty, SM equipment, or special behaviors not previously agreed upon is strictly prohibited." },
-      { "title": "III. Privacy and Photography", "content": "The use of any cameras, mobile phone cameras, or recording devices for photography, secret filming, recording, or eavesdropping is strictly prohibited. Obtaining contact information privately, inviting companions for outside appointments, or attempting to poach staff without our establishment's and the companion's consent constitutes a serious breach of contract." },
-      { "title": "IV. Service Eligibility and Behavioral Restrictions", "content": "Persons under 18 years old (including high school students) are strictly prohibited from using our services. We reserve the right to refuse or terminate service for those who are intoxicated, under the influence of illegal drugs, or deemed unsuitable for continued service. Members of gangs, criminal organizations, or related to the adult entertainment industry will be refused service. Any form of verbal abuse, discrimination, religious/political propaganda, or behavior that makes our companions uncomfortable is strictly prohibited." },
+      { "title": "I. Health and Hygiene", "content": "If there is intimate dating behavior, clients must complete bathing and oral hygiene before the scheduled service and truthfully disclose their health status. If a client has a fever, respiratory infection, skin contact infectious disease, or sexually transmitted disease, or if our companion reasonably suspects such conditions, the companion has the right to immediately terminate the service. If any infectious disease or discomfort is discovered during the service, the Company reserves the right to suspend and cancel subsequent arrangements." },
+      { "title": "II. Respect and Safety", "content": "If there is intimacy, please respect women and take proper protective measures. Any refusal or forced engagement in unagreed activities will result in immediate service termination. Please trim long nails and address dry, rough skin conditions that may harm our companions. Any form of violence, pulling, excessive cruelty, SM equipment, or special behaviors not previously agreed upon is strictly prohibited." },
+      { "title": "III. Privacy and Photography", "content": "The use of any cameras, mobile phone cameras, or recording devices for photography, secret filming, recording, or eavesdropping is strictly prohibited. Privately obtaining contact information, inviting companions for outside appointments, or attempting to poach staff without the Company's and the companion's consent constitutes a serious breach of contract." },
+      { "title": "IV. Service Eligibility and Behavioral Restrictions", "content": "Persons under 18 years old (including high school students) are strictly prohibited from using our services. Service may be refused or terminated for those who are intoxicated, under the influence of illegal drugs, or deemed unsuitable for continued service. Members of gangs, criminal organizations, or the adult entertainment industry will be refused service. Any form of verbal abuse, discrimination, religious/political propaganda, or behavior that makes our companions uncomfortable is strictly prohibited." },
       { "title": "V. Cancellation and Change Policy", "content": "Clients must notify us at least 72 hours in advance for any cancellations or changes to appointments. Otherwise, a fee equivalent to one service charge will be applied. If we need to cancel or adjust due to weather, transportation, or unforeseen circumstances, we will promptly notify you and provide a full refund or assistance in rescheduling." },
-      { "title": "VI. Force Majeure", "content": "In cases of force majeure such as earthquakes, typhoons, epidemic control measures, or traffic restrictions that prevent service provision or completion, our establishment shall not be held liable for breach of contract and will assist in arranging alternatives or refunds." },
-      { "title": "VII. Personal Data Protection", "content": "We will properly store and use your personal information such as name, contact details, and identification documents in accordance with the Personal Information Protection Act, solely for service-related operations. Without your written consent, we will not rent or transfer your data to third parties and commit to implementing technical and administrative measures to protect your privacy." },
-      { "title": "VIII. Limitation of Liability", "content": "Except as required by law, our establishment shall not be liable for damages caused by unforeseeable circumstances or non-intentional or gross negligence. If third-party claims arise from inappropriate client behavior, the client shall be responsible for and compensate for related losses." },
+      { "title": "VI. Force Majeure", "content": "In the event of force majeure (earthquakes, typhoons, epidemic controls, traffic restrictions, etc.) that prevent or interrupt service, the Company will not be held liable for breach of contract and will assist in arranging alternatives or refunds." },
+      { "title": "VII. Personal Data Protection", "content": "The Company will properly store and use your name, contact information, and identification in accordance with the Personal Data Protection Act, solely for service-related operations. Without your written consent, we will not rent or transfer your data to third parties, and we commit to technical and administrative measures to protect your privacy." },
+      { "title": "VIII. Limitation of Liability", "content": "Except as otherwise provided by law, the Company is not liable for damages caused by unforeseeable circumstances or non-intentional or gross negligence. If third-party claims arise from inappropriate client behavior, the client is responsible for and must compensate for related losses." },
       { "title": "IX. Service Refusal and Termination", "content": "If a companion explicitly refuses any behavior and the client persists, it constitutes a serious breach of contract and may be illegal. If a client frequently changes or cancels confirmed times and locations, we reserve the right to adjust or terminate service. Any violation of the above terms deemed as 'inappropriate client' will result in immediate service termination without refund." },
-      { "title": "X. Blacklist and Legal Liability", "content": "Those identified as malicious violators, fraudsters, or lawbreakers will be blacklisted and permanently banned from using our services. If our establishment or companions suffer damages due to client illegal activities, we reserve the right to report to police authorities and pursue civil and criminal liability, including but not limited to seeking compensation for related costs." },
+      { "title": "X. Blacklist and Legal Liability", "content": "Those identified as malicious violators, fraudsters, or lawbreakers will be blacklisted and permanently banned from using our services. If the Company or companions suffer damages due to client illegal activities, we reserve the right to report to authorities and pursue civil and criminal liability, including but not limited to seeking compensation for related costs." },
       { "title": "XI. Dispute Resolution", "content": "In case of disputes regarding these terms, both parties should first attempt amicable negotiation. If negotiation fails, both parties agree to submit to the jurisdiction of the Tokyo District Court as the court of first instance." }
     ],
-    "effect": "These terms take effect from the date of announcement. Using our services indicates that you have fully read, understood, and agreed to comply with these terms."
+    "effect": "These terms take effect from the date of announcement. By using our services, you are deemed to have fully read, understood, and agreed to comply."
   },
   "privacy": {
     "title": "Privacy Policy",
-    "intro": "This privacy policy applies to the website and related services operated by Elysee Japan Elite Escorts (hereinafter referred to as 'the Company'). To ensure your peace of mind, this policy explains how we collect, use, share, and protect your personal information.",
+    "intro": "This privacy policy applies to the website and related services operated by Luxe Japan Elite Escorts (hereinafter referred to as 'the Company'). To ensure your peace of mind, this policy explains how we collect, use, share, and protect your personal information.",
     "sections": [
       {
         "title": "1. Types of Personal Data Collected",
-        "content": "When registering and booking: Name, contact number, email, hotel or accommodation address, check-in/check-out dates, instant messaging accounts (LINE, WhatsApp, WeChat, etc.).\nWhen arranging itineraries: Travel needs and preferences (pickup time, location, special requests), payment methods and transaction records (cash, USDT-related information).\nWhen interacting with customer service: Contact records, inquiry content and replies, system-generated IP address, browser type, and usage records."
+        "content": "When registering and booking: Name, contact number, email, hotel or accommodation address, check-in/check-out dates, instant messaging accounts (LINE, WhatsApp, WeChat, etc.). When arranging itineraries: Travel needs and preferences (pickup time, location, special requests), payment methods and transaction records (cash, USDT-related information). When interacting with customer service: Contact records, inquiry content and replies, system-generated IP address, browser type, and usage records."
       },
       {
         "title": "2. Purpose of Data Use",
-        "content": "We only use your personal data within the following necessary scope:\nService provision: Booking confirmation, itinerary arrangement, pickup scheduling, and on-site assistance.\nQuality improvement: Satisfaction surveys, internal process improvement, and staff training.\nCustomer service: Resolving issues during your use and providing real-time assistance.\nMarketing activities (with separate consent): Sending promotional messages and new event notifications."
+        "content": "We only use your personal data within the following necessary scope: Service provision: Booking confirmation, itinerary arrangement, pickup scheduling, and on-site assistance. Quality improvement: Satisfaction surveys, internal process improvement, and staff training. Customer service: Resolving issues during your use and providing real-time assistance. Marketing activities (with separate consent): Sending promotional messages and new event notifications."
       },
       {
         "title": "3. Data Sharing and Third Parties",
-        "content": "With your explicit consent, the Company may share necessary data with:\nPartner travel agencies: Including car rental companies, hotels, private clubs, etc., to assist with your arrangements.\nThird-party payment institutions: For USDT payment processing, currency conversion, etc.\nLegal authorities: Provided as required by judicial procedures to comply with laws or protect the Company's rights.\nOther parties with your consent.\nAll partners sign confidentiality agreements and may only use your data within the above purposes, not for any other use."
+        "content": "With your explicit consent, the Company may share necessary data with: Partner travel agencies (car rental companies, hotels, private clubs, etc.) to assist with your arrangements. Third-party payment institutions (for USDT payment processing, currency conversion, etc.). Legal authorities (as required by judicial procedures to comply with laws or protect the Company's rights). Other parties with your consent. All partners sign confidentiality agreements and may only use your data within the above purposes, not for any other use."
       },
       {
         "title": "4. Data Security and Retention",
-        "content": "Technical protection: SSL/TLS encrypted transmission, server firewalls, and regular security scans.\nAccess control: Only authorized personnel may access data as required by their duties, with two-factor authentication.\nRetention period: Your booking and transaction data will be kept for up to three years and will be deleted or anonymized after expiration.\nDeletion request: You may contact customer service at any time to request deletion or correction of your personal data, and we will respond within a reasonable time."
+        "content": "Technical protection: SSL/TLS encrypted transmission, server firewalls, and regular security scans. Access control: Only authorized personnel may access data as required by their duties, with two-factor authentication. Retention period: Your booking and transaction data will be kept for up to three years and will be deleted or anonymized after expiration. Deletion request: You may contact customer service at any time to request deletion or correction of your personal data, and we will respond within a reasonable time."
       },
       {
         "title": "5. Cookies and Tracking Technologies",
@@ -102,9 +240,27 @@
       },
       {
         "title": "8. Contact Information",
-        "content": "If you have any questions about this policy or wish to exercise your rights, please contact us:\nTelegram: See social info below\nLine: See social info below"
+        "content": "If you have any questions about this policy or wish to exercise your rights, please contact us: Telegram: See social info below Line: See social info below"
       }
     ],
-    "effect": "Thank you for trusting Elysee Japan Elite Escorts. Let us work together to protect your privacy and rights."
+    "effect": "Thank you for trusting Luxe Japan Elite Escorts. Let us work together to protect your privacy and rights."
+  },
+  "home": {
+    "introTitle": "Introduction",
+    "introParagraphs": [
+      "Curious about the luxurious allure of Japanese companionship, but worried about scams, language barriers, or getting lost in the crowd? Dear guest, you don't need to worry about any of that. {brand} will arrange a truly high-end experience for you.",
+      "Leave it to us—your exclusive journey consultant. Enjoy peace of mind and indulge in Japan's most elite companion experience."
+    ],
+    "introList": [
+      {"title": "Royal-Class Transfers", "desc": "Rolls-Royce, LEXUS LM, Toyota Alphard... Airport pickups, city rides, luxury vehicles at your service all day."},
+      {"title": "Personalized Planning", "desc": "One-on-one itinerary design, tailored to your preferences. Private assistant support ensures every detail matches your needs."},
+      {"title": "Ultimate Escort Experience", "desc": "Handpicked Japanese companions—elegant and romantic. Private dinners, VIP events, city strolls, or cherry blossom hot springs—all with attentive company."},
+      {"title": "Five-Star Privacy Protection", "desc": "Strict confidentiality agreements and professional service, so you can relax with total peace of mind."}
+    ],
+    "introCta": "Start your exclusive luxury Tokyo journey!"
+  },
+  "brand": {
+    "full": "Luxe Japan Elite Escorts",
+    "short": "Luxe Japan"
   }
 } 

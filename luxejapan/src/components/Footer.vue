@@ -2,7 +2,7 @@
   <footer class="footer" role="contentinfo">
     <div class="footer__content">
       <div class="footer__brand">
-        <img src="/logo-geisha-gold.png" alt="Luxe Japan Logo" class="footer__logo" />
+        <img src="/logo-geisha-gold.png" :alt="$t('brand.full') + ' Logo'" class="footer__logo" />
         <BrandLogo size="1.3rem" />
       </div>
       <div class="footer__links">

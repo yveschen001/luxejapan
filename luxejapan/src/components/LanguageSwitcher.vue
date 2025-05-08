@@ -14,32 +14,28 @@
   </div>
 </template>
 
-<script>
-import { useI18n } from 'vue-i18n'
-export default {
-  name: 'LanguageSwitcher',
-  data() {
-    return {
-      languages: [
-        { code: 'zh-tw', name: '繁體中文' },
-        { code: 'en', name: 'English' }
-      ],
-      currentLang: 'zh-tw'
-    }
-  },
-  mounted() {
-    // 初始化时同步全局语言
-    const { locale } = useI18n()
-    this.currentLang = locale.value
-  },
-  methods: {
-    switchLanguage(lang) {
-      const { locale } = useI18n()
-      locale.value = lang
-      this.currentLang = lang
-      this.$emit('language-change', lang)
-    }
-  }
+<script setup>
+import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { useRouter } from 'vue-router';
+import { useLocalePath } from '@/utils/i18n';
+
+const { locale } = useI18n();
+const router = useRouter();
+const { switchLocalePath } = useLocalePath();
+
+const languages = [
+  { code: 'zh-tw', name: '繁體中文' },
+  { code: 'en', name: 'English' }
+];
+
+const currentLang = ref(locale.value);
+
+function switchLanguage(lang) {
+  currentLang.value = lang;
+  locale.value = lang;
+  // 自动跳转到当前页面的对应语言版本
+  router.push(switchLocalePath(lang));
 }
 </script>
 

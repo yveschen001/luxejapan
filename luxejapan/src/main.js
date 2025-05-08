@@ -6,9 +6,26 @@ import en from './i18n/en.json';
 import zhTw from './i18n/zh-tw.json';
 import '/styles.css';
 
+// 自动检测用户语言
+const supportedLocales = ['en', 'zh-tw', 'ko', 'vi', 'es'];
+function detectDefaultLocale() {
+  // 优先localStorage
+  const saved = localStorage.getItem('language');
+  if (saved && supportedLocales.includes(saved)) return saved;
+  // 浏览器首选
+  const browserLang = navigator.language.toLowerCase();
+  if (browserLang.startsWith('zh')) return 'zh-tw';
+  if (browserLang.startsWith('en')) return 'en';
+  if (browserLang.startsWith('ko')) return 'ko';
+  if (browserLang.startsWith('vi')) return 'vi';
+  if (browserLang.startsWith('es')) return 'es';
+  // 默认英文
+  return 'en';
+}
+const defaultLocale = detectDefaultLocale();
 const i18n = createI18n({
   legacy: false,
-  locale: 'en',
+  locale: defaultLocale,
   fallbackLocale: 'en',
   messages: {
     en,
@@ -16,15 +33,27 @@ const i18n = createI18n({
   }
 });
 
-// 處理默認語言重定向
+// 处理默认语言重定向
 router.beforeEach((to, from, next) => {
-  const { locale } = i18n.global;
   const path = to.path;
-  
-  // 如果路徑不包含語言前綴，添加當前語言前綴
-  if (!path.startsWith('/en') && !path.startsWith('/zh-tw')) {
-    next(`/${locale.value}${path}`);
+  // 支持所有语言
+  const supportedLocales = ['en', 'zh-tw', 'ko', 'vi', 'es'];
+  const pathLocale = path.split('/')[1];
+  // 如果路径不包含语言前缀，重定向到当前 locale
+  if (!supportedLocales.includes(pathLocale)) {
+    const currentLocale = i18n.global.locale.value;
+    if (path === '/') {
+      next(`/${currentLocale}`);
+    } else {
+      next(`/${currentLocale}${path}`);
+    }
   } else {
+    // 路径有语言前缀，强制同步 i18n locale
+    if (i18n.global.locale.value !== pathLocale) {
+      i18n.global.locale.value = pathLocale;
+      // 持久化用户选择
+      localStorage.setItem('language', pathLocale);
+    }
     next();
   }
 });
@@ -32,4 +61,26 @@ router.beforeEach((to, from, next) => {
 const app = createApp(App);
 app.use(router);
 app.use(i18n);
+
+// 添加全局错误处理
+app.config.errorHandler = (err, vm, info) => {
+  // 忽略 Web3 相关的错误
+  if (err.message && err.message.includes('Cannot read properties of null')) {
+    console.warn('Ignored Web3 related error:', err);
+    return;
+  }
+  console.error('Vue Error:', err);
+};
+
+// 添加全局未捕获的 Promise 错误处理
+window.addEventListener('unhandledrejection', (event) => {
+  // 忽略 Web3 相关的错误
+  if (event.reason && event.reason.message && event.reason.message.includes('Cannot read properties of null')) {
+    console.warn('Ignored Web3 related error:', event.reason);
+    event.preventDefault();
+    return;
+  }
+  console.error('Unhandled Promise Rejection:', event.reason);
+});
+
 app.mount('#app'); 
