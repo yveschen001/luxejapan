@@ -49,5 +49,62 @@
     "homeComfortAlt": "In-home comfort service illustration",
     "tokyoLoverAlt": "Tokyo lover experience illustration",
     "luxuryNightAlt": "Luxury private club night illustration"
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "intro": "Welcome to Elysee Japan Elite Escorts (hereinafter referred to as 'our establishment'). To ensure the safety and rights of both parties, please carefully read and comply with the following terms:",
+    "sections": [
+      { "title": "I. Health and Hygiene", "content": "Clients must complete bathing and oral hygiene before the scheduled service and truthfully disclose their health status. If a client shows symptoms of fever, respiratory infection, skin contact infectious disease, or sexually transmitted disease, or if our companion has reasonable concerns about such conditions, the companion has the right to immediately terminate the service. During the service, if any infectious disease or discomfort is discovered, our establishment reserves the right to suspend and cancel subsequent arrangements." },
+      { "title": "II. Respect and Safety", "content": "Please use safety protection (such as condoms) throughout the service. Any refusal or forced engagement in unagreed activities will result in immediate service termination. Please trim long nails and address dry, rough skin conditions that may cause harm to our companions. Any form of violence, pulling, excessive cruelty, SM equipment, or special behaviors not previously agreed upon is strictly prohibited." },
+      { "title": "III. Privacy and Photography", "content": "The use of any cameras, mobile phone cameras, or recording devices for photography, secret filming, recording, or eavesdropping is strictly prohibited. Obtaining contact information privately, inviting companions for outside appointments, or attempting to poach staff without our establishment's and the companion's consent constitutes a serious breach of contract." },
+      { "title": "IV. Service Eligibility and Behavioral Restrictions", "content": "Persons under 18 years old (including high school students) are strictly prohibited from using our services. We reserve the right to refuse or terminate service for those who are intoxicated, under the influence of illegal drugs, or deemed unsuitable for continued service. Members of gangs, criminal organizations, or related to the adult entertainment industry will be refused service. Any form of verbal abuse, discrimination, religious/political propaganda, or behavior that makes our companions uncomfortable is strictly prohibited." },
+      { "title": "V. Cancellation and Change Policy", "content": "Clients must notify us at least 72 hours in advance for any cancellations or changes to appointments. Otherwise, a fee equivalent to one service charge will be applied. If we need to cancel or adjust due to weather, transportation, or unforeseen circumstances, we will promptly notify you and provide a full refund or assistance in rescheduling." },
+      { "title": "VI. Force Majeure", "content": "In cases of force majeure such as earthquakes, typhoons, epidemic control measures, or traffic restrictions that prevent service provision or completion, our establishment shall not be held liable for breach of contract and will assist in arranging alternatives or refunds." },
+      { "title": "VII. Personal Data Protection", "content": "We will properly store and use your personal information such as name, contact details, and identification documents in accordance with the Personal Information Protection Act, solely for service-related operations. Without your written consent, we will not rent or transfer your data to third parties and commit to implementing technical and administrative measures to protect your privacy." },
+      { "title": "VIII. Limitation of Liability", "content": "Except as required by law, our establishment shall not be liable for damages caused by unforeseeable circumstances or non-intentional or gross negligence. If third-party claims arise from inappropriate client behavior, the client shall be responsible for and compensate for related losses." },
+      { "title": "IX. Service Refusal and Termination", "content": "If a companion explicitly refuses any behavior and the client persists, it constitutes a serious breach of contract and may be illegal. If a client frequently changes or cancels confirmed times and locations, we reserve the right to adjust or terminate service. Any violation of the above terms deemed as 'inappropriate client' will result in immediate service termination without refund." },
+      { "title": "X. Blacklist and Legal Liability", "content": "Those identified as malicious violators, fraudsters, or lawbreakers will be blacklisted and permanently banned from using our services. If our establishment or companions suffer damages due to client illegal activities, we reserve the right to report to police authorities and pursue civil and criminal liability, including but not limited to seeking compensation for related costs." },
+      { "title": "XI. Dispute Resolution", "content": "In case of disputes regarding these terms, both parties should first attempt amicable negotiation. If negotiation fails, both parties agree to submit to the jurisdiction of the Tokyo District Court as the court of first instance." }
+    ],
+    "effect": "These terms take effect from the date of announcement. Using our services indicates that you have fully read, understood, and agreed to comply with these terms."
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "intro": "This privacy policy applies to the website and related services operated by Elysee Japan Elite Escorts (hereinafter referred to as 'the Company'). To ensure your peace of mind, this policy explains how we collect, use, share, and protect your personal information.",
+    "sections": [
+      {
+        "title": "1. Types of Personal Data Collected",
+        "content": "When registering and booking: Name, contact number, email, hotel or accommodation address, check-in/check-out dates, instant messaging accounts (LINE, WhatsApp, WeChat, etc.).\nWhen arranging itineraries: Travel needs and preferences (pickup time, location, special requests), payment methods and transaction records (cash, USDT-related information).\nWhen interacting with customer service: Contact records, inquiry content and replies, system-generated IP address, browser type, and usage records."
+      },
+      {
+        "title": "2. Purpose of Data Use",
+        "content": "We only use your personal data within the following necessary scope:\nService provision: Booking confirmation, itinerary arrangement, pickup scheduling, and on-site assistance.\nQuality improvement: Satisfaction surveys, internal process improvement, and staff training.\nCustomer service: Resolving issues during your use and providing real-time assistance.\nMarketing activities (with separate consent): Sending promotional messages and new event notifications."
+      },
+      {
+        "title": "3. Data Sharing and Third Parties",
+        "content": "With your explicit consent, the Company may share necessary data with:\nPartner travel agencies: Including car rental companies, hotels, private clubs, etc., to assist with your arrangements.\nThird-party payment institutions: For USDT payment processing, currency conversion, etc.\nLegal authorities: Provided as required by judicial procedures to comply with laws or protect the Company's rights.\nOther parties with your consent.\nAll partners sign confidentiality agreements and may only use your data within the above purposes, not for any other use."
+      },
+      {
+        "title": "4. Data Security and Retention",
+        "content": "Technical protection: SSL/TLS encrypted transmission, server firewalls, and regular security scans.\nAccess control: Only authorized personnel may access data as required by their duties, with two-factor authentication.\nRetention period: Your booking and transaction data will be kept for up to three years and will be deleted or anonymized after expiration.\nDeletion request: You may contact customer service at any time to request deletion or correction of your personal data, and we will respond within a reasonable time."
+      },
+      {
+        "title": "5. Cookies and Tracking Technologies",
+        "content": "The Company uses cookies, pixels, or similar technologies to collect browsing behavior and preferences to enhance website experience and marketing services. You may manage or refuse cookies in your browser settings, but this may affect full functionality."
+      },
+      {
+        "title": "6. Minors and Sensitive Data",
+        "content": "The Company does not intentionally collect personal data from individuals under 18 years old. If minors are found to have provided data, it will be deleted immediately. Sensitive information such as health, ethnicity, or religion will only be collected and strictly protected within the scope permitted by law."
+      },
+      {
+        "title": "7. Policy Revisions",
+        "content": "The Company reserves the right to amend this privacy policy at any time. The latest version will be announced on the website and will take effect from the date of announcement. If changes significantly affect your rights, we will proactively notify you by email or phone."
+      },
+      {
+        "title": "8. Contact Information",
+        "content": "If you have any questions about this policy or wish to exercise your rights, please contact us:\nTelegram: See social info below\nLine: See social info below"
+      }
+    ],
+    "effect": "Thank you for trusting Elysee Japan Elite Escorts. Let us work together to protect your privacy and rights."
   }
 } 

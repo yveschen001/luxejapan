@@ -6,6 +6,8 @@ import ProcessFaq from '@/pages/ProcessFaq.vue';
 import Contact from '@/pages/Contact.vue';
 import ServiceNotes from '@/pages/ServiceNotes.vue';
 import Testimonials from '@/pages/Testimonials.vue';
+import ServiceTerms from '@/pages/ServiceTerms.vue';
+import PrivacyPolicy from '@/pages/PrivacyPolicy.vue';
 
 const routes = [
   {
@@ -60,6 +62,24 @@ const routes = [
     meta: {
       title: 'Client Testimonials - Luxe Japan Elite Escorts',
       description: 'Read about our clients\' experiences and success stories.'
+    }
+  },
+  {
+    path: '/:locale?/terms',
+    name: 'ServiceTerms',
+    component: ServiceTerms,
+    meta: {
+      title: 'Terms of Service - Luxe Japan Elite Escorts',
+      description: 'Terms and conditions for using our services.'
+    }
+  },
+  {
+    path: '/:locale?/privacy',
+    name: 'PrivacyPolicy',
+    component: PrivacyPolicy,
+    meta: {
+      title: 'Privacy Policy - Luxe Japan Elite Escorts',
+      description: 'Our privacy policy and data protection practices.'
     }
   }
 ];
