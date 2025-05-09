@@ -21,11 +21,6 @@ export default defineConfig({
 
         // 写入 404.html
         fs.writeFileSync('dist/404.html', error404Content);
-
-        // 复制必要的资源
-        if (fs.existsSync('dist/assets')) {
-          fs.cpSync('dist/assets', 'dist/assets', { recursive: true });
-        }
       }
     },
     {
