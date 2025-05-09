@@ -61,7 +61,7 @@ const route = useRoute();
 useSeo({
   title: 'processFaq.title',
   description: 'processFaq.subtitle',
-  image: 'images/process-faq-bg.jpg',
+  image: '/images/process-faq-bg.jpg',
   canonical: window.location.origin + route.fullPath,
   alternates: {
     'zh-tw': `/zh-tw/process-faq`,

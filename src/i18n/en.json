@@ -189,19 +189,19 @@
       {
         "title": "Home Comfort",
         "desc": "Begin with a 90-minute initial meeting, like a sweet rendez-vous. Our elegant companion will arrive discreetly at your hotel or residence. In this brief time, you'll experience the delicacy of Japanese femininity - her gentle touch, intimate whispers, and romantic gaze that will relieve your fatigue and loneliness, transporting you to moments of romance.",
-        "img": "images/about-bg.jpg",
+        "img": "/images/about-bg.jpg",
         "alt": "Home comfort service"
       },
       {
         "title": "Romantic Tokyo Stroll",
         "desc": "Meet your ideal companion at your hotel's private restaurant, enjoying a delicious dinner and intimate atmosphere. Then, stroll through cherry blossom-lined streets, explore neon-lit alleys, discovering Tokyo's unique charm. As night falls, retreat to your private space for deeper connection and intimate moments, elevating the temperature of your romance.",
-        "img": "images/testimonials-bg.jpg",
+        "img": "/images/testimonials-bg.jpg",
         "alt": "Tokyo escort service"
       },
       {
         "title": "Luxury Night at Private Club",
         "desc": "Reserve your exclusive private club, immersing yourself in the sophisticated night atmosphere. From artisanal cocktails by renowned bartenders to the company of elegant Japanese ladies, we create an unforgettable night. Invite friends or celebrate special occasions; organize bikini parties in our VIP suite with jacuzzi. Just tell us your desires, and we'll create perfect moments according to your dreams and preferences.",
-        "img": "images/process-faq-bg.jpg",
+        "img": "/images/process-faq-bg.jpg",
         "alt": "Luxury nightclub service"
       }
     ]
