@@ -21,7 +21,19 @@ function manifestBasePlugin() {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), manifestBasePlugin()],
+  plugins: [
+    vue(),
+    manifestBasePlugin(),
+    {
+      name: 'copy-404',
+      closeBundle() {
+        const fs = require('fs');
+        if (fs.existsSync('dist/index.html')) {
+          fs.copyFileSync('dist/index.html', 'dist/404.html');
+        }
+      }
+    }
+  ],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
