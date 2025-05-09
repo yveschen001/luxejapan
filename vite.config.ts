@@ -4,31 +4,10 @@ import { fileURLToPath, URL } from 'node:url'
 import fs from 'fs'
 import type { OutputAsset } from 'rollup'
 
-// 自定义插件：构建时替换 manifest base
-function manifestBasePlugin() {
-  return {
-    name: 'manifest-base-replace',
-    closeBundle() {
-      const base = process.env.NODE_ENV === 'production' ? '/luxejapan-public/' : '/';
-      const manifestPath = 'dist/site.webmanifest';
-      if (fs.existsSync(manifestPath)) {
-        let content = fs.readFileSync(manifestPath, 'utf-8');
-        content = content.replace(/__BASE__/g, base);
-        fs.writeFileSync(manifestPath, content, 'utf-8');
-      }
-    },
-    transformIndexHtml(html) {
-      const base = process.env.NODE_ENV === 'production' ? '/luxejapan-public/' : '/';
-      return html.replace(/__BASE__/g, base);
-    }
-  }
-}
-
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
-    manifestBasePlugin(),
     {
       name: 'copy-404',
       closeBundle() {
