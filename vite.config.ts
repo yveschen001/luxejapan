@@ -45,17 +45,6 @@ export default defineConfig({
         ko: 'index.html',
         vi: 'index.html',
         es: 'index.html'
-      },
-      output: {
-        manualChunks: undefined,
-        assetFileNames: (assetInfo) => {
-          const info = assetInfo as OutputAsset;
-          const name = info.name || '';
-          if (name.endsWith('.png') || name.endsWith('.jpg') || name.endsWith('.webp')) {
-            return 'assets/images/[name][extname]';
-          }
-          return 'assets/[name][extname]';
-        }
       }
     }
   },
