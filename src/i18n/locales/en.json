@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "title": "Luxe Japan - Luxury Travel Experiences in Japan",
+    "description": "From private onsens to Michelin-starred dining, experience the finest of Japan.",
+    "keywords": "Japan travel,luxury travel,private tours,onsen experience,Michelin dining,Japanese culture,high-end travel,custom tours,Japanese cuisine,hot springs",
+    "ogImage": "__BASE_URL__images/og-image.jpg"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Discover the Luxury and Elegance of Japan",
+    "subtitle": "Customize Your Journey",
+    "cta": "Start Planning",
+    "background": "__BASE_URL__images/hero-bg.jpg"
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Comprehensive Luxury Experiences",
+    "background": "__BASE_URL__images/services-bg.jpg",
+    "items": {
+      "luxury": {
+        "title": "Luxury Accommodations",
+        "description": "Experience Japan's finest hotels and resorts.",
+        "image": "__BASE_URL__images/luxury.jpg"
+      },
+      "dining": {
+        "title": "Culinary Experiences",
+        "description": "Explore Michelin-starred restaurants and hidden gems.",
+        "image": "__BASE_URL__images/dining.jpg"
+      },
+      "culture": {
+        "title": "Cultural Experiences",
+        "description": "Immerse yourself in Japanese culture through tea ceremonies and more.",
+        "image": "__BASE_URL__images/culture.jpg"
+      },
+      "spa": {
+        "title": "Onsen Retreats",
+        "description": "Relax in Japan's most exclusive hot springs.",
+        "image": "__BASE_URL__images/spa.jpg"
+      }
+    }
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "Professional Luxury Travel Services",
+    "background": "__BASE_URL__images/about-bg.jpg",
+    "content": "We provide the highest quality Japanese travel experiences for each client.",
+    "image": "__BASE_URL__images/about.jpg"
+  },
+  "testimonials": {
+    "title": "Testimonials",
+    "subtitle": "Hear Their Stories",
+    "background": "__BASE_URL__images/testimonials-bg.jpg",
+    "items": [
+      {
+        "content": "This was the best travel experience I've ever had!",
+        "author": "Mr. Chen",
+        "image": "__BASE_URL__images/testimonial-1.jpg"
+      },
+      {
+        "content": "Professional and attentive service, truly impressive.",
+        "author": "Ms. Li",
+        "image": "__BASE_URL__images/testimonial-2.jpg"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Start Planning Your Journey",
+    "background": "__BASE_URL__images/contact-bg.jpg",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "submit": "Send"
+    }
+  },
+  "footer": {
+    "copyright": "© 2024 Luxe Japan. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use"
+  },
+  "error404": {
+    "message": "The page you are looking for does not exist.",
+    "backToHome": "Back to Home"
+  }
+} 

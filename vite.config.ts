@@ -9,11 +9,20 @@ export default defineConfig({
   plugins: [
     vue(),
     {
-      name: 'copy-404',
+      name: 'generate-404',
       closeBundle() {
-        const fs = require('fs');
-        if (fs.existsSync('dist/index.html')) {
-          fs.copyFileSync('dist/index.html', 'dist/404.html');
+        // 读取 Error404 页面的内容
+        const error404Content = fs.readFileSync('dist/index.html', 'utf-8')
+          .replace(/<title>.*?<\/title>/, '<title>404 - Page Not Found</title>')
+          .replace(/<div id="app">.*?<\/div>/s, '<div id="app"><div class="error-404" data-test="error-404" role="alert" aria-live="polite"><div class="error-404__content"><h1 class="error-404__title">404</h1><p class="error-404__text">Page Not Found</p><a href="/" class="error-404__link" data-test="back-to-home" aria-label="Back to Home">Back to Home</a></div></div></div>')
+          .replace(/<script type="module" src=".*?"><\/script>/s, '<script type="module" src="/assets/error-404.js"></script>');
+
+        // 写入 404.html
+        fs.writeFileSync('dist/404.html', error404Content);
+
+        // 复制必要的资源
+        if (fs.existsSync('dist/assets')) {
+          fs.cpSync('dist/assets', 'dist/assets', { recursive: true });
         }
       }
     },

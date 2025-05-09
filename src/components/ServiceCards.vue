@@ -11,7 +11,7 @@
         <picture>
           <img 
             class="service-case__img" 
-            :src="item.img" 
+            :src="item.img.replace('__BASE_URL__', base)" 
             :alt="item.alt"
             loading="lazy"
             width="600"
@@ -33,28 +33,8 @@
 import { onMounted } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-const { tm } = useI18n();
+const { tm, t } = useI18n();
 const base = import.meta.env.BASE_URL;
-const cards = [
-  {
-    title: 'Home Comfort',
-    desc: 'Begin with a 90-minute initial meeting, like a sweet rendez-vous. Our elegant companion will arrive discreetly at your hotel or residence. In this brief time, you\'ll experience the delicacy of Japanese femininity - her gentle touch, intimate whispers, and romantic gaze that will relieve your fatigue and loneliness, transporting you to moments of romance.',
-    img: base + 'images/about-bg.jpg',
-    alt: 'Home comfort service'
-  },
-  {
-    title: 'Romantic Tokyo Stroll',
-    desc: 'Meet your ideal companion at your hotel\'s private restaurant, enjoying a delicious dinner and intimate atmosphere. Then, stroll through cherry blossom-lined streets, explore neon-lit alleys, discovering Tokyo\'s unique charm. As night falls, retreat to your private space for deeper connection and intimate moments, elevating the temperature of your romance.',
-    img: base + 'images/testimonials-bg.jpg',
-    alt: 'Tokyo escort service'
-  },
-  {
-    title: 'Luxury Night at Private Club',
-    desc: 'Reserve your exclusive private club, immersing yourself in the sophisticated night atmosphere. From artisanal cocktails by renowned bartenders to the company of elegant Japanese ladies, we create an unforgettable night. Invite friends or celebrate special occasions; organize bikini parties in our VIP suite with jacuzzi. Just tell us your desires, and we\'ll create perfect moments according to your dreams and preferences.',
-    img: base + 'images/process-faq-bg.jpg',
-    alt: 'Luxury nightclub service'
-  }
-];
 
 // 添加結構化數據
 onMounted(() => {
@@ -65,23 +45,23 @@ onMounted(() => {
       {
         "@type": "Service",
         "position": 1,
-        "name": "到府溫柔慰藉",
-        "description": "從 90 分鐘的初見 開始，彷彿一場甜蜜邂逅。伴遊佳人輕步上門，悄然出現在您指定的飯店或民宿。",
-        "image": "/images/about-bg.jpg"
+        "name": t('serviceCards.cases.0.title'),
+        "description": t('serviceCards.cases.0.desc'),
+        "image": base + 'images/about-bg.jpg'
       },
       {
         "@type": "Service",
         "position": 2,
-        "name": "東京戀人漫遊",
-        "description": "與心儀佳人約會於飯店樓下私廊餐廳，共赴一場美食與微醺的前奏。",
-        "image": "/images/testimonials-bg.jpg"
+        "name": t('serviceCards.cases.1.title'),
+        "description": t('serviceCards.cases.1.desc'),
+        "image": base + 'images/testimonials-bg.jpg'
       },
       {
         "@type": "Service",
         "position": 3,
-        "name": "奢華私人會所夜宴",
-        "description": "預約專屬於您的 頂級私人會所，沉浸於低調奢華的夜色之中。",
-        "image": "/images/process-faq-bg.jpg"
+        "name": t('serviceCards.cases.2.title'),
+        "description": t('serviceCards.cases.2.desc'),
+        "image": base + 'images/process-faq-bg.jpg'
       }
     ]
   };

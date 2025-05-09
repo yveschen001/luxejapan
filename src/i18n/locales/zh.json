@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "title": "Luxe Japan - 日本奢华旅行体验",
+    "description": "从私人温泉到米其林餐厅，体验日本最精致的旅行服务。",
+    "keywords": "日本旅行,奢华旅行,私人定制,温泉体验,米其林餐厅,日本文化,高端旅行,定制旅游,日本料理,温泉",
+    "ogImage": "__BASE_URL__images/og-image.jpg"
+  },
+  "nav": {
+    "home": "首页",
+    "about": "关于我们",
+    "services": "服务项目",
+    "contact": "联系我们"
+  },
+  "hero": {
+    "title": "探索日本的奢华与优雅",
+    "subtitle": "定制您的旅程",
+    "cta": "开始规划",
+    "background": "__BASE_URL__images/hero-bg.jpg"
+  },
+  "services": {
+    "title": "我们的服务",
+    "subtitle": "全方位的奢华体验",
+    "background": "__BASE_URL__images/services-bg.jpg",
+    "items": {
+      "luxury": {
+        "title": "奢华住宿",
+        "description": "体验日本最顶级的酒店和度假村。",
+        "image": "__BASE_URL__images/luxury.jpg"
+      },
+      "dining": {
+        "title": "美食体验",
+        "description": "探索米其林星级餐厅和隐藏美食。",
+        "image": "__BASE_URL__images/dining.jpg"
+      },
+      "culture": {
+        "title": "文化体验",
+        "description": "通过茶道等体验深入了解日本文化。",
+        "image": "__BASE_URL__images/culture.jpg"
+      },
+      "spa": {
+        "title": "温泉疗养",
+        "description": "在日本最私密的温泉中放松身心。",
+        "image": "__BASE_URL__images/spa.jpg"
+      }
+    }
+  },
+  "about": {
+    "title": "关于我们",
+    "subtitle": "专业的奢华旅行服务",
+    "background": "__BASE_URL__images/about-bg.jpg",
+    "content": "我们为每位客户提供最高品质的日本旅行体验。",
+    "image": "__BASE_URL__images/about.jpg"
+  },
+  "testimonials": {
+    "title": "客户评价",
+    "subtitle": "听听他们的故事",
+    "background": "__BASE_URL__images/testimonials-bg.jpg",
+    "items": [
+      {
+        "content": "这是我经历过的最棒的旅行体验！",
+        "author": "陈先生",
+        "image": "__BASE_URL__images/testimonial-1.jpg"
+      },
+      {
+        "content": "专业且贴心的服务，令人印象深刻。",
+        "author": "李女士",
+        "image": "__BASE_URL__images/testimonial-2.jpg"
+      }
+    ]
+  },
+  "contact": {
+    "title": "联系我们",
+    "subtitle": "开始规划您的旅程",
+    "background": "__BASE_URL__images/contact-bg.jpg",
+    "form": {
+      "name": "姓名",
+      "email": "邮箱",
+      "message": "留言",
+      "submit": "发送"
+    }
+  },
+  "footer": {
+    "copyright": "© 2024 Luxe Japan. 保留所有权利。",
+    "privacy": "隐私政策",
+    "terms": "使用条款"
+  },
+  "error404": {
+    "message": "您访问的页面不存在。",
+    "backToHome": "返回首页"
+  }
+} 

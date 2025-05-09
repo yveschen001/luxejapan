@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "title": "Luxe Japan - 日本の最高級旅行体験",
+    "description": "プライベート温泉からミシュラン星付きレストランまで、最高の日本を体験。",
+    "keywords": "日本旅行,高級旅行,プライベートツアー,温泉体験,ミシュラン,日本文化,高級旅行,カスタムツアー,日本料理,温泉",
+    "ogImage": "__BASE_URL__images/og-image.jpg"
+  },
+  "nav": {
+    "home": "ホーム",
+    "about": "会社概要",
+    "services": "サービス",
+    "contact": "お問い合わせ"
+  },
+  "hero": {
+    "title": "日本の贅沢と優雅さを発見",
+    "subtitle": "あなただけの旅をカスタマイズ",
+    "cta": "プラン開始",
+    "background": "__BASE_URL__images/hero-bg.jpg"
+  },
+  "services": {
+    "title": "サービス内容",
+    "subtitle": "総合的な高級体験",
+    "background": "__BASE_URL__images/services-bg.jpg",
+    "items": {
+      "luxury": {
+        "title": "高級宿泊施設",
+        "description": "日本最高級のホテルとリゾートを体験。",
+        "image": "__BASE_URL__images/luxury.jpg"
+      },
+      "dining": {
+        "title": "美食体験",
+        "description": "ミシュラン星付きレストランと隠れた名店を探索。",
+        "image": "__BASE_URL__images/dining.jpg"
+      },
+      "culture": {
+        "title": "文化体験",
+        "description": "茶道などを通じて日本文化を深く体験。",
+        "image": "__BASE_URL__images/culture.jpg"
+      },
+      "spa": {
+        "title": "温泉リトリート",
+        "description": "日本最高級の温泉でリラックス。",
+        "image": "__BASE_URL__images/spa.jpg"
+      }
+    }
+  },
+  "about": {
+    "title": "会社概要",
+    "subtitle": "プロフェッショナルな高級旅行サービス",
+    "background": "__BASE_URL__images/about-bg.jpg",
+    "content": "お客様一人一人に最高品質の日本旅行体験を提供します。",
+    "image": "__BASE_URL__images/about.jpg"
+  },
+  "testimonials": {
+    "title": "お客様の声",
+    "subtitle": "体験談を聞く",
+    "background": "__BASE_URL__images/testimonials-bg.jpg",
+    "items": [
+      {
+        "content": "これまでで最高の旅行体験でした！",
+        "author": "チェン様",
+        "image": "__BASE_URL__images/testimonial-1.jpg"
+      },
+      {
+        "content": "プロフェッショナルで丁寧なサービスに感銘を受けました。",
+        "author": "リー様",
+        "image": "__BASE_URL__images/testimonial-2.jpg"
+      }
+    ]
+  },
+  "contact": {
+    "title": "お問い合わせ",
+    "subtitle": "あなたの旅の計画を始めましょう",
+    "background": "__BASE_URL__images/contact-bg.jpg",
+    "form": {
+      "name": "お名前",
+      "email": "メールアドレス",
+      "message": "メッセージ",
+      "submit": "送信"
+    }
+  },
+  "footer": {
+    "copyright": "© 2024 Luxe Japan. All rights reserved.",
+    "privacy": "プライバシーポリシー",
+    "terms": "利用規約"
+  },
+  "error404": {
+    "message": "お探しのページは存在しません。",
+    "backToHome": "ホームに戻る"
+  }
+} 

@@ -2,80 +2,60 @@
   <div class="error-404" data-test="error-404" role="alert" aria-live="polite">
     <div class="error-404__content">
       <h1 class="error-404__title">404</h1>
-      <p class="error-404__text">{{ $t('error.pageNotFound') }}</p>
-      <router-link 
-        :to="localePath('/')" 
-        class="error-404__link"
-        data-test="back-to-home"
-        :aria-label="$t('nav.home')"
-      >
-        {{ $t('error.backToHome') }}
-      </router-link>
+      <p class="error-404__text">{{ $t('error404.message') }}</p>
+      <a :href="base + $i18n.locale" class="error-404__link" data-test="back-to-home" aria-label="Back to Home">
+        {{ $t('error404.backToHome') }}
+      </a>
     </div>
   </div>
 </template>
 
-<script setup>
-import { useLocalePath } from '@/utils/i18n'
+<script setup lang="ts">
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 
-const { localePath } = useLocalePath()
+const { t } = useI18n()
+const base = import.meta.env.BASE_URL
 </script>
 
 <style scoped>
 .error-404 {
   display: flex;
-  align-items: center;
   justify-content: center;
-  min-height: calc(100vh - 200px);
-  padding: var(--spacing-xl);
-  text-align: center;
-  background: var(--color-secondary);
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f8f9fa;
 }
 
 .error-404__content {
-  max-width: 600px;
+  text-align: center;
+  padding: 2rem;
 }
 
 .error-404__title {
   font-size: 6rem;
-  font-weight: var(--font-weight-bold);
-  color: var(--color-accent);
-  margin: 0 0 var(--spacing-md);
-  line-height: 1;
+  font-weight: bold;
+  color: #dc3545;
+  margin: 0;
 }
 
 .error-404__text {
   font-size: 1.5rem;
-  margin: 0 0 var(--spacing-lg);
-  color: var(--color-text);
+  color: #6c757d;
+  margin: 1rem 0;
 }
 
 .error-404__link {
   display: inline-block;
-  padding: var(--spacing-sm) var(--spacing-lg);
-  background: var(--color-accent);
-  color: var(--color-primary);
-  border-radius: var(--border-radius-sm);
+  padding: 0.75rem 1.5rem;
+  background-color: #007bff;
+  color: white;
   text-decoration: none;
-  transition: background var(--transition-normal);
+  border-radius: 0.25rem;
+  transition: background-color 0.2s;
 }
 
 .error-404__link:hover {
-  background: var(--color-text);
-}
-
-.error-404__link:focus {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
-}
-
-@media (max-width: 768px) {
-  .error-404__title {
-    font-size: 4rem;
-  }
-  
-  .error-404__text {
-    font-size: 1.25rem;
-  }
+  background-color: #0056b3;
 }
 </style> 
