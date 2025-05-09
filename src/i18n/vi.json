@@ -27,9 +27,9 @@
   "gallery": {
     "title": "Thư Viện Ảnh",
     "subtitle": "Khoảnh khắc độc quyền, kỷ niệm vĩnh cửu",
-    "img1": { "alt": "Trải nghiệm sang trọng tại Nhật Bản", "caption": "Khoảnh khắc thanh lịch", "img": "/images/gallery-img1.jpg" },
-    "img2": { "alt": "Trải nghiệm văn hóa sâu sắc", "caption": "Hòa mình vào văn hóa", "img": "/images/gallery-img2.jpg" },
-    "img3": { "alt": "Tiếp cận không gian độc quyền", "caption": "Đặc quyền VIP", "img": "/images/gallery-img3.jpg" }
+    "img1": { "alt": "Trải nghiệm sang trọng tại Nhật Bản", "caption": "Khoảnh khắc thanh lịch", "img": "__BASE_URL__images/gallery-img1.jpg" },
+    "img2": { "alt": "Trải nghiệm văn hóa sâu sắc", "caption": "Hòa mình vào văn hóa", "img": "__BASE_URL__images/gallery-img2.jpg" },
+    "img3": { "alt": "Tiếp cận không gian độc quyền", "caption": "Đặc quyền VIP", "img": "__BASE_URL__images/gallery-img3.jpg" }
   },
   "footer": {
     "rights": "Bản quyền được bảo lưu.",
@@ -86,7 +86,7 @@
       ],
       "ending": "Chỉ cần thư giãn và tận hưởng những khoảnh khắc khó quên với người đồng hành quý khách chọn, trong khi chúng tôi lo liệu mọi thứ khác."
     },
-    "img": "/images/about-bg.jpg"
+    "img": "__BASE_URL__images/about-bg.jpg"
   },
   "contact": {
     "title": "Liên Hệ",
@@ -140,7 +140,7 @@
       {"nickname": "NiR", "location": "Nga", "content": "Trải nghiệm đầu tiên của tôi với một nữ diễn viên Nhật Bản, dịch vụ tinh tế như một nhà hàng cao cấp, hoàn hảo trong từng chi tiết."},
       {"nickname": "ThaboS", "location": "Nam Phi", "content": "Cảm ơn giám đốc đã tổ chức bữa tiệc trên du thuyền tại vịnh Tokyo! Phong cảnh biển thật đẹp, dịch vụ của cô Mizuno xuất sắc, và sự chuyển động của thuyền thêm một chiều kích đặc biệt cho trải nghiệm, thật không thể tin được!"}
     ],
-    "img": "/images/testimonials-bg.jpg"
+    "img": "__BASE_URL__images/testimonials-bg.jpg"
   },
   "processFaq": {
     "title": "Quy Trình & Hỏi Đáp",
@@ -182,7 +182,7 @@
       {"q": "Tại sao ảnh không hiển thị khuôn mặt?", "a": "Nhiều người đồng hành của chúng tôi có nghề nghiệp khác, vì vậy chúng tôi bảo vệ sự riêng tư của họ bằng cách chỉ hiển thị hình dáng và phong cách."},
       {"q": "Tại sao không nhận được phản hồi trên LINE?", "a": "Vui lòng gửi tin nhắn hoặc biểu tượng cảm xúc sau khi thêm chúng tôi để chúng tôi có thể thông báo và phản hồi ngay lập tức."}
     ],
-    "img": "/images/process-faq-bg.jpg"
+    "img": "__BASE_URL__images/process-faq-bg.jpg"
   },
   "serviceCards": {
     "title": "Dịch Vụ Độc Quyền",

@@ -189,19 +189,19 @@
       {
         "title": "Confort en el Hogar",
         "desc": "Comience con 90 minutos de encuentro inicial, como un dulce rendez-vous. Nuestra elegante acompañante llegará discretamente a su hotel o residencia. En este breve tiempo, experimentará la delicadeza de la feminidad japonesa - su suave toque, susurros íntimos y mirada romántica que aliviarán su fatiga y soledad, transportándolo a momentos de romance.",
-        "img": "/images/about-bg.jpg",
+        "img": "__BASE_URL__images/about-bg.jpg",
         "alt": "Servicio de confort en el hogar"
       },
       {
         "title": "Paseo Romántico en Tokio",
         "desc": "Encuentre a su acompañante ideal en el restaurante privado de su hotel, disfrutando de una deliciosa cena y ambiente íntimo. Luego, paseen por calles adornadas con cerezos, exploren callejones iluminados por neón, descubriendo el encanto único de Tokio. Al caer la noche, retírense a su espacio privado para una conexión más profunda y momentos de intimidad, elevando la temperatura de su romance.",
-        "img": "/images/testimonials-bg.jpg",
+        "img": "__BASE_URL__images/testimonials-bg.jpg",
         "alt": "Servicio de acompañamiento en Tokio"
       },
       {
         "title": "Noche de Lujo en Club Privado",
         "desc": "Reserve su club privado exclusivo, sumergiéndose en la sofisticada atmósfera nocturna. Desde cócteles artesanales de bartenders reconocidos hasta la compañía de elegantes damas japonesas, creamos una noche inolvidable. Invite amigos o celebre ocasiones especiales; organice fiestas en bikini en nuestra suite VIP con jacuzzi. Solo díganos sus deseos, y crearemos momentos perfectos según sus sueños y preferencias.",
-        "img": "/images/process-faq-bg.jpg",
+        "img": "__BASE_URL__images/process-faq-bg.jpg",
         "alt": "Servicio de club nocturno de lujo"
       }
     ]
