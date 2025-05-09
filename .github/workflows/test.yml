@@ -1,4 +1,4 @@
-name: Test
+name: Test and Deploy
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  test:
+  test-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -48,4 +48,14 @@ jobs:
       with:
         name: cypress-screenshots
         path: cypress/screenshots
-        if-no-files-found: ignore 
+        if-no-files-found: ignore
+
+    - name: Build
+      run: npm run build
+      
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      if: github.ref == 'refs/heads/main'
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist 
