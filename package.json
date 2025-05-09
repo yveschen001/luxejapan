@@ -1,0 +1,36 @@
+{
+  "name": "luxe-japan",
+  "version": "1.0.0",
+  "description": "Luxe Japan Elite Escorts Website",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "cypress run",
+    "test:dev": "cypress open",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "format": "prettier --write src/"
+  },
+  "dependencies": {
+    "vue": "^3.4.15",
+    "vue-i18n": "^9.9.0",
+    "vue-router": "^4.2.5",
+    "pinia": "^2.1.7",
+    "@vueuse/core": "^10.7.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.3",
+    "vite": "^5.0.12",
+    "sass": "^1.70.0",
+    "cypress": "^13.6.1",
+    "eslint": "^8.56.0",
+    "eslint-plugin-vue": "^9.21.1",
+    "prettier": "^3.2.4",
+    "@typescript-eslint/parser": "^6.19.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "typescript": "^5.3.3",
+    "unplugin-auto-import": "^0.17.5",
+    "unplugin-vue-components": "^0.26.0"
+  }
+} 

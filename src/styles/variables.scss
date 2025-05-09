@@ -1,0 +1,62 @@
+// Colors
+$color-primary: #1A0B2E;
+$color-primary-light: #2A1B3E;
+$color-accent: #C9A959;
+$color-accent-light: #D4B96A;
+$color-background: #120B1F;
+$color-surface: #1E152E;
+$color-text: #F5F0FF;
+$color-text-secondary: #D4CCE6;
+
+// Typography
+$font-primary: 'Playfair Display', serif;
+$font-secondary: 'Montserrat', sans-serif;
+$font-fallback: 'Noto Sans', 'Apple SD Gothic', 'Nanum Gothic', Arial, system-ui;
+
+// Font Sizes
+$font-size-h1: 3.5rem;
+$font-size-h2: 2.5rem;
+$font-size-body: 1rem;
+$font-size-small: 0.95rem;
+
+// Font Weights
+$font-weight-bold: 700;
+$font-weight-semi: 600;
+$font-weight-normal: 400;
+
+// Breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+// Spacing
+$spacing-xs: 0.25rem;
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 2rem;
+$spacing-xl: 4rem;
+
+// Border Radius
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 16px;
+
+// Transitions
+$transition-fast: 0.2s ease;
+$transition-normal: 0.3s ease;
+$transition-slow: 0.5s ease;
+
+// Shadows
+$shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
+$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.10);
+$shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+// Z-index
+$z-index-dropdown: 1000;
+$z-index-sticky: 1020;
+$z-index-fixed: 1030;
+$z-index-modal-backdrop: 1040;
+$z-index-modal: 1050;
+$z-index-popover: 1060;
+$z-index-tooltip: 1070; 
