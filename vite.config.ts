@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { fileURLToPath, URL } from 'node:url'
 import fs from 'fs'
+import type { OutputAsset } from 'rollup'
 
 // 自定义插件：构建时替换 manifest base
 function manifestBasePlugin() {
@@ -54,7 +55,15 @@ export default defineConfig({
         es: 'index.html'
       },
       output: {
-        manualChunks: undefined
+        manualChunks: undefined,
+        assetFileNames: (assetInfo) => {
+          const info = assetInfo as OutputAsset;
+          const name = info.name || '';
+          if (name.endsWith('.png') || name.endsWith('.jpg') || name.endsWith('.webp')) {
+            return 'assets/images/[name][extname]';
+          }
+          return 'assets/[name][extname]';
+        }
       }
     }
   },
