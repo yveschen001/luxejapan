@@ -104,8 +104,8 @@
       "email": "電子郵件",
       "social": "社群媒體"
     },
-    "telegram": { "label": "@luxejapan" },
-    "line": { "label": "@luxejapan" }
+    "telegram": { "label": "luxejapan", "link": "https://t.me/luxejapan" },
+    "line": { "label": "luxejapan", "link": "https://line.me/ti/p/xxxx" }
   },
   "serviceNotes": {
     "title": "服務須知",
@@ -258,7 +258,7 @@
       },
       {
         "title": "八、聯絡方式",
-        "content": "如對本政策有任何疑問或行使權利，歡迎隨時聯絡：<br>Telegram：<a href=\"https://t.me/luxejapan\" target=\"_blank\">@luxejapan</a><br>Line：<a href=\"https://line.me/ti/p/xxxx\" target=\"_blank\">@luxejapan</a>"
+        "content": "如對本政策有任何疑問或行使權利，歡迎隨時聯絡：<br>Telegram：<a href=\"{telegram_link}\" target=\"_blank\">{telegram_label}</a><br>Line：<a href=\"{line_link}\" target=\"_blank\">{line_label}</a>"
       }
     ],
     "effect": "感謝您信任 Luxe Japan Elite Escorts，讓我們共同維護您的隱私與權益。",

@@ -28,13 +28,13 @@
           <div v-for="(section, index) in tm('privacy.sections')" :key="index" class="privacy-section">
             <h3 class="section-title">{{ section.title }}</h3>
             <p class="section-content">
-              <template v-if="section.title.includes('聯絡方式') || section.title.includes('Contact')">
-                <span>{{ $t('privacy.contactPrefix') }}</span><br>
-                <a :href="contacts.telegram.url" class="text-link" target="_blank">
-                  <img src="/icons/telegram.svg" class="icon-inline gold-icon" alt="Telegram" />{{ contacts.telegram.label }}
+              <template v-if="section.title.includes('聯絡方式') || section.title.includes('Contact') || section.title.includes('Liên Hệ') || section.title.includes('연락처')">
+                <span>{{ t('privacy.contactPrefix') }}</span><br>
+                <a :href="telegramLink" class="text-link" target="_blank">
+                  <img src="/icons/telegram.svg" class="icon-inline gold-icon" alt="Telegram" />@{{ telegramLabel }}
                 </a><br>
-                <a :href="contacts.line.url" class="text-link" target="_blank">
-                  <img src="/icons/line.svg" class="icon-inline gold-icon" alt="LINE" />{{ contacts.line.label }}
+                <a :href="lineLink" class="text-link" target="_blank">
+                  <img src="/icons/line.svg" class="icon-inline gold-icon" alt="LINE" />@{{ lineLabel }}
                 </a>
               </template>
               <template v-else>
@@ -57,12 +57,17 @@ import { useI18n } from 'vue-i18n';
 import { useRoute } from 'vue-router';
 import BrandLogo from '@/components/BrandLogo.vue';
 import { useLocalePath } from '@/utils/i18n';
-import contacts from '@/config/contacts';
 
-const { tm } = useI18n();
+const { tm, t } = useI18n();
 const route = useRoute();
 const { localePath } = useLocalePath();
 const contactPath = localePath('/contact');
+
+// 统一读取联系方式变量
+const telegramLabel = t('contact.telegram.label');
+const telegramLink = t('contact.telegram.link');
+const lineLabel = t('contact.line.label');
+const lineLink = t('contact.line.link');
 
 useSeo({
   title: 'privacy.title',

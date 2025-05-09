@@ -75,20 +75,26 @@ const languages = [
 function toggleLangMenu() {
   langMenuOpen.value = !langMenuOpen.value;
 }
+
 function switchLanguage(code) {
   locale.value = code;
   router.push(switchLocalePath(code));
   langMenuOpen.value = false;
+  // 持久化用户选择
+  localStorage.setItem('language', code);
 }
+
 // 点击外部关闭语言菜单
 function handleClickOutside(event) {
   if (!event.target.closest('.navbar__lang') && !event.target.closest('.lang-menu')) {
     langMenuOpen.value = false;
   }
 }
+
 if (typeof window !== 'undefined') {
   window.addEventListener('click', handleClickOutside);
 }
+
 onUnmounted(() => {
   if (typeof window !== 'undefined') {
     window.removeEventListener('click', handleClickOutside);

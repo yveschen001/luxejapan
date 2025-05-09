@@ -1,0 +1,320 @@
+{
+  "nav": {
+    "home": "Trang Chính",
+    "about": "Về Chúng Tôi",
+    "services": "Dịch Vụ Đặc Biệt",
+    "processFaq": "Quy Trình & Hỏi Đáp",
+    "serviceNotes": "Lưu Ý Quan Trọng",
+    "testimonials": "Đánh Giá Từ Khách Hàng",
+    "contact": "Liên Hệ",
+    "switchLang": "Thay Đổi Ngôn Ngữ"
+  },
+  "hero": {
+    "title": "Luxe Japan - Dịch Vụ Đồng Hành Thượng Lưu",
+    "subtitle": "Trải nghiệm dịch vụ đồng hành và giải trí đẳng cấp nhất tại Nhật Bản.",
+    "cta": "Khám Phá Ngay"
+  },
+  "services": {
+    "title": "Dịch Vụ Đặc Biệt",
+    "subtitle": "Trải nghiệm độc quyền được thiết kế riêng cho quý khách",
+    "inhomeTitle": "Dịch Vụ Tại Khách Sạn",
+    "inhomeDesc": "Dịch vụ đồng hành riêng tư tại không gian của quý khách, được thiết kế theo sở thích cá nhân.",
+    "companionTitle": "Dịch Vụ Đồng Hành Cao Cấp",
+    "companionDesc": "Sự đồng hành thanh lịch và tinh tế để tạo nên những khoảnh khắc đáng nhớ.",
+    "clubTitle": "Không Gian Riêng Tư",
+    "clubDesc": "Tiếp cận độc quyền các không gian VIP và địa điểm đặc biệt cho trải nghiệm phi thường."
+  },
+  "gallery": {
+    "title": "Thư Viện Ảnh",
+    "subtitle": "Khoảnh khắc độc quyền, kỷ niệm vĩnh cửu",
+    "img1": { "alt": "Trải nghiệm sang trọng tại Nhật Bản", "caption": "Khoảnh khắc thanh lịch" },
+    "img2": { "alt": "Trải nghiệm văn hóa sâu sắc", "caption": "Hòa mình vào văn hóa" },
+    "img3": { "alt": "Tiếp cận không gian độc quyền", "caption": "Đặc quyền VIP" }
+  },
+  "footer": {
+    "rights": "Bản quyền được bảo lưu.",
+    "privacy": "Chính Sách Bảo Mật",
+    "terms": "Điều Khoản Dịch Vụ",
+    "contact": "Liên Hệ"
+  },
+  "home": {
+    "introTitle": "Giới Thiệu",
+    "introParagraphs": [
+      "Quý khách muốn khám phá sự quyến rũ độc đáo của văn hóa Nhật Bản, nhưng còn băn khoăn về sự phức tạp, rào cản ngôn ngữ hay trải nghiệm không như mong đợi? Quý khách thân mến, xin đừng lo lắng.",
+      "Hãy để chúng tôi trở thành cố vấn trải nghiệm đẳng cấp của quý khách tại Nhật Bản, và tận hưởng những dịch vụ độc quyền với sự an tâm tuyệt đối."
+    ],
+    "introList": [
+      {"title": "Dịch Vụ Đưa Đón Đẳng Cấp", "desc": "Rolls-Royce, LEXUS LM, Toyota Alphard... Đưa đón sân bay và di chuyển trong thành phố với xe sang trọng 24/7."},
+      {"title": "Tư Vấn Cá Nhân Hóa", "desc": "Thiết kế lịch trình riêng biệt, từ sở thích đến kế hoạch chi tiết. Hỗ trợ chuyên nghiệp để đảm bảo mọi chi tiết đáp ứng mong đợi của quý khách."},
+      {"title": "Trải Nghiệm Đẳng Cấp", "desc": "Lựa chọn những người đồng hành Nhật Bản thanh lịch và tinh tế nhất. Bữa tối riêng tư, sự kiện VIP, dạo phố hoặc thư giãn tại suối nước nóng, với sự đồng hành xuất sắc."},
+      {"title": "Bảo Vệ Quyền Riêng Tư", "desc": "Bảo mật nghiêm ngặt và dịch vụ chuyên nghiệp, để quý khách có thể thư giãn mà không lo lắng."}
+    ],
+    "introCta": "Bắt đầu hành trình độc quyền của quý khách tại Tokyo!"
+  },
+  "about": {
+    "title": "Về Chúng Tôi",
+    "subtitle": "Xuất sắc và truyền thống",
+    "philosophyTitle": "Triết Lý Thương Hiệu",
+    "philosophyDesc": "Chúng tôi cam kết mang đến mức độ sang trọng, riêng tư và dịch vụ cá nhân hóa cao nhất cho mỗi vị khách.",
+    "commitmentTitle": "Cam Kết Dịch Vụ",
+    "commitmentDesc": "Đội ngũ của chúng tôi cam kết với sự xuất sắc, bảo mật và tạo nên những trải nghiệm đáng nhớ.",
+    "valuesTitle": "Giá Trị Cốt Lõi",
+    "values": {
+      "discretion": "Bảo mật tuyệt đối",
+      "excellence": "Dịch vụ xuất sắc",
+      "luxury": "Trải nghiệm sang trọng",
+      "trust": "Tin cậy và đáng tin cậy"
+    },
+    "story": {
+      "paragraphs": [
+        "{brand} được thành lập bởi Giám đốc Minami, được mệnh danh là 'Nhà phê bình Michelin' của ngành công nghiệp Nhật Bản, và ông Bando, chuyên gia về dịch vụ sang trọng cho thị trường châu Á. Giám đốc Minami không chỉ là một chuyên gia am hiểu, mà còn là cố vấn cho nhiều phương tiện truyền thông chuyên ngành; trong khi ông Bando đã thiết kế lịch trình độc quyền cho khách hàng VIP trong nhiều năm. Sau nhiều năm kinh nghiệm và nghiên cứu, chúng tôi nhận thấy:",
+        "Do đó, chúng tôi cam kết tạo ra một 'dịch vụ đồng hành đẳng cấp thực sự' với phương châm 'Khách Hàng Là Trên Hết - Lựa chọn trung thực những người đồng hành tốt nhất để đáp ứng mọi nhu cầu của quý khách'.",
+        "Nhờ sự ủng hộ của những vị khách quý, {brand} đã giành được sự tin tưởng của giới thượng lưu Nhật Bản. Với mạng lưới rộng lớn, chúng tôi lựa chọn kỹ lưỡng từ: người mẫu và nghệ sĩ từ các công ty tài năng, sinh viên từ các trường đại học danh tiếng, nữ chủ nhà từ các quán bar và câu lạc bộ đêm độc quyền của Tokyo, và những chuyên gia thanh lịch từ các công ty hàng đầu và ngành công nghiệp chăm sóc sức khỏe.",
+        "Trong quá trình tuyển chọn, chúng tôi đánh giá không chỉ vẻ ngoài và thể chất, mà còn cả lẽ thường, nghi thức chuyên nghiệp và sự thanh lịch. Tất cả những người đồng hành của chúng tôi đều là những quý cô tinh tế với kỹ năng xã hội xuất sắc, tính cách quyến rũ và trí thông minh, đảm bảo mỗi cuộc gặp gỡ đều đặc biệt và đáng nhớ."
+      ],
+      "list": [
+        "Thị trường tràn ngập quảng cáo gây hiểu lầm, như 'dịch vụ cao cấp với người đồng hành không đáp ứng kỳ vọng', 'hình ảnh giả', 'thay thế' hoặc 'cùng người đồng hành ở nhiều công ty';",
+        "Nhiều cơ sở chất lượng từ chối khách nước ngoài, ảnh hưởng đến trải nghiệm do rào cản tin tưởng và giao tiếp;",
+        "Khách hàng VIP thường phải tự phối hợp nhiều dịch vụ và chi tiết phức tạp, khó có được trải nghiệm không lo lắng."
+      ],
+      "experienceTitle": "Trải Nghiệm Dịch Vụ",
+      "experienceParagraph": "Tại {brand}, quý khách không cần lo lắng về thủ tục vận chuyển hay rào cản pháp lý hoặc ngôn ngữ. Dịch vụ khách hàng của chúng tôi sẽ hướng dẫn quý khách mọi lúc:",
+      "experienceList": [
+        "Đưa đón sang trọng: từ sân bay đến khách sạn của quý khách, với đội xe Toyota Alphard, LEXUS LM hoặc Rolls-Royce;",
+        "Phối hợp hoàn hảo: tất cả lịch trình và đặt chỗ đều được chúng tôi quản lý, để quý khách chỉ cần thư giãn;",
+        "Đồng hành xuất sắc: tận hưởng những khoảnh khắc đặc biệt với những người đồng hành được lựa chọn của chúng tôi - dù là ngắm hoa anh đào, thưởng thức rượu, karaoke hay những khoảnh khắc riêng tư, chúng tôi lo liệu mọi chi tiết."
+      ],
+      "ending": "Chỉ cần thư giãn và tận hưởng những khoảnh khắc khó quên với người đồng hành quý khách chọn, trong khi chúng tôi lo liệu mọi thứ khác."
+    }
+  },
+  "contact": {
+    "title": "Liên Hệ",
+    "subtitle": "Dịch vụ chuyên nghiệp sẵn sàng 24/7",
+    "form": {
+      "name": "Họ và tên",
+      "email": "Email",
+      "phone": "Số điện thoại",
+      "message": "Nội dung tin nhắn",
+      "submit": "Gửi tin nhắn"
+    },
+    "info": {
+      "title": "Thông Tin Liên Hệ",
+      "line": "Line",
+      "telegram": "Telegram",
+      "email": "Email",
+      "social": "Mạng xã hội"
+    },
+    "telegram": { "label": "luxejapan", "link": "https://t.me/luxejapan" },
+    "line": { "label": "luxejapan", "link": "https://line.me/ti/p/xxxx" }
+  },
+  "serviceNotes": {
+    "title": "Lưu Ý Dịch Vụ",
+    "subtitle": "Thông tin quan trọng về dịch vụ và quy định",
+    "notes": {
+      "title": "Lưu Ý Quan Trọng",
+      "note1": "Tất cả dịch vụ đều cần đặt trước để đảm bảo chất lượng tốt nhất",
+      "note2": "Chúng tôi cung cấp hỗ trợ khách hàng chuyên nghiệp 24/7",
+      "note3": "Tất cả dịch vụ đều tuân thủ nghiêm ngặt thỏa thuận bảo mật",
+      "note4": "Có thể cung cấp gói dịch vụ tùy chỉnh theo nhu cầu của khách hàng"
+    },
+    "privacy": {
+      "title": "Bảo Vệ Quyền Riêng Tư",
+      "desc": "Chúng tôi tuân thủ nghiêm ngặt các quy định về bảo vệ quyền riêng tư, đảm bảo an toàn thông tin khách hàng"
+    }
+  },
+  "testimonials": {
+    "title": "Đánh Giá Từ Khách Hàng",
+    "subtitle": "Trải nghiệm thực tế từ khách hàng trên toàn thế giới",
+    "list": [
+      {"nickname": "JohnP", "location": "Đài Loan", "content": "Tôi không ngờ tìm được một người đồng hành tinh tế đến vậy, với vẻ thanh lịch khiến tôi cảm thấy hơi ngại ngùng. Khi mở cửa, tôi gặp một mỹ nhân Nhật Bản. Khác với ấn tượng ban đầu về sự thanh lịch, cô ấy rất thân thiện và nụ cười quyến rũ. Cảm ơn cô Kuroki đã cho tôi một ngày tuyệt vời, tôi mong được gặp lại!"},
+      {"nickname": "EmL", "location": "Hồng Kông", "content": "Trải nghiệm đầu tiên của tôi, cảm ơn giám đốc đã đặt cho tôi một nhà hàng có ban công ngắm hoa anh đào, cùng với cô Asahina xinh đẹp. Những khoảnh khắc khó quên với vẻ đẹp và thiên nhiên!"},
+      {"nickname": "PG", "location": "Đài Loan", "content": "Trong chuyến đi một mình đến núi Phú Sĩ, tôi không ngờ có thể có người đồng hành tại ryokan của mình. Cảm ơn cô Hashimoto và giám đốc vì chuyến đi hai giờ!"},
+      {"nickname": "HansM", "location": "Trung Quốc", "content": "Cuối cùng tôi đã thử trải nghiệm nhóm đầu tiên, lần sau tôi muốn thử với bốn người và chơi mahjong!"},
+      {"nickname": "OliW", "location": "Úc", "content": "Một đêm thư giãn bất ngờ. Tôi gặp người đồng hành đẹp nhất trong đời, với dịch vụ xuất sắc... Tôi cảm động vì sự tận tâm của cô ấy. Chắc chắn tôi muốn gặp lại!"},
+      {"nickname": "WeiJun", "location": "Singapore", "content": "Chiều cao người mẫu! Thanh lịch và quyến rũ trưởng thành. Kỹ thuật massage của cô ấy hoàn hảo, không có gì để chê!"},
+      {"nickname": "小影", "location": "Đài Loan", "content": "Khi bước vào xe LM từ sân bay, người đồng hành đã đợi sẵn, mặc trang phục thư ký OL và tất đen như tôi yêu cầu. Trong suốt hành trình đến khách sạn, tôi không thể không nắm tay cô ấy... đó là một chuyến đi khá thú vị... Chúng tôi đã có một khoảnh khắc đam mê tại khách sạn. Cảm ơn cô Amane vì đôi tất dự phòng, mặc dù tôi vô tình làm rách chúng."},
+      {"nickname": "俊", "location": "Đài Loan", "content": "Tôi nghĩ yêu cầu Cosplay của mình hơi quá, nhưng cô ấy thực sự tái hiện nhân vật anime yêu thích của tôi. Cảm ơn cô Uehara, xin lỗi vì làm hỏng phụ kiện tóc, có lẽ tôi quá nhiệt tình."},
+      {"nickname": "MartinC", "location": "Canada", "content": "Lần này tôi thử các phong cách khác nhau: ba người đồng hành trong ba ngày, từ 155cm đến 175cm, mỗi người có sự quyến rũ riêng. Cảm ơn giám đốc vì sự phối hợp!"},
+      {"nickname": "SaA", "location": "UAE", "content": "Không gian riêng tư với bồn tắm massage thật đặc biệt. Cảm ơn giám đốc đã tổ chức bữa tiệc sinh nhật của tôi với 10 người đồng hành mặc bikini, đó là sinh nhật đáng nhớ và mệt mỏi nhất của tôi!"},
+      {"nickname": "NiR", "location": "Nga", "content": "Trải nghiệm đầu tiên của tôi với một nữ diễn viên Nhật Bản, dịch vụ tinh tế như một nhà hàng cao cấp, hoàn hảo trong từng chi tiết."},
+      {"nickname": "ThaboS", "location": "Nam Phi", "content": "Cảm ơn giám đốc đã tổ chức bữa tiệc trên du thuyền tại vịnh Tokyo! Phong cảnh biển thật đẹp, dịch vụ của cô Mizuno xuất sắc, và sự chuyển động của thuyền thêm một chiều kích đặc biệt cho trải nghiệm, thật không thể tin được!"}
+    ]
+  },
+  "processFaq": {
+    "title": "Quy Trình & Hỏi Đáp",
+    "subtitle": "Tìm hiểu quy trình dịch vụ của chúng tôi",
+    "process": {
+      "title": "Quy Trình Dịch Vụ",
+      "step1": "Tư Vấn Đặt Chỗ",
+      "step2": "Xác Nhận Kế Hoạch",
+      "step3": "Thực Hiện Dịch Vụ",
+      "step4": "Phản Hồi"
+    },
+    "faq": {
+      "title": "Câu Hỏi Thường Gặp",
+      "q1": "Làm thế nào để đặt dịch vụ?",
+      "a1": "Quý khách có thể đặt qua Telegram hoặc LINE.",
+      "a1Prefix": "Quý khách có thể đặt qua",
+      "a1Suffix": ".",
+      "q2": "Làm thế nào để lên lịch dịch vụ?",
+      "a2": "Chúng tôi cung cấp đặt chỗ 24 giờ, phù hợp với nhu cầu của quý khách",
+      "q3": "Làm thế nào để đảm bảo chất lượng?",
+      "a3": "Chúng tôi lựa chọn kỹ lưỡng nhân viên để đảm bảo dịch vụ tốt nhất"
+    },
+    "fullProcess": [
+      {"title": "Tư Vấn Trực Tuyến", "descPrefix": "Liên hệ với chúng tôi qua", "descSuffix": "(chúng tôi khuyên dùng Telegram để bảo mật) và cho chúng tôi biết nhu cầu của quý khách: ngày, giờ, địa điểm, sở thích... Dịch vụ khách hàng của chúng tôi sẽ phản hồi nhanh chóng để xác nhận chi tiết."},
+      {"title": "Xác Nhận và Báo Giá", "desc": "Chúng tôi sẽ cung cấp báo giá cá nhân hóa dựa trên cấp độ người đồng hành, thời lượng dịch vụ và dịch vụ bổ sung (như đưa đón sân bay hoặc sự kiện riêng tư)."},
+      {"title": "Thanh Toán và Xác Nhận", "desc": "Chấp nhận tiền mặt yên, USDT (theo tỷ giá trong ngày) và các phương thức khác. Khuyến nghị sử dụng USDT để giảm thiểu phí. Đặt chỗ của quý khách được xác nhận ngay sau khi thanh toán."},
+      {"title": "Chào Đón Độc Quyền", "desc": "Vào ngày dịch vụ, từ đưa đón sân bay đến tiễn biệt, chúng tôi phối hợp mọi thứ suôn sẻ để quý khách chỉ cần thư giãn và tận hưởng."}
+    ],
+    "fullFaq": [
+      {"q": "Phạm vi giá là bao nhiêu?", "a": "Phí tiêu chuẩn: 100,000 yên/90 phút (thay đổi theo cấp độ người đồng hành). Các dịch vụ bổ sung như đưa đón, sự kiện riêng tư hoặc tiếp cận suối nước nóng có chi phí bổ sung."},
+      {"q": "Tôi có thể thử trước không?", "a": "Tất nhiên! Chúng tôi khuyên quý khách bắt đầu với gói cơ bản '100,000 yên/90 phút + khoảng 4,000 yên vận chuyển' để trải nghiệm dịch vụ chuyên nghiệp của chúng tôi."},
+      {"q": "Tôi có thể đổi người đồng hành nếu không như mong đợi không?", "a": "Nếu có vấn đề rõ ràng với dịch vụ, chúng tôi có thể thay đổi ngay lập tức hoặc hủy. Vì sở thích cá nhân, chúng tôi không thể cung cấp thay đổi trong ngày hoặc hoàn tiền. Liên hệ với dịch vụ khách hàng của chúng tôi để được hỗ trợ."},
+      {"q": "Tôi không nói tiếng Nhật, làm thế nào để giao tiếp?", "a": "Đừng lo lắng. Dịch vụ khách hàng của chúng tôi sẽ phối hợp mọi thứ trước, và chúng tôi có thể sử dụng Google Translate hoặc ChatGPT để giao tiếp thời gian thực."},
+      {"q": "Bạn chấp nhận phương thức thanh toán nào?", "a": "Tiền mặt (yên), USDT (theo tỷ giá trong ngày). Chúng tôi khuyên dùng USDT vì phí thấp và tiện lợi."},
+      {"q": "Tại sao cần nhiều thông tin cho lần đặt đầu tiên?", "a": "Để đảm bảo an toàn và riêng tư của quý khách và người đồng hành của chúng tôi, chúng tôi cần thông tin cơ bản (số điện thoại, địa chỉ khách sạn) theo luật Nhật Bản."},
+      {"q": "Dịch vụ đầy đủ có hợp pháp ở Nhật Bản không?", "a": "Luật Nhật Bản chỉ cho phép dịch vụ một phần. Bất kỳ tương tác bổ sung nào là quyết định cá nhân lẫn nhau. Nếu quý khách có thắc mắc, chúng tôi có thể giải thích rủi ro pháp lý."},
+      {"q": "Bạn có cung cấp dịch vụ nhóm không?", "a": "Chúng tôi có thể tổ chức sự kiện nhóm với đặt chỗ trước, mặc dù lựa chọn có hạn và chi phí thường là 1.2 lần mỗi người. Liên hệ trước 72 giờ."},
+      {"q": "Tại sao không nhận đặt chỗ trong ngày?", "a": "Người đồng hành của chúng tôi thường có các cam kết khác và cần thời gian chuẩn bị. Chúng tôi khuyên quý khách đặt trước để đảm bảo sự lựa chọn của mình."},
+      {"q": "Tại sao ảnh không hiển thị khuôn mặt?", "a": "Nhiều người đồng hành của chúng tôi có nghề nghiệp khác, vì vậy chúng tôi bảo vệ sự riêng tư của họ bằng cách chỉ hiển thị hình dáng và phong cách."},
+      {"q": "Tại sao không nhận được phản hồi trên LINE?", "a": "Vui lòng gửi tin nhắn hoặc biểu tượng cảm xúc sau khi thêm chúng tôi để chúng tôi có thể thông báo và phản hồi ngay lập tức."}
+    ]
+  },
+  "serviceCards": {
+    "title": "Dịch Vụ Độc Quyền",
+    "subtitle": "Trải nghiệm dịch vụ cao cấp",
+    "cards": [
+      {
+        "title": "Dịch Vụ Tại Nhà",
+        "desc": "Dịch vụ riêng tư tại khách sạn của bạn",
+        "price": "100,000 yên/90 phút",
+        "features": [
+          "Dịch vụ riêng tư",
+          "Thời gian linh hoạt",
+          "Bảo mật tuyệt đối"
+        ]
+      },
+      {
+        "title": "Hộ Tống Cao Cấp",
+        "desc": "Đồng hành chuyên nghiệp cho sự kiện",
+        "price": "150,000 yên/120 phút",
+        "features": [
+          "Đồng hành sự kiện",
+          "Dịch vụ cá nhân hóa",
+          "Trải nghiệm độc quyền"
+        ]
+      },
+      {
+        "title": "Câu Lạc Bộ Riêng Tư",
+        "desc": "Trải nghiệm VIP tại địa điểm riêng tư",
+        "price": "200,000 yên/180 phút",
+        "features": [
+          "Không gian riêng tư",
+          "Dịch vụ cao cấp",
+          "Trải nghiệm độc quyền"
+        ]
+      }
+    ]
+  },
+  "terms": {
+    "title": "Điều Khoản Dịch Vụ",
+    "intro": "Chào mừng đến với {brand} (sau đây gọi là 'chúng tôi'). Để đảm bảo an toàn và quyền lợi của cả hai bên, vui lòng đọc và tuân thủ các điều khoản sau:",
+    "sections": [
+      { "title": "I. Sức Khỏe và Vệ Sinh", "content": "Đối với các cuộc gặp gỡ thân mật, khách hàng phải tắm rửa và vệ sinh răng miệng trước khi sử dụng dịch vụ, đồng thời thông báo về tình trạng sức khỏe của mình; nếu khách hàng bị sốt, nhiễm trùng đường hô hấp, bệnh ngoài da hoặc bệnh lây truyền qua đường tình dục, hoặc nếu người đồng hành nghi ngờ các tình trạng này, dịch vụ có thể bị chấm dứt ngay lập tức; trong quá trình sử dụng dịch vụ, nếu phát hiện bất kỳ bệnh truyền nhiễm hoặc khó chịu nào, chúng tôi có thể hủy dịch vụ." },
+      { "title": "II. Tôn Trọng và An Toàn", "content": "Đối với các cuộc gặp gỡ thân mật, hãy tôn trọng người đồng hành và sử dụng biện pháp bảo vệ; bất kỳ sự từ chối hoặc ép buộc thực hiện các hành vi không được đồng ý sẽ dẫn đến việc chấm dứt dịch vụ ngay lập tức; móng tay dài, da tay khô hoặc các tình trạng khác có thể gây khó chịu phải được xử lý trước khi sử dụng dịch vụ; bạo lực, kéo giật, ngược đãi, phụ kiện SM hoặc các hành vi đặc biệt không được thỏa thuận trước đều bị cấm;" },
+      { "title": "III. Quyền Riêng Tư và Ghi Âm", "content": "Việc sử dụng máy ảnh, điện thoại hoặc thiết bị ghi âm bị nghiêm cấm; yêu cầu liên hệ cá nhân, gặp gỡ ngoài dịch vụ, hoặc cố gắng thuê người đồng hành của chúng tôi trực tiếp mà không được phép đều được coi là vi phạm nghiêm trọng;" },
+      { "title": "IV. Hạn Chế Dịch Vụ", "content": "Cấm đối với người dưới 18 tuổi (bao gồm học sinh trung học); khách hàng say rượu, đang sử dụng ma túy bất hợp pháp, hoặc bị coi là không phù hợp sẽ bị từ chối; thành viên băng đảng, nhóm bất hợp pháp, hoặc đối thủ cạnh tranh giả mạo sẽ bị từ chối; bất kỳ hành vi xúc phạm, phân biệt đối xử, tuyên truyền tôn giáo/chính trị, hoặc hành vi không phù hợp đều bị cấm;" },
+      { "title": "V. Chính Sách Hủy", "content": "Khách hàng phải thông báo hủy hoặc thay đổi trước 72 giờ, nếu không sẽ phải trả phí tương đương một lần sử dụng dịch vụ; nếu chúng tôi phải hủy do thời tiết, giao thông, hoặc tình huống khẩn cấp, chúng tôi sẽ thông báo ngay lập tức và cung cấp hoàn tiền đầy đủ hoặc sắp xếp lại;" },
+      { "title": "VI. Bất Khả Kháng", "content": "Trong trường hợp động đất, bão, hạn chế đại dịch, hoặc kiểm soát giao thông, chúng tôi sẽ không chịu trách nhiệm và sẽ hỗ trợ các giải pháp thay thế hoặc hoàn tiền;" },
+      { "title": "VII. Bảo Vệ Dữ Liệu", "content": "Chúng tôi xử lý thông tin cá nhân của bạn theo Luật Bảo Vệ Dữ Liệu, chỉ sử dụng cho các dịch vụ liên quan; không có sự đồng ý bằng văn bản của bạn, chúng tôi sẽ không chia sẻ dữ liệu với bên thứ ba, thực hiện các biện pháp kỹ thuật và hành chính để đảm bảo an toàn;" },
+      { "title": "VIII. Giới Hạn Trách Nhiệm", "content": "Ngoại trừ theo luật, chúng tôi không chịu trách nhiệm về các thiệt hại không thể lường trước hoặc không do sơ suất nghiêm trọng gây ra; nếu khách hàng gây ra khiếu nại từ bên thứ ba, họ sẽ chịu trách nhiệm bồi thường;" },
+      { "title": "IX. Từ Chối và Chấm Dứt", "content": "Nếu người đồng hành từ chối bất kỳ hành vi nào và khách hàng vẫn cố gắng, điều này sẽ được coi là vi phạm nghiêm trọng; nếu khách hàng thường xuyên thay đổi lịch trình hoặc địa điểm đã xác nhận, chúng tôi có thể điều chỉnh hoặc chấm dứt dịch vụ; bất kỳ vi phạm các điều khoản này sẽ dẫn đến chấm dứt mà không hoàn tiền;" },
+      { "title": "X. Danh Sách Đen và Trách Nhiệm Pháp Lý", "content": "Vi phạm nghiêm trọng, gian lận, hoặc hành vi bất hợp pháp sẽ dẫn đến cấm vĩnh viễn; chúng tôi giữ quyền báo cáo cho cơ quan chức năng và yêu cầu bồi thường thiệt hại;" },
+      { "title": "XI. Giải Quyết Tranh Chấp", "content": "Tranh chấp sẽ được giải quyết trước tiên thông qua thương lượng hữu nghị; nếu không đạt được thỏa thuận, cả hai bên chấp nhận thẩm quyền của Tòa Án Quận Tokyo." }
+    ],
+    "effect": "Các điều khoản này có hiệu lực từ ngày công bố. Sử dụng dịch vụ của chúng tôi đồng nghĩa với việc bạn đã đọc, hiểu và chấp nhận các điều khoản này."
+  },
+  "privacy": {
+    "title": "Chính Sách Bảo Mật",
+    "intro": "Chính sách bảo mật này áp dụng cho {brand} (sau đây gọi là 'chúng tôi'). Để đảm bảo sự yên tâm của bạn, chúng tôi giải thích cách chúng tôi thu thập, sử dụng, chia sẻ và bảo vệ thông tin cá nhân của bạn.",
+    "sections": [
+      {
+        "title": "I. Thông Tin Cá Nhân Được Thu Thập",
+        "content": "Đăng ký và đặt chỗ: tên, điện thoại, email, địa chỉ khách sạn, ngày nhận/trả phòng, tài khoản nhắn tin (LINE, WhatsApp, WeChat);\nLập kế hoạch: sở thích du lịch (lịch trình, địa điểm, yêu cầu đặc biệt), phương thức thanh toán và hồ sơ (tiền mặt, USDT);\nTương tác với dịch vụ khách hàng: hồ sơ liên lạc, câu hỏi và phản hồi, IP, loại trình duyệt và nhật ký sử dụng."
+      },
+      {
+        "title": "II. Sử Dụng Dữ Liệu",
+        "content": "Chúng tôi chỉ sử dụng thông tin cá nhân của bạn cho:\nCung cấp dịch vụ: xác nhận đặt chỗ, phối hợp, di chuyển và hỗ trợ;\nCải thiện chất lượng: khảo sát sự hài lòng, cải tiến nội bộ và đào tạo;\nHỗ trợ: giải quyết vấn đề và hỗ trợ ngay lập tức;\nTiếp thị (với sự đồng ý): khuyến mãi và tin tức sự kiện."
+      },
+      {
+        "title": "III. Chia Sẻ với Bên Thứ Ba",
+        "content": "Với sự đồng ý của bạn, chúng tôi có thể chia sẻ thông tin với:\nNhà cung cấp: công ty vận chuyển, khách sạn, câu lạc bộ riêng;\nBên xử lý thanh toán: cho các giao dịch USDT và chuyển đổi tiền tệ;\nCơ quan chức năng: khi luật yêu cầu;\nKhác với sự đồng ý của bạn.\nTất cả đối tác ký kết thỏa thuận bảo mật và chỉ sử dụng dữ liệu cho các mục đích đã thỏa thuận."
+      },
+      {
+        "title": "IV. Bảo Mật và Lưu Trữ",
+        "content": "Bảo vệ kỹ thuật: mã hóa SSL/TLS, tường lửa và quét bảo mật;\nKiểm soát truy cập: chỉ nhân viên được ủy quyền với xác thực hai yếu tố;\nThời gian lưu trữ: dữ liệu đặt chỗ và giao dịch được giữ tối đa 3 năm;\nYêu cầu xóa: bạn có thể yêu cầu xóa hoặc sửa đổi dữ liệu bất cứ lúc nào."
+      },
+      {
+        "title": "V. Cookie và Công Nghệ Theo Dõi",
+        "content": "Chúng tôi sử dụng cookie và công nghệ tương tự để cải thiện trải nghiệm của bạn. Bạn có thể quản lý cookie trong trình duyệt của mình, mặc dù điều này có thể ảnh hưởng đến chức năng."
+      },
+      {
+        "title": "VI. Vị Thành Niên và Dữ Liệu Nhạy Cảm",
+        "content": "Chúng tôi không thu thập dữ liệu từ người dưới 18 tuổi; chúng tôi sẽ xóa ngay lập tức nếu phát hiện. Dữ liệu nhạy cảm được xử lý theo luật."
+      },
+      {
+        "title": "VII. Sửa Đổi",
+        "content": "Chúng tôi giữ quyền sửa đổi chính sách này, thông báo về các thay đổi quan trọng qua email hoặc điện thoại."
+      },
+      {
+        "title": "VIII. Liên Hệ",
+        "content": "Để thắc mắc hoặc thực hiện quyền, liên hệ với chúng tôi tại:"
+      }
+    ],
+    "effect": "Cảm ơn bạn đã tin tưởng Luxe Japan Elite Escorts. Cùng nhau chúng ta bảo vệ quyền riêng tư và quyền lợi của bạn.",
+    "contactPrefix": "Để thắc mắc hoặc thực hiện quyền, liên hệ với chúng tôi tại:"
+  },
+  "brand": {
+    "full": "Luxe Japan Elite Escorts",
+    "short": "Luxe Japan"
+  },
+  "common": {
+    "or": "hoặc",
+    "and": "và"
+  },
+  "seo": {
+    "brand": "Luxe Japan Elite Escorts",
+    "brandShort": "Luxe Japan",
+    "siteDescription": "Dịch vụ đồng hành và giải trí cao cấp hàng đầu tại Nhật Bản, cung cấp trải nghiệm sang trọng tại Tokyo, Osaka, Sapporo với dịch vụ đồng hành cao cấp, dịch vụ tại khách sạn và không gian riêng tư",
+    "keywords": "dịch vụ đồng hành Nhật Bản, đồng hành cao cấp, dịch vụ sang trọng, đồng hành VIP, dịch vụ tại khách sạn, thuê bạn gái, người mẫu đồng hành, dịch vụ Tokyo, đồng hành Osaka, đồng hành Sapporo, không gian riêng tư, dịch vụ VIP, trải nghiệm sang trọng, giải trí Nhật Bản, đêm Tokyo, hẹn hò cao cấp, đồng hành du lịch Nhật Bản, dịch vụ cao cấp Nhật Bản, không gian riêng tư Nhật Bản",
+    "home": {
+      "title": "Luxe Japan Elite Escorts - Dịch Vụ Đồng Hành Cao Cấp Hàng Đầu Tại Nhật Bản",
+      "description": "Trải nghiệm dịch vụ đồng hành và giải trí cao cấp nhất tại Nhật Bản. Cung cấp dịch vụ tại khách sạn, không gian riêng tư, tiệc VIP tại Tokyo, Osaka, Sapporo. Lựa chọn kỹ lưỡng từ người mẫu, nghệ sĩ, sinh viên đại học hàng đầu Nhật Bản, tạo nên chuyến đi khó quên tại Nhật Bản cho quý khách."
+    },
+    "about": {
+      "title": "Về Chúng Tôi - Luxe Japan Elite Escorts",
+      "description": "Được thành lập bởi Giám đốc Minami, 'nhà phê bình Michelin' của ngành công nghiệp giải trí Nhật Bản, và ông Bando, chuyên gia về du lịch cao cấp châu Á, mang đến mức độ sang trọng, riêng tư và dịch vụ cá nhân hóa cao nhất cho mỗi vị khách."
+    },
+    "privacy": {
+      "title": "Chính Sách Bảo Mật - Luxe Japan Elite Escorts",
+      "description": "Chính sách bảo mật này áp dụng cho trang web và các dịch vụ liên quan được điều hành bởi Luxe Japan Elite Escorts (sau đây gọi là 'Công ty chúng tôi'). Chúng tôi tuân thủ nghiêm ngặt các quy định về bảo vệ quyền riêng tư, đảm bảo an toàn thông tin cá nhân của quý khách."
+    },
+    "terms": {
+      "title": "Điều Khoản Sử Dụng - Luxe Japan Elite Escorts",
+      "description": "Chào mừng quý khách sử dụng dịch vụ đồng hành cao cấp của Luxe Japan Elite Escorts (sau đây gọi là 'Chúng tôi'). Để đảm bảo an toàn và quyền lợi của cả hai bên, vui lòng đọc kỹ và tuân thủ các điều khoản này."
+    },
+    "contact": {
+      "title": "Liên Hệ - Luxe Japan Elite Escorts",
+      "description": "Luxe Japan Elite Escorts cung cấp hỗ trợ khách hàng chuyên nghiệp 24/7, sẵn sàng sắp xếp dịch vụ đồng hành cao cấp tại Tokyo, Osaka, Sapporo cho quý khách."
+    },
+    "testimonials": {
+      "title": "Đánh Giá Từ Khách Hàng - Luxe Japan Elite Escorts",
+      "description": "Đánh giá thực tế từ khách hàng trên toàn thế giới, chia sẻ trải nghiệm đồng hành cao cấp của họ tại Tokyo, Osaka, Sapporo."
+    },
+    "serviceNotes": {
+      "title": "Lưu Ý Dịch Vụ - Luxe Japan Elite Escorts",
+      "description": "Thông tin quan trọng về dịch vụ và quy định của Luxe Japan Elite Escorts, bao gồm quy trình đặt chỗ, nội dung dịch vụ, bảo vệ quyền riêng tư và các thông tin chi tiết khác."
+    }
+  }
+}

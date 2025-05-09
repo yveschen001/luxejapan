@@ -9,7 +9,9 @@ export function useLocalePath() {
     // 移除開頭的斜線
     const cleanPath = path.startsWith('/') ? path.slice(1) : path;
     // 如果路徑已經包含語言前綴，則直接返回
-    if (cleanPath.startsWith('en/') || cleanPath.startsWith('zh-tw/')) {
+    const supportedLocales = ['en', 'zh-tw', 'ko', 'vi', 'es'];
+    const hasLocale = supportedLocales.some(lang => cleanPath.startsWith(`${lang}/`));
+    if (hasLocale) {
       return `/${cleanPath}`;
     }
     // 添加當前語言前綴

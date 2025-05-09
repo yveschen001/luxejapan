@@ -4,6 +4,9 @@ import router from './router';
 import { createI18n } from 'vue-i18n';
 import en from './i18n/en.json';
 import zhTw from './i18n/zh-tw.json';
+import ko from './i18n/ko.json';
+import vi from './i18n/vi.json';
+import es from './i18n/es.json';
 import '/styles.css';
 
 // 自动检测用户语言
@@ -29,7 +32,10 @@ const i18n = createI18n({
   fallbackLocale: 'en',
   messages: {
     en,
-    'zh-tw': zhTw
+    'zh-tw': zhTw,
+    ko,
+    vi,
+    es
   }
 });
 
