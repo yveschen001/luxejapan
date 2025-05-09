@@ -45,6 +45,16 @@ export default defineConfig({
         ko: 'index.html',
         vi: 'index.html',
         es: 'index.html'
+      },
+      output: {
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name) {
+            if (/\.(png|jpe?g|webp|svg)$/.test(assetInfo.name)) {
+              return 'assets/images/[name][extname]'
+            }
+          }
+          return 'assets/[name][extname]'
+        }
       }
     }
   },
