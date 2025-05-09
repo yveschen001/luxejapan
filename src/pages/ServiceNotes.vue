@@ -1,5 +1,5 @@
 <template>
-  <PageHero :title="$t('serviceNotes.title')" bg="images/service-notes-bg.jpg" />
+  <PageHero :title="$t('serviceNotes.title')" bg="assets/images/service-notes-bg.jpg" />
   <section class="service-notes">
     <SectionDivider />
     <SectionContainer>
@@ -34,7 +34,7 @@ const route = useRoute();
 useSeo({
   title: 'serviceNotes.title',
   description: 'serviceNotes.subtitle',
-  image: 'images/service-notes-bg.jpg',
+  image: 'assets/images/service-notes-bg.jpg',
   canonical: window.location.origin + route.fullPath,
   alternates: {
     'zh-tw': `/zh-tw/service-notes`,
