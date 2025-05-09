@@ -36,7 +36,7 @@ const scrollToIntro = () => {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: url('assets/images/hero-bg.jpg') center/cover;
+  background: url('images/hero-bg.jpg') center/cover;
   opacity: 0.13;
 }
 .hero__content {
