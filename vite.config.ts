@@ -50,7 +50,7 @@ export default defineConfig({
         assetFileNames: (assetInfo) => {
           if (assetInfo.name) {
             if (/\.(png|jpe?g|webp|svg)$/.test(assetInfo.name)) {
-              return 'assets/images/[name][extname]'
+              return 'images/[name][extname]'
             }
           }
           return 'assets/[name][extname]'
