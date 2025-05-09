@@ -2,8 +2,10 @@
   <footer class="footer" role="contentinfo">
     <div class="footer__content">
       <div class="footer__brand">
+        <router-link :to="localePath('/contact')" class="footer__brand-link" aria-label="$t('nav.contact')">
         <img src="/logo-geisha-gold.png" :alt="$t('brand.full') + ' Logo'" class="footer__logo" />
         <BrandLogo size="1.3rem" />
+        </router-link>
       </div>
       <div class="footer__links">
         <router-link :to="localePath('/about')" class="footer__link">{{ $t('nav.about') }}</router-link>
@@ -27,7 +29,11 @@
         <router-link :to="localePath('/terms')" class="footer__legal-link">{{ $t('footer.terms') }}</router-link>
       </div>
       <div class="footer__copyright">
-        &copy; {{ new Date().getFullYear() }} <BrandLogo size="1.1rem" style="vertical-align:middle" />. {{ $t('footer.rights') }}
+        &copy; {{ new Date().getFullYear() }}
+        <router-link :to="localePath('/contact')" class="footer__brand-link-inline" aria-label="$t('nav.contact')" style="margin:0 0.3em;display:inline-block;vertical-align:middle;text-decoration:none;">
+          <BrandLogo size="1.1rem" style="vertical-align:middle" />
+        </router-link>
+        . {{ $t('footer.rights') }}
       </div>
     </div>
   </footer>
@@ -124,6 +130,18 @@ const { localePath } = useLocalePath();
 .footer__copyright {
   color: var(--color-text-secondary);
   font-size: 0.9rem;
+}
+.footer__brand-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+  text-decoration: none;
+}
+.footer__brand-link-inline {
+  display: inline-block;
+  vertical-align: middle;
+  text-decoration: none;
 }
 @media (max-width: 768px) {
   .footer__links {

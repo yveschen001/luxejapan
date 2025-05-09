@@ -70,7 +70,7 @@
         "Seamless itinerary: all routes and bookings are managed for you, so you can fully relax;",
         "Thoughtful companionship: enjoy beautiful moments with our handpicked companions—whether cherry blossom viewing, wine tasting, karaoke, or private relaxation, every detail is handled for you."
       ],
-      "ending": "Just relax and enjoy unforgettable moments with your ideal companion—leave the rest to {brand}."
+      "ending": "Just relax and enjoy unforgettable moments with your ideal companion—leave the rest to Luxe Japan."
     }
   },
   "contact": {
@@ -89,6 +89,10 @@
       "telegram": "Telegram",
       "email": "Email",
       "social": "Social Media"
+    },
+    "contacts": {
+      "telegram": { "label": "@luxejapan" },
+      "line": { "label": "@luxejapan" }
     }
   },
   "serviceNotes": {
@@ -137,14 +141,16 @@
     "faq": {
       "title": "Frequently Asked Questions",
       "q1": "How do I book a service?",
-      "a1": "You can book via Line, Telegram, or email.",
+      "a1": "You can book via Telegram or LINE.",
+      "a1Prefix": "You can book via ",
+      "a1Suffix": ".",
       "q2": "How is service time arranged?",
       "a2": "We offer 24/7 booking and can arrange according to your needs.",
       "q3": "How do you ensure service quality?",
       "a3": "We rigorously select our staff to ensure the highest quality service."
     },
     "fullProcess": [
-      {"title": "Online Consultation", "desc": "Contact us via LINE or our website form with your needs: date, time, location, style preferences... Our concierge will respond quickly and confirm all details."},
+      {"title": "Online Consultation", "descPrefix": "Please contact us via", "descSuffix": "with your needs: date, time, location, style preferences... Our concierge will respond quickly and confirm all details."},
       {"title": "Plan Confirmation & Quotation", "desc": "Based on your chosen companion, service duration, and extras (like airport pickup, private parties), we'll provide a personalized quote."},
       {"title": "Payment & Booking Completion", "desc": "We accept Japanese yen cash, USDT (at the day's rate), and more. We recommend USDT to minimize fees. Once payment is complete, your exclusive time and companion are reserved."},
       {"title": "Exclusive Welcome", "desc": "On the day of service, from airport pickup, itinerary planning, and warm welcome to final drop-off, we provide seamless support so you can simply enjoy."}
@@ -190,7 +196,7 @@
   },
   "terms": {
     "title": "Terms of Service",
-    "intro": "Welcome to Luxe Japan Elite Escorts (hereinafter referred to as 'the Company'). To ensure the safety and rights of both parties, please read and comply with the following terms:",
+    "intro": "Welcome to {brand} (hereinafter referred to as 'the Company'). To ensure the safety and rights of both parties, please read and comply with the following terms:",
     "sections": [
       { "title": "I. Health and Hygiene", "content": "If there is intimate dating behavior, clients must complete bathing and oral hygiene before the scheduled service and truthfully disclose their health status. If a client has a fever, respiratory infection, skin contact infectious disease, or sexually transmitted disease, or if our companion reasonably suspects such conditions, the companion has the right to immediately terminate the service. If any infectious disease or discomfort is discovered during the service, the Company reserves the right to suspend and cancel subsequent arrangements." },
       { "title": "II. Respect and Safety", "content": "If there is intimacy, please respect women and take proper protective measures. Any refusal or forced engagement in unagreed activities will result in immediate service termination. Please trim long nails and address dry, rough skin conditions that may harm our companions. Any form of violence, pulling, excessive cruelty, SM equipment, or special behaviors not previously agreed upon is strictly prohibited." },
@@ -208,7 +214,7 @@
   },
   "privacy": {
     "title": "Privacy Policy",
-    "intro": "This privacy policy applies to the website and related services operated by Luxe Japan Elite Escorts (hereinafter referred to as 'the Company'). To ensure your peace of mind, this policy explains how we collect, use, share, and protect your personal information.",
+    "intro": "This privacy policy applies to the website and related services operated by {brand} (hereinafter referred to as 'the Company'). To ensure your peace of mind, this policy explains how we collect, use, share, and protect your personal information.",
     "sections": [
       {
         "title": "1. Types of Personal Data Collected",
@@ -240,10 +246,11 @@
       },
       {
         "title": "8. Contact Information",
-        "content": "If you have any questions about this policy or wish to exercise your rights, please contact us: Telegram: See social info below Line: See social info below"
+        "content": "If you have any questions about this policy or wish to exercise your rights, please contact us:<br>Telegram: <a href=\"https://t.me/luxejapan\" target=\"_blank\">@luxejapan</a><br>Line: <a href=\"https://line.me/ti/p/xxxx\" target=\"_blank\">@luxejapan</a>"
       }
     ],
-    "effect": "Thank you for trusting Luxe Japan Elite Escorts. Let us work together to protect your privacy and rights."
+    "effect": "Thank you for trusting Luxe Japan Elite Escorts. Let us work together to protect your privacy and rights.",
+    "contactPrefix": "If you have any questions about this policy or wish to exercise your rights, please contact us:"
   },
   "home": {
     "introTitle": "Introduction",
@@ -262,5 +269,43 @@
   "brand": {
     "full": "Luxe Japan Elite Escorts",
     "short": "Luxe Japan"
+  },
+  "common": {
+    "or": "or",
+    "and": "and"
+  },
+  "seo": {
+    "brand": "Luxe Japan Elite Escorts",
+    "brandShort": "Luxe Japan",
+    "siteDescription": "Japan's premier elite escort and luxury companion services",
+    "keywords": "Japan escort, luxury companion, premium escort services, elite companion, Tokyo escort, luxury experience, private club, VIP service, exclusive companion, high-end escort",
+    "home": {
+      "title": "Luxe Japan Elite Escorts",
+      "description": "Experience Japan's most prestigious luxury escort and companionship services. Tokyo, Osaka, Sapporo"
+    },
+    "about": {
+      "title": "About Us",
+      "description": "We believe in providing every guest with the highest level of luxury, privacy, and personalized service."
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "description": "This privacy policy applies to the website and related services operated by Luxe Japan Elite Escorts (hereinafter referred to as 'the Company')."
+    },
+    "terms": {
+      "title": "Terms of Service",
+      "description": "Welcome to Luxe Japan Elite Escorts (hereinafter referred to as 'the Company'). To ensure the safety and rights of both parties, please read and comply with the following terms."
+    },
+    "contact": {
+      "title": "Contact Us",
+      "description": "Luxe Japan Elite Escorts is always here to provide professional service"
+    },
+    "testimonials": {
+      "title": "Testimonials",
+      "description": "Authentic reviews from clients worldwide about Luxe Japan Elite Escorts"
+    },
+    "serviceNotes": {
+      "title": "Service Notes",
+      "description": "Important service information and guidelines for Luxe Japan Elite Escorts"
+    }
   }
 } 

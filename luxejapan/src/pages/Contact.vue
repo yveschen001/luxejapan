@@ -7,12 +7,12 @@
       </SectionTitle>
       <div class="contact-info">
         <div class="contact-item">
-          <img src="/icons/line.svg" alt="Line" class="contact-icon" />
-          <strong>Line:</strong> <a :href="contacts.line.url" target="_blank">{{ contacts.line.label }}</a>
-        </div>
-        <div class="contact-item">
           <img src="/icons/telegram.svg" alt="Telegram" class="contact-icon" />
           <strong>Telegram:</strong> <a :href="contacts.telegram.url" target="_blank">{{ contacts.telegram.label }}</a>
+        </div>
+        <div class="contact-item">
+          <img src="/icons/line.svg" alt="Line" class="contact-icon" />
+          <strong>Line:</strong> <a :href="contacts.line.url" target="_blank">{{ contacts.line.label }}</a>
         </div>
         <div class="contact-item">
           <img src="/icons/email.svg" alt="Email" class="contact-icon" />

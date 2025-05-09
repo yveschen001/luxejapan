@@ -5,7 +5,24 @@
         <template #main>{{ $t('terms.title') }}</template>
       </SectionTitle>
       <div class="terms-content">
-        <div class="terms-intro">{{ $t('terms.intro') }}</div>
+        <div class="terms-intro">
+          <span v-if="$t('terms.intro').includes('Luxe Japan Elite Escorts')">
+            <router-link :to="contactPath" class="terms__brand-link" aria-label="$t('nav.contact')">
+              <BrandLogo size="1em" />
+            </router-link>
+            {{ $t('terms.intro').split('Luxe Japan Elite Escorts')[0] }}
+            <router-link :to="contactPath" class="terms__brand-link" aria-label="$t('nav.contact')">
+              <BrandLogo size="1em" />
+            </router-link>
+            {{ $t('terms.intro').split('Luxe Japan Elite Escorts')[1] }}
+          </span>
+          <span v-else>
+            <router-link :to="contactPath" class="terms__brand-link" aria-label="$t('nav.contact')">
+              <BrandLogo size="1em" />
+            </router-link>
+            {{ $t('terms.intro') }}
+          </span>
+        </div>
         <div class="terms-sections">
           <div v-for="(section, index) in tm('terms.sections')" :key="index" class="terms-section">
             <h3 class="section-title">{{ section.title }}</h3>
@@ -24,9 +41,13 @@ import SectionTitle from '@/components/SectionTitle.vue';
 import { useSeo } from '@/utils/useSeo';
 import { useI18n } from 'vue-i18n';
 import { useRoute } from 'vue-router';
+import BrandLogo from '@/components/BrandLogo.vue';
+import { useLocalePath } from '@/utils/i18n';
 
 const { tm } = useI18n();
 const route = useRoute();
+const { localePath } = useLocalePath();
+const contactPath = localePath('/contact');
 
 useSeo({
   title: 'terms.title',
@@ -68,5 +89,10 @@ useSeo({
   margin-top: 2em;
   font-style: italic;
   color: var(--color-text-light);
+}
+.terms__brand-link {
+  display: inline-block;
+  vertical-align: middle;
+  text-decoration: none;
 }
 </style> 

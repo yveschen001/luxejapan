@@ -4,7 +4,11 @@
     <h1 class="visually-hidden">{{ $t('about.title') }}</h1>
     <p v-for="(p, i) in tm('about.story.paragraphs')" :key="'about-p'+i">
       <span v-if="p.includes('{brand}')">
-        {{ p.split('{brand}')[0] }}<BrandLogo size="1em" />{{ p.split('{brand}')[1] }}
+        {{ p.split('{brand}')[0] }}
+        <router-link :to="contactPath" class="about__brand-link" aria-label="$t('nav.contact')">
+          <BrandLogo size="1em" />
+        </router-link>
+        {{ p.split('{brand}')[1] }}
       </span>
       <span v-else v-html="p"></span>
     </p>
@@ -14,7 +18,11 @@
     <h2>{{ $t('about.story.experienceTitle') }}</h2>
     <p>
       <span v-if="$t('about.story.experienceParagraph').includes('{brand}')">
-        {{ $t('about.story.experienceParagraph').split('{brand}')[0] }}<BrandLogo size="1em" />{{ $t('about.story.experienceParagraph').split('{brand}')[1] }}
+        {{ $t('about.story.experienceParagraph').split('{brand}')[0] }}
+        <router-link :to="contactPath" class="about__brand-link" aria-label="$t('nav.contact')">
+          <BrandLogo size="1em" />
+        </router-link>
+        {{ $t('about.story.experienceParagraph').split('{brand}')[1] }}
       </span>
       <span v-else>{{ $t('about.story.experienceParagraph') }}</span>
     </p>
@@ -22,10 +30,22 @@
       <li v-for="(item, i) in tm('about.story.experienceList')" :key="'about-exp-li'+i">{{ item }}</li>
     </ul>
     <p>
-      <span v-if="$t('about.story.ending').includes('{brand}')">
-        {{ $t('about.story.ending').split('{brand}')[0] }}<BrandLogo size="1em" />{{ $t('about.story.ending').split('{brand}')[1] }}
-      </span>
-      <span v-else>{{ $t('about.story.ending') }}</span>
+      <template v-if="$t('about.story.ending').endsWith('Luxe Japan。') || $t('about.story.ending').endsWith('Luxe Japan.')">
+        {{ $t('about.story.ending').replace(/Luxe Japan[。.]?$/, '') }}
+        <router-link :to="contactPath" class="about__brand-link" aria-label="$t('nav.contact')">
+          <BrandLogo size="1em" />
+        </router-link>
+        <span v-if="$t('about.story.ending').endsWith('。')">。</span>
+        <span v-else-if="$t('about.story.ending').endsWith('.')">.</span>
+      </template>
+      <template v-else-if="$t('about.story.ending').includes('{brand}')">
+        {{ $t('about.story.ending').split('{brand}')[0] }}
+        <router-link :to="contactPath" class="about__brand-link" aria-label="$t('nav.contact')">
+          <BrandLogo size="1em" />
+        </router-link>
+        {{ $t('about.story.ending').split('{brand}')[1] }}
+      </template>
+      <template v-else>{{ $t('about.story.ending') }}</template>
     </p>
   </main>
 </template>
@@ -34,12 +54,15 @@
 import PageHero from '@/components/PageHero.vue';
 import { useSeo } from '@/utils/useSeo';
 import { useI18n } from 'vue-i18n';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import BrandLogo from '@/components/BrandLogo.vue';
+import { useLocalePath } from '@/utils/i18n';
 
 const { locale } = useI18n();
-const { tm } = useI18n();
+const { tm, t } = useI18n();
 const route = useRoute();
+const { localePath } = useLocalePath();
+const contactPath = localePath('/contact');
 
 useSeo({
   title: 'about.title',
@@ -86,5 +109,10 @@ ul {
 }
 li {
   margin-bottom: 0.5rem;
+}
+.about__brand-link {
+  display: inline-block;
+  vertical-align: middle;
+  text-decoration: none;
 }
 </style> 

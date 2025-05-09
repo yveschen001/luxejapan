@@ -84,7 +84,7 @@
         "行程無縫對接：所有路線與預約均由我們統籌，讓您盡情放鬆；",
         "貼心陪伴：與嚴選佳人共度美好時光——無論是賞櫻、品酒、夜唱或私密休憩，一切細節都由我們替您打理。"
       ],
-      "ending": "您只需放鬆心情，享受與心儀佳人共度的難忘時刻，其餘一切交給 {brand}。"
+      "ending": "您只需放鬆心情，享受與心儀佳人共度的難忘時刻，其餘一切交給 Luxe Japan。"
     }
   },
   "contact": {
@@ -103,7 +103,9 @@
       "telegram": "Telegram",
       "email": "電子郵件",
       "social": "社群媒體"
-    }
+    },
+    "telegram": { "label": "@luxejapan" },
+    "line": { "label": "@luxejapan" }
   },
   "serviceNotes": {
     "title": "服務須知",
@@ -151,14 +153,16 @@
     "faq": {
       "title": "常見問題",
       "q1": "如何預約服務？",
-      "a1": "可透過Line、Telegram或電子郵件進行預約",
+      "a1": "您可以通過 Telegram、LINE 預約服務。",
+      "a1Prefix": "您可以通過",
+      "a1Suffix": "預約服務。",
       "q2": "服務時間如何安排？",
       "a2": "我們提供24小時預約服務，可根據您的需求安排",
       "q3": "如何確保服務品質？",
       "a3": "我們嚴格篩選服務人員，確保提供最優質的服務"
     },
     "fullProcess": [
-      {"title": "線上諮詢", "desc": "透過 LINE 或網站表單告訴我們您的需求：日期、時間、地點、偏好風格……我們的客服將以最快速度為您回覆，並確認細節。"},
+      {"title": "線上諮詢", "descPrefix": "請通過", "descSuffix": "聯繫我們（為了您的私密考量，我們建議使用 Telegram），告訴我們您的需求：日期、時間、地點、偏好風格……我們的客服將以最快速度為您回覆，並確認細節。"},
       {"title": "確認方案與報價", "desc": "根據您選擇的伴遊小姐層級、服務時長與附加項目（例如機場接送、私人酒會等），我們會為您量身報價。"},
       {"title": "付款與預約完成", "desc": "支持日幣現金、USDT（依當日匯率計算）等多種方式，建議使用 USDT 以減少手續費。完成付款後，即刻為您保留專屬時段與伴遊佳人。"},
       {"title": "專屬歡迎", "desc": "服務當日，從機場接送、行程規劃、美女迎接，到結束送機，我們全程無縫協助，讓您只需放鬆享受。"}
@@ -204,7 +208,7 @@
   },
   "terms": {
     "title": "使用者條款",
-    "intro": "歡迎您使用 Luxe Japan Elite Escorts（以下簡稱「本店」）之高端伴遊服務。為維護雙方安全與權益，敬請詳閱並遵守下列條款：",
+    "intro": "歡迎您使用 {brand}（以下簡稱「本店」）之高端伴遊服務。為維護雙方安全與權益，敬請詳閱並遵守下列條款：",
     "sections": [
       { "title": "一、健康與衛生", "content": "如有親密的約會行為，客人須於約定服務前完成沐浴與口腔清潔，並如實告知自身健康狀況；若客人有發燒、呼吸道感染、皮膚接觸傳染病或性病之症狀，或經伴遊佳人判斷有該等疑慮，伴遊佳人有權立即終止服務；服務期間，如發現任何傳染病或不適，本店有權中止並取消後續行程。" },
       { "title": "二、尊重與安全", "content": "如有親密行為，請尊重女性，做好防護措施；任何拒絕或強行進行未經同意之行為，伴遊佳人有權立即終止服務；指甲過長、手部皮膚乾燥粗糙等可能對伴遊佳人造成傷害之情形，請事先修整或停止相關動作；嚴禁使用任何暴力、拉扯、過度苛虐、SM 道具或未事先協商之特殊行為；" },
@@ -222,7 +226,7 @@
   },
   "privacy": {
     "title": "隱私權政策",
-    "intro": "本隱私權政策適用於 Luxe Japan Elite Escorts（以下簡稱「本公司」）所經營之網站及相關服務。為讓您安心使用，特訂定本政策，說明我們如何蒐集、使用、分享及保護您的個人資料。",
+    "intro": "本隱私權政策適用於 {brand}（以下簡稱「本公司」）所經營之網站及相關服務。為讓您安心使用，特訂定本政策，說明我們如何蒐集、使用、分享及保護您的個人資料。",
     "sections": [
       {
         "title": "一、蒐集之個人資料類別",
@@ -254,13 +258,52 @@
       },
       {
         "title": "八、聯絡方式",
-        "content": "如對本政策有任何疑問或行使權利，歡迎隨時聯絡：\nTelegram：請見下方社交資訊\nLine：請見下方社交資訊"
+        "content": "如對本政策有任何疑問或行使權利，歡迎隨時聯絡：<br>Telegram：<a href=\"https://t.me/luxejapan\" target=\"_blank\">@luxejapan</a><br>Line：<a href=\"https://line.me/ti/p/xxxx\" target=\"_blank\">@luxejapan</a>"
       }
     ],
-    "effect": "感謝您信任 Luxe Japan Elite Escorts，讓我們共同維護您的隱私與權益。"
+    "effect": "感謝您信任 Luxe Japan Elite Escorts，讓我們共同維護您的隱私與權益。",
+    "contactPrefix": "如對本政策有任何疑問或行使權利，歡迎隨時聯絡："
   },
   "brand": {
     "full": "Luxe Japan Elite Escorts",
     "short": "Luxe Japan"
+  },
+  "common": {
+    "or": "或",
+    "and": "、"
+  },
+  "seo": {
+    "brand": "Luxe Japan Elite Escorts",
+    "brandShort": "Luxe Japan",
+    "siteDescription": "日本頂級菁英伴遊與奢華服務，提供東京、大阪、札幌等地的高端伴遊、到府服務、私人會所等尊榮體驗",
+    "keywords": "日本伴遊, 高端伴遊, 奢華服務, 頂級女伴, 到府服務, 女友租借, 模特伴遊, 東京外送茶, 大阪伴遊, 札幌伴遊, 私人會所, VIP服務, 奢華體驗, 日本風俗, 東京夜生活, 高端約會, 日本旅遊伴遊, 日本高端服務, 日本私人會所",
+    "home": {
+      "title": "Luxe Japan Elite Escorts - 日本頂級菁英伴遊服務",
+      "description": "體驗日本最尊榮的高端伴遊與奢華服務。提供東京、大阪、札幌等地的到府服務、私人會所、VIP派對等尊榮體驗。嚴選日本頂級模特、藝人、大學生，為您打造難忘的日本之旅。"
+    },
+    "about": {
+      "title": "關於我們 - Luxe Japan Elite Escorts",
+      "description": "由日本風俗業界「米其林星級密探」南店長與精通亞洲高端旅遊的坂東先生共同創辦，為每一位貴賓提供最高等級的奢華、隱私與專屬服務。"
+    },
+    "privacy": {
+      "title": "隱私權政策 - Luxe Japan Elite Escorts",
+      "description": "本隱私權政策適用於 Luxe Japan Elite Escorts（以下簡稱「本公司」）所經營之網站及相關服務。我們嚴格遵守隱私保護規範，確保您的個人資料安全。"
+    },
+    "terms": {
+      "title": "使用者條款 - Luxe Japan Elite Escorts",
+      "description": "歡迎您使用 Luxe Japan Elite Escorts（以下簡稱「本店」）之高端伴遊服務。為維護雙方安全與權益，請詳閱並遵守本條款。"
+    },
+    "contact": {
+      "title": "聯絡我們 - Luxe Japan Elite Escorts",
+      "description": "Luxe Japan Elite Escorts 提供24小時專業客服支援，隨時為您安排東京、大阪、札幌等地的高端伴遊服務。"
+    },
+    "testimonials": {
+      "title": "客戶評價 - Luxe Japan Elite Escorts",
+      "description": "來自世界各地的客戶真實評價，分享他們在東京、大阪、札幌等地的高端伴遊體驗。"
+    },
+    "serviceNotes": {
+      "title": "服務須知 - Luxe Japan Elite Escorts",
+      "description": "Luxe Japan Elite Escorts 重要服務說明與規範，包含預約流程、服務內容、隱私保護等詳細資訊。"
+    }
   }
 } 

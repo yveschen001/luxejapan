@@ -165,24 +165,24 @@ onUnmounted(() => {
   align-items: center;
 }
 .navbar__lang {
-  background: var(--color-primary-dark, #1D0B2D);
-  color: var(--color-accent);
-  border: 1.5px solid var(--color-accent);
+  background: transparent;
+  color: #fff;
+  border: none;
   border-radius: 50%;
-  padding: 0.55rem 0.7rem 0.45rem 0.7rem;
+  padding: 0.45rem 0.7rem 0.35rem 0.7rem;
   margin-left: 0;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-  box-shadow: 0 2px 8px 0 rgba(212,175,55,0.10);
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+  box-shadow: none;
   font-size: 1.1rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .navbar__lang:hover, .navbar__lang:focus {
-  background: var(--color-accent);
-  color: var(--color-primary);
-  box-shadow: 0 4px 16px 0 rgba(212,175,55,0.18);
+  background: rgba(255,255,255,0.10);
+  color: #fff;
+  box-shadow: none;
 }
 .navbar__toggle {
   display: inline-flex;

@@ -5,7 +5,9 @@
       <h2 class="intro-title">{{ $t('home.introTitle') }}</h2>
       <div class="intro-content">
         <p v-for="(p, i) in tm('home.introParagraphs')" :key="'intro-p'+i">
-          <span v-if="i===0"><BrandLogo class="intro-brand" size="1em" /></span>{{ p }}
+          <span v-if="i===0">
+            <router-link :to="localePath('/contact')" class="text-link"><BrandLogo class="intro-brand" size="1em" /></router-link>
+          </span>{{ p }}
         </p>
         <ul class="intro-list">
           <li v-for="(item, i) in tm('home.introList')" :key="'intro-li'+i">
@@ -14,7 +16,7 @@
           </li>
         </ul>
         <p style="margin-top:1.2em;">
-          <BrandLogo class="intro-brand" size="1em" />
+          <router-link :to="localePath('/contact')" class="text-link"><BrandLogo class="intro-brand" size="1em" /></router-link>
           <router-link :to="localePath('/contact')" class="intro-link">{{ $t('home.introCta') }}</router-link>
         </p>
       </div>
@@ -76,5 +78,14 @@ main {
 }
 .intro-link:hover {
   color: var(--color-text);
+}
+.text-link {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+.text-link:hover {
+  color: var(--color-primary);
 }
 </style> 

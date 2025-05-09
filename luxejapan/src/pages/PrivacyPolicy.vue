@@ -5,11 +5,42 @@
         <template #main>{{ $t('privacy.title') }}</template>
       </SectionTitle>
       <div class="privacy-content">
-        <div class="privacy-intro">{{ $t('privacy.intro') }}</div>
+        <div class="privacy-intro">
+          <span v-if="$t('privacy.intro').includes('Luxe Japan Elite Escorts')">
+            {{ $t('privacy.intro').split('Luxe Japan Elite Escorts')[0] }}
+            <router-link :to="contactPath" class="privacy__brand-link" aria-label="$t('nav.contact')">
+              <BrandLogo size="1em" />
+            </router-link>
+            {{ $t('privacy.intro').split('Luxe Japan Elite Escorts')[1] }}
+          </span>
+          <span v-else-if="$t('privacy.intro').includes('{brand}')">
+            {{ $t('privacy.intro').split('{brand}')[0] }}
+            <router-link :to="contactPath" class="privacy__brand-link" aria-label="$t('nav.contact')">
+              <BrandLogo size="1em" />
+            </router-link>
+            {{ $t('privacy.intro').split('{brand}')[1] }}
+          </span>
+          <span v-else>
+            {{ $t('privacy.intro') }}
+          </span>
+        </div>
         <div class="privacy-sections">
           <div v-for="(section, index) in tm('privacy.sections')" :key="index" class="privacy-section">
             <h3 class="section-title">{{ section.title }}</h3>
-            <p class="section-content">{{ section.content }}</p>
+            <p class="section-content">
+              <template v-if="section.title.includes('聯絡方式') || section.title.includes('Contact')">
+                <span>{{ $t('privacy.contactPrefix') }}</span><br>
+                <a :href="contacts.telegram.url" class="text-link" target="_blank">
+                  <img src="/icons/telegram.svg" class="icon-inline gold-icon" alt="Telegram" />{{ contacts.telegram.label }}
+                </a><br>
+                <a :href="contacts.line.url" class="text-link" target="_blank">
+                  <img src="/icons/line.svg" class="icon-inline gold-icon" alt="LINE" />{{ contacts.line.label }}
+                </a>
+              </template>
+              <template v-else>
+                {{ section.content }}
+              </template>
+            </p>
           </div>
         </div>
         <div class="privacy-effect">{{ $t('privacy.effect') }}</div>
@@ -24,10 +55,14 @@ import SectionTitle from '@/components/SectionTitle.vue';
 import { useSeo } from '@/utils/useSeo';
 import { useI18n } from 'vue-i18n';
 import { useRoute } from 'vue-router';
+import BrandLogo from '@/components/BrandLogo.vue';
+import { useLocalePath } from '@/utils/i18n';
 import contacts from '@/config/contacts';
 
 const { tm } = useI18n();
 const route = useRoute();
+const { localePath } = useLocalePath();
+const contactPath = localePath('/contact');
 
 useSeo({
   title: 'privacy.title',
@@ -69,5 +104,31 @@ useSeo({
   margin-top: 2em;
   font-style: italic;
   color: var(--color-text-light);
+}
+.privacy__brand-link {
+  display: inline-block;
+  vertical-align: middle;
+  text-decoration: none;
+}
+.text-link {
+  color: var(--color-accent) !important;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+.text-link:hover {
+  color: var(--color-primary) !important;
+}
+.icon-inline {
+  width: 1.1em;
+  height: 1.1em;
+  vertical-align: middle;
+  margin-right: 0.25em;
+  margin-bottom: 0.1em;
+  color: var(--color-accent) !important;
+  /* 若SVG支持currentColor则生效 */
+}
+.gold-icon {
+  filter: brightness(0) saturate(100%) invert(83%) sepia(31%) saturate(638%) hue-rotate(358deg) brightness(103%) contrast(87%);
 }
 </style> 
