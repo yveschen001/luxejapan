@@ -27,9 +27,10 @@ jobs:
         npm install -g @lhci/cli@0.12.x
         lhci autorun
     
-    - name: Upload test results
+    - name: Upload test results (ignore if not found)
       uses: actions/upload-artifact@v4
       if: always()
       with:
         name: cypress-screenshots
-        path: cypress/screenshots 
+        path: cypress/screenshots
+        if-no-files-found: ignore 

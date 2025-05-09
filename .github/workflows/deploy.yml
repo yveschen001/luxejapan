@@ -25,6 +25,11 @@ jobs:
         env:
           NODE_ENV: production
 
+      - name: Set up Git user
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
       - name: Deploy to Public Repo
         uses: JamesIves/github-pages-deploy-action@v4
         with:
