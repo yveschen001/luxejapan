@@ -85,7 +85,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.PROD ? '/luxejapan-public/' : '/'),
+  history: createWebHistory('/'),
   routes
 });
 
