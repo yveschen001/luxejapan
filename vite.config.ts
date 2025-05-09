@@ -16,6 +16,10 @@ function manifestBasePlugin() {
         content = content.replace(/__BASE__/g, base);
         fs.writeFileSync(manifestPath, content, 'utf-8');
       }
+    },
+    transformIndexHtml(html) {
+      const base = process.env.NODE_ENV === 'production' ? '/luxejapan-public/' : '/';
+      return html.replace(/__BASE__/g, base);
     }
   }
 }
