@@ -41,6 +41,7 @@ export default defineConfig({
     fs: {
       // Allow serving files from one level up to the project root
       allow: ['..']
-    }
+    },
+    // Vite 默认已支持 HTML5 history fallback，无需额外配置
   }
 }) 

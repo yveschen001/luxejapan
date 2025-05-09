@@ -1,5 +1,5 @@
 <template>
-  <PageHero :title="$t('processFaq.title')" bg="images/process-faq-bg.jpg" />
+  <PageHero :title="$t('processFaq.title')" bg="/images/process-faq-bg.jpg" />
   <SectionContainer>
     <h2>{{ $t('processFaq.title') }}</h2>
     <ol class="process-list">
