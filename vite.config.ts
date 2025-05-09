@@ -19,5 +19,11 @@ export default defineConfig({
         manualChunks: undefined
       }
     }
+  },
+  server: {
+    fs: {
+      // Allow serving files from one level up to the project root
+      allow: ['..']
+    }
   }
 }) 

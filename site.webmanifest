@@ -1,6 +1,7 @@
 {
     "name": "Luxe Japan Elite Escorts",
     "short_name": "Luxe Japan",
+    "description": "Experience the finest companionship and luxury services in Japan.",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
@@ -13,7 +14,8 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#1A0B2E",
-    "background_color": "#120B1F",
-    "display": "standalone"
+    "theme_color": "#2D1B4D",
+    "background_color": "#2D1B4D",
+    "display": "standalone",
+    "start_url": "/"
 } 
