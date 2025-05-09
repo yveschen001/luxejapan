@@ -13,6 +13,9 @@
 
 <script setup>
 import BrandLogo from '@/components/BrandLogo.vue';
+import { computed } from 'vue';
+const base = import.meta.env.BASE_URL;
+const heroBg = computed(() => `url('${base}images/hero-bg.jpg') center/cover`);
 const scrollToIntro = () => {
   const el = document.getElementById('intro');
   if (el) {
@@ -36,7 +39,7 @@ const scrollToIntro = () => {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: url('/images/hero-bg.jpg') center/cover;
+  background: v-bind(heroBg);
   opacity: 0.13;
 }
 .hero__content {

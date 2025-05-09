@@ -15,6 +15,7 @@ import { useRoute } from 'vue-router';
 export function useSeo(seo) {
   const { locale, t } = useI18n();
   const route = useRoute();
+  const base = import.meta.env.BASE_URL;
 
   watchEffect(() => {
     // title
@@ -25,12 +26,22 @@ export function useSeo(seo) {
     setMeta('og:title', document.title, true);
     setMeta('og:description', getMeta('description'), true);
     // og:image
-    if (seo.image) setMeta('og:image', seo.image, true);
+    if (seo.image) {
+      let img = seo.image;
+      if (typeof img === 'string' && img.includes('__BASE_URL__')) {
+        img = img.replace('__BASE_URL__', base);
+      } else if (typeof img === 'string' && !img.startsWith('http') && !img.startsWith(base)) {
+        img = base + 'images/' + img.replace(/^\/?images\//, '');
+      }
+      setMeta('og:image', img, true);
+      setMeta('twitter:image', img, true);
+      setMeta('image', img, true); // schema.org image
+    }
     // canonical
     setLink('canonical', seo.canonical || window.location.origin + route.fullPath);
     
     // 动态生成 alternates
-    const pathWithoutLocale = route.path.replace(/^\/[^/]+/, '');
+    const pathWithoutLocale = route.path.replace(/^\/[a-z\-]+/, '');
     const alternates = {
       'en': `/en${pathWithoutLocale}`,
       'zh-tw': `/zh-tw${pathWithoutLocale}`

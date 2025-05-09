@@ -3,6 +3,8 @@ import vue from '@vitejs/plugin-vue'
 import { fileURLToPath, URL } from 'node:url'
 import fs from 'fs'
 import type { OutputAsset } from 'rollup'
+import path from 'path'
+import fsExtra from 'fs-extra'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -32,6 +34,17 @@ export default defineConfig({
         const fs = require('fs');
         if (fs.existsSync('site.webmanifest')) {
           fs.copyFileSync('site.webmanifest', 'dist/site.webmanifest');
+        }
+      }
+    },
+    {
+      name: 'copy-images',
+      closeBundle() {
+        // 拷贝 public/images 到 dist/images
+        const srcDir = path.resolve(__dirname, 'public/images');
+        const destDir = path.resolve(__dirname, 'dist/images');
+        if (fsExtra.existsSync(srcDir)) {
+          fsExtra.copySync(srcDir, destDir, { overwrite: true });
         }
       }
     }
