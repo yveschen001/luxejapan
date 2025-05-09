@@ -1,5 +1,5 @@
 <template>
-  <PageHero :title="$t('about.title')" bg="/images/about-bg.jpg" />
+  <PageHero :title="$t('about.title')" bg="about-bg.jpg" />
   <main id="main-content" tabindex="-1">
     <h1 class="visually-hidden">{{ $t('about.title') }}</h1>
     <p v-for="(p, i) in tm('about.story.paragraphs')" :key="'about-p'+i">
@@ -67,7 +67,7 @@ const contactPath = localePath('/contact');
 useSeo({
   title: 'about.title',
   description: 'about.philosophyDesc',
-  image: '/images/about-bg.jpg',
+  image: 'about-bg.jpg',
   canonical: window.location.origin + route.fullPath,
   alternates: {
     'zh-tw': `/zh-tw/about`,

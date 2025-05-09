@@ -14,7 +14,9 @@ const props = defineProps({
   title: { type: String, required: true },
   bg: { type: String, default: '' }
 });
-const bgUrl = props.bg ? `/luxejapan-public${props.bg}` : '/luxejapan-public/images/default-bg.jpg';
+const base = import.meta.env.BASE_URL;
+const bgFile = props.bg.replace(/^\/?images\//, '');
+const bgUrl = base + 'images/' + (bgFile || 'default-bg.jpg');
 const bgStyle = {
   backgroundImage: `url('${bgUrl}')`,
   backgroundSize: 'cover',

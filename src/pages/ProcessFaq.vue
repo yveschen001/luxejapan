@@ -1,5 +1,5 @@
 <template>
-  <PageHero :title="$t('processFaq.title')" bg="/images/process-faq-bg.jpg" />
+  <PageHero :title="$t('processFaq.title')" bg="process-faq-bg.jpg" />
   <SectionContainer>
     <h2>{{ $t('processFaq.title') }}</h2>
     <ol class="process-list">
@@ -61,7 +61,7 @@ const route = useRoute();
 useSeo({
   title: 'processFaq.title',
   description: 'processFaq.subtitle',
-  image: '/images/process-faq-bg.jpg',
+  image: 'process-faq-bg.jpg',
   canonical: window.location.origin + route.fullPath,
   alternates: {
     'zh-tw': `/zh-tw/process-faq`,

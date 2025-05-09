@@ -1,5 +1,5 @@
 <template>
-  <PageHero :title="$t('contact.title')" bg="/images/contact-bg.jpg" />
+  <PageHero :title="$t('contact.title')" bg="contact-bg.jpg" />
   <section class="contact-page">
     <SectionContainer>
       <SectionTitle>
@@ -46,7 +46,7 @@ const route = useRoute();
 useSeo({
   title: 'contact.title',
   description: 'contact.subtitle',
-  image: '/images/contact-bg.jpg',
+  image: 'contact-bg.jpg',
   canonical: window.location.origin + route.fullPath,
   alternates: {
     'zh-tw': `/zh-tw/contact`,
