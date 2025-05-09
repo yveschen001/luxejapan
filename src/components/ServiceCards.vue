@@ -46,21 +46,21 @@ onMounted(() => {
         "position": 1,
         "name": "到府溫柔慰藉",
         "description": "從 90 分鐘的初見 開始，彷彿一場甜蜜邂逅。伴遊佳人輕步上門，悄然出現在您指定的飯店或民宿。",
-        "image": "images/about-bg.jpg"
+        "image": "/images/about-bg.jpg"
       },
       {
         "@type": "Service",
         "position": 2,
         "name": "東京戀人漫遊",
         "description": "與心儀佳人約會於飯店樓下私廊餐廳，共赴一場美食與微醺的前奏。",
-        "image": "images/testimonials-bg.jpg"
+        "image": "/images/testimonials-bg.jpg"
       },
       {
         "@type": "Service",
         "position": 3,
         "name": "奢華私人會所夜宴",
         "description": "預約專屬於您的 頂級私人會所，沉浸於低調奢華的夜色之中。",
-        "image": "images/process-faq-bg.jpg"
+        "image": "/images/process-faq-bg.jpg"
       }
     ]
   };
