@@ -2,9 +2,9 @@ module.exports = {
   ci: {
     collect: {
       url: [
-        'http://localhost:4173/',
-        'http://localhost:4173/zh-tw/',
-        'http://localhost:4173/en/'
+        'http://localhost:4173/luxejapan-public/',
+        'http://localhost:4173/luxejapan-public/zh-tw/',
+        'http://localhost:4173/luxejapan-public/en/'
       ],
       startServerCommand: 'npm run preview',
       numberOfRuns: 1
