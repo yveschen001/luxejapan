@@ -1,0 +1,14 @@
+# 全局代码所有者
+* @yveschen001
+
+# 特定目录的所有者
+/src/ @yveschen001
+/public/ @yveschen001
+/.github/ @yveschen001
+
+# 配置文件所有者
+*.yml @yveschen001
+*.yaml @yveschen001
+*.json @yveschen001
+*.config.js @yveschen001
+*.config.ts @yveschen001 
