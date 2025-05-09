@@ -23,10 +23,12 @@ export function useLocalePath() {
   const switchLocalePath = (newLocale) => {
     const currentRoute = router.currentRoute.value;
     const { path } = currentRoute;
-    // 移除當前語言前綴
+    // 获取 base 路径
+    const base = import.meta.env.BASE_URL || '/';
+    // 移除当前语言前缀
     const pathWithoutLocale = path.replace(/^\/[^/]+/, '');
-    // 添加新語言前綴
-    return `/${newLocale}${pathWithoutLocale}`;
+    // 添加新语言前缀（加上 base）
+    return `${base}${newLocale}${pathWithoutLocale}`.replace(/\/+/g, '/');
   };
 
   return {
