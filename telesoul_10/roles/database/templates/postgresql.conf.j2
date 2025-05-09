@@ -1,0 +1,145 @@
+# TeleSoul PostgreSQL 配置
+# 最后更新: 2024-03-21
+
+# 连接设置
+listen_addresses = '*'
+port = {{ databases.postgresql.port | default(5432) }}
+max_connections = {{ databases.postgresql.max_connections | default(100) }}
+superuser_reserved_connections = 3
+
+# 内存设置
+shared_buffers = {{ databases.postgresql.shared_buffers | default('256MB') }}
+effective_cache_size = {{ databases.postgresql.effective_cache_size | default('768MB') }}
+work_mem = 4MB
+maintenance_work_mem = 64MB
+temp_buffers = 8MB
+wal_buffers = 16MB
+
+# 磁盘设置
+data_directory = '/var/lib/postgresql/{{ databases.postgresql.version }}/main'
+hba_file = '/etc/postgresql/{{ databases.postgresql.version }}/main/pg_hba.conf'
+ident_file = '/etc/postgresql/{{ databases.postgresql.version }}/main/pg_ident.conf'
+external_pid_file = '/var/run/postgresql/{{ databases.postgresql.version }}-main.pid'
+
+# WAL 设置
+wal_level = replica
+fsync = on
+synchronous_commit = on
+wal_sync_method = fsync
+full_page_writes = on
+wal_compression = on
+wal_buffers = -1
+wal_writer_delay = 200ms
+wal_writer_flush_after = 1MB
+
+# 检查点设置
+checkpoint_timeout = 5min
+max_wal_size = 1GB
+min_wal_size = 80MB
+checkpoint_completion_target = 0.9
+checkpoint_warning = 30s
+
+# 归档设置
+archive_mode = on
+archive_command = 'test ! -f /var/lib/postgresql/{{ databases.postgresql.version }}/archive/%f && cp %p /var/lib/postgresql/{{ databases.postgresql.version }}/archive/%f'
+archive_timeout = 60
+
+# 复制设置
+max_wal_senders = 10
+max_replication_slots = 10
+hot_standby = on
+hot_standby_feedback = on
+wal_keep_segments = 32
+
+# 查询优化器设置
+random_page_cost = 1.1
+effective_io_concurrency = 200
+default_statistics_target = 100
+constraint_exclusion = partition
+from_collapse_limit = 8
+join_collapse_limit = 8
+
+# 日志设置
+log_destination = 'stderr'
+logging_collector = on
+log_directory = 'log'
+log_filename = 'postgresql-%Y-%m-%d_%H%M%S.log'
+log_truncate_on_rotation = on
+log_rotation_age = 1d
+log_rotation_size = 100MB
+
+log_min_duration_statement = 1000
+log_checkpoints = on
+log_connections = on
+log_disconnections = on
+log_duration = off
+log_error_verbosity = default
+log_line_prefix = '%t [%p]: [%l-1] user=%u,db=%d,app=%a,client=%h '
+log_lock_waits = on
+log_statement = 'ddl'
+log_temp_files = 0
+
+# 统计信息设置
+track_activities = on
+track_counts = on
+track_io_timing = on
+track_functions = all
+track_activity_query_size = 2048
+
+# 自动清理设置
+autovacuum = on
+autovacuum_vacuum_scale_factor = 0.1
+autovacuum_analyze_scale_factor = 0.05
+autovacuum_vacuum_cost_delay = 20ms
+autovacuum_vacuum_cost_limit = 2000
+
+# 客户端连接设置
+client_min_messages = notice
+search_path = '"$user", public'
+row_security = on
+
+# SSL 设置
+ssl = on
+ssl_cert_file = '/etc/ssl/certs/ssl-cert-snakeoil.pem'
+ssl_key_file = '/etc/ssl/private/ssl-cert-snakeoil.key'
+
+# 区域设置
+datestyle = 'iso, mdy'
+timezone = 'Asia/Shanghai'
+lc_messages = 'en_US.UTF-8'
+lc_monetary = 'en_US.UTF-8'
+lc_numeric = 'en_US.UTF-8'
+lc_time = 'en_US.UTF-8'
+
+# 其他设置
+deadlock_timeout = 1s
+statement_timeout = 60000
+lock_timeout = 0
+idle_in_transaction_session_timeout = 60000
+vacuum_cost_delay = 0
+vacuum_cost_limit = 200
+bgwriter_delay = 200ms
+bgwriter_lru_maxpages = 100
+bgwriter_lru_multiplier = 2.0
+effective_cache_size = {{ databases.postgresql.effective_cache_size | default('768MB') }}
+random_page_cost = 1.1
+cpu_tuple_cost = 0.01
+cpu_index_tuple_cost = 0.005
+cpu_operator_cost = 0.0025
+parallel_tuple_cost = 0.1
+parallel_setup_cost = 1000.0
+min_parallel_table_scan_size = 8MB
+min_parallel_index_scan_size = 512kB
+effective_io_concurrency = 200
+max_worker_processes = 8
+max_parallel_workers_per_gather = 4
+max_parallel_workers = 8
+backend_flush_after = 0
+old_snapshot_threshold = -1
+vacuum_cleanup_index_scale_factor = 0.1
+log_timezone = 'Asia/Shanghai'
+track_commit_timestamp = off
+max_stack_depth = 2MB
+shared_preload_libraries = 'pg_stat_statements'
+pg_stat_statements.max = 10000
+pg_stat_statements.track = all 

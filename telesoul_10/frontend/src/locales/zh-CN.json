@@ -1,0 +1,75 @@
+{
+  "common.ok": "确定",
+  "common.cancel": "取消",
+  "common.confirm": "确认",
+  "home.title": "TeleSoul",
+  "home.subtitle": "找到你的灵魂伴侣，开启一段美好的旅程",
+  "home.start": "立即开始",
+  "home.login": "已有账号？登录 →",
+  "login.title": "登录",
+  "login.email": "邮箱地址",
+  "login.password": "密码",
+  "login.remember": "记住我",
+  "login.forgot": "忘记密码？",
+  "login.submit": "登录",
+  "login.loading": "登录中...",
+  "login.register": "立即注册",
+  "register.title": "注册",
+  "register.username": "用户名",
+  "register.email": "邮箱地址",
+  "register.password": "密码",
+  "register.confirmPassword": "确认密码",
+  "register.agree": "我已阅读并同意服务条款和隐私政策",
+  "register.submit": "注册",
+  "register.loading": "注册中...",
+  "register.login": "立即登录",
+  "match.title": "配对大厅",
+  "match.desc": "在这里你可以发起语音/视频配对，等待系统为你智能匹配合适的对象。",
+  "match.start": "开始匹配",
+  "profile.title": "个人中心",
+  "profile.desc": "管理你的个人信息、账号绑定、余额与历史记录。",
+  "profile.username": "用户名",
+  "profile.email": "邮箱",
+  "kyc.title": "身份验证（KYC）",
+  "kyc.desc": "为保障平台安全与合规，请完成身份验证。你的信息将严格保密，仅用于合规审核。",
+  "kyc.start": "开始 KYC 验证",
+  "withdraw.title": "USDT 提领",
+  "withdraw.desc": "你可以在此发起 USDT 提领申请，系统将自动或人工审核。",
+  "withdraw.start": "发起提领",
+  "admin.title": "后台管理",
+  "admin.desc": "管理用户、KYC、提领、报表等后台功能。",
+  "admin": {
+    "placeholder": "后台管理功能入口与数据占位"
+  },
+  "feature": {
+    "match": "智能匹配",
+    "matchDesc": "基于 AI 的智能匹配系统，为你找到最合适的灵魂伴侣",
+    "safe": "安全可靠",
+    "safeDesc": "严格的身份验证和隐私保护，让你的交友更安全",
+    "realtime": "实时互动",
+    "realtimeDesc": "流畅的实时聊天体验，让沟通更自然"
+  },
+  "notfound": {
+    "desc": "抱歉，您访问的页面不存在",
+    "backHome": "返回首页"
+  },
+  "components": {
+    "card": {
+      "title": "卡片标题",
+      "content": "卡片内容",
+      "footer": "卡片底部"
+    },
+    "modal": {
+      "title": "弹窗标题",
+      "content": "弹窗内容",
+      "close": "关闭"
+    }
+  },
+  "input": {
+    "placeholder": "请输入内容",
+    "error": "输入有误"
+  },
+  "avatar": {
+    "alt": "用户头像"
+  }
+} 

@@ -1,0 +1,50 @@
+# TeleSoul 系统限制配置
+# 最后更新: 2024-03-21
+
+# 系统全局限制
+* soft nofile 65535
+* hard nofile 65535
+* soft nproc 65535
+* hard nproc 65535
+* soft memlock unlimited
+* hard memlock unlimited
+* soft core unlimited
+* hard core unlimited
+
+# PostgreSQL 用户限制
+postgres soft nofile 65535
+postgres hard nofile 65535
+postgres soft nproc 65535
+postgres hard nproc 65535
+postgres soft memlock unlimited
+postgres hard memlock unlimited
+postgres soft core unlimited
+postgres hard core unlimited
+
+# Redis 用户限制
+redis soft nofile 65535
+redis hard nofile 65535
+redis soft nproc 65535
+redis hard nproc 65535
+
+# Elasticsearch 用户限制
+elasticsearch soft nofile 65535
+elasticsearch hard nofile 65535
+elasticsearch soft nproc 65535
+elasticsearch hard nproc 65535
+elasticsearch soft memlock unlimited
+elasticsearch hard memlock unlimited
+
+# 应用用户限制
+telesoul soft nofile 65535
+telesoul hard nofile 65535
+telesoul soft nproc 65535
+telesoul hard nproc 65535
+telesoul soft memlock unlimited
+telesoul hard memlock unlimited
+
+# 部署用户限制
+deploy soft nofile 65535
+deploy hard nofile 65535
+deploy soft nproc 65535
+deploy hard nproc 65535 

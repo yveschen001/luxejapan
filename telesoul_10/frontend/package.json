@@ -1,0 +1,35 @@
+{
+  "name": "telesoul-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:watch": "vitest watch",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
+  },
+  "dependencies": {
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.4",
+    "vue-i18n": "^9.2.2",
+    "pinia": "^2.1.6",
+    "@vueuse/core": "^10.3.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.2.3",
+    "@vue/test-utils": "^2.4.1",
+    "@vitest/coverage-v8": "^0.34.4",
+    "@vitest/ui": "^0.34.4",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.27",
+    "tailwindcss": "^3.3.3",
+    "typescript": "^5.1.6",
+    "vite": "^4.4.9",
+    "vitest": "^0.34.4",
+    "vue-tsc": "^1.8.8"
+  }
+}

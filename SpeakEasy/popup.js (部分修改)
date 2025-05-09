@@ -1,0 +1,50 @@
+// 发送消息到当前选项卡
+function sendMessageToActiveTab(message) {
+  chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+    if (!tabs[0]) {
+      console.error('找不到活动选项卡');
+      showStatus('无法找到当前网页', 'error');
+      return;
+    }
+    
+    // 判断是否是受限页面
+    const url = tabs[0].url || '';
+    if (url.startsWith('chrome://') || url.startsWith('chrome-extension://') || 
+        url.startsWith('about:') || url.startsWith('edge://')) {
+      console.error('无法在浏览器内部页面上运行');
+      showStatus('无法在浏览器内部页面上运行', 'error');
+      return;
+    }
+    
+    console.log('发送消息到标签页:', message);
+    
+    try {
+      chrome.tabs.sendMessage(tabs[0].id, message, (response) => {
+        if (chrome.runtime.lastError) {
+          console.log('直接发送消息失败，尝试通过background:', chrome.runtime.lastError.message);
+          
+          // 尝试经由background通信
+          chrome.runtime.sendMessage({
+            ...message,
+            target: 'background',
+            tabId: tabs[0].id
+          }, response => {
+            if (chrome.runtime.lastError) {
+              console.error('通过background发送消息失败:', chrome.runtime.lastError.message);
+              showStatus('无法与页面通信，请刷新页面后重试', 'error');
+            } else if (response && response.status) {
+              console.log('通过background发送成功，响应:', response);
+              handleResponse(response);
+            }
+          });
+        } else if (response && response.status) {
+          console.log('直接发送成功，响应:', response);
+          handleResponse(response);
+        }
+      });
+    } catch (error) {
+      console.error('发送消息时发生异常:', error);
+      showStatus('发送消息时出错', 'error');
+    }
+  });
+} 

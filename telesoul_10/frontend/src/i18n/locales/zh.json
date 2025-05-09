@@ -1,0 +1,87 @@
+{
+  "common": {
+    "appName": "TeleSoul",
+    "loading": "加载中...",
+    "error": "错误",
+    "success": "成功",
+    "cancel": "取消",
+    "confirm": "确认",
+    "save": "保存",
+    "delete": "删除",
+    "edit": "编辑",
+    "search": "搜索"
+  },
+  "auth": {
+    "login": "登录",
+    "register": "注册",
+    "logout": "退出登录",
+    "email": "邮箱",
+    "password": "密码",
+    "forgotPassword": "忘记密码？"
+  },
+  "user": {
+    "profile": "个人资料",
+    "settings": "设置",
+    "kyc": "身份验证",
+    "wallet": "钱包",
+    "history": "历史记录"
+  },
+  "match": {
+    "start": "开始匹配",
+    "stop": "停止匹配",
+    "status": "匹配状态",
+    "waiting": "等待匹配中...",
+    "matched": "已匹配",
+    "disconnected": "连接断开"
+  },
+  "payment": {
+    "balance": "余额",
+    "recharge": "充值",
+    "withdraw": "提现",
+    "history": "交易记录"
+  },
+  "home": {
+    "title": "TeleSoul",
+    "subtitle": "找到你的靈魂伴侶，開啟一段美好旅程",
+    "start": "立即開始",
+    "login": "已有帳號？登入 →",
+    "feature": {
+      "match": "智能配對",
+      "matchDesc": "一鍵進入語音/視頻配對，遇見有趣靈魂",
+      "safe": "安全合規",
+      "safeDesc": "KYC 實名、資金安全、數據加密保障",
+      "realtime": "即時互動",
+      "realtimeDesc": "毫秒級連線，流暢體驗"
+    }
+  },
+  "admin": {
+    "title": "後台管理",
+    "desc": "管理用戶、KYC、提領、報表等後台功能。",
+    "placeholder": "後台管理功能入口與數據佔位"
+  },
+  "kyc": {
+    "title": "身份驗證（KYC）",
+    "desc": "為保障平台安全與合規，請完成身份驗證。你的信息將嚴格保密，僅用於合規審核。",
+    "start": "開始 KYC 驗證"
+  },
+  "withdraw": {
+    "title": "USDT 提領",
+    "desc": "你可以在此發起 USDT 提領申請，系統將自動或人工審核。"
+  },
+  "profile": {
+    "title": "個人中心",
+    "desc": "管理你的個人信息、帳號綁定、餘額與歷史記錄。"
+  },
+  "match": {
+    "title": "配對大廳",
+    "desc": "在這裡你可以發起語音/視頻配對，等待系統為你智能匹配合適的對象。"
+  },
+  "login": {
+    "title": "登入",
+    "submit": "登入"
+  },
+  "register": {
+    "title": "註冊帳號",
+    "submit": "註冊"
+  }
+} 

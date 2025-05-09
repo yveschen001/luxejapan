@@ -1,0 +1,232 @@
+---
+# TeleSoul 生产环境配置
+# 版本: 1.0.0
+# 最后更新: 2024-03-21
+# 参考: ../docs/dev/ENVIRONMENT_VARIABLE_GUIDELINES.md
+
+# 环境配置
+env: production
+debug: false
+log_level: info
+
+# 服务配置
+services:
+  user:
+    replicas: 3
+    resources:
+      requests:
+        cpu: 500m
+        memory: 512Mi
+      limits:
+        cpu: 1000m
+        memory: 1Gi
+
+  match:
+    replicas: 3
+    resources:
+      requests:
+        cpu: 500m
+        memory: 512Mi
+      limits:
+        cpu: 1000m
+        memory: 1Gi
+
+  payment:
+    replicas: 3
+    resources:
+      requests:
+        cpu: 500m
+        memory: 512Mi
+      limits:
+        cpu: 1000m
+        memory: 1Gi
+
+  kyc:
+    replicas: 3
+    resources:
+      requests:
+        cpu: 500m
+        memory: 512Mi
+      limits:
+        cpu: 1000m
+        memory: 1Gi
+
+# 数据库配置
+databases:
+  postgresql:
+    host: ${DB_HOST}
+    name: ${DB_NAME}
+    user: ${DB_USER}
+    password: ${DB_PASS}
+    max_connections: 200
+    shared_buffers: 2GB
+    effective_cache_size: 6GB
+  redis:
+    host: ${REDIS_HOST}
+    maxmemory: 4gb
+    maxmemory_policy: allkeys-lru
+
+# 监控配置
+monitoring:
+  prometheus:
+    retention_time: 30d
+  grafana:
+    admin_password: ${GRAFANA_ADMIN_PASSWORD}
+  elk:
+    elasticsearch:
+      heap_size: 4g
+    logstash:
+      workers: 4
+    kibana:
+      port: ${KIBANA_PORT:-5601}
+
+# 安全配置
+security:
+  ssl:
+    enabled: true
+  firewall:
+    enabled: true
+  fail2ban:
+    enabled: true
+  jwt:
+    secret: ${JWT_SECRET}
+    expiration: ${JWT_EXPIRES_IN:-24h}
+  cors:
+    origins:
+      - ${CORS_ORIGIN}
+  rate_limit:
+    window: 15m
+    max_requests: 1000
+
+# 备份配置
+backup:
+  enabled: true
+  schedule: "0 2 * * *"
+  retention: 30
+  type: full
+  compression: true
+  encryption: true
+
+# 通知配置
+notifications:
+  email:
+    enabled: true
+    smtp_host: ${SMTP_HOST}
+    smtp_port: ${SMTP_PORT:-587}
+    smtp_user: ${SMTP_USER}
+    smtp_pass: ${SMTP_PASS}
+    from: ${MAIL_FROM}
+    to: ${MAIL_TO}
+  slack:
+    enabled: true
+    webhook_url: ${SLACK_WEBHOOK_URL}
+    channel: "#prod-alerts"
+  webhook:
+    enabled: true
+    url: ${WEBHOOK_URL}
+    secret: ${WEBHOOK_SECRET}
+
+# 维护配置
+maintenance:
+  enabled: false
+  message: "系统维护中，请稍后再试"
+  allowed_ips:
+    - ${MAINTENANCE_ALLOWED_IPS}
+
+# 灾难恢复配置
+disaster_recovery:
+  enabled: true
+  backup:
+    type: full
+    schedule: "0 2 * * *"
+    retention: 30
+    location: ${BACKUP_LOCATION}
+  restore:
+    timeout: 1800
+    verification: true
+  failover:
+    automatic: true
+    timeout: 300
+    verification: true
+  testing:
+    schedule: "0 0 1 * *"
+    type: full
+    timeout: 3600
+    verification: true
+
+# 合规配置
+compliance:
+  data_retention:
+    enabled: true
+    period: 365
+    type: all
+  audit:
+    enabled: true
+    level: detailed
+    retention: 365
+  privacy:
+    enabled: true
+    gdpr: true
+    ccpa: true
+  security:
+    enabled: true
+    scanning:
+      schedule: "0 0 * * 0"
+      type: full
+    patching:
+      schedule: "0 0 * * 0"
+      type: all
+    monitoring:
+      enabled: true
+      level: detailed
+
+# 性能配置
+performance:
+  nginx:
+    worker_processes: auto
+    worker_connections: 1024
+    keepalive_timeout: 65
+    client_max_body_size: 10M
+  php:
+    memory_limit: 256M
+    max_execution_time: 30
+    upload_max_filesize: 10M
+    post_max_size: 10M
+  node:
+    max_old_space_size: 2048
+    max_semi_space_size: 64
+    max_executable_size: 512
+
+# 部署配置
+deployment:
+  strategy: rolling
+  max_parallel: 2
+  rollback: true
+  health_check:
+    interval: 30s
+    timeout: 10s
+    retries: 3
+    start_period: 60s
+  resources:
+    requests:
+      cpu: 500m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 1Gi
+
+# 日志配置
+logging:
+  level: info
+  retention: 30d
+  elk:
+    index_prefix: telesoul-prod
+
+# CI/CD 配置
+cicd:
+  docker_registry: ${DOCKER_REGISTRY}
+  image_prefix: ${IMAGE_PREFIX}
+  namespace: ${K8S_NAMESPACE}
+  deployment_strategy: rolling
+  rollback_enabled: true
+  health_check_timeout: 180s 

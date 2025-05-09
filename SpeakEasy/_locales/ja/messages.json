@@ -1,0 +1,53 @@
+{
+  "extension_name": {
+    "message": "SpeakEasy - Web Reader"
+  },
+  "extension_description": {
+    "message": "SpeakEasy - Web Reader で簡単ウェブ読み上げ。多言語対応、スマート段落検出機能付き"
+  },
+  "welcome_title": {
+    "message": "SpeakEasy - Web Reader へようこそ"
+  },
+  "step1_title": {
+    "message": "OpenAI API Keyの取得"
+  },
+  "step1_desc": {
+    "message": "OpenAIウェブサイトでAPI Keyを取得してください："
+  },
+  "step2_title": {
+    "message": "基本設定"
+  },
+  "apikey_label": {
+    "message": "API Key:"
+  },
+  "voice_label": {
+    "message": "音声タイプの選択："
+  },
+  "notice_title": {
+    "message": "注意事項："
+  },
+  "notice_1": {
+    "message": "OpenAI TTSサービスは有料です"
+  },
+  "notice_2": {
+    "message": "API Keyは安全に保管してください"
+  },
+  "notice_3": {
+    "message": "長文は分割して処理することをお勧めします"
+  },
+  "save_button": {
+    "message": "設定を完了"
+  },
+  "settings_saved": {
+    "message": "設定を保存しました"
+  },
+  "error_no_api_key": {
+    "message": "API Keyを入力してください"
+  },
+  "context_menu_read": {
+    "message": "選択したテキストを読み上げ"
+  },
+  "guide_select_text": {
+    "message": "テキストを選択し、右クリックして\\\"選択テキストを読み上げ\\\"を選択します。"
+  }
+} 

@@ -1,0 +1,74 @@
+---
+all:
+  hosts:
+    localhost:
+      ansible_connection: local
+      ansible_python_interpreter: /usr/bin/python3
+      ansible_become: false
+
+  vars:
+    http_port: 80
+    https_port: 443
+    max_clients: 200
+    prometheus_port: 9090
+    grafana_port: 3000
+    alertmanager_port: 9093
+
+  children:
+    local:
+      hosts:
+        localhost:
+          ansible_connection: local
+          ansible_python_interpreter: /usr/bin/python3
+          ansible_become: true
+          ansible_become_method: sudo
+          ansible_become_user: root
+          ansible_become_ask_pass: true
+    
+    development:
+      hosts:
+        dev:
+          ansible_host: dev.telesoul.com
+    
+    staging:
+      hosts:
+        staging:
+          ansible_host: staging.telesoul.com
+    
+    production:
+      hosts:
+        prod:
+          ansible_host: prod.telesoul.com
+    
+    webservers:
+      children:
+        development: {}
+        staging: {}
+        production: {}
+      vars:
+        http_port: 80
+        https_port: 443
+        max_clients: 200
+    
+    dbservers:
+      children:
+        development: {}
+        staging: {}
+        production: {}
+    
+    monitoring:
+      children:
+        development: {}
+        staging: {}
+        production: {}
+      vars:
+        prometheus_port: 9090
+        grafana_port: 3000
+        alertmanager_port: 9093
+
+databases:
+  vars:
+    db_port: 5432
+    db_name: telesoul
+    db_user: telesoul
+    db_password: telesoul 

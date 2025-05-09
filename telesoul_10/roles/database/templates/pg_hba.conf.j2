@@ -1,0 +1,33 @@
+# TeleSoul PostgreSQL 访问控制配置
+# 最后更新: 2024-03-21
+
+# 数据库管理员连接
+local   all             postgres                                peer
+
+# 本地连接
+local   all             all                                     peer
+host    all             all             127.0.0.1/32           scram-sha-256
+host    all             all             ::1/128                scram-sha-256
+
+# 应用连接
+host    {{ databases.postgresql.name }}    {{ databases.postgresql.user }}    {{ databases.postgresql.host | default('localhost') }}/32    scram-sha-256
+
+# 复制连接
+{% if databases.postgresql.replication_enabled | default(false) %}
+host    replication     {{ databases.postgresql.replication_user }}    {{ databases.postgresql.replication_host }}/32    scram-sha-256
+{% endif %}
+
+# 监控连接
+{% if monitoring.enabled | default(false) %}
+host    all            prometheus        127.0.0.1/32           scram-sha-256
+{% endif %}
+
+# 允许的网络
+{% for network in databases.postgresql.allowed_networks | default([]) %}
+host    all            all              {{ network }}          scram-sha-256
+{% endfor %}
+
+# 拒绝的网络
+{% for network in databases.postgresql.denied_networks | default([]) %}
+host    all            all              {{ network }}          reject
+{% endfor %} 

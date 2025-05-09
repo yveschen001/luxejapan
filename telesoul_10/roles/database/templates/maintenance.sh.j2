@@ -1,0 +1,129 @@
+#!/bin/bash
+# TeleSoul 数据库维护脚本
+# 最后更新: 2024-03-21
+
+# 设置环境变量
+export PGHOST="{{ databases.postgresql.host | default('localhost') }}"
+export PGPORT="{{ databases.postgresql.port | default(5432) }}"
+export PGUSER="{{ databases.postgresql.user }}"
+export PGPASSWORD="{{ databases.postgresql.password }}"
+export PGDATABASE="{{ databases.postgresql.name }}"
+
+# 设置日志文件
+LOG_FILE="/var/log/telesoul/db_maintenance.log"
+
+# 日志函数
+log() {
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" | tee -a "$LOG_FILE"
+}
+
+# 错误处理
+handle_error() {
+    log "错误: $1"
+    exit 1
+}
+
+# PostgreSQL 维护
+postgresql_maintenance() {
+    log "开始 PostgreSQL 维护..."
+    
+    # 执行 VACUUM ANALYZE
+    log "执行 VACUUM ANALYZE..."
+    psql -c "VACUUM ANALYZE;" || handle_error "VACUUM ANALYZE 失败"
+    
+    # 更新统计信息
+    log "更新统计信息..."
+    psql -c "ANALYZE VERBOSE;" || handle_error "统计信息更新失败"
+    
+    # 重建索引
+    log "重建索引..."
+    psql -t -c "SELECT 'REINDEX INDEX ' || schemaname || '.' || indexname || ';' FROM pg_indexes WHERE schemaname NOT IN ('pg_catalog', 'information_schema');" | psql || handle_error "索引重建失败"
+    
+    # 检查表膨胀
+    log "检查表膨胀..."
+    psql -f /usr/local/bin/check_bloat.sql || handle_error "表膨胀检查失败"
+    
+    # 检查长时间运行的查询
+    log "检查长时间运行的查询..."
+    psql -c "SELECT pid, now() - pg_stat_activity.query_start AS duration, query FROM pg_stat_activity WHERE state = 'active' AND now() - pg_stat_activity.query_start > interval '5 minutes';" || handle_error "查询检查失败"
+    
+    log "PostgreSQL 维护完成"
+}
+
+# Redis 维护
+redis_maintenance() {
+    log "开始 Redis 维护..."
+    
+    # 检查内存使用情况
+    log "检查内存使用情况..."
+    redis-cli -h {{ databases.redis.host | default('localhost') }} \
+              -p {{ databases.redis.port | default(6379) }} \
+              {% if databases.redis.password is defined %}-a {{ databases.redis.password }}{% endif %} \
+              INFO memory || handle_error "内存检查失败"
+    
+    # 清理过期键
+    log "清理过期键..."
+    redis-cli -h {{ databases.redis.host | default('localhost') }} \
+              -p {{ databases.redis.port | default(6379) }} \
+              {% if databases.redis.password is defined %}-a {{ databases.redis.password }}{% endif %} \
+              --scan --pattern '*' | xargs -L 100 redis-cli -h {{ databases.redis.host | default('localhost') }} \
+              -p {{ databases.redis.port | default(6379) }} \
+              {% if databases.redis.password is defined %}-a {{ databases.redis.password }}{% endif %} \
+              TTL | awk '{if($2==-1){print $1}}' | xargs -L 100 redis-cli -h {{ databases.redis.host | default('localhost') }} \
+              -p {{ databases.redis.port | default(6379) }} \
+              {% if databases.redis.password is defined %}-a {{ databases.redis.password }}{% endif %} \
+              DEL || handle_error "过期键清理失败"
+    
+    log "Redis 维护完成"
+}
+
+# 性能监控
+performance_monitoring() {
+    log "开始性能监控..."
+    
+    # PostgreSQL 性能监控
+    log "PostgreSQL 性能监控..."
+    psql -c "SELECT * FROM pg_stat_statements ORDER BY total_time DESC LIMIT 10;" || handle_error "性能监控失败"
+    
+    # Redis 性能监控
+    log "Redis 性能监控..."
+    redis-cli -h {{ databases.redis.host | default('localhost') }} \
+              -p {{ databases.redis.port | default(6379) }} \
+              {% if databases.redis.password is defined %}-a {{ databases.redis.password }}{% endif %} \
+              --latency-history || handle_error "延迟监控失败"
+    
+    log "性能监控完成"
+}
+
+# 发送通知
+send_notification() {
+    if [ "{{ notifications.enabled | default('false') }}" = "true" ]; then
+        log "发送维护完成通知..."
+        {% if notifications.slack.enabled | default('false') %}
+        curl -X POST -H 'Content-type: application/json' \
+            --data "{\"text\":\"数据库维护完成: $(date '+%Y-%m-%d %H:%M:%S')\"}" \
+            {{ notifications.slack.webhook_url }}
+        {% endif %}
+        log "通知发送完成"
+    fi
+}
+
+# 主函数
+main() {
+    log "开始数据库维护..."
+    
+    # 执行维护任务
+    postgresql_maintenance
+    redis_maintenance
+    
+    # 执行性能监控
+    performance_monitoring
+    
+    # 发送通知
+    send_notification
+    
+    log "数据库维护完成"
+}
+
+# 执行主函数
+main 

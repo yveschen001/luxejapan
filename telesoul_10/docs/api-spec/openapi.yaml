@@ -1,0 +1,166 @@
+openapi: 3.0.0
+info:
+  title: TeleSoul API
+  version: 1.0.0
+  description: TeleSoul 音视频匹配平台 API 文档
+
+servers:
+  - url: http://localhost:3000
+    description: 开发环境
+  - url: https://api.telesoul.com
+    description: 生产环境
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+        gender:
+          type: string
+          enum: [male, female, other]
+        age:
+          type: integer
+          minimum: 18
+          maximum: 100
+        createdAt:
+          type: string
+          format: date-time
+
+    Match:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        userId:
+          type: string
+          format: uuid
+        targetGender:
+          type: string
+          enum: [male, female, other]
+        targetAgeRange:
+          type: array
+          items:
+            type: integer
+          minItems: 2
+          maxItems: 2
+        status:
+          type: string
+          enum: [PENDING, MATCHED, COMPLETED, CANCELLED]
+        createdAt:
+          type: string
+          format: date-time
+
+    Payment:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        userId:
+          type: string
+          format: uuid
+        amount:
+          type: number
+          format: float
+        currency:
+          type: string
+          enum: [USDT]
+        status:
+          type: string
+          enum: [PENDING, COMPLETED, FAILED]
+        createdAt:
+          type: string
+          format: date-time
+
+paths:
+  /api/users:
+    post:
+      summary: 创建用户
+      tags: [Users]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: 用户创建成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+
+  /api/matches:
+    post:
+      summary: 创建匹配
+      tags: [Matches]
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Match'
+      responses:
+        '201':
+          description: 匹配创建成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Match'
+
+  /api/payments:
+    post:
+      summary: 创建支付
+      tags: [Payments]
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Payment'
+      responses:
+        '201':
+          description: 支付创建成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payment'
+
+  /api/health:
+    get:
+      summary: 健康检查
+      tags: [System]
+      responses:
+        '200':
+          description: 服务健康
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: [ok]
+                  timestamp:
+                    type: string
+                    format: date-time 

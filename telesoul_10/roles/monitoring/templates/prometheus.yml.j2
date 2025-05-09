@@ -1,0 +1,126 @@
+# TeleSoul Prometheus 配置
+# 最后更新: 2024-03-21
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  scrape_timeout: 10s
+
+  external_labels:
+    monitor: 'telesoul'
+    environment: '{{ env }}'
+
+# Alertmanager 配置
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+            - 'localhost:{{ monitoring.alertmanager.port }}'
+
+# 规则文件配置
+rule_files:
+  - '/etc/prometheus/rules/*.yml'
+
+# 抓取配置
+scrape_configs:
+  # Prometheus 自身监控
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:{{ monitoring.prometheus.port }}']
+
+  # Node Exporter 监控
+  - job_name: 'node'
+    static_configs:
+      - targets:
+        {% for host in groups['all'] %}
+        - '{{ hostvars[host].ansible_host }}:{{ monitoring.node_exporter.port }}'
+        {% endfor %}
+
+  # PostgreSQL 监控
+  - job_name: 'postgresql'
+    static_configs:
+      - targets:
+        {% for host in groups['dbservers'] %}
+        - '{{ hostvars[host].ansible_host }}:9187'
+        {% endfor %}
+
+  # Redis 监控
+  - job_name: 'redis'
+    static_configs:
+      - targets:
+        {% for host in groups['dbservers'] %}
+        - '{{ hostvars[host].ansible_host }}:9121'
+        {% endfor %}
+
+  # 应用服务监控
+  - job_name: 'telesoul-services'
+    metrics_path: '/metrics'
+    static_configs:
+      - targets:
+        {% for service in services %}
+        - 'localhost:{{ service.port }}'
+        {% endfor %}
+
+  # Nginx 监控
+  - job_name: 'nginx'
+    static_configs:
+      - targets:
+        {% for host in groups['webservers'] %}
+        - '{{ hostvars[host].ansible_host }}:9113'
+        {% endfor %}
+
+  # Elasticsearch 监控
+  - job_name: 'elasticsearch'
+    metrics_path: '/_prometheus/metrics'
+    static_configs:
+      - targets:
+        {% for host in groups['monitoring'] %}
+        - '{{ hostvars[host].ansible_host }}:9114'
+        {% endfor %}
+
+  # Logstash 监控
+  - job_name: 'logstash'
+    static_configs:
+      - targets:
+        {% for host in groups['monitoring'] %}
+        - '{{ hostvars[host].ansible_host }}:9304'
+        {% endfor %}
+
+  # Kibana 监控
+  - job_name: 'kibana'
+    static_configs:
+      - targets:
+        {% for host in groups['monitoring'] %}
+        - '{{ hostvars[host].ansible_host }}:5601'
+        {% endfor %}
+
+  # Jaeger 监控
+  - job_name: 'jaeger'
+    static_configs:
+      - targets:
+        {% for host in groups['monitoring'] %}
+        - '{{ hostvars[host].ansible_host }}:14269'
+        {% endfor %}
+
+# 远程写入配置
+{% if monitoring.remote_write is defined %}
+remote_write:
+  - url: '{{ monitoring.remote_write.url }}'
+    basic_auth:
+      username: '{{ monitoring.remote_write.username }}'
+      password: '{{ monitoring.remote_write.password }}'
+    write_relabel_configs:
+      - source_labels: [__name__]
+        regex: '^(go_|process_|promhttp_).*'
+        action: drop
+{% endif %}
+
+# 远程读取配置
+{% if monitoring.remote_read is defined %}
+remote_read:
+  - url: '{{ monitoring.remote_read.url }}'
+    basic_auth:
+      username: '{{ monitoring.remote_read.username }}'
+      password: '{{ monitoring.remote_read.password }}'
+    read_recent: true
+{% endif %} 

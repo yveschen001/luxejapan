@@ -1,0 +1,50 @@
+{
+  "extension_name": {
+    "message": "SpeakEasy - Web Reader"
+  },
+  "extension_description": {
+    "message": "Vereinfachen Sie das Lesen im Web mit mehrsprachiger Unterstützung, intelligenter Absatzerkennung und anpassbarem Player"
+  },
+  "welcome_title": {
+    "message": "Willkommen beim Web Vorleseassistent"
+  },
+  "step1_title": {
+    "message": "OpenAI API-Schlüssel erhalten"
+  },
+  "step1_desc": {
+    "message": "Bitte besuchen Sie die OpenAI-Website, um Ihren API-Schlüssel zu erhalten:"
+  },
+  "step2_title": {
+    "message": "Grundeinstellungen"
+  },
+  "apikey_label": {
+    "message": "API-Schlüssel:"
+  },
+  "voice_label": {
+    "message": "Stimmtyp auswählen:"
+  },
+  "notice_title": {
+    "message": "Wichtige Hinweise:"
+  },
+  "notice_1": {
+    "message": "Die Nutzung des OpenAI TTS-Dienstes ist kostenpflichtig"
+  },
+  "notice_2": {
+    "message": "Bewahren Sie Ihren API-Schlüssel sicher auf"
+  },
+  "notice_3": {
+    "message": "Teilen Sie lange Texte auf, um Limits zu vermeiden"
+  },
+  "save_button": {
+    "message": "Einrichtung abschließen"
+  },
+  "settings_saved": {
+    "message": "Einstellungen gespeichert"
+  },
+  "error_no_api_key": {
+    "message": "Bitte geben Sie den API-Schlüssel ein"
+  },
+  "context_menu_read": {
+    "message": "Ausgewählten Text vorlesen"
+  }
+} 

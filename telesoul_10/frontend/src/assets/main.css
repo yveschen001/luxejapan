@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: 75, 0, 130;
+    --color-primary-hover: 91, 26, 146;
+    --color-primary-light: 147, 112, 219;
+  }
+
+  body {
+    @apply bg-white text-gray-900 dark:bg-gray-900 dark:text-white;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer components {
+  .telesoul-container {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .telesoul-card {
+    @apply rounded-lg bg-white p-6 shadow-lg dark:bg-gray-800;
+  }
+
+  .telesoul-input {
+    @apply rounded-md border border-gray-300 px-4 py-2 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 dark:border-gray-600 dark:bg-gray-700;
+  }
+
+  .telesoul-label {
+    @apply mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300;
+  }
+} 

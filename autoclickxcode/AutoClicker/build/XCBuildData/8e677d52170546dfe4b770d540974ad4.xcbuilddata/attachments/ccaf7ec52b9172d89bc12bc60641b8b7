@@ -1,0 +1,28 @@
+{
+  "" : {
+    "diagnostics" : "/Users/yichen/Downloads/cursor/autoclickxcode/AutoClicker/build/AutoClicker.build/Debug/AutoClickerTests.build/Objects-normal/arm64/AutoClickerTests-master.dia",
+    "emit-module-dependencies" : "/Users/yichen/Downloads/cursor/autoclickxcode/AutoClicker/build/AutoClicker.build/Debug/AutoClickerTests.build/Objects-normal/arm64/AutoClickerTests-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/yichen/Downloads/cursor/autoclickxcode/AutoClicker/build/AutoClicker.build/Debug/AutoClickerTests.build/Objects-normal/arm64/AutoClickerTests-master-emit-module.dia",
+    "swift-dependencies" : "/Users/yichen/Downloads/cursor/autoclickxcode/AutoClicker/build/AutoClicker.build/Debug/AutoClickerTests.build/Objects-normal/arm64/AutoClickerTests-master.swiftdeps"
+  },
+  "/Users/yichen/Downloads/cursor/autoclickxcode/AutoClicker/AutoClickerTests/MainViewModelTests.swift" : {
+    "const-values" : "/Users/yichen/Downloads/cursor/autoclickxcode/AutoClicker/build/AutoClicker.build/Debug/AutoClickerTests.build/Objects-normal/arm64/MainViewModelTests.swiftconstvalues",
+    "dependencies" : "/Users/yichen/Downloads/cursor/autoclickxcode/AutoClicker/build/AutoClicker.build/Debug/AutoClickerTests.build/Objects-normal/arm64/MainViewModelTests.d",
+    "diagnostics" : "/Users/yichen/Downloads/cursor/autoclickxcode/AutoClicker/build/AutoClicker.build/Debug/AutoClickerTests.build/Objects-normal/arm64/MainViewModelTests.dia",
+    "index-unit-output-path" : "/AutoClicker.build/Debug/AutoClickerTests.build/Objects-normal/arm64/MainViewModelTests.o",
+    "llvm-bc" : "/Users/yichen/Downloads/cursor/autoclickxcode/AutoClicker/build/AutoClicker.build/Debug/AutoClickerTests.build/Objects-normal/arm64/MainViewModelTests.bc",
+    "object" : "/Users/yichen/Downloads/cursor/autoclickxcode/AutoClicker/build/AutoClicker.build/Debug/AutoClickerTests.build/Objects-normal/arm64/MainViewModelTests.o",
+    "swift-dependencies" : "/Users/yichen/Downloads/cursor/autoclickxcode/AutoClicker/build/AutoClicker.build/Debug/AutoClickerTests.build/Objects-normal/arm64/MainViewModelTests.swiftdeps",
+    "swiftmodule" : "/Users/yichen/Downloads/cursor/autoclickxcode/AutoClicker/build/AutoClicker.build/Debug/AutoClickerTests.build/Objects-normal/arm64/MainViewModelTests~partial.swiftmodule"
+  },
+  "/Users/yichen/Downloads/cursor/autoclickxcode/AutoClicker/AutoClickerTests/ScriptEngineTests.swift" : {
+    "const-values" : "/Users/yichen/Downloads/cursor/autoclickxcode/AutoClicker/build/AutoClicker.build/Debug/AutoClickerTests.build/Objects-normal/arm64/ScriptEngineTests.swiftconstvalues",
+    "dependencies" : "/Users/yichen/Downloads/cursor/autoclickxcode/AutoClicker/build/AutoClicker.build/Debug/AutoClickerTests.build/Objects-normal/arm64/ScriptEngineTests.d",
+    "diagnostics" : "/Users/yichen/Downloads/cursor/autoclickxcode/AutoClicker/build/AutoClicker.build/Debug/AutoClickerTests.build/Objects-normal/arm64/ScriptEngineTests.dia",
+    "index-unit-output-path" : "/AutoClicker.build/Debug/AutoClickerTests.build/Objects-normal/arm64/ScriptEngineTests.o",
+    "llvm-bc" : "/Users/yichen/Downloads/cursor/autoclickxcode/AutoClicker/build/AutoClicker.build/Debug/AutoClickerTests.build/Objects-normal/arm64/ScriptEngineTests.bc",
+    "object" : "/Users/yichen/Downloads/cursor/autoclickxcode/AutoClicker/build/AutoClicker.build/Debug/AutoClickerTests.build/Objects-normal/arm64/ScriptEngineTests.o",
+    "swift-dependencies" : "/Users/yichen/Downloads/cursor/autoclickxcode/AutoClicker/build/AutoClicker.build/Debug/AutoClickerTests.build/Objects-normal/arm64/ScriptEngineTests.swiftdeps",
+    "swiftmodule" : "/Users/yichen/Downloads/cursor/autoclickxcode/AutoClicker/build/AutoClicker.build/Debug/AutoClickerTests.build/Objects-normal/arm64/ScriptEngineTests~partial.swiftmodule"
+  }
+}

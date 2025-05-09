@@ -1,0 +1,92 @@
+{
+  "home": {
+    "welcome": "歡迎來到 TeleSoul 音視頻社交平台",
+    "title": "TeleSoul",
+    "subtitle": "找到你的靈魂伴侶，開啟一段美好的旅程",
+    "start": "立即開始",
+    "login": "已有帳號？登入 →"
+  },
+  "login": {
+    "title": "登入",
+    "email": "電子郵件地址",
+    "password": "密碼",
+    "remember": "記住我",
+    "forgot": "忘記密碼？",
+    "submit": "登入",
+    "loading": "登入中...",
+    "register": "立即註冊"
+  },
+  "match": {
+    "title": "配對大廳",
+    "desc": "在這裡你可以發起語音/視頻配對，等待系統為你智能配對合適的對象。",
+    "start": "開始配對"
+  },
+  "profile": {
+    "title": "個人中心",
+    "desc": "管理你的個人資訊、帳號綁定、餘額與歷史記錄.",
+    "username": "用戶名",
+    "email": "電子郵件"
+  },
+  "kyc": {
+    "title": "身份驗證（KYC）",
+    "desc": "為保障平台安全與合規，請完成身份驗證。你的資訊將嚴格保密，僅用於合規審核.",
+    "start": "開始 KYC 驗證"
+  },
+  "withdraw": {
+    "title": "USDT 提領",
+    "desc": "你可以在此發起 USDT 提領申請，系統將自動或人工審核.",
+    "start": "發起提領"
+  },
+  "admin": {
+    "title": "後台管理",
+    "desc": "管理用戶、KYC、提領、報表等後台功能.",
+    "placeholder": "後台管理功能入口與數據占位"
+  },
+  "common": {
+    "ok": "確定",
+    "cancel": "取消",
+    "confirm": "確認"
+  },
+  "register": {
+    "title": "註冊",
+    "username": "用戶名",
+    "email": "電子郵件地址",
+    "password": "密碼",
+    "confirmPassword": "確認密碼",
+    "agree": "我已閱讀並同意服務條款和隱私政策",
+    "submit": "註冊",
+    "loading": "註冊中...",
+    "login": "立即登入"
+  },
+  "feature": {
+    "match": "智能匹配",
+    "matchDesc": "基於 AI 的智能匹配系統，為你找到最合適的靈魂伴侶",
+    "safe": "安全可靠",
+    "safeDesc": "嚴格的身份驗證和隱私保護，讓你的交友更安全",
+    "realtime": "即時互動",
+    "realtimeDesc": "流暢的即時聊天體驗，讓溝通更自然"
+  },
+  "notfound": {
+    "desc": "抱歉，您訪問的頁面不存在",
+    "backHome": "返回首頁"
+  },
+  "components": {
+    "card": {
+      "title": "卡片標題",
+      "content": "卡片內容",
+      "footer": "卡片底部"
+    },
+    "modal": {
+      "title": "彈窗標題",
+      "content": "彈窗內容",
+      "close": "關閉"
+    }
+  },
+  "input": {
+    "placeholder": "請輸入內容",
+    "error": "輸入有誤"
+  },
+  "avatar": {
+    "alt": "用戶頭像"
+  }
+} 

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>SpeakEasy - Web Reader</title>
+  <style>
+    body {
+      width: 300px;
+      padding: 15px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #333;
+      background-color: #f8f9fa;
+      margin: 0;
+    }
+    
+    h1 {
+      font-size: 18px;
+      margin: 0 0 15px 0;
+      color: #1a73e8;
+      text-align: center;
+    }
+    
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+    
+    button {
+      background-color: #1a73e8;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 15px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      flex: 1;
+      margin: 0 5px;
+    }
+    
+    button:hover {
+      background-color: #1765cc;
+    }
+    
+    button:active {
+      background-color: #155db5;
+    }
+    
+    .settings-section {
+      background-color: white;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 15px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    
+    .setting-item {
+      margin-bottom: 12px;
+    }
+    
+    .setting-item:last-child {
+      margin-bottom: 0;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+      font-size: 14px;
+    }
+    
+    select, input[type="range"] {
+      width: 100%;
+      padding: 6px;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+      box-sizing: border-box;
+    }
+    
+    input[type="range"] {
+      padding: 0;
+      border: none;
+    }
+    
+    .range-value {
+      float: right;
+      font-size: 12px;
+      color: #666;
+    }
+    
+    .help-link {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 13px;
+    }
+    
+    .help-link a {
+      color: #1a73e8;
+      text-decoration: none;
+    }
+    
+    .help-link a:hover {
+      text-decoration: underline;
+    }
+    
+    .status {
+      background-color: #e6f4ea;
+      color: #137333;
+      padding: 8px;
+      border-radius: 4px;
+      margin-top: 10px;
+      font-size: 13px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1 data-i18n="extension_name">SpeakEasy - Web Reader</h1>
+  
+  <div class="button-group">
+    <button id="readPage" data-i18n="read_page">朗读页面</button>
+    <button id="stopReading" data-i18n="stop_reading">停止朗读</button>
+  </div>
+  
+  <div class="settings-section">
+    <div class="setting-item">
+      <label data-i18n="voice_label">声音:</label>
+      <select id="voice">
+        <option value="" disabled selected data-i18n="loading_voices">加载中...</option>
+      </select>
+    </div>
+    
+    <div class="setting-item">
+      <label>
+        <span data-i18n="speed_label">语速:</span>
+        <span class="range-value" id="speedValue">1.0</span>
+      </label>
+      <input type="range" id="speed" min="0.5" max="2" step="0.1" value="1">
+    </div>
+    
+    <div class="setting-item">
+      <label>
+        <span data-i18n="volume_label">音量:</span>
+        <span class="range-value" id="volumeValue">1.0</span>
+      </label>
+      <input type="range" id="volume" min="0" max="1" step="0.1" value="1">
+    </div>
+  </div>
+  
+  <div class="status" id="status"></div>
+  
+  <div class="help-link">
+    <a href="#" id="openHelp" data-i18n="open_help">查看使用说明</a>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html> 

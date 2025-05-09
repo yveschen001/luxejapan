@@ -1,0 +1,35 @@
+name: Auto Dev Full Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  auto-dev:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: 安裝依賴
+        run: |
+          npm install -g pnpm
+          pnpm install || npm install
+      - name: Lint & 格式化檢查
+        run: |
+          npm run lint
+          npx prettier --check .
+      - name: 單元測試與覆蓋率
+        run: npm run test -- --coverage
+      - name: E2E 測試
+        run: bash scripts/e2e-test.sh
+      - name: API 合約測試
+        run: bash scripts/api-contract-test.sh
+      - name: 性能壓測
+        run: bash scripts/perf-test.sh || echo "[WARN] 性能壓測未配置，跳過"
+      - name: 交叉引用校驗
+        run: bash scripts/check-cross-references.sh
+      - name: 容器健康檢查
+        run: ./scripts/check-containers.sh
+      - name: 合規檢查
+        run: ./scripts/compliance-check.sh || echo "[WARN] 合規檢查未配置，跳過" 

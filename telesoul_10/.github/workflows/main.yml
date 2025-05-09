@@ -1,0 +1,152 @@
+name: TeleSoul CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+  schedule:
+    - cron: '0 0 * * 1'  # 每週一執行
+
+jobs:
+  validate:
+    name: 代碼驗證
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: 設置 Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      - name: 安裝依賴
+        run: |
+          npm ci
+          cd frontend/telesoul-app && npm ci
+          
+      - name: 運行代碼檢查
+        run: |
+          npm run lint
+          cd frontend/telesoul-app && npm run lint
+          
+      - name: 運行單元測試
+        run: |
+          npm run test
+          cd frontend/telesoul-app && npm run test
+          
+      - name: 檢查文檔
+        run: ./scripts/check-docs-references.sh
+        
+      - name: 檢查環境變數
+        run: ./scripts/check-env-sync.sh
+        
+      - name: 檢查國際化
+        run: ./scripts/check-i18n-coverage.sh
+
+  security:
+    name: 安全檢查
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: 運行依賴掃描
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --severity-threshold=high
+          
+      - name: 運行代碼掃描
+        uses: github/codeql-action/init@v2
+        with:
+          languages: javascript
+          
+      - name: 運行代碼分析
+        uses: github/codeql-action/analyze@v2
+
+  build:
+    name: 構建
+    needs: [validate, security]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: 設置 Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      - name: 安裝依賴
+        run: |
+          npm ci
+          cd frontend/telesoul-app && npm ci
+          
+      - name: 構建前端
+        run: cd frontend/telesoul-app && npm run build
+        
+      - name: 構建後端
+        run: npm run build
+        
+      - name: 上傳構建產物
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifacts
+          path: |
+            frontend/telesoul-app/dist
+            dist
+
+  deploy:
+    name: 部署
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: 下載構建產物
+        uses: actions/download-artifact@v3
+        with:
+          name: build-artifacts
+          
+      - name: 部署到生產環境
+        run: |
+          # 部署腳本
+          ./scripts/deploy.sh
+          
+      - name: 生成部署報告
+        run: ./scripts/generate-deployment-report.sh
+        
+      - name: 發送部署通知
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: always()
+
+  monitor:
+    name: 監控
+    needs: deploy
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: 檢查系統健康狀態
+        run: ./scripts/check-health.sh
+        
+      - name: 檢查性能指標
+        run: ./scripts/check-performance.sh
+        
+      - name: 發送監控報告
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: always() 

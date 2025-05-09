@@ -1,0 +1,303 @@
+---
+# TeleSoul 全局变量配置
+# 版本: 1.0.0
+# 最后更新: 2024-03-21
+
+# 项目配置
+project_name: telesoul
+project_version: 1.0.0
+project_description: "TeleSoul - 智能语音社交平台"
+
+# 环境配置
+env: development
+timezone: Asia/Shanghai
+locale: zh_CN.UTF-8
+
+# 服务配置
+services:
+  - name: api
+    port: 3000
+    health_check: /health
+  - name: web
+    port: 80
+    health_check: /health
+  - name: worker
+    port: 9000
+    health_check: /health
+
+# 数据库配置
+databases:
+  postgresql:
+    version: "14"
+    name: telesoul
+    user: telesoul
+    password: "{{ vault_db_password }}"
+    host: localhost
+    port: 5432
+    max_connections: 100
+    replication_user: repl_user
+    replication_password: "{{ vault_replication_password }}"
+  redis:
+    version: 6
+    port: 6379
+    host: localhost
+    password: telesoul
+    db: 0
+    maxmemory: 1gb
+    maxmemory_policy: allkeys-lru
+
+# MinIO 配置
+minio:
+  host: localhost
+  port: 9000
+  access_key: telesoul
+  secret_key: telesoul
+  bucket: telesoul
+  region: us-east-1
+
+# 监控配置
+monitoring:
+  prometheus:
+    version: "2.37.0"
+    port: 9090
+  grafana:
+    version: "9.2.0"
+    port: 3000
+  alertmanager:
+    version: "0.24.0"
+    port: 9093
+  node_exporter:
+    port: 9100
+  cadvisor:
+    port: 8080
+  jaeger:
+    port: 16686
+  elk:
+    elasticsearch:
+      port: 9200
+      heap_size: 1g
+    logstash:
+      port: 5044
+    kibana:
+      port: 5601
+
+# 日志配置
+logging:
+  level: info
+  rotation:
+    size: 100M
+    keep: 7
+    compress: true
+  format: json
+  output: file
+
+# 安全配置
+security:
+  jwt_secret: telesoul
+  jwt_expiration: 24h
+  cors_origins:
+    - http://localhost:3000
+    - https://telesoul.com
+  rate_limit:
+    window: 15m
+    max_requests: 100
+  ssl:
+    enabled: true
+    cert_path: /etc/ssl/certs
+    key_path: /etc/ssl/private
+  firewall:
+    enabled: true
+    allowed_ports:
+      - 22
+      - 80
+      - 443
+      - 3000-3010
+      - 5432
+      - 6379
+      - 9090
+      - 9093
+      - 9100
+      - 9200
+      - 5601
+      - 16686
+  fail2ban:
+    enabled: true
+    max_retry: 3
+    ban_time: 3600
+
+# CI/CD 配置
+cicd:
+  docker_registry: docker.io
+  image_prefix: telesoul
+  namespace: telesoul
+  deployment_strategy: rolling
+  rollback_enabled: true
+  health_check_timeout: 300s
+  readiness_probe:
+    initial_delay: 30
+    period: 10
+    timeout: 5
+    success_threshold: 1
+    failure_threshold: 3
+  liveness_probe:
+    initial_delay: 60
+    period: 10
+    timeout: 5
+    success_threshold: 1
+    failure_threshold: 3
+
+# 测试配置
+testing:
+  coverage_threshold: 80
+  performance:
+    concurrent_users: 100
+    duration: 5m
+    ramp_up_time: 1m
+  e2e:
+    browser: chrome
+    headless: true
+    timeout: 30s
+  security:
+    scan_level: medium
+    fail_on_high: true
+    fail_on_medium: false
+
+# 备份配置
+backup:
+  enabled: true
+  schedule: "0 2 * * *"
+  retention: 7
+  type: full
+  compression: true
+  encryption: true
+
+# 通知配置
+notifications:
+  email:
+    enabled: true
+    smtp_server: smtp.gmail.com
+    smtp_port: 587
+    smtp_user: "{{ vault_smtp_user }}"
+    smtp_password: "{{ vault_smtp_password }}"
+    from_address: alerts@telesoul.com
+    to_addresses:
+      - admin@telesoul.com
+      - ops@telesoul.com
+  slack:
+    enabled: true
+    webhook_url: "{{ vault_slack_webhook_url }}"
+    channel: "#alerts"
+    username: "TeleSoul Bot"
+  webhook:
+    enabled: true
+    url: "{{ vault_webhook_url }}"
+    secret: "{{ vault_webhook_secret }}"
+
+# 维护配置
+maintenance:
+  enabled: false
+  message: "系统维护中，请稍后再试"
+  allowed_ips:
+    - 127.0.0.1
+    - 192.168.1.0/24
+  schedule:
+    start: "2024-03-21 02:00:00"
+    end: "2024-03-21 04:00:00"
+  tasks:
+    - name: 数据库备份
+      command: pg_dump
+      timeout: 3600
+    - name: 系统更新
+      command: apt-get update && apt-get upgrade -y
+      timeout: 1800
+    - name: 日志轮转
+      command: logrotate -f /etc/logrotate.conf
+      timeout: 300
+
+# 灾难恢复配置
+disaster_recovery:
+  enabled: true
+  backup:
+    type: full
+    schedule: "0 2 * * *"
+    retention: 7
+    location: s3://telesoul-backups
+  restore:
+    timeout: 3600
+    verification: true
+  failover:
+    automatic: true
+    timeout: 300
+    verification: true
+  testing:
+    schedule: "0 0 1 * *"
+    type: full
+    timeout: 7200
+    verification: true
+
+# 合规配置
+compliance:
+  data_retention:
+    enabled: true
+    period: 365
+    type: all
+  audit:
+    enabled: true
+    level: detailed
+    retention: 365
+  privacy:
+    enabled: true
+    gdpr: true
+    ccpa: true
+  security:
+    enabled: true
+    scanning:
+      schedule: "0 0 * * 0"
+      type: full
+    patching:
+      schedule: "0 0 * * 0"
+      type: all
+    monitoring:
+      enabled: true
+      level: detailed
+
+# 性能配置
+performance:
+  nginx:
+    worker_processes: auto
+    worker_connections: 1024
+    keepalive_timeout: 65
+    client_max_body_size: 10M
+  php:
+    memory_limit: 256M
+    max_execution_time: 30
+    upload_max_filesize: 10M
+    post_max_size: 10M
+  node:
+    max_old_space_size: 2048
+    max_semi_space_size: 64
+    max_executable_size: 512
+
+# 部署配置
+deployment:
+  strategy: rolling
+  max_parallel: 2
+  rollback: true
+  health_check:
+    interval: 10s
+    timeout: 5s
+    retries: 3
+    start_period: 30s
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
+# 系统配置
+system:
+  timezone: Asia/Shanghai
+  locale: zh_CN.UTF-8
+  swap_size: 2G 

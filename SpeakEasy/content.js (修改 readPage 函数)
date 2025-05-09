@@ -1,0 +1,47 @@
+// 读取页面内容
+async function readPage() {
+  console.log("开始读取页面内容");
+  
+  // 停止任何正在进行的朗读
+  stopReading();
+  
+  // 重新加载设置
+  await loadSettings();
+  
+  // 获取所有段落
+  paragraphs = getPageParagraphs();
+  
+  if (paragraphs.length === 0) {
+    console.log("未找到可读取的内容");
+    // 尝试使用更简单的方法获取内容
+    const bodyText = document.body.innerText;
+    if (bodyText && bodyText.length > 10) {
+      // 按句号、感叹号、问号分割文本
+      paragraphs = bodyText.split(/(?<=[。！？.!?])/g)
+        .filter(text => text.trim().length > 10);
+      console.log(`使用备用方法找到 ${paragraphs.length} 个段落`);
+      
+      if (paragraphs.length === 0) {
+        return;
+      }
+    } else {
+      return;
+    }
+  }
+  
+  console.log(`找到 ${paragraphs.length} 个段落`);
+  console.log("第一段内容示例:", paragraphs[0].substring(0, 50) + "...");
+  currentParagraphIndex = 0;
+  
+  // 测试是否可以合成语音
+  try {
+    const testUtterance = new SpeechSynthesisUtterance("准备开始朗读");
+    speechSynth.speak(testUtterance);
+    console.log("语音测试成功");
+  } catch (e) {
+    console.error("语音合成测试失败:", e);
+  }
+  
+  // 开始朗读
+  startReading();
+} 

@@ -1,0 +1,91 @@
+{
+  "home": {
+    "welcome": "Welcome to TeleSoul audio-video social platform",
+    "title": "TeleSoul",
+    "subtitle": "Find your soulmate and start a wonderful journey",
+    "start": "Get Started",
+    "login": "Already have an account? Login →"
+  },
+  "login": {
+    "title": "Login",
+    "email": "Email Address",
+    "password": "Password",
+    "remember": "Remember me",
+    "forgot": "Forgot password?",
+    "submit": "Login",
+    "loading": "Logging in..."
+  },
+  "match": {
+    "title": "Match Hall",
+    "desc": "Start a voice/video match and wait for the system to find the right partner for you.",
+    "start": "Start Matching"
+  },
+  "profile": {
+    "title": "Profile",
+    "desc": "Manage your profile, account binding, balance and history.",
+    "username": "Username",
+    "email": "Email"
+  },
+  "kyc": {
+    "title": "KYC Verification",
+    "desc": "To ensure platform security and compliance, please complete identity verification. Your information will be kept strictly confidential.",
+    "start": "Start KYC Verification"
+  },
+  "withdraw": {
+    "title": "USDT Withdraw",
+    "desc": "You can apply for USDT withdrawal here. The system will review automatically or manually.",
+    "start": "Apply for Withdraw"
+  },
+  "admin": {
+    "title": "Admin Panel",
+    "desc": "Manage users, KYC, withdraw, reports and more.",
+    "placeholder": "Admin panel entry and data placeholder"
+  },
+  "common": {
+    "ok": "OK",
+    "cancel": "Cancel",
+    "confirm": "Confirm"
+  },
+  "register": {
+    "title": "Register",
+    "username": "Username",
+    "email": "Email Address",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "agree": "I have read and agree to the Terms of Service and Privacy Policy",
+    "submit": "Register",
+    "loading": "Registering...",
+    "login": "Login now"
+  },
+  "feature": {
+    "match": "Smart Match",
+    "matchDesc": "AI-powered smart matching system to find your best soulmate",
+    "safe": "Safe & Reliable",
+    "safeDesc": "Strict identity verification and privacy protection for safer socializing",
+    "realtime": "Real-time Interaction",
+    "realtimeDesc": "Smooth real-time chat experience for more natural communication"
+  },
+  "notfound": {
+    "desc": "Sorry, the page you visited does not exist.",
+    "backHome": "Back to Home"
+  },
+  "components": {
+    "card": {
+      "title": "Card Title",
+      "content": "Card Content",
+      "footer": "Card Footer"
+    },
+    "modal": {
+      "title": "Modal Title",
+      "content": "Modal Content",
+      "close": "Close"
+    }
+  },
+  "input": {
+    "placeholder": "Please enter content",
+    "error": "Input error"
+  },
+  "avatar": {
+    "alt": "User avatar"
+  }
+} 

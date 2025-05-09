@@ -1,0 +1,92 @@
+You are an expert in HTML5 prototyping and UI/UX simulation. Your task is to build a functional and design-accurate front-end demo of **MysticTalk**, a Telegram-integrated anonymous social app, using the simplest and most error-resistant HTML5, CSS, and minimal JavaScript. You should use **fake/mock data** for all API calls, and simulate real app behaviors visually.
+
+## Goals
+- Create a clean front-end demo for MysticTalk
+- Mock all backend data; the goal is to simulate UI/UX only
+- Use responsive layout with modern iOS-style design
+- Prioritize Telegram UI design principles
+- Make sure the app feels native-like, sleek, intuitive
+
+## Visual & Interaction Design Rules
+- Follow **Telegram UI Design Guidelines** as primary standard
+- Refer to **iOS Human Interface Guidelines** for structure, spacing, and navigation
+- Use large, readable fonts, clean spacing, and minimalistic controls
+- Use emojis or icons where appropriate for engagement
+- Each step in a flow (like registration or MBTI test) should explain why it’s being asked, with motivational text
+
+## Structure Overview
+Build the following screens and navigation mockups using HTML/CSS:
+
+### 1. Home Screen
+- Navigation tabs: Home, Chat, Tasks, Profile
+- Main feature button: 🎲 Random Match (dice icon)
+- Below: Recently matched users with “Say Hi” and “Send Gift” buttons
+
+### 2. Chat Page
+- List of users previously chatted with
+- Status tag if mutual friend
+- If not friend, button to “Request to chat”
+- Message area with text input and coin indicator (each message costs 1 coin unless mutual)
+
+### 3. Gift Overlay
+- Triggered from “Send Gift” button
+- List gifts:
+  - 🌹 Single Flower (10 coins)
+  - 💐 Bouquet (30 coins)
+  - 🎂 Cake (50 coins)
+  - 🍾 Champagne (100 coins)
+  - 🎁 Premium Box (150 coins)
+  - 🚗 Sports Car (300 coins)
+- Display coin deduction when gift selected
+
+### 4. Profile Page
+- Avatar, nickname, MBTI, Zodiac, Chinese Zodiac, Coin Balance
+- “Edit Profile” button to trigger info editing
+
+### 5. Edit Profile Flow (Step-by-step)
+- Gender selection
+- Seeking preference: Male / Female / Any
+- Height selector (5cm per level)
+- Weight selector (10kg per level)
+- Ethnicity (preset list)
+- Eye color (preset list)
+- Interest tags (choose up to 10 from mock list)
+- Relationship goals: Chatting, Deep talk, Casual, Long-term, Marriage, Not sure
+- All steps show reason: “Help us find better matches!”
+
+### 6. MBTI Test (Multi-step form)
+- 16 questions across EI, SN, TF, JP
+- Each with 4 choices, scored [2, 1, -1, -2]
+- Show progress bar and motivational header
+- At the end, show type result and share link
+
+### 7. Task Page
+- List only **incomplete** tasks
+- Red dot indicator in navigation if any are incomplete
+- Simulate login streak reward (10-day cycle) as popup
+- Task examples: Invite friends, Follow Telegram channel
+
+### 8. Invite Screen
+- Copy invite link
+- Simulate “Choose Telegram friend to invite” button
+
+## Interaction Notes
+- All actions (e.g. sending message, gift, starting test) just visually simulate success/failure
+- Use mock data only (local JS objects or JSON files)
+- You may use minimal vanilla JS or a lightweight UI framework (like Alpine.js)
+- Avoid all backend logic or real API hooks
+
+## Output Expectations
+- Full HTML/CSS files with working navigation & transitions
+- Mobile-first layout, styled for iPhone 14 look and feel
+- Include icon placeholders where needed
+- Use realistic mock data for avatars, names, MBTI types
+- Host images locally or use placeholder services (e.g. unsplash, placeholder.com)
+- Use class names and structure clearly for easy conversion to real app in future
+
+## Naming & Assets
+- Project name: MysticTalk
+- All branding, headings, meta titles use “MysticTalk”
+- Icons for Chat, Tasks, Gift, Zodiac, etc. should be consistent and reused
+
+Remember: this is not a production app, it’s a design-prototype front-end for demo and usability testing only. Keep the code clean and focused on simulation and style.

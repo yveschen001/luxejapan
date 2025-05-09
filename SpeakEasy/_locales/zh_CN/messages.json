@@ -1,0 +1,392 @@
+{
+  "extension_name": {
+    "message": "SpeakEasy - Web Reader"
+  },
+  "extension_description": {
+    "message": "简单易用的网页朗读工具"
+  },
+  "welcome_title": {
+    "message": "欢迎使用 SpeakEasy"
+  },
+  "welcome_subtitle": {
+    "message": "让网页阅读变得轻松自如"
+  },
+  "welcome_content": {
+    "message": "SpeakEasy 是一款智能网页阅读工具，让您可以轻松聆听网页内容。这个简短的引导将帮助您快速上手。"
+  },
+  "step1_title": {
+    "message": "获取 OpenAI API Key"
+  },
+  "step1_desc": {
+    "message": "请先访问 OpenAI 网站获取您的 API Key："
+  },
+  "step2_title": {
+    "message": "基本设置"
+  },
+  "apikey_label": {
+    "message": "API Key:"
+  },
+  "voice_label": {
+    "message": "语音"
+  },
+  "notice_title": {
+    "message": "注意事项："
+  },
+  "notice_1": {
+    "message": "使用 OpenAI TTS 服务需要支付费用"
+  },
+  "notice_2": {
+    "message": "请妥善保管您的 API Key"
+  },
+  "notice_3": {
+    "message": "建议对长文本分段处理，避免超出限制"
+  },
+  "save_button": {
+    "message": "完成设置"
+  },
+  "settings_saved": {
+    "message": "设置已保存"
+  },
+  "error_no_api_key": {
+    "message": "请输入 API Key"
+  },
+  "context_menu_read": {
+    "message": "朗读选中文本"
+  },
+  "use_gpt": {
+    "message": "使用 GPT 语音（付费）"
+  },
+  "gpt_notice": {
+    "message": "需要 OpenAI API Key，使用时会产生费用"
+  },
+  "gpt_setup_title": {
+    "message": "GPT 语音设置"
+  },
+  "gpt_setup_desc": {
+    "message": "使用 GPT 语音需要配置以下内容："
+  },
+  "gpt_error": {
+    "message": "GPT 语音生成失败，请检查设置和网络连接"
+  },
+  "read_page": {
+    "message": "朗读页面"
+  },
+  "stop_reading": {
+    "message": "停止朗读"
+  },
+  "play": {
+    "message": "播放"
+  },
+  "pause": {
+    "message": "暂停"
+  },
+  "stop": {
+    "message": "停止"
+  },
+  "next": {
+    "message": "下一步"
+  },
+  "previous": {
+    "message": "上一步"
+  },
+  "finish": {
+    "message": "完成"
+  },
+  "skip_tutorial": {
+    "message": "跳过"
+  },
+  "settings": {
+    "message": "设置"
+  },
+  "language_label": {
+    "message": "语言"
+  },
+  "speed_label": {
+    "message": "语速"
+  },
+  "volume_label": {
+    "message": "音量"
+  },
+  "player_style": {
+    "message": "播放器样式"
+  },
+  "style_default": {
+    "message": "默认"
+  },
+  "style_minimal": {
+    "message": "简约"
+  },
+  "style_transparent": {
+    "message": "透明"
+  },
+  "always_on_top": {
+    "message": "保持在最上层"
+  },
+  "opacity_label": {
+    "message": "透明度"
+  },
+  "premium_features": {
+    "message": "高级功能"
+  },
+  "premium_description": {
+    "message": "以下功能需要额外配置："
+  },
+  "speech_error": {
+    "message": "语音播放出错，请重试"
+  },
+  "minimize": {
+    "message": "最小化"
+  },
+  "maximize": {
+    "message": "展开"
+  },
+  "loading": {
+    "message": "加载中..."
+  },
+  "help_title": {
+    "message": "网页朗读助手使用说明"
+  },
+  "quick_start": {
+    "message": "快速开始"
+  },
+  "quick_start_1": {
+    "message": "点击扩展图标打开控制面板"
+  },
+  "quick_start_2": {
+    "message": "选择您喜欢的语音和语速"
+  },
+  "quick_start_3": {
+    "message": "选择文本或整个页面进行朗读"
+  },
+  "basic_features": {
+    "message": "基本功能"
+  },
+  "text_selection": {
+    "message": "文本选择朗读"
+  },
+  "text_selection_desc": {
+    "message": "选择网页上的任意文本，右键点击并选择\\\"朗读选中文本\\\""
+  },
+  "page_reading": {
+    "message": "整页朗读"
+  },
+  "page_reading_desc": {
+    "message": "点击扩展图标，选择\\\"朗读整个页面\\\""
+  },
+  "floating_player": {
+    "message": "浮动播放器"
+  },
+  "floating_player_desc": {
+    "message": "可拖动的播放控制器，支持暂停、继续和跳转"
+  },
+  "advanced_settings": {
+    "message": "高级设置"
+  },
+  "voice_settings": {
+    "message": "语音设置"
+  },
+  "voice_settings_1": {
+    "message": "语言选择"
+  },
+  "voice_settings_2": {
+    "message": "声音类型"
+  },
+  "voice_settings_3": {
+    "message": "语速调节"
+  },
+  "voice_settings_4": {
+    "message": "音量控制"
+  },
+  "player_settings": {
+    "message": "播放器设置"
+  },
+  "player_settings_1": {
+    "message": "外观样式（默认/简约/透明）"
+  },
+  "player_settings_2": {
+    "message": "透明度调节"
+  },
+  "player_settings_3": {
+    "message": "置顶显示"
+  },
+  "keyboard_shortcuts": {
+    "message": "键盘快捷键"
+  },
+  "shortcut": {
+    "message": "快捷键"
+  },
+  "action": {
+    "message": "功能"
+  },
+  "shortcut_play_pause": {
+    "message": "播放/暂停"
+  },
+  "shortcut_next": {
+    "message": "下一段"
+  },
+  "shortcut_prev": {
+    "message": "上一段"
+  },
+  "shortcut_stop": {
+    "message": "停止"
+  },
+  "tips_tricks": {
+    "message": "使用技巧"
+  },
+  "tip_1": {
+    "message": "提示：可以通过拖动进度条快速跳转到指定位置"
+  },
+  "tip_2": {
+    "message": "提示：双击播放器标题栏可以最小化"
+  },
+  "tip_3": {
+    "message": "提示：播放器位置会自动保存"
+  },
+  "open_help": {
+    "message": "查看使用说明"
+  },
+  "network_error": {
+    "message": "网络连接错误"
+  },
+  "permission_error": {
+    "message": "权限不足"
+  },
+  "synthesis_error": {
+    "message": "语音合成错误"
+  },
+  "api_error": {
+    "message": "API 调用错误"
+  },
+  "unknown_error": {
+    "message": "未知错误"
+  },
+  "guide_select_text": {
+    "message": "您可以选择网页上的任何文本，然后右键点击并选择\\\"朗读选中文本\\\"。"
+  },
+  "guide_player_controls": {
+    "message": "使用这些按钮来控制朗读。您可以播放/暂停、停止，或者调整语音设置。"
+  },
+  "guide_settings": {
+    "message": "自定义您的设置"
+  },
+  "error_title": {
+    "message": "SpeakEasy - Web Reader 错误"
+  },
+  "error_network": {
+    "message": "SpeakEasy - Web Reader 无法连接到网络"
+  },
+  "error_permission": {
+    "message": "SpeakEasy - Web Reader 需要权限才能运行"
+  },
+  "error_synthesis": {
+    "message": "SpeakEasy - Web Reader 语音合成错误"
+  },
+  "error_api": {
+    "message": "SpeakEasy - Web Reader API 调用错误"
+  },
+  "error_unknown": {
+    "message": "SpeakEasy - Web Reader 遇到未知错误"
+  },
+  "player_status_loading": {
+    "message": "正在加载..."
+  },
+  "player_status_ready": {
+    "message": "准备就绪"
+  },
+  "player_status_playing": {
+    "message": "正在播放"
+  },
+  "player_status_paused": {
+    "message": "已暂停"
+  },
+  "player_status_stopped": {
+    "message": "已停止"
+  },
+  "settings_saved_success": {
+    "message": "设置已保存"
+  },
+  "settings_reset_success": {
+    "message": "设置已重置"
+  },
+  "settings_import_success": {
+    "message": "设置导入成功"
+  },
+  "settings_export_success": {
+    "message": "设置导出成功"
+  },
+  "tooltip_play": {
+    "message": "播放"
+  },
+  "tooltip_pause": {
+    "message": "暂停"
+  },
+  "tooltip_stop": {
+    "message": "停止"
+  },
+  "tooltip_next": {
+    "message": "下一段"
+  },
+  "tooltip_prev": {
+    "message": "上一段"
+  },
+  "tooltip_volume": {
+    "message": "音量"
+  },
+  "tooltip_speed": {
+    "message": "语速"
+  },
+  "tooltip_minimize": {
+    "message": "最小化"
+  },
+  "tooltip_maximize": {
+    "message": "还原"
+  },
+  "drag_to_move": {
+    "message": "拖动以移动播放器"
+  },
+  "progress_format": {
+    "message": "{current} / {total}"
+  },
+  "text_too_long": {
+    "message": "文本过长（{current}字符），已自动截取前{max}字符"
+  },
+  "text_copied": {
+    "message": "文本已复制到剪贴板"
+  },
+  "loading_voices": {
+    "message": "正在加载语音..."
+  },
+  "no_voices_available": {
+    "message": "没有可用的语音"
+  },
+  "player_drag_hint": {
+    "message": "点击此处拖动播放器"
+  },
+  "empty_text": {
+    "message": "没有文本可朗读"
+  },
+  "voice_not_found": {
+    "message": "找不到选择的语音，使用默认语音"
+  },
+  "browser_not_supported": {
+    "message": "您的浏览器不支持文本朗读功能"
+  },
+  "speed_value": {
+    "message": "速度: {value}"
+  },
+  "player_position_reset": {
+    "message": "播放器位置已重置"
+  },
+  "select_text_title": {
+    "message": "选择文本"
+  },
+  "player_controls_title": {
+    "message": "播放器控制"
+  },
+  "progress_tip": {
+    "message": "点击此处跳转到指定位置"
+  },
+  "complete": {
+    "message": "完成"
+  }
+} 

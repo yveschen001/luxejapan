@@ -1,0 +1,50 @@
+{
+  "extension_name": {
+    "message": "SpeakEasy - Lecteur Web"
+  },
+  "extension_description": {
+    "message": "Facilitez la lecture web avec support multilingue, détection intelligente des paragraphes et lecteur personnalisable"
+  },
+  "welcome_title": {
+    "message": "Bienvenue sur l'Assistant de Lecture Web"
+  },
+  "step1_title": {
+    "message": "Obtenir la Clé API OpenAI"
+  },
+  "step1_desc": {
+    "message": "Veuillez visiter le site OpenAI pour obtenir votre clé API :"
+  },
+  "step2_title": {
+    "message": "Paramètres de Base"
+  },
+  "apikey_label": {
+    "message": "Clé API :"
+  },
+  "voice_label": {
+    "message": "Sélectionner le Type de Voix :"
+  },
+  "notice_title": {
+    "message": "Remarques Importantes :"
+  },
+  "notice_1": {
+    "message": "L'utilisation du service OpenAI TTS est payante"
+  },
+  "notice_2": {
+    "message": "Gardez votre clé API en sécurité"
+  },
+  "notice_3": {
+    "message": "Divisez les longs textes pour éviter les limites"
+  },
+  "save_button": {
+    "message": "Terminer la Configuration"
+  },
+  "settings_saved": {
+    "message": "Paramètres enregistrés"
+  },
+  "error_no_api_key": {
+    "message": "Veuillez entrer la clé API"
+  },
+  "context_menu_read": {
+    "message": "Lire le texte sélectionné"
+  }
+} 

@@ -1,0 +1,20 @@
+name: Code Style Check
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Make scripts executable
+      run: chmod +x scripts/check-code-style.sh
+      
+    - name: Run code style check
+      run: ./scripts/check-code-style.sh 

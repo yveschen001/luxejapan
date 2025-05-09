@@ -1,0 +1,98 @@
+:root {
+  /* 品牌颜色 */
+  --speakeasy-primary: #4285F4;
+  --speakeasy-secondary: #34A853;
+  --speakeasy-accent: #FBBC05;
+  --speakeasy-error: #EA4335;
+  
+  /* 圆角 */
+  --border-radius-sm: 8px;
+  --border-radius-md: 12px;
+  --border-radius-lg: 16px;
+  
+  /* 阴影 */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.1);
+  
+  /* 间距 */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  
+  /* 字体 */
+  --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 
+                 Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* 通用按钮样式 */
+.speakeasy-button {
+  border-radius: var(--border-radius-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-family: var(--font-family);
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+}
+
+/* 主要按钮 */
+.speakeasy-button-primary {
+  background: var(--speakeasy-primary);
+  color: white;
+}
+
+/* 次要按钮 */
+.speakeasy-button-secondary {
+  background: white;
+  border: 1px solid var(--speakeasy-primary);
+  color: var(--speakeasy-primary);
+}
+
+/* 浮动播放器样式 */
+.speakeasy-player {
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  font-family: var(--font-family);
+  background: white;
+  padding: var(--spacing-md);
+}
+
+/* 提示框样式 */
+.speakeasy-tooltip {
+  position: fixed;
+  background: white;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-md);
+  padding: var(--spacing-md);
+  z-index: 10001;
+  max-width: 300px;
+}
+
+/* 状态提示样式 */
+.speakeasy-status {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+  background: white;
+  box-shadow: var(--shadow-sm);
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.speakeasy-status.error {
+  background: var(--speakeasy-error);
+  color: white;
+}
+
+.speakeasy-status.success {
+  background: var(--speakeasy-secondary);
+  color: white;
+} 

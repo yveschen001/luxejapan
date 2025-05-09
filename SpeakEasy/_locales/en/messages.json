@@ -1,0 +1,86 @@
+{
+  "extension_name": {
+    "message": "SpeakEasy - Web Reader"
+  },
+  "extension_description": {
+    "message": "Read web content aloud with customizable voice and speed settings."
+  },
+  "welcome_title": {
+    "message": "Welcome to Web Reader Assistant"
+  },
+  "step1_title": {
+    "message": "Get OpenAI API Key"
+  },
+  "step1_desc": {
+    "message": "Please visit OpenAI website to get your API Key:"
+  },
+  "step2_title": {
+    "message": "Basic Settings"
+  },
+  "apikey_label": {
+    "message": "API Key:"
+  },
+  "voice_label": {
+    "message": "Voice:"
+  },
+  "speed_label": {
+    "message": "Speed:"
+  },
+  "volume_label": {
+    "message": "Volume:"
+  },
+  "player_style": {
+    "message": "Player Style:"
+  },
+  "style_default": {
+    "message": "Default"
+  },
+  "style_minimal": {
+    "message": "Minimal"
+  },
+  "style_transparent": {
+    "message": "Transparent"
+  },
+  "always_on_top": {
+    "message": "Always on top"
+  },
+  "open_help": {
+    "message": "View Help"
+  },
+  "loading_voices": {
+    "message": "Loading voices..."
+  },
+  "read_selection": {
+    "message": "Read Selected Text"
+  },
+  "notice_title": {
+    "message": "Important Notes:"
+  },
+  "notice_1": {
+    "message": "Using OpenAI TTS service requires payment"
+  },
+  "notice_2": {
+    "message": "Please keep your API Key secure"
+  },
+  "notice_3": {
+    "message": "Consider splitting long texts to avoid limits"
+  },
+  "save_button": {
+    "message": "Complete Setup"
+  },
+  "settings_saved": {
+    "message": "Settings saved"
+  },
+  "error_no_api_key": {
+    "message": "Please enter API Key"
+  },
+  "context_menu_read": {
+    "message": "Read selected text"
+  },
+  "read_page": {
+    "message": "Read Page"
+  },
+  "stop_reading": {
+    "message": "Stop Reading"
+  }
+} 

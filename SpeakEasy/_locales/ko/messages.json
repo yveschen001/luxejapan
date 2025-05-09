@@ -1,0 +1,50 @@
+{
+  "extension_name": {
+    "message": "SpeakEasy - Web Reader"
+  },
+  "extension_description": {
+    "message": "SpeakEasy - Web Reader로 쉽게 웹 읽기. 다국어 지원 및 스마트 단락 감지"
+  },
+  "welcome_title": {
+    "message": "SpeakEasy - Web Reader 시작하기"
+  },
+  "step1_title": {
+    "message": "OpenAI API 키 받기"
+  },
+  "step1_desc": {
+    "message": "OpenAI 웹사이트에서 API 키를 받으세요:"
+  },
+  "step2_title": {
+    "message": "기본 설정"
+  },
+  "apikey_label": {
+    "message": "API 키:"
+  },
+  "voice_label": {
+    "message": "음성 유형 선택:"
+  },
+  "notice_title": {
+    "message": "주의사항:"
+  },
+  "notice_1": {
+    "message": "OpenAI TTS 서비스 사용에는 비용이 발생합니다"
+  },
+  "notice_2": {
+    "message": "API 키를 안전하게 보관하세요"
+  },
+  "notice_3": {
+    "message": "긴 텍스트는 제한을 피하기 위해 분할하세요"
+  },
+  "save_button": {
+    "message": "설정 완료"
+  },
+  "settings_saved": {
+    "message": "설정이 저장되었습니다"
+  },
+  "error_no_api_key": {
+    "message": "API 키를 입력해주세요"
+  },
+  "context_menu_read": {
+    "message": "선택한 텍스트 읽기"
+  }
+} 

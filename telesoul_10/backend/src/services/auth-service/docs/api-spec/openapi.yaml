@@ -1,0 +1,40 @@
+openapi: 3.0.3
+info:
+  title: TeleSoul Auth API
+  version: 1.0.0
+  description: |-
+    TeleSoul 認證服務 OpenAPI 規格範本
+    - 僅供自動化合約測試與文檔生成
+servers:
+  - url: http://localhost:4000
+paths:
+  /api/auth/telegram:
+    get:
+      summary: Telegram OAuth 登入
+      responses:
+        '200':
+          description: 登入成功
+  /api/auth/google:
+    get:
+      summary: Google OAuth 登入
+      responses:
+        '200':
+          description: 登入成功
+  /api/user/bind:
+    post:
+      summary: 綁定第三方帳號
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [google, telegram]
+                oauth_token:
+                  type: string
+      responses:
+        '200':
+          description: 綁定成功 

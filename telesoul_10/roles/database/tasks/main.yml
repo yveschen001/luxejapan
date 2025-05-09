@@ -1,0 +1,318 @@
+---
+# TeleSoul 数据库角色任务
+# 版本: 1.0.0
+# 最后更新: 2024-03-21
+
+# PostgreSQL 安装和配置
+- name: 安装 PostgreSQL
+  block:
+    - name: 安装 macOS PostgreSQL
+      homebrew:
+        name:
+          - postgresql@{{ databases.postgresql.version }}
+          - libpq
+        state: present
+      become: false
+      when: ansible_os_family == "Darwin"
+
+    - name: 安装 Linux PostgreSQL
+      block:
+        - name: 添加 PostgreSQL APT 密钥
+          apt_key:
+            url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
+            state: present
+
+        - name: 添加 PostgreSQL APT 仓库
+          apt_repository:
+            repo: deb http://apt.postgresql.org/pub/repos/apt {{ ansible_distribution_release }}-pgdg main
+            state: present
+            filename: pgdg
+
+        - name: 安装 PostgreSQL
+          apt:
+            name: 
+              - postgresql-{{ databases.postgresql.version }}
+              - postgresql-contrib-{{ databases.postgresql.version }}
+              - python3-psycopg2
+            state: present
+            update_cache: true
+      when: ansible_os_family == "Debian"
+
+- name: 配置 PostgreSQL
+  block:
+    - name: 确保 PostgreSQL 服务正在运行
+      command: brew services start postgresql@{{ databases.postgresql.version }}
+      become: false
+      when: ansible_os_family == "Darwin"
+
+    - name: 确保 Linux PostgreSQL 服务正在运行
+      service:
+        name: postgresql
+        state: started
+        enabled: true
+      when: ansible_os_family == "Debian"
+
+    - name: 创建数据库用户
+      postgresql_user:
+        name: "{{ databases.postgresql.user }}"
+        password: "{{ databases.postgresql.password }}"
+        role_attr_flags: CREATEDB,SUPERUSER
+      become: true
+      become_user: postgres
+
+    - name: 创建数据库
+      postgresql_db:
+        name: "{{ databases.postgresql.name }}"
+        owner: "{{ databases.postgresql.user }}"
+        encoding: UTF-8
+        lc_collate: "{{ system.locale }}"
+        lc_ctype: "{{ system.locale }}"
+        template: template0
+      become: true
+      become_user: postgres
+
+    - name: 配置 PostgreSQL 参数
+      postgresql_set:
+        name: "{{ item.key }}"
+        value: "{{ item.value }}"
+      with_items:
+        - { key: "max_connections", value: "{{ databases.postgresql.max_connections }}" }
+        - { key: "shared_buffers", value: "1GB" }
+        - { key: "effective_cache_size", value: "3GB" }
+        - { key: "maintenance_work_mem", value: "256MB" }
+        - { key: "checkpoint_completion_target", value: "0.9" }
+        - { key: "wal_buffers", value: "16MB" }
+        - { key: "default_statistics_target", value: "100" }
+        - { key: "random_page_cost", value: "1.1" }
+        - { key: "effective_io_concurrency", value: "200" }
+        - { key: "work_mem", value: "16MB" }
+        - { key: "min_wal_size", value: "1GB" }
+        - { key: "max_wal_size", value: "4GB" }
+      become: true
+      become_user: postgres
+      notify: restart postgresql
+
+- name: 配置 PostgreSQL 访问控制
+  template:
+    src: pg_hba.conf.j2
+    dest: /etc/postgresql/{{ databases.postgresql.version }}/main/pg_hba.conf
+    owner: postgres
+    group: postgres
+    mode: '0640'
+  become: true
+  notify: restart postgresql
+
+# Redis 安装和配置
+- name: 安装 Redis
+  apt:
+    name:
+      - redis-server
+      - redis-tools
+    state: present
+  become: true
+  when: ansible_os_family == "Debian"
+
+- name: 配置 Redis
+  template:
+    src: redis.conf.j2
+    dest: /etc/redis/redis.conf
+    owner: redis
+    group: redis
+    mode: '0640'
+  become: true
+  notify: restart redis
+
+- name: 启动 Redis 服务
+  service:
+    name: redis-server
+    state: started
+    enabled: yes
+  become: true
+
+# 数据库备份配置
+- name: 配置数据库备份
+  block:
+    - name: 创建备份目录
+      file:
+        path: /var/backups/postgresql
+        state: directory
+        owner: postgres
+        group: postgres
+        mode: '0755'
+
+    - name: 配置自动备份
+      cron:
+        name: "PostgreSQL backup"
+        job: "pg_dump {{ databases.postgresql.name }} | gzip > /var/backups/postgresql/backup-$(date +'%%Y%%m%%d').sql.gz"
+        hour: "0"
+        minute: "0"
+        user: postgres
+
+# 数据库监控配置
+- name: 安装 PostgreSQL 监控工具
+  apt:
+    name:
+      - pgmetrics
+      - pg_stat_statements
+    state: present
+  become: true
+  when: monitoring.enabled | default(false)
+
+- name: 配置 PostgreSQL 监控
+  template:
+    src: pg_stat_statements.conf.j2
+    dest: /etc/postgresql/{{ databases.postgresql.version }}/main/conf.d/pg_stat_statements.conf
+    owner: postgres
+    group: postgres
+    mode: '0640'
+  become: true
+  notify: restart postgresql
+  when: monitoring.enabled | default(false)
+
+# 数据库维护
+- name: 配置数据库维护脚本
+  template:
+    src: maintenance.sh.j2
+    dest: /usr/local/bin/maintain-telesoul.sh
+    owner: root
+    group: root
+    mode: '0750'
+  become: true
+
+- name: 配置维护定时任务
+  cron:
+    name: "Telesoul Database Maintenance"
+    job: "/usr/local/bin/maintain-telesoul.sh"
+    hour: "3"
+    minute: "0"
+    user: postgres
+  become: true
+
+# 数据库安全配置
+- name: 配置数据库安全设置
+  template:
+    src: security.conf.j2
+    dest: /etc/postgresql/{{ databases.postgresql.version }}/main/conf.d/security.conf
+    owner: postgres
+    group: postgres
+    mode: '0640'
+  become: true
+  notify: restart postgresql
+
+# 数据库性能优化
+- name: 配置数据库性能设置
+  template:
+    src: performance.conf.j2
+    dest: /etc/postgresql/{{ databases.postgresql.version }}/main/conf.d/performance.conf
+    owner: postgres
+    group: postgres
+    mode: '0640'
+  become: true
+  notify: restart postgresql
+
+- name: 创建扩展
+  postgresql_ext:
+    name: "{{ item }}"
+    db: "{{ databases.postgresql.name }}"
+    state: present
+  with_items:
+    - pgcrypto
+    - uuid-ossp
+    - pg_stat_statements
+    - pg_trgm
+    - btree_gist
+
+- name: 创建数据库表
+  postgresql_db:
+    name: "{{ databases.postgresql.name }}"
+    state: present
+  register: db_created
+
+- name: 执行数据库迁移
+  command: "npm run migrate:up"
+  when: db_created.changed
+
+- name: 配置数据库安全
+  block:
+    - name: 配置 pg_hba.conf
+      template:
+        src: pg_hba.conf.j2
+        dest: /etc/postgresql/14/main/pg_hba.conf
+        mode: '0640'
+        owner: postgres
+        group: postgres
+
+    - name: 配置 postgresql.conf
+      template:
+        src: postgresql.conf.j2
+        dest: /etc/postgresql/14/main/postgresql.conf
+        mode: '0640'
+        owner: postgres
+        group: postgres
+
+    - name: 重启 PostgreSQL 服务
+      service:
+        name: postgresql
+        state: restarted
+
+- name: 配置数据库连接池
+  block:
+    - name: 安装 PgBouncer
+      apt:
+        name: pgbouncer
+        state: present
+
+    - name: 配置 PgBouncer
+      template:
+        src: pgbouncer.ini.j2
+        dest: /etc/pgbouncer/pgbouncer.ini
+        mode: '0640'
+        owner: postgres
+        group: postgres
+
+    - name: 启动 PgBouncer 服务
+      service:
+        name: pgbouncer
+        state: started
+        enabled: yes
+
+- name: 配置数据库复制
+  block:
+    - name: 配置主从复制
+      template:
+        src: replication.conf.j2
+        dest: /etc/postgresql/14/main/replication.conf
+        mode: '0640'
+        owner: postgres
+        group: postgres
+
+    - name: 创建复制用户
+      postgresql_user:
+        name: "{{ databases.postgresql.replication_user }}"
+        password: "{{ databases.postgresql.replication_password }}"
+        role_attr_flags: REPLICATION
+        state: present
+
+    - name: 配置复制槽
+      postgresql_query:
+        db: "{{ databases.postgresql.name }}"
+        query: "SELECT * FROM pg_create_physical_replication_slot('telesoul_slot');"
+      when: inventory_hostname in groups['database_master']
+
+- name: 配置数据库维护
+  block:
+    - name: 创建维护脚本
+      template:
+        src: maintenance.sh.j2
+        dest: /usr/local/bin/maintain-db.sh
+        mode: '0755'
+        owner: postgres
+        group: postgres
+
+    - name: 配置维护计划
+      cron:
+        name: "Database maintenance"
+        job: "/usr/local/bin/maintain-db.sh"
+        hour: "2"
+        minute: "0"
+        user: postgres 

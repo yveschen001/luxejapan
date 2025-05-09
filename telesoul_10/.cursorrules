@@ -1,0 +1,113 @@
+/**
+ * TeleSoul 開發規範與設計原則
+ * @file .cursorrules
+ * @version 1.0.0
+ * @lastModified 2024-03-21
+ * @author TeleSoul Team
+ * @description 定義 TeleSoul 項目的核心開發規範和設計原則
+ */
+
+// 核心原則
+CORE_PRINCIPLES: {
+  MINIMALISM: "極簡設計，零圖片依賴",
+  CONSISTENCY: "統一設計語言",
+  PERFORMANCE: "高性能優先",
+  OBSERVABILITY: "全鏈路可觀測性"
+}
+
+// 設計系統
+DESIGN_SYSTEM: {
+  REFERENCE: "遵循 docs/design-system/ui-guidelines.md",
+  THEME: "使用CSS變量實現主題切換",
+  LAYOUT: "移動優先的響應式設計"
+}
+
+// 開發規範
+DEVELOPMENT: {
+  VUE: "Vue 3 + Vite",
+  COMPONENTS: "組合式API + TypeScript",
+  CSS: "Tailwind + CSS變量",
+  TESTING: "單元測試覆蓋率 > 80%",
+  OBSERVABILITY: "OpenTelemetry + Jaeger + ELK",
+  SECRETS: "Vault/K8s Secrets",
+  INFRA: "必備基礎設施：PostgreSQL、Redis、MinIO，所有開發/測試/部署環境必須啟動並健康檢查"
+}
+
+// 代碼風格規範
+CODE_STYLE: {
+  REFERENCE: "遵循 docs/CODE_STYLE_GUIDELINES.md"
+}
+
+// 工具配置
+{
+  "editor": {
+    "formatOnSave": true,
+    "tabSize": 2,
+    "insertSpaces": true,
+    "rulers": [80],
+    "wordWrap": "on",
+    "trimTrailingWhitespace": true,
+    "insertFinalNewline": true
+  },
+  "typescript": {
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true
+  },
+  "css": {
+    "validate": true,
+    "lint": {
+      "vendorPrefix": "warning",
+      "zeroUnits": "warning",
+      "importStatement": "warning"
+    }
+  },
+  "tailwindcss": {
+    "validate": true,
+    "lint": true
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "printWidth": 80
+  },
+  "eslint": {
+    "validate": true,
+    "autoFixOnSave": true
+  }
+}
+
+TESTING: {
+  REFERENCE: "遵循 docs/TESTING_GUIDELINES.md"
+}
+
+AUTO_FIX: {
+  REFERENCE: "遵循 docs/AUTO_FIX_GUIDELINES.md"
+}
+
+ENV_VARS: {
+  REFERENCE: "遵循 docs/ENVIRONMENT_VARIABLE_GUIDELINES.md"
+}
+
+OBSERVABILITY: {
+  REFERENCE: "遵循 docs/OBSERVABILITY_GUIDELINES.md"
+}
+
+DISASTER_RECOVERY: {
+  REFERENCE: "遵循 docs/sop/DISASTER_RECOVERY_GUIDELINES.md"
+}
+
+MAINTENANCE: {
+  REFERENCE: "遵循 MAINTENANCE_GUIDELINES.md"
+}
+
+// 腳本規範
+SCRIPTS: {
+  HEADER: "所有自動化腳本必須包含標準註釋（用途、參考、負責人）",
+  REFERENCE: "所有腳本需交叉引用相關文檔與規範，並於 MAINTENANCE_GUIDELINES.md、DOCUMENTATION_GUIDELINES.md、README.md 補充引用。所有入口腳本（如 dev-init.sh、clean-docker.sh）必須在 README.md、MAINTENANCE_GUIDELINES.md、CONTRIBUTING.md 交叉引用。未來如有 Ansible Playbook，應優先以 playbook.yaml 為主入口，並於 ansible/ 目錄集中管理。"
+} 

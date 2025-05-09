@@ -1,0 +1,93 @@
+# playbook.yaml
+- name: TeleSoul Master Playbook
+  hosts: localhost
+  gather_facts: true
+  vars:
+    database_url: "postgresql://postgres:changeme@localhost:5432/telesoul_dev?schema=public"
+
+  tasks:
+    - name: '[1/10] 檢查環境變數模板'
+      shell: |
+        if [ ! -f backend/.env.example ]; then
+          echo "DATABASE_URL=postgresql://postgres:changeme@localhost:5432/telesoul_dev?schema=public" > backend/.env.example
+          echo "JWT_SECRET=your-jwt-secret" >> backend/.env.example
+          echo "PORT=3000" >> backend/.env.example
+        fi
+      tags:
+        - env
+        - check
+
+    - name: '[2/10] 啟動 Docker 容器'
+      shell: docker-compose up -d
+      tags:
+        - docker
+        - start
+
+    - name: '[3/10] 安裝全局依賴'
+      shell: |
+        cd backend && pnpm install
+        cd ../frontend && pnpm install
+      tags:
+        - deps
+
+    - name: '[4/10] 實現後端服務'
+      shell: |
+        cd backend && mkdir -p src/services/{user,match,payment,kyc} && pnpm install && pnpm build
+      tags:
+        - backend
+        - services
+
+    - name: '[5/10] 數據庫遷移'
+      shell: |
+        cd backend && DATABASE_URL="{{ database_url }}" pnpm prisma migrate dev --name init && pnpm prisma generate
+      tags:
+        - db
+        - migrate
+
+    - name: '[6/10] 實現自動化測試'
+      shell: |
+        cd backend && pnpm test
+        cd ../frontend && pnpm test
+      tags:
+        - test
+        - coverage
+
+    - name: '[7/10] 實現 i18n 國際化'
+      shell: |
+        cd frontend && mkdir -p src/i18n/locales
+        if [ ! -f src/i18n/locales/zh.json ]; then
+          echo '{}' > src/i18n/locales/zh.json
+        fi
+        if [ ! -f src/i18n/locales/en.json ]; then
+          echo '{}' > src/i18n/locales/en.json
+        fi
+      tags:
+        - i18n
+        - frontend
+
+    - name: '[8/10] 完善監控告警'
+      shell: |
+        cd docs/infra && mkdir -p monitoring/{prometheus,grafana,alertmanager}
+        if [ ! -f monitoring/prometheus/prometheus.yml ]; then
+          echo "global:" > monitoring/prometheus/prometheus.yml
+          echo "  scrape_interval: 15s" >> monitoring/prometheus/prometheus.yml
+        fi
+      tags:
+        - monitor
+        - alert
+
+    - name: '[9/10] 更新文檔'
+      shell: |
+        cd docs && mkdir -p {api,dev,ops}
+        if [ ! -f api/swagger.yaml ]; then
+          echo "openapi: 3.0.0" > api/swagger.yaml
+        fi
+      tags:
+        - docs
+        - update
+
+    - name: '[10/10] 清理 Docker 資源'
+      shell: docker system prune -f
+      tags:
+        - docker
+        - clean 

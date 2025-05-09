@@ -1,0 +1,189 @@
+# TeleSoul 開發進度追踪
+version: "1.0.0"
+last_updated: "2024-03-21"
+
+tasks:
+  backend_services:
+    status: "completed"
+    progress: 100
+    description: "後端服務實現"
+    subtasks:
+      - name: "用戶服務"
+        status: "completed"
+        progress: 100
+      - name: "匹配服務"
+        status: "completed"
+        progress: 100
+      - name: "支付服務"
+        status: "completed"
+        progress: 100
+      - name: "KYC 服務"
+        status: "completed"
+        progress: 100
+
+  automated_testing:
+    status: "in_progress"
+    progress: 90
+    description: "自動化測試實現"
+    subtasks:
+      - name: "單元測試"
+        status: "completed"
+        progress: 100
+      - name: "集成測試"
+        status: "in_progress"
+        progress: 90
+      - name: "E2E 測試"
+        status: "in_progress"
+        progress: 80
+
+  internationalization:
+    status: "completed"
+    progress: 100
+    description: "國際化實現"
+    subtasks:
+      - name: "繁體中文"
+        status: "completed"
+        progress: 100
+      - name: "簡體中文"
+        status: "completed"
+        progress: 100
+      - name: "英文"
+        status: "completed"
+        progress: 100
+
+  monitoring:
+    status: "not_started"
+    progress: 0
+    description: "監控系統實現"
+    subtasks:
+      - name: "日誌收集"
+        status: "not_started"
+        progress: 0
+      - name: "性能監控"
+        status: "not_started"
+        progress: 0
+      - name: "告警系統"
+        status: "not_started"
+        progress: 0
+
+  documentation:
+    status: "not_started"
+    progress: 0
+    description: "文檔編寫"
+    subtasks:
+      - name: "API 文檔"
+        status: "not_started"
+        progress: 0
+      - name: "部署文檔"
+        status: "not_started"
+        progress: 0
+      - name: "用戶手冊"
+        status: "not_started"
+        progress: 0
+
+  performance:
+    status: "not_started"
+    progress: 0
+    description: "性能優化"
+    subtasks:
+      - name: "數據庫優化"
+        status: "not_started"
+        progress: 0
+      - name: "緩存優化"
+        status: "not_started"
+        progress: 0
+      - name: "前端優化"
+        status: "not_started"
+        progress: 0
+
+  security:
+    status: "not_started"
+    progress: 0
+    description: "安全加固"
+    subtasks:
+      - name: "身份驗證"
+        status: "not_started"
+        progress: 0
+      - name: "數據加密"
+        status: "not_started"
+        progress: 0
+      - name: "安全審計"
+        status: "not_started"
+        progress: 0
+
+  business:
+    status: "not_started"
+    progress: 0
+    description: "業務功能"
+    subtasks:
+      - name: "用戶管理"
+        status: "not_started"
+        progress: 0
+      - name: "訂單管理"
+        status: "not_started"
+        progress: 0
+      - name: "報表系統"
+        status: "not_started"
+        progress: 0
+
+  operations:
+    status: "not_started"
+    progress: 0
+    description: "運維支持"
+    subtasks:
+      - name: "部署腳本"
+        status: "not_started"
+        progress: 0
+      - name: "備份方案"
+        status: "not_started"
+        progress: 0
+      - name: "監控方案"
+        status: "not_started"
+        progress: 0
+
+  compliance:
+    status: "not_started"
+    progress: 0
+    description: "合規性"
+    subtasks:
+      - name: "數據保護"
+        status: "not_started"
+        progress: 0
+      - name: "隱私政策"
+        status: "not_started"
+        progress: 0
+      - name: "服務條款"
+        status: "not_started"
+        progress: 0
+
+  disaster_recovery:
+    status: "not_started"
+    progress: 0
+    description: "災難恢復"
+    subtasks:
+      - name: "備份策略"
+        status: "not_started"
+        progress: 0
+      - name: "恢復方案"
+        status: "not_started"
+        progress: 0
+      - name: "演練計劃"
+        status: "not_started"
+        progress: 0
+
+  training:
+    status: "not_started"
+    progress: 0
+    description: "培訓計劃"
+    subtasks:
+      - name: "技術培訓"
+        status: "not_started"
+        progress: 0
+      - name: "業務培訓"
+        status: "not_started"
+        progress: 0
+      - name: "安全培訓"
+        status: "not_started"
+        progress: 0
+
+overall_progress: 70

@@ -1,0 +1,217 @@
+---
+# TeleSoul 自动化验收与开发任务
+# 版本: 1.0.0
+# 最后更新: 2024-03-21
+
+- name: 环境检查
+  block:
+    - name: 检查 Node.js 版本
+      command: node --version
+      register: node_version
+      changed_when: false
+      failed_when: false
+
+    - name: 检查 PostgreSQL 版本
+      command: psql --version
+      register: psql_version
+      changed_when: false
+      failed_when: false
+
+    - name: 检查 Redis 版本
+      command: redis-cli --version
+      register: redis_version
+      changed_when: false
+      failed_when: false
+
+    - name: 检查 Docker 版本
+      command: docker --version
+      register: docker_version
+      changed_when: false
+      failed_when: false
+
+    - name: 显示环境信息
+      debug:
+        msg: |
+          环境检查结果:
+          - Node.js: {{ node_version.stdout }}
+          - PostgreSQL: {{ psql_version.stdout }}
+          - Redis: {{ redis_version.stdout }}
+          - Docker: {{ docker_version.stdout }}
+
+- name: 服务健康检查
+  block:
+    - name: 检查用户服务健康状态
+      uri:
+        url: "http://localhost:3000/api/health"
+        method: GET
+        return_content: yes
+      register: user_service_health
+      failed_when: false
+
+    - name: 检查匹配服务健康状态
+      uri:
+        url: "http://localhost:3001/api/health"
+        method: GET
+        return_content: yes
+      register: match_service_health
+      failed_when: false
+
+    - name: 检查支付服务健康状态
+      uri:
+        url: "http://localhost:3002/api/health"
+        method: GET
+        return_content: yes
+      register: payment_service_health
+      failed_when: false
+
+    - name: 检查 KYC 服务健康状态
+      uri:
+        url: "http://localhost:3003/api/health"
+        method: GET
+        return_content: yes
+      register: kyc_service_health
+      failed_when: false
+
+    - name: 显示服务健康状态
+      debug:
+        msg: |
+          服务健康检查结果:
+          - 用户服务: {{ user_service_health.status }}
+          - 匹配服务: {{ match_service_health.status }}
+          - 支付服务: {{ payment_service_health.status }}
+          - KYC 服务: {{ kyc_service_health.status }}
+
+- name: 数据库检查
+  block:
+    - name: 检查数据库连接
+      postgresql_db:
+        name: telesoul
+        state: present
+      register: db_check
+      failed_when: false
+
+    - name: 检查数据库迁移状态
+      command: npm run migrate:status
+      register: migration_status
+      changed_when: false
+      failed_when: false
+
+    - name: 显示数据库状态
+      debug:
+        msg: |
+          数据库检查结果:
+          - 连接状态: {{ db_check.changed }}
+          - 迁移状态: {{ migration_status.stdout }}
+
+- name: 测试执行
+  block:
+    - name: 执行单元测试
+      command: npm run test:unit
+      register: unit_test_result
+      changed_when: false
+      failed_when: false
+
+    - name: 执行集成测试
+      command: npm run test:integration
+      register: integration_test_result
+      changed_when: false
+      failed_when: false
+
+    - name: 执行端到端测试
+      command: npm run test:e2e
+      register: e2e_test_result
+      changed_when: false
+      failed_when: false
+
+    - name: 显示测试结果
+      debug:
+        msg: |
+          测试执行结果:
+          - 单元测试: {{ unit_test_result.stdout }}
+          - 集成测试: {{ integration_test_result.stdout }}
+          - 端到端测试: {{ e2e_test_result.stdout }}
+
+- name: 性能测试
+  block:
+    - name: 执行性能测试
+      command: npm run test:performance
+      register: performance_test_result
+      changed_when: false
+      failed_when: false
+
+    - name: 显示性能测试结果
+      debug:
+        msg: |
+          性能测试结果:
+          {{ performance_test_result.stdout }}
+
+- name: 安全检查
+  block:
+    - name: 执行安全扫描
+      command: npm run security:scan
+      register: security_scan_result
+      changed_when: false
+      failed_when: false
+
+    - name: 显示安全扫描结果
+      debug:
+        msg: |
+          安全扫描结果:
+          {{ security_scan_result.stdout }}
+
+- name: 文档检查
+  block:
+    - name: 检查 API 文档
+      command: npm run docs:api
+      register: api_docs_result
+      changed_when: false
+      failed_when: false
+
+    - name: 检查开发文档
+      command: npm run docs:dev
+      register: dev_docs_result
+      changed_when: false
+      failed_when: false
+
+    - name: 显示文档检查结果
+      debug:
+        msg: |
+          文档检查结果:
+          - API 文档: {{ api_docs_result.stdout }}
+          - 开发文档: {{ dev_docs_result.stdout }}
+
+- name: 部署检查
+  block:
+    - name: 检查 Docker 镜像
+      command: docker images | grep telesoul
+      register: docker_images
+      changed_when: false
+      failed_when: false
+
+    - name: 检查 Kubernetes 部署
+      command: kubectl get deployments -n telesoul
+      register: k8s_deployments
+      changed_when: false
+      failed_when: false
+
+    - name: 显示部署检查结果
+      debug:
+        msg: |
+          部署检查结果:
+          - Docker 镜像: {{ docker_images.stdout }}
+          - Kubernetes 部署: {{ k8s_deployments.stdout }}
+
+- name: 更新进度
+  block:
+    - name: 更新 .cursor-todo.yaml
+      template:
+        src: templates/cursor-todo.yaml.j2
+        dest: .cursor-todo.yaml
+      when: >
+        user_service_health.status == 200 and
+        match_service_health.status == 200 and
+        payment_service_health.status == 200 and
+        kyc_service_health.status == 200 and
+        unit_test_result.rc == 0 and
+        integration_test_result.rc == 0 and
+        e2e_test_result.rc == 0 

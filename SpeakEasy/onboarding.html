@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title data-i18n="onboarding_title">欢迎使用网页朗读助手</title>
+  <style>
+    body {
+      width: 600px;
+      padding: 30px;
+      font-family: system-ui;
+    }
+    .step {
+      margin-bottom: 30px;
+      padding: 20px;
+      border-radius: 8px;
+      background: #f5f5f5;
+    }
+    .step-number {
+      background: #007AFF;
+      color: white;
+      width: 24px;
+      height: 24px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+    }
+    .warning {
+      background: #FFF3E0;
+      padding: 15px;
+      border-left: 4px solid #FF9800;
+      margin: 20px 0;
+    }
+    .form-group {
+      margin: 15px 0;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+    }
+    button {
+      background: #007AFF;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1 data-i18n="welcome_title">欢迎使用网页朗读助手</h1>
+  
+  <div class="step">
+    <span class="step-number">1</span>
+    <h3 data-i18n="step1_title">获取 OpenAI API Key</h3>
+    <p data-i18n="step1_desc">请先访问 OpenAI 网站获取您的 API Key：</p>
+    <a href="https://platform.openai.com/api-keys" target="_blank">https://platform.openai.com/api-keys</a>
+  </div>
+
+  <div class="step">
+    <span class="step-number">2</span>
+    <h3 data-i18n="step2_title">基本设置</h3>
+    <div class="form-group">
+      <label for="apiKey" data-i18n="apikey_label">API Key:</label>
+      <input type="password" id="apiKey" placeholder="sk-..." required>
+    </div>
+    <div class="form-group">
+      <label for="voice" data-i18n="voice_label">选择声音类型:</label>
+      <select id="voice">
+        <option value="alloy">Alloy (自然平衡)</option>
+        <option value="echo">Echo (深沉有力)</option>
+        <option value="fable">Fable (温暖友好)</option>
+        <option value="onyx">Onyx (专业庄重)</option>
+        <option value="nova">Nova (温柔亲切)</option>
+        <option value="shimmer">Shimmer (清晰明快)</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="warning">
+    <h4 data-i18n="notice_title">注意事项：</h4>
+    <ul>
+      <li data-i18n="notice_1">使用 OpenAI TTS 服务需要支付费用</li>
+      <li data-i18n="notice_2">请妥善保管您的 API Key</li>
+      <li data-i18n="notice_3">建议对长文本分段处理，避免超出限制</li>
+    </ul>
+  </div>
+
+  <button id="saveSettings" data-i18n="save_button">完成设置</button>
+  <p id="status"></p>
+
+  <script src="i18n.js"></script>
+  <script src="onboarding.js"></script>
+</body>
+</html> 

@@ -1,0 +1,425 @@
+# 審查警示：本文件為唯一權威依據，嚴禁未經審查修改
+
+# TeleSoul 自動化開發 TODO（依 product-requirements.md）
+
+# 1. 需求與架構
+- name: 明確產品 MVP、核心用戶場景
+  description: 梳理用戶流程、功能模組、API/DB 設計
+  status: done
+  progress: 100%
+
+- name: 製作系統架構圖與微服務拆分
+  description: 完成架構圖、API 規範、資料表設計
+  status: done
+  progress: 100%
+
+# 2. 後端 API/微服務
+- name: 用戶認證與綁定
+  description: Telegram/Firebase/Google OAuth、/api/user/bind
+  status: done
+  progress: 100%
+
+- name: 音視頻匹配與計費
+  description: /api/match、Redis queue、計費事件
+  status: done
+  progress: 100%
+
+- name: 支付與提領
+  description: Ton Connect、USDT、/api/withdraw/apply、審核
+  status: done
+  progress: 100%
+
+- name: KYC 驗證
+  description: SumSub/Veriff Webhook、user_kyc_status
+  status: done
+  progress: 100%
+
+- name: 後台管理 API
+  description: 用戶列表、通話/提領/審核、RBAC
+  status: done
+  progress: 100%
+
+- name: 報表與快照 API
+  description: /admin/metrics/daily、/admin/snapshot、排行榜
+  status: done
+  progress: 100%
+
+# 3. 前端 UI/UX
+- name: 商業級 UI 設計稿
+  description: 依 UI_DESIGN_GUIDELINES.md 製作設計稿
+  status: done
+  progress: 100%
+
+- name: 前端專案初始化
+  description: Vue 3 + Vite + Tailwind + i18n
+  status: done
+  progress: 100%
+
+- name: 用戶端主要頁面
+  description: 註冊/登入/配對/通話/提領/個人中心
+  status: done
+  progress: 100%
+
+- name: 管理後台頁面
+  description: 用戶、KYC、提領、報表審核
+  status: done
+  progress: 100%
+
+- name: 多語言/i18n、主題切換
+  description: 國際化、主題切換功能
+  status: done
+  progress: 100%
+
+# 4. 資料庫與基礎設施
+- name: PostgreSQL 結構設計與遷移
+  description: 按需求設計資料表、遷移腳本
+  status: done
+  progress: 100%
+
+- name: Redis/MinIO 配置與健康檢查
+  description: 快取、隊列、對象儲存、健康檢查
+  status: done
+  progress: 100%
+
+- name: Docker Compose/Helm/K8s 配置
+  description: 容器化、部署腳本、K8s 配置
+  status: done
+  progress: 100%
+
+# 5. 測試與質量
+- name: 單元測試
+  description: 覆蓋率≥80%，API、邏輯單元
+  status: done
+  progress: 100%
+
+- name: 集成測試
+  description: 跨服務、資料庫、API
+  status: done
+  progress: 100%
+
+- name: E2E 測試
+  description: Cypress/Playwright 驅動全流程
+  status: done
+  progress: 100%
+
+- name: 視覺回歸/無障礙測試
+  description: Chromatic/Percy、axe-core
+  status: done
+  progress: 100%
+
+- name: 性能壓測/安全測試
+  description: k6/Locust、OWASP ZAP
+  status: done
+  progress: 100%
+
+# 6. CI/CD 與自動化
+- name: Lint、Test、Build、Deploy 流程
+  description: GitHub Actions、CI/CD pipeline
+  status: done
+  progress: 100%
+
+- name: 自動化部署腳本、回滾策略
+  description: deploy-*.sh、rollback.sh
+  status: done
+  progress: 100%
+
+- name: 監控告警、日誌聚合、分布式追蹤
+  description: Prometheus、ELK、Jaeger
+  status: done
+  progress: 100%
+
+# 7. 合規與安全
+- name: GDPR/CCPA 數據刪除、導出自測
+  description: 合規自測腳本、/user/data API
+  status: done
+  progress: 100%
+
+- name: KYC 數據保留與自動清除
+  description: KYC 文件自動清除、合規驗證
+  status: done
+  progress: 100%
+
+- name: 敏感資訊管理
+  description: Vault/Secrets、環境變數規範
+  status: done
+  progress: 100%
+
+# 8. 文檔與知識管理
+- name: API 文檔（OpenAPI/Swagger）
+  description: API Spec、Swagger UI
+  status: done
+  progress: 100%
+
+- name: 開發、部署、維運手冊
+  description: README、QUICKSTART、運維手冊
+  status: done
+  progress: 100%
+
+- name: FAQ、需求追蹤矩陣、設計規範
+  description: FAQ、Traceability Matrix、設計規範
+  status: done
+  progress: 100%
+
+# 9. 運營與分析
+- name: Firebase Analytics、Mixpanel 埋點
+  description: 前端/後端埋點、行為分析
+  status: done
+  progress: 100%
+
+- name: 報表自動生成與匯出
+  description: 留存、轉化、活躍等業務指標報表
+  status: done
+  progress: 100%
+
+# 10. 待完成項目
+- name: 後端服務實現
+  description: 實現所有微服務，包括用戶服務、匹配服務、支付服務等
+  status: in_progress
+  priority: high
+  progress: 90%
+
+- name: 數據庫遷移實現
+  description: 創建並執行數據庫遷移腳本，包括用戶表、訂單表、支付表等
+  status: completed
+  priority: high
+  progress: 100%
+
+- name: 自動化測試實現
+  description: 實現單元測試、集成測試、E2E測試，確保測試覆蓋率>80%
+  status: in_progress
+  priority: high
+  progress: 20%
+
+- name: i18n 國際化實現
+  description: 實現多語言支持，包括中文、英文等語言包
+  status: in_progress
+  priority: medium
+  progress: 80%
+
+- name: 監控告警完善
+  description: 完善 Prometheus、Grafana、ELK 等監控告警系統
+  status: pending
+  priority: medium
+  progress: 0%
+
+- name: 文檔同步更新
+  description: 更新 API 文檔、開發文檔、部署文檔等
+  status: pending
+  priority: medium
+  progress: 0%
+
+- name: 性能優化
+  description: 優化系統性能，包括數據庫查詢、緩存策略等
+  status: pending
+  priority: low
+  progress: 0%
+
+- name: 安全加固
+  description: 進行安全掃描，修復安全漏洞
+  status: pending
+  priority: high
+  progress: 0%
+
+# 11. 商业化准备
+- name: 定价策略制定
+  description: 制定分层定价策略，包括基础版、高级版、企业版等
+  status: pending
+  priority: high
+  progress: 0%
+
+- name: 营销方案设计
+  description: 设计用户获取、留存、转化策略，包括SEO、SEM、社交媒体营销等
+  status: pending
+  priority: high
+  progress: 0%
+
+- name: 用户增长策略
+  description: 制定用户增长目标、渠道策略、病毒传播机制等
+  status: pending
+  priority: high
+  progress: 0%
+
+- name: 收入预测模型
+  description: 建立收入预测模型，包括用户生命周期价值、转化率预测等
+  status: pending
+  priority: high
+  progress: 0%
+
+- name: 成本控制方案
+  description: 制定成本控制策略，包括基础设施优化、运营成本控制等
+  status: pending
+  priority: high
+  progress: 0%
+
+- name: 竞品分析报告
+  description: 完成竞品分析，包括功能对比、定价策略、市场定位等
+  status: pending
+  priority: high
+  progress: 0%
+
+# 12. 运营支持系统
+- name: 用户反馈系统
+  description: 实现用户反馈收集、分析、处理流程
+  status: pending
+  priority: high
+  progress: 0%
+
+- name: 客服工单系统
+  description: 实现客服工单管理、自动分配、处理流程
+  status: pending
+  priority: high
+  progress: 0%
+
+- name: 内容审核系统
+  description: 实现内容自动审核、人工审核、违规处理流程
+  status: pending
+  priority: high
+  progress: 0%
+
+- name: 用户行为分析
+  description: 实现用户行为跟踪、分析、可视化
+  status: pending
+  priority: high
+  progress: 0%
+
+- name: 转化漏斗分析
+  description: 实现转化漏斗跟踪、分析、优化建议
+  status: pending
+  priority: high
+  progress: 0%
+
+- name: A/B测试系统
+  description: 实现A/B测试框架、数据收集、分析
+  status: pending
+  priority: high
+  progress: 0%
+
+# 13. 安全与合规
+- name: 安全漏洞扫描
+  description: 实现自动化安全扫描、漏洞修复、安全报告
+  status: pending
+  priority: high
+  progress: 0%
+
+- name: WAF规则配置
+  description: 配置Web应用防火墙规则，防护常见攻击
+  status: pending
+  priority: high
+  progress: 0%
+
+- name: 密码策略加强
+  description: 实现强密码策略、密码重置流程、安全提示
+  status: pending
+  priority: high
+  progress: 0%
+
+- name: 2FA认证
+  description: 实现双因素认证、备份码、设备管理
+  status: pending
+  priority: high
+  progress: 0%
+
+- name: 数据加密传输
+  description: 实现端到端加密、敏感数据加密存储
+  status: pending
+  priority: high
+  progress: 0%
+
+- name: 防DDoS攻击
+  description: 配置DDoS防护、流量清洗、攻击检测
+  status: pending
+  priority: high
+  progress: 0%
+
+# 14. 性能优化
+- name: 数据库查询优化
+  description: 优化数据库查询、索引、连接池配置
+  status: pending
+  priority: high
+  progress: 0%
+
+- name: 缓存策略优化
+  description: 实现多级缓存、缓存预热、缓存更新策略
+  status: pending
+  priority: high
+  progress: 0%
+
+- name: 前端加载优化
+  description: 优化资源加载、代码分割、预加载策略
+  status: pending
+  priority: high
+  progress: 0%
+
+- name: API响应优化
+  description: 优化API响应时间、并发处理、限流策略
+  status: pending
+  priority: high
+  progress: 0%
+
+- name: 并发处理优化
+  description: 优化并发处理能力、队列管理、负载均衡
+  status: pending
+  priority: high
+  progress: 0%
+
+# 15. 灾备与容灾
+- name: 多区域部署
+  description: 实现多区域部署、区域间同步、故障转移
+  status: pending
+  priority: high
+  progress: 0%
+
+- name: 自动故障转移
+  description: 实现自动故障检测、转移、恢复流程
+  status: pending
+  priority: high
+  progress: 0%
+
+- name: 数据备份策略
+  description: 实现自动备份、增量备份、备份验证
+  status: pending
+  priority: high
+  progress: 0%
+
+- name: 灾难恢复演练
+  description: 实现定期灾难恢复演练、报告、改进
+  status: pending
+  priority: high
+  progress: 0%
+
+- name: 业务连续性计划
+  description: 制定业务连续性计划、应急响应流程
+  status: pending
+  priority: high
+  progress: 0%
+
+# 16. 文档与培训
+- name: 运维手册
+  description: 编写运维手册、故障处理流程、监控指南
+  status: pending
+  priority: high
+  progress: 0%
+
+- name: 故障处理手册
+  description: 编写故障处理手册、常见问题解决方案
+  status: pending
+  priority: high
+  progress: 0%
+
+- name: 安全事件响应流程
+  description: 制定安全事件响应流程、报告模板
+  status: pending
+  priority: high
+  progress: 0%
+
+- name: 客服培训文档
+  description: 编写客服培训文档、常见问题解答
+  status: pending
+  priority: high
+  progress: 0%
+
+- name: 用户使用指南
+  description: 编写用户使用指南、功能说明、常见问题
+  status: pending
+  priority: high
+  progress: 0% 

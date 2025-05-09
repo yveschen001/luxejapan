@@ -1,0 +1,113 @@
+#!/bin/bash
+# TeleSoul 数据库备份脚本
+# 最后更新: 2024-03-21
+
+# 设置环境变量
+export PGHOST="{{ databases.postgresql.host | default('localhost') }}"
+export PGPORT="{{ databases.postgresql.port | default(5432) }}"
+export PGUSER="{{ databases.postgresql.user }}"
+export PGPASSWORD="{{ databases.postgresql.password }}"
+export PGDATABASE="{{ databases.postgresql.name }}"
+
+# 设置备份目录
+BACKUP_DIR="/var/backups/telesoul"
+DATE=$(date +%Y%m%d_%H%M%S)
+BACKUP_PATH="$BACKUP_DIR/backup_$DATE"
+LOG_FILE="$BACKUP_DIR/backup.log"
+
+# 创建备份目录
+mkdir -p "$BACKUP_DIR"
+mkdir -p "$BACKUP_PATH"
+
+# 日志函数
+log() {
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" | tee -a "$LOG_FILE"
+}
+
+# 错误处理
+handle_error() {
+    log "错误: $1"
+    exit 1
+}
+
+# 清理旧备份
+cleanup_old_backups() {
+    find "$BACKUP_DIR" -type d -name "backup_*" -mtime +{{ backup.retention | default(30) }} -exec rm -rf {} \;
+    log "已清理超过 {{ backup.retention | default(30) }} 天的旧备份"
+}
+
+# PostgreSQL 备份
+backup_postgresql() {
+    log "开始 PostgreSQL 备份..."
+    pg_dump -Fc -f "$BACKUP_PATH/postgresql.dump" || handle_error "PostgreSQL 备份失败"
+    log "PostgreSQL 备份完成"
+}
+
+# Redis 备份
+backup_redis() {
+    log "开始 Redis 备份..."
+    redis-cli -h {{ databases.redis.host | default('localhost') }} \
+              -p {{ databases.redis.port | default(6379) }} \
+              {% if databases.redis.password is defined %}-a {{ databases.redis.password }}{% endif %} \
+              --rdb "$BACKUP_PATH/redis.rdb" || handle_error "Redis 备份失败"
+    log "Redis 备份完成"
+}
+
+# 压缩备份
+compress_backup() {
+    log "开始压缩备份..."
+    cd "$BACKUP_DIR" || handle_error "无法进入备份目录"
+    tar -czf "backup_$DATE.tar.gz" "backup_$DATE" || handle_error "备份压缩失败"
+    rm -rf "backup_$DATE"
+    log "备份压缩完成"
+}
+
+# 上传备份到远程存储
+upload_backup() {
+    if [ "{{ backup.remote_storage | default('false') }}" = "true" ]; then
+        log "开始上传备份到远程存储..."
+        {% if backup.storage_type | default('s3') == 's3' %}
+        aws s3 cp "$BACKUP_DIR/backup_$DATE.tar.gz" "s3://{{ backup.s3_bucket }}/backups/" || handle_error "备份上传失败"
+        {% endif %}
+        log "备份上传完成"
+    fi
+}
+
+# 发送通知
+send_notification() {
+    if [ "{{ notifications.enabled | default('false') }}" = "true" ]; then
+        log "发送备份完成通知..."
+        {% if notifications.slack.enabled | default('false') %}
+        curl -X POST -H 'Content-type: application/json' \
+            --data "{\"text\":\"数据库备份完成: backup_$DATE.tar.gz\"}" \
+            {{ notifications.slack.webhook_url }}
+        {% endif %}
+        log "通知发送完成"
+    fi
+}
+
+# 主函数
+main() {
+    log "开始数据库备份..."
+    
+    # 执行备份
+    backup_postgresql
+    backup_redis
+    
+    # 压缩备份
+    compress_backup
+    
+    # 上传备份
+    upload_backup
+    
+    # 清理旧备份
+    cleanup_old_backups
+    
+    # 发送通知
+    send_notification
+    
+    log "数据库备份完成"
+}
+
+# 执行主函数
+main 

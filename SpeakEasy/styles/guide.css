@@ -1,0 +1,63 @@
+.speakeasy-guide-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10000;
+  backdrop-filter: blur(2px);
+}
+
+.speakeasy-guide-tooltip {
+  position: fixed;
+  z-index: 10001;
+  background: white;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: var(--spacing-md);
+  max-width: 300px;
+  animation: tooltip-appear 0.3s ease;
+}
+
+.guide-content {
+  position: relative;
+}
+
+.guide-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--spacing-md);
+}
+
+.guide-buttons button {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  background: var(--speakeasy-primary);
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.guide-buttons button:hover {
+  transform: scale(1.05);
+}
+
+.guide-progress {
+  text-align: center;
+  margin-top: var(--spacing-sm);
+  color: var(--speakeasy-primary);
+  font-size: 12px;
+}
+
+@keyframes tooltip-appear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+} 

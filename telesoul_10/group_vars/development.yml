@@ -1,0 +1,242 @@
+---
+# TeleSoul 开发环境配置
+# 版本: 1.0.0
+# 最后更新: 2024-03-21
+# 参考: ../docs/dev/ENVIRONMENT_VARIABLE_GUIDELINES.md
+
+# 环境配置
+env: development
+debug: true
+log_level: debug
+
+# 服务配置
+services:
+  user:
+    replicas: 1
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        cpu: 200m
+        memory: 256Mi
+
+  match:
+    replicas: 1
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        cpu: 200m
+        memory: 256Mi
+
+  payment:
+    replicas: 1
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        cpu: 200m
+        memory: 256Mi
+
+  kyc:
+    replicas: 1
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        cpu: 200m
+        memory: 256Mi
+
+# 数据库配置
+databases:
+  postgresql:
+    host: ${DB_HOST:-localhost}
+    name: ${DB_NAME:-telesoul_dev}
+    user: ${DB_USER:-telesoul_dev}
+    password: ${DB_PASS:-telesoul_dev}
+    max_connections: 50
+    shared_buffers: 128MB
+    effective_cache_size: 384MB
+  redis:
+    host: ${REDIS_HOST:-localhost}
+    maxmemory: 256mb
+    maxmemory_policy: allkeys-lru
+
+# 监控配置
+monitoring:
+  prometheus:
+    retention_time: 7d
+  grafana:
+    admin_password: ${GRAFANA_ADMIN_PASSWORD:-changeme}
+  elk:
+    elasticsearch:
+      heap_size: 512m
+    logstash:
+      workers: 2
+    kibana:
+      port: ${KIBANA_PORT:-5601}
+
+# 安全配置
+security:
+  ssl:
+    enabled: false
+  firewall:
+    enabled: false
+  fail2ban:
+    enabled: false
+  jwt:
+    secret: ${JWT_SECRET:-telesoul_dev}
+    expiration: ${JWT_EXPIRES_IN:-24h}
+  cors:
+    origins:
+      - ${CORS_ORIGIN:-http://localhost:3000}
+      - http://localhost:8080
+  rate_limit:
+    window: 15m
+    max_requests: 1000
+
+# 备份配置
+backup:
+  enabled: false
+  schedule: "0 2 * * *"
+  retention: 3
+  type: full
+  compression: true
+  encryption: false
+
+# 通知配置
+notifications:
+  email:
+    enabled: false
+  slack:
+    enabled: true
+    webhook_url: ${SLACK_WEBHOOK_URL:-https://hooks.slack.com/services/xxx/yyy/zzz}
+    channel: "#dev-alerts"
+  webhook:
+    enabled: false
+
+# 维护配置
+maintenance:
+  enabled: false
+  message: "开发环境维护中，请稍后再试"
+  allowed_ips:
+    - 127.0.0.1
+    - 192.168.1.0/24
+
+# 灾难恢复配置
+disaster_recovery:
+  enabled: false
+  backup:
+    type: full
+    schedule: "0 2 * * *"
+    retention: 3
+    location: ${BACKUP_LOCATION:-s3://telesoul-backups-dev}
+  restore:
+    timeout: 1800
+    verification: true
+  failover:
+    automatic: false
+    timeout: 300
+    verification: true
+  testing:
+    schedule: "0 0 1 * *"
+    type: full
+    timeout: 3600
+    verification: true
+
+# 合规配置
+compliance:
+  data_retention:
+    enabled: false
+    period: 30
+    type: all
+  audit:
+    enabled: true
+    level: basic
+    retention: 30
+  privacy:
+    enabled: false
+    gdpr: false
+    ccpa: false
+  security:
+    enabled: true
+    scanning:
+      schedule: "0 0 * * 0"
+      type: basic
+    patching:
+      schedule: "0 0 * * 0"
+      type: all
+    monitoring:
+      enabled: true
+      level: basic
+
+# 性能配置
+performance:
+  nginx:
+    worker_processes: 2
+    worker_connections: 512
+    keepalive_timeout: 65
+    client_max_body_size: 10M
+  php:
+    memory_limit: 128M
+    max_execution_time: 30
+    upload_max_filesize: 10M
+    post_max_size: 10M
+  node:
+    max_old_space_size: 1024
+    max_semi_space_size: 32
+    max_executable_size: 256
+
+# 部署配置
+deployment:
+  strategy: recreate
+  max_parallel: 1
+  rollback: true
+  health_check:
+    interval: 30s
+    timeout: 10s
+    retries: 3
+    start_period: 60s
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
+
+# 日志配置
+logging:
+  level: debug
+  retention: 7d
+  elk:
+    index_prefix: telesoul-dev
+
+# CI/CD 配置
+cicd:
+  docker_registry: ${DOCKER_REGISTRY:-docker.io}
+  image_prefix: ${IMAGE_PREFIX:-telesoul-dev}
+  namespace: ${K8S_NAMESPACE:-telesoul-dev}
+  deployment_strategy: recreate
+  rollback_enabled: true
+  health_check_timeout: 180s
+
+# 测试配置
+testing:
+  coverage_threshold: 70
+  performance:
+    concurrent_users: 50
+    duration: 2m
+    ramp_up_time: 30s
+  e2e:
+    browser: chrome
+    headless: true
+    timeout: 60s
+  security:
+    scan_level: low
+    fail_on_high: false
+    fail_on_medium: false 

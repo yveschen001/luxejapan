@@ -1,0 +1,47 @@
+{
+  "extension_name": {
+    "message": "网页朗读助手"
+  },
+  "extension_description": {
+    "message": "使用OpenAI TTS服务朗读网页内容"
+  },
+  "welcome_title": {
+    "message": "欢迎使用网页朗读助手"
+  },
+  "step1_title": {
+    "message": "获取 OpenAI API Key"
+  },
+  "step1_desc": {
+    "message": "请先访问 OpenAI 网站获取您的 API Key："
+  },
+  "step2_title": {
+    "message": "基本设置"
+  },
+  "apikey_label": {
+    "message": "API Key:"
+  },
+  "voice_label": {
+    "message": "选择声音类型:"
+  },
+  "notice_title": {
+    "message": "注意事项："
+  },
+  "notice_1": {
+    "message": "使用 OpenAI TTS 服务需要支付费用"
+  },
+  "notice_2": {
+    "message": "请妥善保管您的 API Key"
+  },
+  "notice_3": {
+    "message": "建议对长文本分段处理，避免超出限制"
+  },
+  "save_button": {
+    "message": "完成设置"
+  },
+  "settings_saved": {
+    "message": "设置已保存"
+  },
+  "error_no_api_key": {
+    "message": "请输入 API Key"
+  }
+} 

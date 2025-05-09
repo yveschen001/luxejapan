@@ -1,0 +1,27 @@
+{
+  "SyntaxError: Cannot use import statement outside a module": {
+    "fixScript": "scripts/auto-fix-format.sh",
+    "description": "格式化代碼並添加 babel/polyfill",
+    "env": "all"
+  },
+  "EADDRINUSE": {
+    "fixScript": "scripts/auto-fix-ports.sh",
+    "description": "變更默認端口或殺掉占用進程",
+    "env": "local"
+  },
+  "SequelizeConnectionError": {
+    "fixScript": "scripts/auto-fix-db-retry.sh",
+    "description": "重試數據庫連接並刷新遷移",
+    "env": "all"
+  },
+  "RedisConnectionError": {
+    "fixScript": "scripts/auto-fix-redis.sh",
+    "description": "重啟 Redis 容器並檢查密碼配置",
+    "env": "all"
+  },
+  "MinioHealthCheckFailed": {
+    "fixScript": "scripts/auto-fix-minio.sh",
+    "description": "重啟 MinIO 並檢查環境變數/端口",
+    "env": "all"
+  }
+} 

@@ -1,0 +1,140 @@
+# TeleSoul 日志轮转配置
+# 最后更新: 2024-03-21
+
+# 应用日志
+/var/log/telesoul/*.log {
+    daily
+    rotate 7
+    missingok
+    compress
+    delaycompress
+    notifempty
+    create 0640 telesoul telesoul
+    sharedscripts
+    postrotate
+        systemctl reload telesoul-* >/dev/null 2>&1 || true
+    endscript
+}
+
+# Nginx 日志
+/var/log/nginx/*.log {
+    daily
+    rotate 14
+    missingok
+    compress
+    delaycompress
+    notifempty
+    create 0640 www-data adm
+    sharedscripts
+    postrotate
+        [ -f /var/run/nginx.pid ] && kill -USR1 `cat /var/run/nginx.pid`
+    endscript
+}
+
+# PostgreSQL 日志
+/var/log/postgresql/*.log {
+    daily
+    rotate 7
+    missingok
+    compress
+    delaycompress
+    notifempty
+    create 0640 postgres postgres
+    sharedscripts
+    postrotate
+        pg_ctl reload >/dev/null 2>&1 || true
+    endscript
+}
+
+# Redis 日志
+/var/log/redis/*.log {
+    daily
+    rotate 7
+    missingok
+    compress
+    delaycompress
+    notifempty
+    create 0640 redis redis
+    sharedscripts
+    postrotate
+        [ -f /var/run/redis/redis-server.pid ] && kill -USR1 `cat /var/run/redis/redis-server.pid`
+    endscript
+}
+
+# 系统日志
+/var/log/syslog
+/var/log/auth.log
+/var/log/kern.log
+/var/log/mail.log
+/var/log/daemon.log {
+    rotate 7
+    daily
+    missingok
+    notifempty
+    compress
+    delaycompress
+    postrotate
+        /usr/lib/rsyslog/rsyslog-rotate
+    endscript
+}
+
+# 监控日志
+/var/log/prometheus/*.log
+/var/log/grafana/*.log
+/var/log/alertmanager/*.log
+/var/log/node_exporter/*.log {
+    daily
+    rotate 7
+    missingok
+    compress
+    delaycompress
+    notifempty
+    create 0640 prometheus prometheus
+    sharedscripts
+    postrotate
+        systemctl reload prometheus grafana-server prometheus-alertmanager node_exporter >/dev/null 2>&1 || true
+    endscript
+}
+
+# ELK Stack 日志
+/var/log/elasticsearch/*.log {
+    daily
+    rotate 7
+    missingok
+    compress
+    delaycompress
+    notifempty
+    create 0640 elasticsearch elasticsearch
+    sharedscripts
+    postrotate
+        [ -f /var/run/elasticsearch/elasticsearch.pid ] && kill -USR1 `cat /var/run/elasticsearch/elasticsearch.pid`
+    endscript
+}
+
+/var/log/logstash/*.log {
+    daily
+    rotate 7
+    missingok
+    compress
+    delaycompress
+    notifempty
+    create 0640 logstash logstash
+    sharedscripts
+    postrotate
+        systemctl reload logstash >/dev/null 2>&1 || true
+    endscript
+}
+
+/var/log/kibana/*.log {
+    daily
+    rotate 7
+    missingok
+    compress
+    delaycompress
+    notifempty
+    create 0640 kibana kibana
+    sharedscripts
+    postrotate
+        systemctl reload kibana >/dev/null 2>&1 || true
+    endscript
+} 

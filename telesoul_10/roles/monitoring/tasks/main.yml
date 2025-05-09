@@ -1,0 +1,338 @@
+---
+# TeleSoul 监控角色任务
+# 版本: 1.0.0
+# 最后更新: 2024-03-21
+
+- name: 安装 Prometheus
+  block:
+    - name: 安装 macOS Prometheus
+      homebrew:
+        name: prometheus
+        state: present
+      become: false
+      when: ansible_os_family == "Darwin"
+
+    - name: 安装 Linux Prometheus
+      block:
+        - name: 下载 Prometheus
+          get_url:
+            url: "https://github.com/prometheus/prometheus/releases/download/v{{ monitoring.prometheus.version }}/prometheus-{{ monitoring.prometheus.version }}.linux-amd64.tar.gz"
+            dest: /tmp/prometheus.tar.gz
+            mode: '0644'
+
+        - name: 创建 Prometheus 目录
+          file:
+            path: /opt/prometheus
+            state: directory
+            mode: '0755'
+
+        - name: 解压 Prometheus
+          unarchive:
+            src: /tmp/prometheus.tar.gz
+            dest: /opt/prometheus
+            remote_src: true
+            extra_opts: [--strip-components=1]
+
+        - name: 配置 Prometheus 服务
+          template:
+            src: prometheus.service.j2
+            dest: /etc/systemd/system/prometheus.service
+            mode: '0644'
+      when: ansible_os_family == "Debian"
+
+- name: 安装 Grafana
+  block:
+    - name: 安装 macOS Grafana
+      homebrew:
+        name: grafana
+        state: present
+      become: false
+      when: ansible_os_family == "Darwin"
+
+    - name: 安装 Linux Grafana
+      block:
+        - name: 添加 Grafana APT 密钥
+          apt_key:
+            url: https://packages.grafana.com/gpg.key
+            state: present
+
+        - name: 添加 Grafana APT 仓库
+          apt_repository:
+            repo: deb https://packages.grafana.com/oss/deb stable main
+            state: present
+            filename: grafana
+
+        - name: 安装 Grafana
+          apt:
+            name: grafana
+            state: present
+            update_cache: true
+      when: ansible_os_family == "Debian"
+
+- name: 安装 Alertmanager
+  block:
+    - name: 安装 macOS Alertmanager
+      homebrew:
+        name: alertmanager
+        state: present
+      become: false
+      when: ansible_os_family == "Darwin"
+
+    - name: 安装 Linux Alertmanager
+      block:
+        - name: 下载 Alertmanager
+          get_url:
+            url: "https://github.com/prometheus/alertmanager/releases/download/v{{ monitoring.alertmanager.version }}/alertmanager-{{ monitoring.alertmanager.version }}.linux-amd64.tar.gz"
+            dest: /tmp/alertmanager.tar.gz
+            mode: '0644'
+
+        - name: 创建 Alertmanager 目录
+          file:
+            path: /opt/alertmanager
+            state: directory
+            mode: '0755'
+
+        - name: 解压 Alertmanager
+          unarchive:
+            src: /tmp/alertmanager.tar.gz
+            dest: /opt/alertmanager
+            remote_src: true
+            extra_opts: [--strip-components=1]
+
+        - name: 配置 Alertmanager 服务
+          template:
+            src: alertmanager.service.j2
+            dest: /etc/systemd/system/alertmanager.service
+            mode: '0644'
+      when: ansible_os_family == "Debian"
+
+- name: 启动监控服务
+  block:
+    - name: 启动 macOS 监控服务
+      command: brew services start {{ item }}
+      become: false
+      with_items:
+        - prometheus
+        - grafana
+        - alertmanager
+      when: ansible_os_family == "Darwin"
+
+    - name: 启动 Linux 监控服务
+      systemd:
+        name: "{{ item }}"
+        state: started
+        enabled: true
+        daemon_reload: true
+      with_items:
+        - prometheus
+        - grafana-server
+        - alertmanager
+      when: ansible_os_family == "Debian"
+
+- name: 安装 Node Exporter
+  apt:
+    name: prometheus-node-exporter
+    state: present
+  become: true
+  when: ansible_os_family == "Debian"
+
+- name: 配置 Node Exporter
+  template:
+    src: node_exporter.service.j2
+    dest: /etc/systemd/system/node_exporter.service
+    owner: root
+    group: root
+    mode: '0644'
+  become: true
+  notify: restart node_exporter
+
+- name: 启动 Node Exporter 服务
+  service:
+    name: node_exporter
+    state: started
+    enabled: yes
+  become: true
+
+- name: 安装 Elasticsearch
+  apt:
+    name: elasticsearch
+    state: present
+  become: true
+  when: ansible_os_family == "Debian"
+
+- name: 配置 Elasticsearch
+  template:
+    src: elasticsearch.yml.j2
+    dest: /etc/elasticsearch/elasticsearch.yml
+    owner: elasticsearch
+    group: elasticsearch
+    mode: '0640'
+  become: true
+  notify: restart elasticsearch
+
+- name: 启动 Elasticsearch 服务
+  service:
+    name: elasticsearch
+    state: started
+    enabled: yes
+  become: true
+
+- name: 安装 Logstash
+  apt:
+    name: logstash
+    state: present
+  become: true
+  when: ansible_os_family == "Debian"
+
+- name: 配置 Logstash
+  template:
+    src: logstash.yml.j2
+    dest: /etc/logstash/logstash.yml
+    owner: logstash
+    group: logstash
+    mode: '0640'
+  become: true
+  notify: restart logstash
+
+- name: 启动 Logstash 服务
+  service:
+    name: logstash
+    state: started
+    enabled: yes
+  become: true
+
+- name: 安装 Kibana
+  apt:
+    name: kibana
+    state: present
+  become: true
+  when: ansible_os_family == "Debian"
+
+- name: 配置 Kibana
+  template:
+    src: kibana.yml.j2
+    dest: /etc/kibana/kibana.yml
+    owner: kibana
+    group: kibana
+    mode: '0640'
+  become: true
+  notify: restart kibana
+
+- name: 启动 Kibana 服务
+  service:
+    name: kibana
+    state: started
+    enabled: yes
+  become: true
+
+- name: 安装 Jaeger
+  apt:
+    name: jaeger
+    state: present
+  become: true
+  when: ansible_os_family == "Debian"
+
+- name: 配置 Jaeger
+  template:
+    src: jaeger.yml.j2
+    dest: /etc/jaeger/jaeger.yml
+    owner: jaeger
+    group: jaeger
+    mode: '0640'
+  become: true
+  notify: restart jaeger
+
+- name: 启动 Jaeger 服务
+  service:
+    name: jaeger
+    state: started
+    enabled: yes
+  become: true
+
+- name: 配置告警规则
+  template:
+    src: alert.rules.j2
+    dest: /etc/prometheus/rules/alert.rules
+    owner: prometheus
+    group: prometheus
+    mode: '0640'
+  become: true
+  notify: reload prometheus
+
+- name: 配置 Grafana 仪表盘
+  template:
+    src: dashboards.yml.j2
+    dest: /etc/grafana/provisioning/dashboards/dashboards.yml
+    owner: grafana
+    group: grafana
+    mode: '0640'
+  become: true
+  notify: restart grafana
+
+- name: 配置 Grafana 数据源
+  template:
+    src: datasources.yml.j2
+    dest: /etc/grafana/provisioning/datasources/datasources.yml
+    owner: grafana
+    group: grafana
+    mode: '0640'
+  become: true
+  notify: restart grafana
+
+- name: 配置通知渠道
+  template:
+    src: notifications.yml.j2
+    dest: /etc/grafana/provisioning/notifiers/notifications.yml
+    owner: grafana
+    group: grafana
+    mode: '0640'
+  become: true
+  notify: restart grafana
+
+- name: 配置监控数据备份
+  template:
+    src: backup.sh.j2
+    dest: /usr/local/bin/backup-monitoring.sh
+    owner: root
+    group: root
+    mode: '0750'
+  become: true
+  when: backup.enabled | default(false)
+
+- name: 配置备份定时任务
+  cron:
+    name: "Monitoring Data Backup"
+    job: "/usr/local/bin/backup-monitoring.sh"
+    hour: "{{ backup.schedule.split(' ')[1] }}"
+    minute: "{{ backup.schedule.split(' ')[0] }}"
+    user: root
+  become: true
+  when: backup.enabled | default(false)
+
+- name: 配置监控安全设置
+  template:
+    src: security.yml.j2
+    dest: /etc/grafana/security.yml
+    owner: grafana
+    group: grafana
+    mode: '0640'
+  become: true
+  notify: restart grafana
+
+- name: 配置监控维护脚本
+  template:
+    src: maintenance.sh.j2
+    dest: /usr/local/bin/maintain-monitoring.sh
+    owner: root
+    group: root
+    mode: '0750'
+  become: true
+
+- name: 配置维护定时任务
+  cron:
+    name: "Monitoring Maintenance"
+    job: "/usr/local/bin/maintain-monitoring.sh"
+    hour: "4"
+    minute: "0"
+    user: root
+  become: true 

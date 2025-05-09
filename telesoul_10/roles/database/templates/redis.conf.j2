@@ -1,0 +1,121 @@
+# TeleSoul Redis 配置
+# 最后更新: 2024-03-21
+
+# 网络设置
+bind {{ databases.redis.bind | default('127.0.0.1') }}
+port {{ databases.redis.port | default(6379) }}
+protected-mode yes
+tcp-backlog 511
+timeout 0
+tcp-keepalive 300
+
+# TLS/SSL 设置
+{% if databases.redis.ssl_enabled | default(false) %}
+tls-port 6380
+tls-cert-file /etc/redis/ssl/redis.crt
+tls-key-file /etc/redis/ssl/redis.key
+tls-ca-cert-file /etc/redis/ssl/ca.crt
+tls-auth-clients yes
+tls-replication yes
+tls-cluster yes
+{% endif %}
+
+# 通用设置
+daemonize yes
+supervised systemd
+pidfile /var/run/redis/redis-server.pid
+loglevel notice
+logfile /var/log/redis/redis-server.log
+databases 16
+
+# 快照设置
+save 900 1
+save 300 10
+save 60 10000
+stop-writes-on-bgsave-error yes
+rdbcompression yes
+rdbchecksum yes
+dbfilename dump.rdb
+dir /var/lib/redis
+rdb-save-incremental-fsync yes
+
+# 复制设置
+{% if databases.redis.replication_enabled | default(false) %}
+slaveof {{ databases.redis.master_host }} {{ databases.redis.master_port }}
+masterauth {{ databases.redis.master_password }}
+slave-serve-stale-data yes
+slave-read-only yes
+repl-diskless-sync yes
+repl-diskless-sync-delay 5
+repl-disable-tcp-nodelay no
+slave-priority 100
+{% endif %}
+
+# 安全设置
+requirepass {{ databases.redis.password | default('') }}
+rename-command FLUSHDB ""
+rename-command FLUSHALL ""
+rename-command DEBUG ""
+rename-command CONFIG ""
+
+# 限制设置
+maxclients 10000
+maxmemory {{ databases.redis.maxmemory | default('512mb') }}
+maxmemory-policy {{ databases.redis.maxmemory_policy | default('allkeys-lru') }}
+maxmemory-samples 5
+
+# 追加模式设置
+appendonly yes
+appendfilename "appendonly.aof"
+appendfsync everysec
+no-appendfsync-on-rewrite no
+auto-aof-rewrite-percentage 100
+auto-aof-rewrite-min-size 64mb
+aof-load-truncated yes
+aof-use-rdb-preamble yes
+
+# 集群设置
+{% if databases.redis.cluster_enabled | default(false) %}
+cluster-enabled yes
+cluster-config-file nodes.conf
+cluster-node-timeout 5000
+cluster-slave-validity-factor 10
+cluster-migration-barrier 1
+cluster-require-full-coverage yes
+{% endif %}
+
+# 慢日志设置
+slowlog-log-slower-than 10000
+slowlog-max-len 128
+
+# 延迟监控设置
+latency-monitor-threshold 0
+
+# 事件通知设置
+notify-keyspace-events ""
+
+# 高级设置
+hash-max-ziplist-entries 512
+hash-max-ziplist-value 64
+list-max-ziplist-size -2
+list-compress-depth 0
+set-max-intset-entries 512
+zset-max-ziplist-entries 128
+zset-max-ziplist-value 64
+hll-sparse-max-bytes 3000
+stream-node-max-bytes 4096
+stream-node-max-entries 100
+activerehashing yes
+client-output-buffer-limit normal 0 0 0
+client-output-buffer-limit slave 256mb 64mb 60
+client-output-buffer-limit pubsub 32mb 8mb 60
+hz 10
+dynamic-hz yes
+aof-rewrite-incremental-fsync yes
+rdb-save-incremental-fsync yes
+
+# 监控设置
+{% if monitoring.enabled | default(false) %}
+# Redis Exporter 配置
+bind-source-addr 127.0.0.1
+{% endif %} 

@@ -1,0 +1,309 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Nosotros",
+    "services": "Servicios",
+    "processFaq": "Proceso y FAQ",
+    "serviceNotes": "Notas de Servicio",
+    "testimonials": "Testimonios",
+    "contact": "Contacto",
+    "switchLang": "Cambiar Idioma"
+  },
+  "hero": {
+    "title": "Luxe Japan - Servicios de Acompañamiento Élite",
+    "subtitle": "Experimente el servicio de acompañamiento y experiencias de lujo más exclusivas de Japón.",
+    "cta": "Descubrir Más"
+  },
+  "services": {
+    "title": "Nuestros Servicios",
+    "subtitle": "Experiencias exclusivas diseñadas para usted",
+    "inhomeTitle": "Servicio a Domicilio",
+    "inhomeDesc": "Acompañamiento exclusivo en la intimidad de su hogar, personalizado según sus preferencias.",
+    "companionTitle": "Acompañamiento Premium",
+    "companionDesc": "Compañía elegante y sofisticada para crear momentos inolvidables.",
+    "clubTitle": "Club Privado",
+    "clubDesc": "Acceso exclusivo a clubes privados y espacios VIP para una experiencia extraordinaria."
+  },
+  "gallery": {
+    "title": "Galería Selecta",
+    "subtitle": "Momentos exclusivos, recuerdos eternos",
+    "img1": { "alt": "Experiencia de lujo en Japón", "caption": "Momentos elegantes" },
+    "img2": { "alt": "Experiencia cultural profunda", "caption": "Inmersión cultural" },
+    "img3": { "alt": "Acceso a espacios exclusivos", "caption": "Privilegios VIP" }
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados.",
+    "privacy": "Política de Privacidad",
+    "terms": "Términos de Servicio",
+    "contact": "Contacto"
+  },
+  "home": {
+    "introTitle": "Introducción",
+    "introParagraphs": [
+      "¿Desea explorar el encanto exclusivo de la cultura japonesa, pero le preocupa la confusión, las barreras lingüísticas o experiencias desagradables? Estimado cliente, no necesita preocuparse por nada de esto.",
+      "Déjenos ser su consultor personal de experiencias premium en Japón, y disfrute de los servicios más exclusivos con total tranquilidad."
+    ],
+    "introList": [
+      {"title": "Traslados de Clase Real", "desc": "Rolls-Royce, LEXUS LM, Toyota Alphard... Traslados desde el aeropuerto y movilidad urbana con vehículos de lujo disponibles 24/7."},
+      {"title": "Consultoría Personalizada", "desc": "Diseño de itinerario personalizado, desde sus preferencias hasta la planificación detallada. Asistencia personal para garantizar que cada detalle cumpla con sus expectativas."},
+      {"title": "Experiencia Premium", "desc": "Selección de las más elegantes y sofisticadas acompañantes japonesas. Cenas íntimas, eventos VIP, paseos urbanos o relajación en aguas termales, con compañía excepcional."},
+      {"title": "Protección de Privacidad", "desc": "Estricta confidencialidad y servicio profesional, para que pueda relajarse sin preocupaciones."}
+    ],
+    "introCta": "¡Inicie su viaje exclusivo en Tokio!"
+  },
+  "about": {
+    "title": "Sobre Nosotros",
+    "subtitle": "Excelencia y tradición",
+    "philosophyTitle": "Filosofía de Marca",
+    "philosophyDesc": "Creemos en ofrecer el más alto nivel de lujo, privacidad y servicio personalizado a cada invitado.",
+    "commitmentTitle": "Compromiso de Servicio",
+    "commitmentDesc": "Nuestro equipo se dedica a la excelencia, confidencialidad y creación de experiencias memorables.",
+    "valuesTitle": "Valores Principales",
+    "values": {
+      "discretion": "Discreción absoluta",
+      "excellence": "Excelencia en servicio",
+      "luxury": "Experiencia premium",
+      "trust": "Confianza y fiabilidad"
+    },
+    "story": {
+      "paragraphs": [
+        "{brand} fue fundado por el Director Minami, conocido como el 'Crítico Michelin' de la industria japonesa, y el Sr. Bando, experto en servicios de lujo para el mercado asiático. El Director Minami no solo es un conocedor experto, sino también consultor para varios medios especializados; mientras que el Sr. Bando ha diseñado itinerarios exclusivos para clientes VIP durante años. Después de años de experiencia e investigación, descubrimos que:",
+        "Por lo tanto, nos dedicamos a crear un verdadero 'servicio de acompañamiento premium' con el lema 'Cliente Primero - Selección honesta de las mejores acompañantes para satisfacer todas sus necesidades'.",
+        "Gracias al apoyo de nuestros distinguidos clientes, {brand} ha ganado la confianza de la élite japonesa. Con nuestra extensa red, seleccionamos cuidadosamente entre: modelos y artistas de agencias de talentos, estudiantes universitarias de prestigiosas universidades, anfitrionas de exclusivos bares y clubes nocturnos de Tokio, y elegantes profesionales de empresas líderes y la industria del bienestar.",
+        "En nuestro proceso de selección, valoramos no solo la apariencia y el físico, sino también el sentido común, la etiqueta profesional y la elegancia. Todas nuestras acompañantes son damas sofisticadas con excelentes habilidades sociales, personalidad encantadora e inteligencia, asegurando que cada encuentro sea especial y memorable."
+      ],
+      "list": [
+        "El mercado está saturado de anuncios engañosos, como 'servicios premium con acompañantes que no cumplen las expectativas', 'fotos falsas', 'sustituciones' o 'mismas acompañantes en múltiples agencias';",
+        "Muchos establecimientos de calidad rechazan clientes extranjeros, afectando la experiencia por barreras de confianza y comunicación;",
+        "Los clientes VIP a menudo deben coordinar múltiples servicios y detalles complejos, dificultando una experiencia sin preocupaciones."
+      ],
+      "experienceTitle": "Experiencia de Servicio",
+      "experienceParagraph": "En {brand}, no necesita preocuparse por trámites de transporte ni por barreras legales o lingüísticas. Nuestro servicio al cliente le guiará en todo momento:",
+      "experienceList": [
+        "Traslados de lujo: desde el aeropuerto hasta su hotel, con flota de Toyota Alphard, LEXUS LM o Rolls-Royce;",
+        "Coordinación perfecta: todos los itinerarios y reservas son gestionados por nosotros, para que usted solo tenga que relajarse;",
+        "Compañía excepcional: disfrute de momentos especiales con nuestras seleccionadas acompañantes - ya sea admirando los cerezos, degustando vinos, karaoke o momentos íntimos, nos encargamos de todos los detalles."
+      ],
+      "ending": "Solo relájese y disfrute de momentos inolvidables con su acompañante elegida, mientras nosotros nos encargamos de todo lo demás."
+    }
+  },
+  "contact": {
+    "title": "Contacto",
+    "subtitle": "Servicio profesional disponible 24/7",
+    "form": {
+      "name": "Nombre",
+      "email": "Correo electrónico",
+      "phone": "Teléfono",
+      "message": "Mensaje",
+      "submit": "Enviar"
+    },
+    "info": {
+      "title": "Información de Contacto",
+      "line": "Line",
+      "telegram": "Telegram",
+      "email": "Correo electrónico",
+      "social": "Redes sociales"
+    },
+    "telegram": { "label": "luxejapan", "link": "https://t.me/luxejapan" },
+    "line": { "label": "luxejapan", "link": "https://line.me/ti/p/xxxx" }
+  },
+  "serviceNotes": {
+    "title": "Notas de Servicio",
+    "subtitle": "Información importante y políticas",
+    "notes": {
+      "title": "Notas importantes",
+      "note1": "Todos los servicios requieren reserva previa para garantizar la mejor calidad",
+      "note2": "Ofrecemos soporte al cliente profesional 24 horas",
+      "note3": "Todos los servicios están sujetos a estricta confidencialidad",
+      "note4": "Servicios personalizados disponibles según sus necesidades"
+    },
+    "privacy": {
+      "title": "Protección de Privacidad",
+      "desc": "Cumplimos estrictamente con las normas de protección de privacidad para garantizar la seguridad de sus datos"
+    }
+  },
+  "testimonials": {
+    "title": "Experiencias de Clientes",
+    "subtitle": "Testimonios reales de clientes de todo el mundo",
+    "list": [
+      {"nickname": "JohnP", "location": "Taiwán", "content": "No esperaba encontrar una chica tan refinada, con una elegancia que me hizo sentir algo tímido. Al abrir la puerta, me encontré con una belleza japonesa. A diferencia de mi primera impresión de su elegancia, fue muy amable y su sonrisa encantadora. ¡Gracias a la Srta. Kuroki por hacerme pasar un día tan maravilloso, espero volver a verla!"},
+      {"nickname": "EmL", "location": "Hong Kong", "content": "Mi primera experiencia, gracias al director por reservarme un restaurante con terraza para ver los cerezos, junto con la encantadora Srta. Asahina. ¡Momentos inolvidables con belleza y naturaleza!"},
+      {"nickname": "PG", "location": "Taiwán", "content": "En mi viaje en solitario al Monte Fuji, no esperaba poder tener una acompañante en mi ryokan. ¡Gracias a la Srta. Hashimoto y al director por el viaje de dos horas!"},
+      {"nickname": "HansM", "location": "China", "content": "Finalmente probé mi primera experiencia grupal, ¡la próxima vez quiero intentar con cuatro personas y jugar mahjong!"},
+      {"nickname": "OliW", "location": "Australia", "content": "Una noche de relajación inesperada. Encontré a la chica más hermosa de mi vida, con un servicio excepcional... Me sentí conmovido por su dedicación. ¡Definitivamente quiero verla de nuevo!"},
+      {"nickname": "WeiJun", "location": "Singapur", "content": "¡Altura de modelo! Elegancia y encanto maduro. Sus técnicas de masaje son impecables, ¡no hay nada que criticar!"},
+      {"nickname": "小影", "location": "Taiwán", "content": "Al entrar en el LM desde el aeropuerto, la belleza ya estaba esperando, vestida con el atuendo de secretaria OL y medias negras que solicité. Durante el trayecto al hotel, no pude evitar tomar su mano... fue un viaje bastante interesante... Terminamos teniendo un momento apasionado en el hotel. Gracias a la Srta. Amane por las medias extra, aunque accidentalmente las rompí."},
+      {"nickname": "俊", "location": "Taiwán", "content": "Pensé que mi solicitud de Cosplay era demasiado, pero realmente recreó mi personaje de anime favorito. Gracias a la Srta. Uehara, lo siento por romper el accesorio del pelo, quizás fui demasiado entusiasta."},
+      {"nickname": "MartinC", "location": "Canadá", "content": "Esta vez probé diferentes estilos: tres chicas en tres días, desde 155cm hasta 175cm, cada una con su encanto único. ¡Gracias al director por la coordinación!"},
+      {"nickname": "SaA", "location": "Emiratos Árabes", "content": "El club con jacuzzi privado fue especial. ¡Gracias al director por organizar mi fiesta de cumpleaños con 10 chicas en bikini, fue mi cumpleaños más memorable y agotador!"},
+      {"nickname": "NiR", "location": "Rusia", "content": "Mi primera experiencia con una actriz japonesa, el servicio fue tan refinado como un restaurante de alta cocina, impecable en cada detalle."},
+      {"nickname": "ThaboS", "location": "Sudáfrica", "content": "¡Gracias al director por organizar la fiesta en yate en la bahía de Tokio! El paisaje marino era hermoso, el servicio de la Srta. Mizuno fue excepcional, y el balanceo del barco añadió una dimensión especial a la experiencia, ¡simplemente increíble!"}
+    ]
+  },
+  "processFaq": {
+    "title": "Proceso y Preguntas Frecuentes",
+    "subtitle": "Conozca nuestro proceso de servicio",
+    "process": {
+      "title": "Proceso de Servicio",
+      "step1": "Consulta de Reserva",
+      "step2": "Confirmación de Plan",
+      "step3": "Ejecución del Servicio",
+      "step4": "Retroalimentación"
+    },
+    "faq": {
+      "title": "Preguntas Frecuentes",
+      "q1": "¿Cómo reservar un servicio?",
+      "a1": "Puede reservar a través de Telegram o LINE.",
+      "a1Prefix": "Puede reservar a través de",
+      "a1Suffix": ".",
+      "q2": "¿Cómo se programa el servicio?",
+      "a2": "Ofrecemos reservas 24 horas, adaptadas a sus necesidades",
+      "q3": "¿Cómo se garantiza la calidad?",
+      "a3": "Seleccionamos cuidadosamente a nuestro personal para garantizar el mejor servicio"
+    },
+    "fullProcess": [
+      {"title": "Consulta en Línea", "descPrefix": "Contáctenos a través de", "descSuffix": "(recomendamos Telegram para su privacidad) y cuéntenos sus necesidades: fecha, hora, ubicación, preferencias... Nuestro servicio al cliente responderá rápidamente para confirmar los detalles."},
+      {"title": "Confirmación y Cotización", "desc": "Le proporcionaremos una cotización personalizada según el nivel de acompañante, duración del servicio y servicios adicionales (como traslados desde el aeropuerto o eventos privados)."},
+      {"title": "Pago y Confirmación", "desc": "Aceptamos efectivo en yenes, USDT (según el tipo de cambio del día) y otros métodos. Se recomienda USDT para minimizar comisiones. Su reserva se confirma inmediatamente después del pago."},
+      {"title": "Bienvenida Exclusiva", "desc": "El día del servicio, desde el traslado desde el aeropuerto hasta la despedida, coordinamos todo sin problemas para que usted solo tenga que relajarse y disfrutar."}
+    ],
+    "fullFaq": [
+      {"q": "¿Cuál es el rango de precios?", "a": "Tarifa estándar: 100,000 yenes/90 minutos (varía según el nivel de la acompañante). Servicios adicionales como traslados, eventos privados o acceso a aguas termales tienen costos adicionales."},
+      {"q": "¿Puedo probar primero?", "a": "¡Por supuesto! Le recomendamos comenzar con nuestro plan básico de '100,000 yenes/90 minutos + aproximadamente 4,000 yenes de transporte' para experimentar nuestro servicio profesional."},
+      {"q": "¿Puedo cambiar de acompañante si no es lo que esperaba?", "a": "Si hay problemas evidentes con el servicio, podemos cambiar inmediatamente o cancelar. Por preferencias personales, no podemos ofrecer cambios el mismo día ni reembolsos. Contacte a nuestro servicio al cliente para asistencia."},
+      {"q": "No hablo japonés, ¿cómo nos comunicaremos?", "a": "No se preocupe. Nuestro servicio al cliente coordinará todo antes, y podemos usar Google Translate o ChatGPT para comunicación en tiempo real."},
+      {"q": "¿Qué métodos de pago aceptan?", "a": "Efectivo (yenes), USDT (según el tipo de cambio del día). Recomendamos USDT por sus bajas comisiones y conveniencia."},
+      {"q": "¿Por qué necesitan tanta información para la primera reserva?", "a": "Para garantizar la seguridad y privacidad de usted y nuestras acompañantes, necesitamos información básica (teléfono, dirección del hotel) según la ley japonesa."},
+      {"q": "¿Es legal el servicio completo en Japón?", "a": "La ley japonesa solo permite servicios parciales. Cualquier interacción adicional es una decisión personal mutua. Si tiene dudas, podemos explicarle los riesgos legales."},
+      {"q": "¿Ofrecen servicios grupales?", "a": "Podemos organizar eventos grupales con reserva previa, aunque las opciones son limitadas y el costo suele ser 1.2 veces por persona. Contacte con 72 horas de anticipación."},
+      {"q": "¿Por qué no aceptan reservas el mismo día?", "a": "Nuestras acompañantes suelen tener otros compromisos y necesitan tiempo para prepararse. Recomendamos reservar con anticipación para asegurar su preferencia."},
+      {"q": "¿Por qué las fotos no muestran el rostro?", "a": "Muchas de nuestras acompañantes tienen otras profesiones, por lo que protegemos su privacidad mostrando solo su figura y estilo."},
+      {"q": "¿Por qué no recibo respuesta en LINE?", "a": "Por favor, envíe un mensaje o emoji después de agregarnos para que podamos notificar y responderle inmediatamente."}
+    ]
+  },
+  "serviceCards": {
+    "homeComfortAlt": "Servicio de confort en el hogar",
+    "tokyoLoverAlt": "Servicio de acompañamiento en Tokio",
+    "luxuryNightAlt": "Servicio de club nocturno de lujo",
+    "cases": [
+      {
+        "title": "Confort en el Hogar",
+        "desc": "Comience con 90 minutos de encuentro inicial, como un dulce rendez-vous. Nuestra elegante acompañante llegará discretamente a su hotel o residencia. En este breve tiempo, experimentará la delicadeza de la feminidad japonesa - su suave toque, susurros íntimos y mirada romántica que aliviarán su fatiga y soledad, transportándolo a momentos de romance.",
+        "img": "/images/about-bg.jpg",
+        "alt": "Servicio de confort en el hogar"
+      },
+      {
+        "title": "Paseo Romántico en Tokio",
+        "desc": "Encuentre a su acompañante ideal en el restaurante privado de su hotel, disfrutando de una deliciosa cena y ambiente íntimo. Luego, paseen por calles adornadas con cerezos, exploren callejones iluminados por neón, descubriendo el encanto único de Tokio. Al caer la noche, retírense a su espacio privado para una conexión más profunda y momentos de intimidad, elevando la temperatura de su romance.",
+        "img": "/images/testimonials-bg.jpg",
+        "alt": "Servicio de acompañamiento en Tokio"
+      },
+      {
+        "title": "Noche de Lujo en Club Privado",
+        "desc": "Reserve su club privado exclusivo, sumergiéndose en la sofisticada atmósfera nocturna. Desde cócteles artesanales de bartenders reconocidos hasta la compañía de elegantes damas japonesas, creamos una noche inolvidable. Invite amigos o celebre ocasiones especiales; organice fiestas en bikini en nuestra suite VIP con jacuzzi. Solo díganos sus deseos, y crearemos momentos perfectos según sus sueños y preferencias.",
+        "img": "/images/process-faq-bg.jpg",
+        "alt": "Servicio de club nocturno de lujo"
+      }
+    ]
+  },
+  "terms": {
+    "title": "Términos de Servicio",
+    "intro": "Bienvenido a {brand} (en adelante 'nosotros'). Para garantizar la seguridad y derechos de ambas partes, por favor lea y cumpla con los siguientes términos:",
+    "sections": [
+      { "title": "I. Salud e Higiene", "content": "Para encuentros íntimos, los clientes deben bañarse y mantener higiene bucal antes del servicio, e informar sobre su estado de salud; si el cliente tiene fiebre, infección respiratoria, enfermedad de transmisión cutánea o sexual, o si la acompañante sospecha de estas condiciones, puede terminar el servicio inmediatamente; durante el servicio, si se detecta cualquier enfermedad contagiosa o malestar, podemos cancelar el servicio." },
+      { "title": "II. Respeto y Seguridad", "content": "Para encuentros íntimos, respete a la dama y use protección; cualquier rechazo o insistencia en actos no consentidos resultará en terminación inmediata del servicio; uñas largas, piel seca en las manos u otras condiciones que puedan causar molestias deben ser atendidas antes del servicio; está prohibido usar violencia, tirones, maltrato, accesorios SM o conductas especiales no acordadas previamente;" },
+      { "title": "III. Privacidad y Grabación", "content": "Está estrictamente prohibido usar cámaras, teléfonos o dispositivos de grabación; solicitar contacto personal, citas fuera del servicio o intentar contratar directamente a nuestras acompañantes sin autorización constituye una violación grave;" },
+      { "title": "IV. Restricciones de Servicio", "content": "Prohibido para menores de 18 años (incluyendo estudiantes de secundaria); clientes intoxicados, bajo influencia de drogas ilegales o considerados inapropiados serán rechazados; miembros de bandas, grupos ilegales o competidores disfrazados serán rechazados; prohibido cualquier comportamiento ofensivo, discriminatorio, propaganda religiosa/política o conductas inapropiadas;" },
+      { "title": "V. Política de Cancelación", "content": "Los clientes deben notificar cancelaciones o cambios con 72 horas de anticipación, o se aplicará una tarifa equivalente a una sesión; si debemos cancelar por clima, transporte o emergencias, notificaremos inmediatamente y ofreceremos reembolso completo o reprogramación;" },
+      { "title": "VI. Fuerza Mayor", "content": "En caso de terremotos, tifones, restricciones pandémicas o control de tráfico, no seremos responsables y ayudaremos con alternativas o reembolsos;" },
+      { "title": "VII. Protección de Datos", "content": "Manejamos su información personal según la Ley de Protección de Datos, usándola solo para servicios relacionados; sin su consentimiento por escrito, no compartiremos datos con terceros, implementando medidas técnicas y administrativas para su seguridad;" },
+      { "title": "VIII. Limitación de Responsabilidad", "content": "Excepto por ley, no somos responsables por daños imprevisibles o no causados por negligencia grave; si el cliente causa reclamos de terceros, será responsable de compensación;" },
+      { "title": "IX. Rechazo y Terminación", "content": "Si la acompañante rechaza cualquier acto y el cliente insiste, constituye violación grave; si el cliente cambia frecuentemente horarios o lugares confirmados, podemos ajustar o terminar el servicio; cualquier violación de estos términos resultará en terminación sin reembolso;" },
+      { "title": "X. Lista Negra y Responsabilidad Legal", "content": "Violaciones graves, fraude o actos ilegales resultarán en prohibición permanente; nos reservamos el derecho de reportar a autoridades y buscar compensación por daños;" },
+      { "title": "XI. Resolución de Disputas", "content": "Las disputas se resolverán primero mediante negociación amistosa; si no hay acuerdo, ambas partes aceptan la jurisdicción del Tribunal de Distrito de Tokio." }
+    ],
+    "effect": "Estos términos entran en vigor desde su publicación. El uso de nuestros servicios implica que ha leído, entendido y aceptado estos términos."
+  },
+  "privacy": {
+    "title": "Política de Privacidad",
+    "intro": "Esta política de privacidad aplica a {brand} (en adelante 'nosotros'). Para su tranquilidad, explicamos cómo recopilamos, usamos, compartimos y protegemos su información personal.",
+    "sections": [
+      {
+        "title": "I. Información Personal Recopilada",
+        "content": "Registro y reservas: nombre, teléfono, email, dirección del hotel, fechas de entrada/salida, cuentas de mensajería (LINE, WhatsApp, WeChat);\nPlanificación: preferencias de viaje (horarios, ubicaciones, requisitos especiales), métodos de pago y registros (efectivo, USDT);\nInteracción con servicio al cliente: registros de contacto, consultas y respuestas, IP, tipo de navegador y registros de uso."
+      },
+      {
+        "title": "II. Uso de Datos",
+        "content": "Usamos su información personal solo para:\nPrestación de servicios: confirmación de reservas, coordinación, traslados y asistencia;\nMejora de calidad: encuestas de satisfacción, mejoras internas y entrenamiento;\nSoporte: resolución de problemas y asistencia inmediata;\nMarketing (con consentimiento): promociones y noticias de eventos."
+      },
+      {
+        "title": "III. Compartir con Terceros",
+        "content": "Con su consentimiento, podemos compartir información con:\nProveedores: empresas de transporte, hoteles, clubes privados;\nProcesadores de pago: para transacciones USDT y conversión de divisas;\nAutoridades: cuando la ley lo requiera;\nOtros con su consentimiento.\nTodos los socios firman acuerdos de confidencialidad y usan datos solo para los fines acordados."
+      },
+      {
+        "title": "IV. Seguridad y Almacenamiento",
+        "content": "Protección técnica: encriptación SSL/TLS, firewalls y escaneos de seguridad;\nControl de acceso: solo personal autorizado con autenticación doble;\nPeríodo de retención: datos de reservas y transacciones se conservan hasta 3 años;\nSolicitudes de eliminación: puede solicitar eliminación o corrección de datos en cualquier momento."
+      },
+      {
+        "title": "V. Cookies y Tecnologías de Seguimiento",
+        "content": "Usamos cookies y tecnologías similares para mejorar su experiencia. Puede gestionar cookies en su navegador, aunque esto puede afectar la funcionalidad."
+      },
+      {
+        "title": "VI. Menores y Datos Sensibles",
+        "content": "No recopilamos datos de menores de 18 años; eliminamos inmediatamente si se detectan. Los datos sensibles se manejan según la ley."
+      },
+      {
+        "title": "VII. Modificaciones",
+        "content": "Nos reservamos el derecho de modificar esta política, notificando cambios importantes por email o teléfono."
+      },
+      {
+        "title": "VIII. Contacto",
+        "content": "Para consultas o ejercicio de derechos, contáctenos en:<br>Telegram：<a href=\"{telegram_link}\" target=\"_blank\">{telegram_label}</a><br>Line：<a href=\"{line_link}\" target=\"_blank\">{line_label}</a>"
+      }
+    ],
+    "effect": "Gracias por confiar en Luxe Japan Elite Escorts. Juntos protegemos su privacidad y derechos.",
+    "contactPrefix": "Para consultas o ejercicio de derechos, contáctenos en:"
+  },
+  "brand": {
+    "full": "Luxe Japan Elite Escorts",
+    "short": "Luxe Japan"
+  },
+  "common": {
+    "or": "o",
+    "and": "y"
+  },
+  "seo": {
+    "brand": "Luxe Japan Elite Escorts",
+    "brandShort": "Luxe Japan",
+    "siteDescription": "Servicios premium de acompañamiento y experiencias de lujo en Japón, ofreciendo servicios exclusivos en Tokio, Osaka, Sapporo y más",
+    "keywords": "acompañamiento en Japón, servicio premium, experiencias de lujo, acompañantes exclusivas, servicio a domicilio, acompañamiento personal, modelos, clubes privados, servicio VIP, experiencias de lujo, vida nocturna en Tokio, citas premium, turismo en Japón, servicios exclusivos, clubes privados en Japón, fuzoku, delivery health, soapland, hotel health, acompañante, love hotel, reseña, descuento, nueva, chica destacada, ranking, reclutamiento, alta gama, VIP, modelo, club privado, nivel celebridad, bienvenido extranjero, seguro, solo con reserva, experiencia, tienda popular de reseñas, fuzoku Tokio, fuzoku Osaka, fuzoku Sapporo, delivery health de alta gama, soapland de alta gama, acompañante élite, VIP escort, modelo acompañante, reseña alta, traslado aeropuerto, protección privacidad, servicio 24h, servicio personalizado, evento VIP, experiencia cultural japonesa, ranking tiendas fuzoku, recomendado delivery health Tokio, experiencia fuzoku alta gama, acompañante japonesa, fuzoku bienvenido extranjero, fuzoku seguro, escort privado, acompañante nivel celebridad, fuzoku solo con reserva",
+    "home": {
+      "title": "Luxe Japan Elite Escorts - Servicios Premium de Acompañamiento en Japón",
+      "description": "Experimente el más exclusivo servicio de acompañamiento y experiencias de lujo en Japón. Ofrecemos servicios a domicilio, clubes privados y eventos VIP en Tokio, Osaka, Sapporo y más. Seleccionamos cuidadosamente entre modelos, artistas y estudiantes universitarias para crear su experiencia perfecta en Japón."
+    },
+    "about": {
+      "title": "Sobre Nosotros - Luxe Japan Elite Escorts",
+      "description": "Fundado por el Director Minami, 'Crítico Michelin' de la industria japonesa, y el Sr. Bando, experto en turismo de lujo asiático, ofrecemos el más alto nivel de servicio, privacidad y experiencias personalizadas."
+    },
+    "privacy": {
+      "title": "Política de Privacidad - Luxe Japan Elite Escorts",
+      "description": "Esta política de privacidad aplica a Luxe Japan Elite Escorts. Nos comprometemos a proteger su información personal y mantener los más altos estándares de confidencialidad."
+    },
+    "terms": {
+      "title": "Términos de Servicio - Luxe Japan Elite Escorts",
+      "description": "Bienvenido a Luxe Japan Elite Escorts. Para garantizar la seguridad y derechos de ambas partes, por favor lea y cumpla con nuestros términos de servicio."
+    },
+    "contact": {
+      "title": "Contacto - Luxe Japan Elite Escorts",
+      "description": "Luxe Japan Elite Escorts ofrece soporte al cliente 24/7, listo para organizar sus servicios premium en Tokio, Osaka, Sapporo y más."
+    },
+    "testimonials": {
+      "title": "Testimonios - Luxe Japan Elite Escorts",
+      "description": "Experiencias reales de clientes de todo el mundo, compartiendo sus momentos premium en Tokio, Osaka, Sapporo y más."
+    },
+    "serviceNotes": {
+      "title": "Notas de Servicio - Luxe Japan Elite Escorts",
+      "description": "Información importante sobre nuestros servicios, incluyendo proceso de reserva, contenido del servicio, protección de privacidad y más."
+    }
+  }
+}

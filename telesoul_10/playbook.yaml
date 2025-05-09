@@ -1,0 +1,294 @@
+---
+# TeleSoul 自動化部署 Playbook
+# 版本: 1.0.0
+# 最後更新: 2024-03-21
+# 注意：本 playbook 僅允許本機普通用戶執行，嚴禁 sudo/root
+
+- name: 環境檢查
+  hosts: localhost
+  gather_facts: true
+  tasks:
+    - name: 檢查操作系統
+      debug:
+        msg: "操作系統檢查通過: {{ ansible_os_family }}"
+      when: ansible_os_family == "Darwin"
+
+    - name: 檢查內存
+      debug:
+        msg: "內存檢查通過: {{ ansible_memtotal_mb }}MB"
+      when: ansible_memtotal_mb >= 4096
+
+    - name: 檢查 CPU
+      debug:
+        msg: "CPU檢查通過: {{ ansible_processor_cores }}"
+      when: ansible_processor_cores | int >= 2
+
+    - name: 檢查磁盤空間
+      shell: df -k / | tail -1 | awk '{print $4}'
+      register: disk_space
+      changed_when: false
+
+    - name: 驗證磁盤空間
+      assert:
+        that: disk_space.stdout | int >= 20 * 1024 * 1024
+        fail_msg: "磁盤空間不足: {{ (disk_space.stdout | int / 1024 / 1024) | round(2) }}GB"
+        success_msg: "磁盤空間檢查通過: {{ (disk_space.stdout | int / 1024 / 1024) | round(2) }}GB"
+
+- name: 安裝組件
+  hosts: localhost
+  gather_facts: true
+  tasks:
+    - name: 檢查 Node.js
+      command: node --version
+      register: node_version
+      changed_when: false
+      failed_when: false
+
+    - name: 安裝 Node.js
+      command: brew install node
+      when: node_version.rc != 0
+
+    - name: 檢查 Docker
+      command: docker --version
+      register: docker_version
+      changed_when: false
+      failed_when: false
+
+    - name: 安裝 Docker
+      command: brew install docker
+      when: docker_version.rc != 0
+
+    - name: 檢查 Docker Compose
+      command: docker-compose --version
+      register: compose_version
+      changed_when: false
+      failed_when: false
+
+    - name: 安裝 Docker Compose
+      command: brew install docker-compose
+      when: compose_version.rc != 0
+
+- name: 測試執行
+  hosts: localhost
+  gather_facts: true
+  tasks:
+    - name: 運行單元測試
+      command: npm test
+      args:
+        chdir: "{{ playbook_dir }}"
+      register: unit_test
+      failed_when: unit_test.rc != 0
+
+    - name: 運行集成測試
+      command: npm run test:integration
+      args:
+        chdir: "{{ playbook_dir }}"
+      register: integration_test
+      failed_when: integration_test.rc != 0
+
+    - name: 運行端到端測試（E2E，僅允許本機用戶，禁止 root）
+      command: npm run test:e2e
+      args:
+        chdir: "{{ playbook_dir }}"
+        executable: /bin/bash
+      register: e2e_test
+      failed_when: e2e_test.rc != 0
+      become: false
+      environment:
+        HOME: "{{ lookup('env', 'HOME') }}"
+        PATH: "{{ lookup('env', 'PATH') }}"
+
+- name: 更新進度
+  hosts: localhost
+  gather_facts: true
+  tasks:
+    - name: 更新 .cursor-todo.yaml
+      copy:
+        content: |
+          # TeleSoul 開發進度追踪
+          version: "1.0.0"
+          last_updated: "{{ ansible_date_time.iso8601 }}"
+          
+          tasks:
+            backend_services:
+              status: "in_progress"
+              progress: 90
+              description: "後端服務實現"
+              subtasks:
+                - name: "用戶服務"
+                  status: "completed"
+                  progress: 100
+                - name: "匹配服務"
+                  status: "completed"
+                  progress: 100
+                - name: "支付服務"
+                  status: "in_progress"
+                  progress: 80
+                - name: "KYC服務"
+                  status: "in_progress"
+                  progress: 80
+          
+            automated_testing:
+              status: "in_progress"
+              progress: 20
+              description: "自動化測試實現"
+              subtasks:
+                - name: "單元測試"
+                  status: "in_progress"
+                  progress: 30
+                - name: "集成測試"
+                  status: "in_progress"
+                  progress: 20
+                - name: "E2E測試"
+                  status: "not_started"
+                  progress: 0
+          
+            i18n:
+              status: "in_progress"
+              progress: 80
+              description: "i18n 國際化實現"
+              subtasks:
+                - name: "前端國際化"
+                  status: "completed"
+                  progress: 100
+                - name: "後端國際化"
+                  status: "in_progress"
+                  progress: 60
+          
+            monitoring:
+              status: "not_started"
+              progress: 0
+              description: "監控告警完善"
+              subtasks:
+                - name: "系統監控"
+                  status: "not_started"
+                  progress: 0
+                - name: "業務監控"
+                  status: "not_started"
+                  progress: 0
+                - name: "告警配置"
+                  status: "not_started"
+                  progress: 0
+          
+            documentation:
+              status: "not_started"
+              progress: 0
+              description: "文檔同步更新"
+              subtasks:
+                - name: "API文檔"
+                  status: "not_started"
+                  progress: 0
+                - name: "部署文檔"
+                  status: "not_started"
+                  progress: 0
+                - name: "運維文檔"
+                  status: "not_started"
+                  progress: 0
+          
+            performance:
+              status: "not_started"
+              progress: 0
+              description: "性能優化"
+              subtasks:
+                - name: "前端優化"
+                  status: "not_started"
+                  progress: 0
+                - name: "後端優化"
+                  status: "not_started"
+                  progress: 0
+                - name: "數據庫優化"
+                  status: "not_started"
+                  progress: 0
+          
+            security:
+              status: "not_started"
+              progress: 0
+              description: "安全加固"
+              subtasks:
+                - name: "安全審計"
+                  status: "not_started"
+                  progress: 0
+                - name: "漏洞修復"
+                  status: "not_started"
+                  progress: 0
+                - name: "安全配置"
+                  status: "not_started"
+                  progress: 0
+          
+            business:
+              status: "not_started"
+              progress: 0
+              description: "商業化準備"
+              subtasks:
+                - name: "支付集成"
+                  status: "not_started"
+                  progress: 0
+                - name: "計費系統"
+                  status: "not_started"
+                  progress: 0
+                - name: "報表系統"
+                  status: "not_started"
+                  progress: 0
+          
+            operations:
+              status: "not_started"
+              progress: 0
+              description: "運營支持系統"
+              subtasks:
+                - name: "用戶管理"
+                  status: "not_started"
+                  progress: 0
+                - name: "內容管理"
+                  status: "not_started"
+                  progress: 0
+                - name: "數據分析"
+                  status: "not_started"
+                  progress: 0
+          
+            compliance:
+              status: "not_started"
+              progress: 0
+              description: "安全與合規"
+              subtasks:
+                - name: "GDPR合規"
+                  status: "not_started"
+                  progress: 0
+                - name: "數據保護"
+                  status: "not_started"
+                  progress: 0
+                - name: "審計日誌"
+                  status: "not_started"
+                  progress: 0
+          
+            disaster_recovery:
+              status: "not_started"
+              progress: 0
+              description: "災備與容災"
+              subtasks:
+                - name: "備份恢復"
+                  status: "not_started"
+                  progress: 0
+                - name: "故障轉移"
+                  status: "not_started"
+                  progress: 0
+                - name: "容災演練"
+                  status: "not_started"
+                  progress: 0
+          
+            training:
+              status: "not_started"
+              progress: 0
+              description: "文檔與培訓"
+              subtasks:
+                - name: "技術文檔"
+                  status: "not_started"
+                  progress: 0
+                - name: "使用手冊"
+                  status: "not_started"
+                  progress: 0
+                - name: "培訓材料"
+                  status: "not_started"
+                  progress: 0
+          
+          overall_progress: 25
+        dest: .cursor-todo.yaml 

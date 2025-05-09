@@ -1,0 +1,6 @@
+Target dependency graph (3 targets)
+Target 'AutoClickerUITests' in project 'AutoClicker'
+➜ Explicit dependency on target 'AutoClicker' in project 'AutoClicker'
+Target 'AutoClickerTests' in project 'AutoClicker'
+➜ Explicit dependency on target 'AutoClicker' in project 'AutoClicker'
+Target 'AutoClicker' in project 'AutoClicker' (no dependencies)

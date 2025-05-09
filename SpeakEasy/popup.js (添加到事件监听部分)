@@ -1,0 +1,27 @@
+// 测试语音按钮
+const testSpeechButton = document.getElementById('testSpeech');
+if (testSpeechButton) {
+  testSpeechButton.addEventListener('click', () => {
+    if (!('speechSynthesis' in window)) {
+      showStatus('浏览器不支持语音合成', 'error');
+      return;
+    }
+    
+    // 直接在弹出窗口中测试语音
+    const utterance = new SpeechSynthesisUtterance('这是一个语音测试');
+    utterance.onstart = () => {
+      console.log('测试语音开始');
+      showStatus('正在播放测试语音...', 'info');
+    };
+    utterance.onend = () => {
+      console.log('测试语音结束');
+      showStatus('语音测试成功', 'success');
+    };
+    utterance.onerror = (e) => {
+      console.error('测试语音错误:', e);
+      showStatus('语音测试失败', 'error');
+    };
+    
+    window.speechSynthesis.speak(utterance);
+  });
+} 

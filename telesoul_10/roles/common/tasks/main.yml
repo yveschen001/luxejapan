@@ -1,0 +1,407 @@
+---
+# TeleSoul 通用角色任务
+# 版本: 1.0.0
+# 最后更新: 2024-03-21
+
+# 系统更新
+- name: 检查包管理器
+  block:
+    - name: 检查 Homebrew
+      command: which brew
+      register: brew_check
+      ignore_errors: true
+      become: false
+      when: ansible_os_family == "Darwin"
+
+    - name: 安装 Homebrew
+      shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      become: false
+      when: 
+        - ansible_os_family == "Darwin"
+        - brew_check.rc != 0
+
+- name: 更新系统包
+  block:
+    - name: 更新 macOS 系统包
+      command: brew update
+      become: false
+      when: ansible_os_family == "Darwin"
+
+    - name: 更新 Linux 系统包
+      apt:
+        update_cache: true
+        upgrade: true
+      when: ansible_os_family == "Debian"
+
+- name: 安装基础包
+  block:
+    - name: 安装 macOS 基础包
+      homebrew:
+        name:
+          - curl
+          - wget
+          - git
+          - vim
+          - htop
+          - unzip
+          - python3
+        state: present
+      become: false
+      when: ansible_os_family == "Darwin"
+
+    - name: 安装 Linux 基础包
+      apt:
+        name:
+          - curl
+          - wget
+          - git
+          - vim
+          - htop
+          - net-tools
+          - unzip
+          - python3-pip
+        state: present
+        update_cache: true
+      when: ansible_os_family == "Debian"
+
+- name: 设置时区
+  timezone:
+    name: "{{ system.timezone }}"
+  become: true
+
+- name: 设置语言环境
+  block:
+    - name: 设置 macOS 语言环境
+      command: defaults write NSGlobalDomain AppleLanguages -array "{{ system.locale }}"
+      become: false
+      when: ansible_os_family == "Darwin"
+
+    - name: 设置 Linux 语言环境
+      locale_gen:
+        name: "{{ system.locale }}"
+        state: present
+      when: ansible_os_family == "Debian"
+
+- name: 配置 swap
+  block:
+    - name: 检查 macOS swap
+      command: sysctl vm.swapusage
+      register: swap_check
+      become: false
+      when: ansible_os_family == "Darwin"
+
+    - name: 配置 Linux swap
+      block:
+        - name: 创建 swap 文件
+          command: fallocate -l {{ system.swap_size }} /swapfile
+          args:
+            creates: /swapfile
+          register: swap_created
+
+        - name: 设置 swap 权限
+          file:
+            path: /swapfile
+            mode: '0600'
+          when: swap_created.changed
+
+        - name: 格式化 swap
+          command: mkswap /swapfile
+          when: swap_created.changed
+
+        - name: 启用 swap
+          command: swapon /swapfile
+          when: swap_created.changed
+
+        - name: 添加 swap 到 fstab
+          lineinfile:
+            path: /etc/fstab
+            line: "/swapfile none swap sw 0 0"
+            state: present
+          when: swap_created.changed
+      when: ansible_os_family == "Debian"
+
+# 系统配置
+- name: 配置系统参数
+  sysctl:
+    name: "{{ item.key }}"
+    value: "{{ item.value }}"
+    state: present
+    reload: yes
+  become: true
+  with_dict:
+    net.core.somaxconn: 65535
+    net.ipv4.tcp_max_syn_backlog: 65535
+    net.ipv4.tcp_fin_timeout: 30
+    net.ipv4.tcp_keepalive_time: 300
+    net.ipv4.tcp_keepalive_probes: 5
+    net.ipv4.tcp_keepalive_intvl: 15
+    vm.swappiness: 10
+    vm.dirty_ratio: 60
+    vm.dirty_background_ratio: 2
+    fs.file-max: 2097152
+    net.ipv4.ip_local_port_range: 1024 65535
+
+# 用户配置
+- name: 创建系统用户
+  user:
+    name: "{{ item.name }}"
+    shell: /bin/bash
+    groups: sudo
+    append: yes
+    create_home: yes
+    state: present
+  become: true
+  with_items:
+    - name: telesoul
+      uid: 1000
+    - name: deploy
+      uid: 1001
+
+# SSH配置
+- name: 配置SSH
+  template:
+    src: sshd_config.j2
+    dest: /etc/ssh/sshd_config
+    owner: root
+    group: root
+    mode: '0644'
+  become: true
+  notify: restart ssh
+
+# 安全配置
+- name: 配置防火墙
+  ufw:
+    rule: allow
+    port: "{{ item }}"
+    proto: tcp
+  become: true
+  with_items:
+    - 22
+    - 80
+    - 443
+    - 3000-3010
+    - 5432
+    - 6379
+    - 9090
+    - 9093
+    - 9100
+    - 9200
+    - 5601
+    - 16686
+  when: security.firewall.enabled | default(false)
+
+- name: 启用防火墙
+  ufw:
+    state: enabled
+    policy: deny
+  become: true
+  when: security.firewall.enabled | default(false)
+
+# 监控配置
+- name: 安装监控工具
+  apt:
+    name:
+      - prometheus-node-exporter
+      - prometheus
+      - grafana
+    state: present
+  become: true
+  when: monitoring.enabled | default(false)
+
+# 日志配置
+- name: 配置日志轮转
+  template:
+    src: logrotate.conf.j2
+    dest: /etc/logrotate.d/telesoul
+    owner: root
+    group: root
+    mode: '0644'
+  become: true
+
+# 性能优化
+- name: 配置系统限制
+  template:
+    src: limits.conf.j2
+    dest: /etc/security/limits.conf
+    owner: root
+    group: root
+    mode: '0644'
+  become: true
+
+# 清理
+- name: 清理临时文件
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - /tmp/*
+    - /var/tmp/*
+  become: true
+
+- name: 安装 Docker
+  block:
+    - name: 安装依赖
+      apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - gnupg
+          - lsb-release
+        state: present
+
+    - name: 添加 Docker GPG 密钥
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: 添加 Docker 仓库
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
+        state: present
+
+    - name: 安装 Docker
+      apt:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+        state: present
+        update_cache: yes
+
+    - name: 启动 Docker 服务
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: 安装 Docker Compose
+      get_url:
+        url: https://github.com/docker/compose/releases/download/v2.20.0/docker-compose-linux-x86_64
+        dest: /usr/local/bin/docker-compose
+        mode: '0755'
+
+- name: 安装 PostgreSQL
+  block:
+    - name: 添加 PostgreSQL 仓库
+      shell: |
+        sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+        wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+      args:
+        creates: /etc/apt/sources.list.d/pgdg.list
+
+    - name: 安装 PostgreSQL
+      apt:
+        name:
+          - postgresql-14
+          - postgresql-client-14
+          - postgresql-contrib-14
+        state: present
+        update_cache: yes
+
+    - name: 启动 PostgreSQL 服务
+      service:
+        name: postgresql
+        state: started
+        enabled: yes
+
+- name: 安装 Redis
+  block:
+    - name: 安装 Redis
+      apt:
+        name: redis-server
+        state: present
+        update_cache: yes
+
+    - name: 启动 Redis 服务
+      service:
+        name: redis-server
+        state: started
+        enabled: yes
+
+- name: 配置系统限制
+  block:
+    - name: 设置系统限制
+      lineinfile:
+        path: /etc/security/limits.conf
+        line: "{{ item }}"
+        state: present
+      with_items:
+        - "* soft nofile 65536"
+        - "* hard nofile 65536"
+        - "* soft nproc 65536"
+        - "* hard nproc 65536"
+
+    - name: 设置系统参数
+      sysctl:
+        name: "{{ item.key }}"
+        value: "{{ item.value }}"
+        state: present
+        reload: yes
+      with_items:
+        - { key: "net.core.somaxconn", value: "65536" }
+        - { key: "net.ipv4.tcp_max_syn_backlog", value: "65536" }
+        - { key: "net.ipv4.tcp_fin_timeout", value: "30" }
+        - { key: "net.ipv4.tcp_keepalive_time", value: "300" }
+        - { key: "net.ipv4.tcp_keepalive_probes", value: "5" }
+        - { key: "net.ipv4.tcp_keepalive_intvl", value: "15" }
+
+- name: 配置时区
+  timezone:
+    name: Asia/Shanghai
+
+- name: 配置 NTP
+  block:
+    - name: 安装 NTP
+      apt:
+        name: ntp
+        state: present
+
+    - name: 启动 NTP 服务
+      service:
+        name: ntp
+        state: started
+        enabled: yes
+
+- name: 配置日志轮转
+  block:
+    - name: 安装 logrotate
+      apt:
+        name: logrotate
+        state: present
+
+    - name: 配置 logrotate
+      template:
+        src: logrotate.conf.j2
+        dest: /etc/logrotate.d/telesoul
+        mode: '0644'
+
+- name: 配置监控
+  block:
+    - name: 安装 Prometheus Node Exporter
+      apt:
+        name: prometheus-node-exporter
+        state: present
+
+    - name: 启动 Node Exporter 服务
+      service:
+        name: prometheus-node-exporter
+        state: started
+        enabled: yes
+
+    - name: 安装 Filebeat
+      apt:
+        name: filebeat
+        state: present
+
+    - name: 配置 Filebeat
+      template:
+        src: filebeat.yml.j2
+        dest: /etc/filebeat/filebeat.yml
+        mode: '0644'
+
+    - name: 启动 Filebeat 服务
+      service:
+        name: filebeat
+        state: started
+        enabled: yes 

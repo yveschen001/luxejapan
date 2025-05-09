@@ -1,0 +1,37 @@
+{
+  "common": {
+    "appName": "TeleSoul",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "search": "Search"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot Password?"
+  },
+  "user": {
+    "profile": "Profile",
+    "settings": "Settings",
+    "kyc": "KYC Verification",
+    "wallet": "Wallet",
+    "history": "History"
+  },
+  "match": {
+    "start": "Start Matching",
+    "stop": "Stop Matching",
+    "status": "Match Status",
+    "waiting": "Waiting for match...",
+    "matched": "Matched",
+    "disconnected": "Disconnected"
+  }
+} 
