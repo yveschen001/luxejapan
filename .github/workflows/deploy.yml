@@ -30,13 +30,11 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Deploy to Public Repo
+      - name: Deploy to gh-pages (self)
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: dist
           branch: gh-pages
-          repository-name: luxejapan/luxejapan-public
-          token: ${{ secrets.PUBLIC_REPO_TOKEN }}
           git-config-name: github-actions[bot]
           git-config-email: github-actions[bot]@users.noreply.github.com
           clean: true
