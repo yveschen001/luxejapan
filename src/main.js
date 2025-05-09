@@ -42,11 +42,11 @@ const i18n = createI18n({
 // 处理默认语言重定向
 router.beforeEach((to, from, next) => {
   const path = to.path;
-  // 支持所有语言
   const supportedLocales = ['en', 'zh-tw', 'ko', 'vi', 'es'];
   const pathLocale = path.split('/')[1];
-  // 如果路径不包含语言前缀，重定向到当前 locale
-  if (!supportedLocales.includes(pathLocale)) {
+  // 只在本地开发环境做 locale 自动跳转
+  const isDev = import.meta.env.BASE_URL === '/';
+  if (isDev && !supportedLocales.includes(pathLocale)) {
     const currentLocale = i18n.global.locale.value;
     if (path === '/') {
       next(`/${currentLocale}`);
@@ -55,9 +55,8 @@ router.beforeEach((to, from, next) => {
     }
   } else {
     // 路径有语言前缀，强制同步 i18n locale
-    if (i18n.global.locale.value !== pathLocale) {
+    if (supportedLocales.includes(pathLocale) && i18n.global.locale.value !== pathLocale) {
       i18n.global.locale.value = pathLocale;
-      // 持久化用户选择
       localStorage.setItem('language', pathLocale);
     }
     next();
