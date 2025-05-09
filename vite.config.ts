@@ -10,7 +10,7 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  base: '/luxejapan-public/',
+  base: process.env.NODE_ENV === 'production' ? '/luxejapan-public/' : '/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
