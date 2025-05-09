@@ -32,6 +32,15 @@ export default defineConfig({
     outDir: 'dist',
     assetsDir: 'assets',
     rollupOptions: {
+      input: {
+        main: 'index.html',
+        en: 'index.html',
+        zh: 'index.html',
+        'zh-tw': 'index.html',
+        ko: 'index.html',
+        vi: 'index.html',
+        es: 'index.html'
+      },
       output: {
         manualChunks: undefined
       }
