@@ -30,8 +30,10 @@ jobs:
         with:
           folder: dist
           branch: main
-          repository-name: yveschen001/luxejapan-public
+          repository-name: luxejapan/luxejapan-public
           token: ${{ secrets.PUBLIC_REPO_TOKEN }}
+          git-config-name: github-actions[bot]
+          git-config-email: github-actions[bot]@users.noreply.github.com
           clean: true
           clean-exclude: |
             .git
