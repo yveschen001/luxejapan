@@ -37,6 +37,15 @@ export default defineConfig({
           fs.copyFileSync('dist/index.html', 'dist/404.html');
         }
       }
+    },
+    {
+      name: 'copy-manifest',
+      closeBundle() {
+        const fs = require('fs');
+        if (fs.existsSync('site.webmanifest')) {
+          fs.copyFileSync('site.webmanifest', 'dist/site.webmanifest');
+        }
+      }
     }
   ],
   resolve: {
