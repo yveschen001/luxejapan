@@ -7,7 +7,8 @@ module.exports = {
         'http://localhost:4173/luxejapan-public/en/'
       ],
       startServerCommand: 'npm run preview',
-      numberOfRuns: 1
+      numberOfRuns: 1,
+      healthcheck: 'http://localhost:4173/luxejapan-public/'
     },
     assert: {
       assertions: {
