@@ -25,6 +25,10 @@ jobs:
         env:
           NODE_ENV: production
 
+      - name: Kill all node processes (CI only)
+        run: |
+          pkill -f node || true
+
       - name: Pre-deployment Checks
         run: |
           echo "开始部署前检查..."
