@@ -52,7 +52,7 @@ jobs:
           # 检查文件大小
           MAX_SIZE=10485760  # 10MB
           for file in $(find dist -type f); do
-            size=$(stat -f%z "$file")
+            size=$(stat -c%s "$file")
             if [ $size -gt $MAX_SIZE ]; then
               echo "警告: $file 大小超过 10MB"
             fi
