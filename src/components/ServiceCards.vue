@@ -7,11 +7,11 @@
   >
     <h2 id="service-cases-title" class="service-cases__title">{{$t('services.title')}}</h2>
     <div class="service-cases__grid">
-      <article v-for="(item, i) in tm('serviceCards.cases')" :key="'service-case-'+i" class="service-case" itemscope itemtype="https://schema.org/Service" itemprop="itemListElement">
+      <article v-for="(item, i) in casesWithImg" :key="'service-case-'+i" class="service-case" itemscope itemtype="https://schema.org/Service" itemprop="itemListElement">
         <picture>
           <img 
             class="service-case__img" 
-            :src="item.img.replace('__BASE_URL__', base)" 
+            :src="item.img" 
             :alt="item.alt"
             loading="lazy"
             width="600"
@@ -30,11 +30,19 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const { tm, t } = useI18n();
 const base = import.meta.env.BASE_URL;
+
+// 修复：用 computed 预处理图片路径，确保 __BASE_URL__ 被替换
+const casesWithImg = computed(() =>
+  tm('serviceCards.cases').map(item => ({
+    ...item,
+    img: item.img.replace('__BASE_URL__', base)
+  }))
+);
 
 // 添加結構化數據
 onMounted(() => {
