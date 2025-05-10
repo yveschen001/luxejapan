@@ -9,9 +9,11 @@ import Testimonials from '@/pages/Testimonials.vue';
 import ServiceTerms from '@/pages/ServiceTerms.vue';
 import PrivacyPolicy from '@/pages/PrivacyPolicy.vue';
 
+const localePattern = ':locale(zh-tw|en|ko|vi|es)';
+
 const routes = [
   {
-    path: '/:locale?',
+    path: `/:locale(zh-tw|en|ko|vi|es)`,
     name: 'Home',
     component: Home,
     meta: {
@@ -20,7 +22,7 @@ const routes = [
     }
   },
   {
-    path: '/:locale?/about',
+    path: `/:locale(zh-tw|en|ko|vi|es)/about`,
     name: 'About',
     component: About,
     meta: {
@@ -29,7 +31,7 @@ const routes = [
     }
   },
   {
-    path: '/:locale?/process-faq',
+    path: `/:locale(zh-tw|en|ko|vi|es)/process-faq`,
     name: 'ProcessFaq',
     component: ProcessFaq,
     meta: {
@@ -38,7 +40,7 @@ const routes = [
     }
   },
   {
-    path: '/:locale?/contact',
+    path: `/:locale(zh-tw|en|ko|vi|es)/contact`,
     name: 'Contact',
     component: Contact,
     meta: {
@@ -47,7 +49,7 @@ const routes = [
     }
   },
   {
-    path: '/:locale?/service-notes',
+    path: `/:locale(zh-tw|en|ko|vi|es)/service-notes`,
     name: 'ServiceNotes',
     component: ServiceNotes,
     meta: {
@@ -56,7 +58,7 @@ const routes = [
     }
   },
   {
-    path: '/:locale?/testimonials',
+    path: `/:locale(zh-tw|en|ko|vi|es)/testimonials`,
     name: 'Testimonials',
     component: Testimonials,
     meta: {
@@ -65,7 +67,7 @@ const routes = [
     }
   },
   {
-    path: '/:locale?/terms',
+    path: `/:locale(zh-tw|en|ko|vi|es)/terms`,
     name: 'ServiceTerms',
     component: ServiceTerms,
     meta: {
@@ -74,13 +76,32 @@ const routes = [
     }
   },
   {
-    path: '/:locale?/privacy',
+    path: `/:locale(zh-tw|en|ko|vi|es)/privacy`,
     name: 'PrivacyPolicy',
     component: PrivacyPolicy,
     meta: {
       title: 'Privacy Policy - Luxe Japan Elite Escorts',
       description: 'Our privacy policy and data protection practices.'
     }
+  },
+  // 404 路由必须放最后，且用:pathMatch(.*)*避免与正常页面冲突
+  {
+    path: '/:locale(zh-tw|en|ko|vi|es)/:pathMatch(.*)*',
+    name: 'Error404',
+    component: () => import('@/pages/Error404.vue'),
+    meta: {
+      title: '404 - Luxe Japan',
+      description: '页面未找到'
+    }
+  },
+  // 没有语言前缀的情况，重定向到默认语言
+  {
+    path: '/',
+    redirect: '/en'
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/en/404'
   }
 ];
 

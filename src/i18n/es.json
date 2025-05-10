@@ -305,5 +305,10 @@
       "title": "Notas de Servicio - Luxe Japan Elite Escorts",
       "description": "Información importante sobre nuestros servicios, incluyendo proceso de reserva, contenido del servicio, protección de privacidad y más."
     }
+  },
+  "error404": {
+    "notFoundTitle": "Página no encontrada",
+    "notFoundDesc": "La página que buscas no existe. Si tienes alguna duda, por favor contáctanos.",
+    "contactUs": "Contáctanos"
   }
 }

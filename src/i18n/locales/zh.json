@@ -85,7 +85,8 @@
     "terms": "使用条款"
   },
   "error404": {
-    "message": "您访问的页面不存在。",
-    "backToHome": "返回首页"
+    "notFoundTitle": "找不到网页",
+    "notFoundDesc": "您访问的页面不存在。如果有任何问题请联系我们。",
+    "contactUs": "联络我们"
   }
 } 

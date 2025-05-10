@@ -319,5 +319,10 @@
       "title": "Lưu Ý Dịch Vụ - Luxe Japan Elite Escorts",
       "description": "Thông tin quan trọng về dịch vụ và quy định của Luxe Japan Elite Escorts, bao gồm quy trình đặt chỗ, nội dung dịch vụ, bảo vệ quyền riêng tư và các thông tin chi tiết khác."
     }
+  },
+  "error404": {
+    "notFoundTitle": "Không tìm thấy trang",
+    "notFoundDesc": "Trang bạn tìm kiếm không tồn tại. Nếu có bất kỳ thắc mắc nào, vui lòng liên hệ với chúng tôi.",
+    "contactUs": "Liên hệ"
   }
 }

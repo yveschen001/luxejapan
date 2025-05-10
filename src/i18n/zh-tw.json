@@ -305,5 +305,10 @@
       "title": "服務須知 - Luxe Japan Elite Escorts",
       "description": "Luxe Japan Elite Escorts 重要服務說明與規範，包含預約流程、服務內容、隱私保護等詳細資訊。"
     }
+  },
+  "error404": {
+    "notFoundTitle": "找不到網頁",
+    "notFoundDesc": "您造訪的頁面不存在。如有任何問題請聯絡我們。",
+    "contactUs": "聯絡我們"
   }
 } 
