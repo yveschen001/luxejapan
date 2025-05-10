@@ -20,25 +20,10 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Install wait-on
-        run: npm install -g wait-on
-
       - name: Build
         run: npm run build
         env:
           NODE_ENV: production
-
-      - name: Free port 4173
-        run: |
-          if lsof -i:4173; then
-            lsof -ti:4173 | xargs kill -9 || true
-          fi
-
-      - name: Start Vite Preview
-        run: npm run preview -- --port 4173 --host 0.0.0.0 --strictPort &
-
-      - name: Wait for Preview
-        run: wait-on http://localhost:4173/luxejapan-public/
 
       - name: Pre-deployment Checks
         run: |
