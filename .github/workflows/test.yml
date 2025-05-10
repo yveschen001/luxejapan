@@ -37,6 +37,11 @@ jobs:
     - name: Install dependencies
       run: npm ci
     
+    - name: Kill process on 4173 (if any)
+      run: |
+        if lsof -i:4173; then
+          lsof -ti:4173 | xargs kill -9
+        fi
     - name: Start Vite Preview
       run: npm run preview -- --port 4173 &
     - name: Wait for preview
