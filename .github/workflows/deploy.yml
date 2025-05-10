@@ -25,6 +25,9 @@ jobs:
         env:
           NODE_ENV: production
 
+      - name: Add sync test file
+        run: echo "SYNC TEST $(date)" > dist/test-sync.txt
+
       - name: Free port 4173 (force)
         run: |
           if command -v fuser >/dev/null 2>&1; then
