@@ -2,13 +2,13 @@ module.exports = {
   ci: {
     collect: {
       url: [
-        'http://localhost:4173/luxejapan-public/'
+        'http://localhost:5173/luxejapan-public/'
       ],
-      startServerCommand: 'npm run preview -- --port 4173 --host 0.0.0.0 --strictPort',
+      startServerCommand: 'npm run preview -- --port 5173 --host 0.0.0.0 --strictPort',
       startServerReadyPattern: 'Local:',
       startServerReadyTimeout: 60000,
       numberOfRuns: 1,
-      healthcheck: 'http://localhost:4173/luxejapan-public/'
+      healthcheck: 'http://localhost:5173/luxejapan-public/'
     },
     assert: {
       assertions: {
