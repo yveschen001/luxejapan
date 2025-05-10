@@ -3,7 +3,7 @@
     <div class="footer__content">
       <div class="footer__brand">
         <router-link :to="localePath('/contact')" class="footer__brand-link" aria-label="$t('nav.contact')">
-        <img src="/logo-geisha-gold.png" :alt="$t('brand.full') + ' Logo'" class="footer__logo" />
+        <img :src="logoUrl" :alt="$t('brand.full') + ' Logo'" class="footer__logo" />
         <BrandLogo size="1.3rem" />
         </router-link>
       </div>
@@ -15,13 +15,13 @@
       </div>
       <div class="footer__social">
         <a :href="contacts.line.url" target="_blank" class="footer__social-link" aria-label="Line">
-          <img src="/icons/line.svg" alt="Line" class="footer__social-icon" />
+          <img :src="lineIcon" alt="Line" class="footer__social-icon" />
         </a>
         <a :href="contacts.telegram.url" target="_blank" class="footer__social-link" aria-label="Telegram">
-          <img src="/icons/telegram.svg" alt="Telegram" class="footer__social-icon" />
+          <img :src="telegramIcon" alt="Telegram" class="footer__social-icon" />
         </a>
         <a :href="contacts.x.url" target="_blank" class="footer__social-link" aria-label="X.com">
-          <img src="/icons/x.svg" alt="X.com" class="footer__social-icon" />
+          <img :src="xIcon" alt="X.com" class="footer__social-icon" />
         </a>
       </div>
       <div class="footer__legal">
@@ -45,6 +45,11 @@ import { useLocalePath } from '@/utils/i18n';
 import contacts from '@/config/contacts';
 
 const { localePath } = useLocalePath();
+const base = import.meta.env.BASE_URL;
+const logoUrl = base + 'images/logo-geisha-gold.png';
+const lineIcon = base + 'images/icons/line.svg';
+const telegramIcon = base + 'images/icons/telegram.svg';
+const xIcon = base + 'images/icons/x.svg';
 </script>
 
 <style scoped>

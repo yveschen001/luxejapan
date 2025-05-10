@@ -2,7 +2,7 @@
   <nav class="navbar" role="navigation" aria-label="Main Navigation">
     <div class="navbar__brand">
       <router-link :to="localePath('/')" class="navbar__brand" :aria-label="$t('brand.full') + ' 首页'">
-        <img src="/logo-geisha-gold.png" :alt="$t('brand.full') + ' Logo'" class="navbar__logo" />
+        <img :src="logoUrl" :alt="$t('brand.full') + ' Logo'" class="navbar__logo" />
         <BrandLogo size="2rem" />
       </router-link>
     </div>
@@ -100,6 +100,9 @@ onUnmounted(() => {
     window.removeEventListener('click', handleClickOutside);
   }
 });
+
+const base = import.meta.env.BASE_URL;
+const logoUrl = base + 'images/logo-geisha-gold.png';
 </script>
 
 <style scoped>
