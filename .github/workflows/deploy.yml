@@ -25,6 +25,14 @@ jobs:
         env:
           NODE_ENV: production
 
+      - name: Free port 4173 (force)
+        run: |
+          if command -v fuser >/dev/null 2>&1; then
+            fuser -k 4173/tcp || true
+          elif command -v lsof >/dev/null 2>&1; then
+            lsof -ti:4173 | xargs kill -9 || true
+          fi
+
       - name: Kill all node processes (CI only)
         run: |
           pkill -f node || true
