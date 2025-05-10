@@ -89,6 +89,8 @@ jobs:
         with:
           folder: dist
           branch: gh-pages
+          repository: luxejapan/luxejapan-public
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           git-config-name: github-actions[bot]
           git-config-email: github-actions[bot]@users.noreply.github.com
           clean: true
