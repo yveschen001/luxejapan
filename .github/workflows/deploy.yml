@@ -1,4 +1,4 @@
-name: Deploy to Public Repository
+name: Build and Deploy to Public Repo
 
 on:
   push:
@@ -84,15 +84,13 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Deploy to gh-pages
+      - name: Deploy to public repo gh-pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: dist
           branch: gh-pages
           repository: luxejapan/luxejapan-public
           token: ${{ secrets.PUBLIC_REPO_TOKEN }}
-          git-config-name: github-actions[bot]
-          git-config-email: github-actions[bot]@users.noreply.github.com
           clean: true
           clean-exclude: |
             .git
