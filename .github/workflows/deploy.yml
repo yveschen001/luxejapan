@@ -29,7 +29,7 @@ jobs:
           NODE_ENV: production
 
       - name: Start Vite Preview
-        run: npm run preview -- --port 4173 --host 0.0.0.0 &
+        run: npm run preview -- --port 4173 --host 0.0.0.0 --strictPort &
 
       - name: Wait for Preview
         run: wait-on http://localhost:4173/luxejapan-public/
