@@ -28,6 +28,12 @@ jobs:
         env:
           NODE_ENV: production
 
+      - name: Free port 4173
+        run: |
+          if lsof -i:4173; then
+            lsof -ti:4173 | xargs kill -9 || true
+          fi
+
       - name: Start Vite Preview
         run: npm run preview -- --port 4173 --host 0.0.0.0 --strictPort &
 
