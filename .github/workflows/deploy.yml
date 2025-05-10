@@ -25,12 +25,51 @@ jobs:
         env:
           NODE_ENV: production
 
+      - name: Pre-deployment Checks
+        run: |
+          echo "开始部署前检查..."
+          
+          # 检查构建目录
+          if [ ! -d "dist" ]; then
+            echo "错误: dist 目录不存在"
+            exit 1
+          fi
+          
+          # 检查关键文件
+          for file in "dist/index.html" "dist/assets" "dist/manifest.json"; do
+            if [ ! -e "$file" ]; then
+              echo "错误: $file 不存在"
+              exit 1
+            fi
+          done
+          
+          # 检查资源文件
+          if [ ! -d "dist/assets" ]; then
+            echo "错误: assets 目录不存在"
+            exit 1
+          fi
+          
+          # 检查文件大小
+          MAX_SIZE=10485760  # 10MB
+          for file in $(find dist -type f); do
+            size=$(stat -f%z "$file")
+            if [ $size -gt $MAX_SIZE ]; then
+              echo "警告: $file 大小超过 10MB"
+            fi
+          done
+          
+          # 检查文件权限
+          find dist -type f -exec chmod 644 {} \;
+          find dist -type d -exec chmod 755 {} \;
+          
+          echo "部署前检查完成"
+
       - name: Set up Git user
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Deploy to gh-pages (self)
+      - name: Deploy to gh-pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: dist
@@ -40,4 +79,17 @@ jobs:
           clean: true
           clean-exclude: |
             .git
-            .github 
+            .github
+
+      - name: Verify Deployment
+        run: |
+          echo "等待部署完成..."
+          sleep 30
+          
+          # 检查部署状态
+          if curl -s -f "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/" > /dev/null; then
+            echo "部署验证成功"
+          else
+            echo "警告: 部署验证失败，请手动检查"
+            exit 1
+          fi 
