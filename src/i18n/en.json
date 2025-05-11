@@ -261,7 +261,7 @@
         "content": "For inquiries or to exercise rights, contact us at:<br>Telegram：<a href=\"{telegram_link}\" target=\"_blank\">{telegram_label}</a><br>Line：<a href=\"{line_link}\" target=\"_blank\">{line_label}</a>"
       }
     ],
-    "effect": "Thank you for trusting Luxe Japan Elite Escorts. Together we protect your privacy and rights.",
+    "effect": "Thank you for trusting {brandFull}. Together we protect your privacy and rights.",
     "contactPrefix": "For inquiries or to exercise rights, contact us at:"
   },
   "brand": {

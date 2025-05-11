@@ -383,4 +383,13 @@ p, .body {
 
 .skip-link:focus {
     top: 0;
+}
+
+/* 品牌字全局样式，确保动态插入和静态渲染都生效 */
+.about__brand-text {
+  color: #D4AF37;
+  font-family: 'Playfair Display', serif;
+  font-weight: bold;
+  margin: 0 0.2em;
+  letter-spacing: 0.05em;
 } 

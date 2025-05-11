@@ -6,23 +6,7 @@
       </SectionTitle>
       <div class="privacy-content">
         <div class="privacy-intro">
-          <span v-if="$t('privacy.intro').includes('Luxe Japan Elite Escorts')">
-            {{ $t('privacy.intro').split('Luxe Japan Elite Escorts')[0] }}
-            <router-link :to="contactPath" class="privacy__brand-link" aria-label="$t('nav.contact')">
-              <BrandLogo size="1em" />
-            </router-link>
-            {{ $t('privacy.intro').split('Luxe Japan Elite Escorts')[1] }}
-          </span>
-          <span v-else-if="$t('privacy.intro').includes('{brand}')">
-            {{ $t('privacy.intro').split('{brand}')[0] }}
-            <router-link :to="contactPath" class="privacy__brand-link" aria-label="$t('nav.contact')">
-              <BrandLogo size="1em" />
-            </router-link>
-            {{ $t('privacy.intro').split('{brand}')[1] }}
-          </span>
-          <span v-else>
-            {{ $t('privacy.intro') }}
-          </span>
+          <span v-html="brandIntro"></span>
         </div>
         <div class="privacy-sections">
           <div v-for="(section, index) in tm('privacy.sections')" :key="index" class="privacy-section">
@@ -31,10 +15,10 @@
               <template v-if="section.title.includes('聯絡方式') || section.title.includes('Contact') || section.title.includes('Liên Hệ') || section.title.includes('연락처')">
                 <span>{{ t('privacy.contactPrefix') }}</span><br>
                 <a :href="telegramLink" class="text-link" target="_blank">
-                  <img src="/icons/telegram.svg" class="icon-inline gold-icon" alt="Telegram" />@{{ telegramLabel }}
+                  <img src="/images/icons/telegram.svg" class="icon-inline gold-icon" alt="Telegram" />@{{ telegramLabel }}
                 </a><br>
                 <a :href="lineLink" class="text-link" target="_blank">
-                  <img src="/icons/line.svg" class="icon-inline gold-icon" alt="LINE" />@{{ lineLabel }}
+                  <img src="/images/icons/line.svg" class="icon-inline gold-icon" alt="LINE" />@{{ lineLabel }}
                 </a>
               </template>
               <template v-else>
@@ -57,6 +41,7 @@ import { useI18n } from 'vue-i18n';
 import { useRoute } from 'vue-router';
 import BrandLogo from '@/components/BrandLogo.vue';
 import { useLocalePath } from '@/utils/i18n';
+import { computed } from 'vue';
 
 const { tm, t } = useI18n();
 const route = useRoute();
@@ -68,6 +53,16 @@ const telegramLabel = t('contact.telegram.label');
 const telegramLink = t('contact.telegram.link');
 const lineLabel = t('contact.line.label');
 const lineLink = t('contact.line.link');
+
+const brandIntro = computed(() => {
+  // 用 i18n 插值替换 {brand}
+  let intro = t('privacy.intro', { brand: t('brand.short') });
+  // 用统一样式包裹品牌名
+  return intro.replace(
+    t('brand.short'),
+    `<span class='about__brand-text'>${t('brand.short')}</span>`
+  );
+});
 
 useSeo({
   title: 'privacy.title',

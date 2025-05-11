@@ -239,7 +239,7 @@
     "effect": "Các điều khoản này có hiệu lực từ ngày công bố. Sử dụng dịch vụ của chúng tôi đồng nghĩa với việc bạn đã đọc, hiểu và chấp nhận các điều khoản này."
   },
   "privacy": {
-    "title": "Chính Sách Bảo Mật",
+    "title": "Chính sách bảo mật",
     "intro": "Chính sách bảo mật này áp dụng cho {brand} (sau đây gọi là 'chúng tôi'). Để đảm bảo sự yên tâm của bạn, chúng tôi giải thích cách chúng tôi thu thập, sử dụng, chia sẻ và bảo vệ thông tin cá nhân của bạn.",
     "sections": [
       {
@@ -275,7 +275,7 @@
         "content": "Để thắc mắc hoặc thực hiện quyền, liên hệ với chúng tôi tại:"
       }
     ],
-    "effect": "Cảm ơn bạn đã tin tưởng Luxe Japan Elite Escorts. Cùng nhau chúng ta bảo vệ quyền riêng tư và quyền lợi của bạn.",
+    "effect": "Cảm ơn bạn đã tin tưởng {brandFull}. Cùng nhau chúng ta bảo vệ quyền riêng tư và quyền lợi của bạn.",
     "contactPrefix": "Để thắc mắc hoặc thực hiện quyền, liên hệ với chúng tôi tại:"
   },
   "brand": {

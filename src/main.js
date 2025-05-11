@@ -1,3 +1,4 @@
+// build: 20240613-1
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';

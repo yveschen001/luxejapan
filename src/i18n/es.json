@@ -226,7 +226,7 @@
   },
   "privacy": {
     "title": "Política de Privacidad",
-    "intro": "Esta política de privacidad aplica a {brand} (en adelante 'nosotros'). Para su tranquilidad, explicamos cómo recopilamos, usamos, compartimos y protegemos su información personal.",
+    "intro": "Esta política de privacidad se aplica a {brand} (en adelante 'nosotros'). Para su tranquilidad, explicamos cómo recopilamos, usamos, compartimos y protegemos su información personal.",
     "sections": [
       {
         "title": "I. Información Personal Recopilada",
@@ -258,11 +258,11 @@
       },
       {
         "title": "VIII. Contacto",
-        "content": "Para consultas o ejercicio de derechos, contáctenos en:<br>Telegram：<a href=\"{telegram_link}\" target=\"_blank\">{telegram_label}</a><br>Line：<a href=\"{line_link}\" target=\"_blank\">{line_label}</a>"
+        "content": "Para consultas o ejercer sus derechos, contáctenos en:<br>Telegram：<a href=\"{telegram_link}\" target=\"_blank\">{telegram_label}</a><br>Line：<a href=\"{line_link}\" target=\"_blank\">{line_label}</a>"
       }
     ],
-    "effect": "Gracias por confiar en Luxe Japan Elite Escorts. Juntos protegemos su privacidad y derechos.",
-    "contactPrefix": "Para consultas o ejercicio de derechos, contáctenos en:"
+    "effect": "Gracias por confiar en {brandFull}. Juntos protegemos su privacidad y derechos.",
+    "contactPrefix": "Para consultas o ejercer sus derechos, contáctenos en:"
   },
   "brand": {
     "full": "Luxe Japan Elite Escorts",

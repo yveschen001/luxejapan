@@ -226,7 +226,7 @@
   },
   "privacy": {
     "title": "隱私權政策",
-    "intro": "本隱私權政策適用於 {brand}（以下簡稱「本公司」）所經營之網站及相關服務。為讓您安心使用，特訂定本政策，說明我們如何蒐集、使用、分享及保護您的個人資料。",
+    "intro": "本隱私權政策適用於 {brand}（以下簡稱「本公司」）。為讓您安心使用，特訂定本政策，說明我們如何蒐集、使用、分享及保護您的個人資料。",
     "sections": [
       {
         "title": "一、蒐集之個人資料類別",
@@ -261,7 +261,7 @@
         "content": "如對本政策有任何疑問或行使權利，歡迎隨時聯絡：<br>Telegram：<a href=\"{telegram_link}\" target=\"_blank\">{telegram_label}</a><br>Line：<a href=\"{line_link}\" target=\"_blank\">{line_label}</a>"
       }
     ],
-    "effect": "感謝您信任 Luxe Japan Elite Escorts，讓我們共同維護您的隱私與權益。",
+    "effect": "感謝您信任 {brandFull}，讓我們共同維護您的隱私與權益。",
     "contactPrefix": "如對本政策有任何疑問或行使權利，歡迎隨時聯絡："
   },
   "brand": {

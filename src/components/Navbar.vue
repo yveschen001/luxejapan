@@ -101,8 +101,7 @@ onUnmounted(() => {
   }
 });
 
-const base = import.meta.env.BASE_URL;
-const logoUrl = base + 'images/logo-geisha-gold.png';
+const logoUrl = import.meta.env.BASE_URL + 'images/logo-geisha-gold.png';
 </script>
 
 <style scoped>

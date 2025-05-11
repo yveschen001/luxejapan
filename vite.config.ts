@@ -27,9 +27,37 @@ export default defineConfig({
       name: 'copy-manifest',
       closeBundle() {
         const fs = require('fs');
-        if (fs.existsSync('site.webmanifest')) {
-          fs.copyFileSync('site.webmanifest', 'dist/site.webmanifest');
+        const path = require('path');
+        // 只复制 public/site.webmanifest 到 dist 根目录
+        const src = path.resolve(__dirname, 'public/site.webmanifest');
+        const dest = path.resolve(__dirname, 'dist/site.webmanifest');
+        if (fs.existsSync(src)) {
+          fs.copyFileSync(src, dest);
         }
+        // 删除 dist/assets/site.webmanifest（如有）
+        const wrongManifest = path.resolve(__dirname, 'dist/assets/site.webmanifest');
+        if (fs.existsSync(wrongManifest)) {
+          fs.unlinkSync(wrongManifest);
+        }
+      }
+    },
+    {
+      name: 'fix-manifest-path-in-html',
+      closeBundle() {
+        const fs = require('fs');
+        const path = require('path');
+        const htmlFiles = ['dist/index.html', 'dist/404.html'];
+        htmlFiles.forEach(file => {
+          if (fs.existsSync(file)) {
+            let content = fs.readFileSync(file, 'utf-8');
+            // 修正 manifest 路径
+            content = content.replace(/<link rel="manifest" href="[^"]*">/, '<link rel="manifest" href="/luxejapan-public/site.webmanifest">');
+            // 修正所有 icon 路径
+            content = content.replace(/href="images\//g, 'href="/luxejapan-public/images/');
+            content = content.replace(/href='images\//g, "href='/luxejapan-public/images/");
+            fs.writeFileSync(file, content, 'utf-8');
+          }
+        });
       }
     },
     {
@@ -41,6 +69,29 @@ export default defineConfig({
         if (fsExtra.existsSync(srcDir)) {
           fsExtra.copySync(srcDir, destDir, { overwrite: true });
         }
+        // 额外拷贝 public 根目录下所有 favicon、icon、manifest 相关文件到 dist/images
+        const publicDir = path.resolve(__dirname, 'public');
+        const distImagesDir = path.resolve(__dirname, 'dist/images');
+        const filesToCopy = [
+          'favicon.ico',
+          'favicon-16x16.png',
+          'favicon-32x32.png',
+          'apple-touch-icon.png',
+          'android-chrome-192x192.png',
+          'android-chrome-512x512.png',
+          'favicon-16x16.webp',
+          'favicon-32x32.webp',
+          'apple-touch-icon.webp',
+          'android-chrome-192x192.webp',
+          'android-chrome-512x512.webp'
+        ];
+        filesToCopy.forEach(file => {
+          const src = path.resolve(publicDir, file);
+          const dest = path.resolve(distImagesDir, file);
+          if (fsExtra.existsSync(src)) {
+            fsExtra.copySync(src, dest, { overwrite: true });
+          }
+        });
       }
     }
   ],
@@ -81,5 +132,8 @@ export default defineConfig({
       allow: ['..']
     },
     // Vite 默认已支持 HTML5 history fallback，无需额外配置
+  },
+  define: {
+    'import.meta.env.VITE_BUILD_TIME': JSON.stringify(new Date().toLocaleString())
   }
 }) 

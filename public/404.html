@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>404 Not Found</title>
+    <script>
+      // rafgraph/spa-github-pages 方案
+      var pathSegmentsToKeep = 1; // /luxejapan-public
+      var l = window.location;
+      var pathname = l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/';
+      var search = l.search;
+      var hash = l.hash;
+      var redirect = pathname + '?redirect=' + encodeURIComponent(l.pathname + search + hash);
+      window.location.replace(redirect);
+    </script>
+  </head>
+  <body>
+    <h1>404 Not Found</h1>
+    <p>Redirecting...</p>
+  </body>
+</html> 

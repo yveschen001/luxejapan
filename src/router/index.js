@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import Home from '@/pages/Home.vue';
 import About from '@/pages/About.vue';
 // import Services from '@/pages/Services.vue';
@@ -99,14 +99,20 @@ const routes = [
     path: '/',
     redirect: '/en'
   },
+  // 404 fallback，自动根据当前 locale 跳转到对应 404
   {
     path: '/:pathMatch(.*)*',
-    redirect: '/en/404'
+    redirect: (to) => {
+      // 检查是否有 locale 前缀
+      const match = to.path.match(/^\/(zh-tw|en|ko|vi|es)/);
+      const locale = match ? match[1] : 'en';
+      return `/${locale}/404`;
+    }
   }
 ];
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.PROD ? '/luxejapan-public/' : '/'),
+  history: createWebHashHistory(import.meta.env.PROD ? '/luxejapan-public/' : '/'),
   routes
 });
 

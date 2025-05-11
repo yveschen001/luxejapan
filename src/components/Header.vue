@@ -2,7 +2,7 @@
   <header class="header" :class="{ 'header-scrolled': isScrolled }">
     <div class="header-content">
       <router-link :to="localePath('/')" class="logo">
-        <img src="@/assets/logo.svg" :alt="$t('brand.full')" />
+        <img :src="base + 'images/logo-geisha-gold.png'" :alt="$t('brand.full')" />
       </router-link>
       <nav class="nav">
         <router-link :to="localePath('/')" class="nav-link">首頁</router-link>
@@ -22,6 +22,7 @@ import LanguageSwitcher from '@/components/LanguageSwitcher.vue';
 import { useLocalePath } from '@/utils/i18n';
 
 const { localePath } = useLocalePath();
+const base = import.meta.env.BASE_URL;
 const isScrolled = ref(false);
 
 const handleScroll = () => {

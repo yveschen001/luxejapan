@@ -1,8 +1,12 @@
 <template>
   <div class="section-divider-block">
-    <img src="@/assets/images/section-divider-1.svg" alt="装饰分割线" class="section-divider" />
+    <img :src="base + 'images/icons/section-divider-1.svg'" alt="装饰分割线" class="section-divider" />
   </div>
 </template>
+
+<script setup>
+const base = import.meta.env.BASE_URL;
+</script>
 
 <style scoped>
 .section-divider-block {

@@ -6,22 +6,7 @@
       </SectionTitle>
       <div class="terms-content">
         <div class="terms-intro">
-          <span v-if="$t('terms.intro').includes('Luxe Japan Elite Escorts')">
-            <router-link :to="contactPath" class="terms__brand-link" aria-label="$t('nav.contact')">
-              <BrandLogo size="1em" />
-            </router-link>
-            {{ $t('terms.intro').split('Luxe Japan Elite Escorts')[0] }}
-            <router-link :to="contactPath" class="terms__brand-link" aria-label="$t('nav.contact')">
-              <BrandLogo size="1em" />
-            </router-link>
-            {{ $t('terms.intro').split('Luxe Japan Elite Escorts')[1] }}
-          </span>
-          <span v-else>
-            <router-link :to="contactPath" class="terms__brand-link" aria-label="$t('nav.contact')">
-              <BrandLogo size="1em" />
-            </router-link>
-            {{ $t('terms.intro') }}
-          </span>
+          <span v-html="termsIntro"></span>
         </div>
         <div class="terms-sections">
           <div v-for="(section, index) in tm('terms.sections')" :key="index" class="terms-section">
@@ -43,11 +28,21 @@ import { useI18n } from 'vue-i18n';
 import { useRoute } from 'vue-router';
 import BrandLogo from '@/components/BrandLogo.vue';
 import { useLocalePath } from '@/utils/i18n';
+import { computed } from 'vue';
 
 const { tm } = useI18n();
 const route = useRoute();
 const { localePath } = useLocalePath();
 const contactPath = localePath('/contact');
+
+const { t } = useI18n();
+const termsIntro = computed(() => {
+  let intro = t('terms.intro', { brand: t('brand.short') });
+  return intro.replace(
+    t('brand.short'),
+    `<span class='about__brand-text'>${t('brand.short')}</span>`
+  );
+});
 
 useSeo({
   title: 'terms.title',

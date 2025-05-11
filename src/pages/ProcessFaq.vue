@@ -8,11 +8,11 @@
         <template v-if="i === 0">
           {{ step.descPrefix }}
           <a :href="contacts.telegram.url" class="text-link" target="_blank">
-            <img src="/icons/telegram.svg" class="icon-inline gold-icon" alt="Telegram" />{{ contacts.telegram.label }}
+            <img src="/images/icons/telegram.svg" class="icon-inline gold-icon" alt="Telegram" />{{ contacts.telegram.label }}
           </a>
           {{ $t('common.or') }}
           <a :href="contacts.line.url" class="text-link" target="_blank">
-            <img src="/icons/line.svg" class="icon-inline gold-icon" alt="LINE" />{{ contacts.line.label }}
+            <img src="/images/icons/line.svg" class="icon-inline gold-icon" alt="LINE" />{{ contacts.line.label }}
           </a>
           {{ step.descSuffix }}
         </template>
@@ -29,11 +29,11 @@
           <template v-if="i === 0">
             {{ $t('processFaq.faq.a1Prefix') }}
             <a :href="contacts.telegram.url" class="text-link" target="_blank">
-              <img src="/icons/telegram.svg" class="icon-inline gold-icon" alt="Telegram" />{{ contacts.telegram.label }}
+              <img src="/images/icons/telegram.svg" class="icon-inline gold-icon" alt="Telegram" />{{ contacts.telegram.label }}
             </a>
             {{ $t('common.and') }}
             <a :href="contacts.line.url" class="text-link" target="_blank">
-              <img src="/icons/line.svg" class="icon-inline gold-icon" alt="LINE" />{{ contacts.line.label }}
+              <img src="/images/icons/line.svg" class="icon-inline gold-icon" alt="LINE" />{{ contacts.line.label }}
             </a>
             {{ $t('processFaq.faq.a1Suffix') }}
           </template>

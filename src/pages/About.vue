@@ -17,14 +17,7 @@
     </ul>
     <h2>{{ $t('about.story.experienceTitle') }}</h2>
     <p>
-      <span v-if="$t('about.story.experienceParagraph').includes('{brand}')">
-        {{ $t('about.story.experienceParagraph').split('{brand}')[0] }}
-        <router-link :to="contactPath" class="about__brand-link" aria-label="$t('nav.contact')">
-          <BrandLogo size="1em" />
-        </router-link>
-        {{ $t('about.story.experienceParagraph').split('{brand}')[1] }}
-      </span>
-      <span v-else>{{ $t('about.story.experienceParagraph') }}</span>
+      <span v-html="$t('about.story.experienceParagraph', { brand: '<span class=\'about__brand-text\'>Luxe Japan</span>' })"></span>
     </p>
     <ul>
       <li v-for="(item, i) in tm('about.story.experienceList')" :key="'about-exp-li'+i">{{ item }}</li>
@@ -63,6 +56,8 @@ const { tm, t } = useI18n();
 const route = useRoute();
 const { localePath } = useLocalePath();
 const contactPath = localePath('/contact');
+
+const buildTime = import.meta.env.VITE_BUILD_TIME;
 
 useSeo({
   title: 'about.title',
@@ -114,5 +109,12 @@ li {
   display: inline-block;
   vertical-align: middle;
   text-decoration: none;
+}
+.about__brand-text {
+  color: #D4AF37;
+  font-family: 'Playfair Display', serif;
+  font-weight: bold;
+  margin: 0 0.2em;
+  letter-spacing: 0.05em;
 }
 </style> 
