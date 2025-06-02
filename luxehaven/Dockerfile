@@ -5,6 +5,9 @@
 # --------------------------------------------------------------------------------------------------
 FROM node:18-slim AS builder
 
+# 设置工作目录
+WORKDIR /app
+
 # 安装必要工具以及 Chromium 依赖
 RUN apt-get update \
     && apt-get install -y \
@@ -21,21 +24,25 @@ RUN apt-get update \
        libgtk2.0-0 \
        libasound2 \
        chromium \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
 
-# 告诉 Puppeteer 不要再自动下载 Chrominium，因为我们已经安装了系统的 chromium
+# 告诉 Puppeteer 不要再自动下载 Chromium
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 
-# 创建工作目录并复制 package.json
-WORKDIR /app
-COPY package.json package-lock.json ./
+# 复制 package.json 和 package-lock.json
+COPY package*.json ./
+
 # 安装生产环境依赖
-RUN npm install --omit=dev
+RUN npm ci --only=production
 
 # --------------------------------------------------------------------------------------------------
-# Stage 2：运行时阶段，只需要 Node + Chromium
+# Stage 2：运行时阶段，只包含必要的文件
 # --------------------------------------------------------------------------------------------------
 FROM node:18-slim
+
+# 设置工作目录
+WORKDIR /app
 
 # 安装 Chromium 及其依赖
 RUN apt-get update \
@@ -53,18 +60,23 @@ RUN apt-get update \
        libgtk2.0-0 \
        libasound2 \
        chromium \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
 
-# 复制已安装的 node_modules
-COPY --from=builder /app/node_modules /app/node_modules
+# 从构建阶段复制 node_modules
+COPY --from=builder /app/node_modules ./node_modules
 
-# 复制服务代码
-COPY . /app
+# 复制源代码和配置文件
+COPY src ./src
+COPY package.json ./
 
-WORKDIR /app
+# 设置环境变量
+ENV NODE_ENV=production
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
+ENV PORT=3000
 
-# 指定 Puppeteer 使用系统安装的 Chromium
-ENV PUPPETEER_EXECUTABLE_PATH="/usr/bin/chromium"
-
+# 暴露端口
 EXPOSE 3000
-CMD ["npm", "start"] 
+
+# 启动命令
+CMD ["node", "src/index.js"] 

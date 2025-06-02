@@ -1,63 +1,132 @@
-# Puppeteer Scraper
+# LuxeHaven Scraper
 
 ## 项目简介
 
-这是一个使用 Puppeteer 进行页面抓取的服务，提供 `/scrape` API 接口抓取指定页面的 HTML 内容，并返回结构化数据。
+LuxeHaven Scraper 是一个基于 Puppeteer 的网页抓取服务，提供 RESTful API 接口用于抓取指定页面的 HTML 内容。本项目遵循严格的代码规范和最佳实践，确保代码质量和可维护性。
 
-## 安装与运行
+## 技术栈
 
-1. 克隆本仓库
+- Node.js 18+
+- Express.js
+- Puppeteer
+- Docker
+
+## 目录结构
+
+```
+luxehaven/
+├── src/                    # 源代码目录
+│   ├── config/            # 配置文件
+│   ├── routes/            # API 路由
+│   ├── services/          # 业务逻辑
+│   ├── utils/             # 工具函数
+│   └── index.js           # 应用入口
+├── public/                # 静态资源
+├── .github/              # GitHub 配置
+├── Dockerfile            # Docker 配置
+└── package.json          # 项目配置
+```
+
+## 开发环境设置
+
+1. 克隆仓库
    ```bash
-   git clone https://github.com/yourusername/puppeteer-scraper.git
-   cd puppeteer-scraper
+   git clone https://github.com/yveschen001/luxejapan.git
+   cd luxehaven
    ```
+
 2. 安装依赖
    ```bash
    npm install
    ```
-3. 启动服务
+
+3. 配置环境变量
    ```bash
-   npm start
+   cp .env.example .env
+   # 编辑 .env 文件，设置必要的环境变量
    ```
-4. 访问服务：http://localhost:3000
 
-## API 接口
+4. 启动开发服务器
+   ```bash
+   npm run dev
+   ```
 
-### POST /scrape
-请求体：
+## API 文档
+
+### 健康检查
+```http
+GET /healthz
+```
+响应：
 ```json
 {
-  "url": "https://www.cityheaven.net/"
+  "status": "OK"
+}
+```
+
+### 页面抓取
+```http
+POST /scrape
+Content-Type: application/json
+
+{
+  "url": "https://example.com"
 }
 ```
 响应：
 ```json
 {
-  "html": "<html>...</html>"
+  "html": "<html>...</html>",
+  "timestamp": "2024-03-21T12:00:00Z"
 }
 ```
 
-### GET /healthz
-健康检查接口，返回 OK。
-
-## 部署
-
-可以将此服务部署到 RunPod 或在本地开发环境中运行。确保您的环境支持 Puppeteer 的 Chromium 启动。
+## 部署指南
 
 ### Docker 部署
 
-1. 构建镜像：
+1. 构建镜像
    ```bash
-   docker build -t puppeteer-scraper .
+   docker build -t luxehaven-scraper .
    ```
-2. 运行容器：
+
+2. 运行容器
    ```bash
-   docker run -p 3000:3000 puppeteer-scraper
+   docker run -d \
+     -p 3000:3000 \
+     -e NODE_ENV=production \
+     -e PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium \
+     --name luxehaven-scraper \
+     luxehaven-scraper
    ```
-3. 访问服务：打开浏览器，访问 http://localhost:3000。
 
 ### RunPod 部署
 
-1. 创建一个新的 Pod：在 RunPod 上创建一个新的 Pod，并选择使用 Docker 运行您的 Puppeteer 服务。
-2. 配置环境变量：设置 PUPPETEER_EXECUTABLE_PATH 环境变量，确保 Puppeteer 可以找到正确的 Chromium 路径。
-3. 启动并访问服务：确认服务正常运行后，使用提供的公网地址访问您的爬虫服务。 
+1. 创建新的 Pod
+   - 选择 GPU 模板
+   - 配置环境变量
+   - 上传 Dockerfile
+
+2. 启动服务
+   - 等待构建完成
+   - 检查服务状态
+   - 配置域名（可选）
+
+## 开发规范
+
+- 代码风格遵循 `.eslintrc.json` 和 `.prettierrc` 配置
+- 提交信息遵循 Conventional Commits 规范
+- 所有 API 接口需要添加 JSDoc 注释
+- 确保代码测试覆盖率不低于 80%
+
+## 贡献指南
+
+1. Fork 本仓库
+2. 创建特性分支 (`git checkout -b feature/新功能`)
+3. 提交更改 (`git commit -m 'feat: 添加新功能'`)
+4. 推送到分支 (`git push origin feature/新功能`)
+5. 创建 Pull Request
+
+## 许可证
+
+MIT License - 详见 [LICENSE](LICENSE) 文件 
