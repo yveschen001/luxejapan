@@ -1,0 +1,179 @@
+# Project: Puppeteer Scraper
+# Description: 该文件包含了开发过程中需要遵循的代码撰写规范、文件命名、路径结构等规则
+# Author: Your Name
+# Date: 2025-06-02
+
+# ---- 文件结构和路径规范 ----
+directory_structure:
+  - src: 
+      description: "源代码文件夹，包含所有实现代码"
+      files:
+        - index.js: 
+            description: "主要的应用入口文件，包含 Express 路由定义和 Puppeteer 服务"
+        - routes:
+            description: "包含所有 API 路由"
+            files:
+              - scrape.js: 
+                  description: "用于处理 /scrape 路由"
+              - healthz.js: 
+                  description: "健康检查接口 /healthz"
+        - services:
+            description: "包含业务逻辑和服务层代码"
+            files:
+              - puppeteerService.js: 
+                  description: "负责 Puppeteer 启动和页面抓取逻辑"
+        - utils:
+            description: "包含所有实用工具函数"
+            files:
+              - logger.js: 
+                  description: "日志处理工具"
+        - config:
+            description: "配置文件目录"
+            files:
+              - envConfig.js:
+                  description: "环境变量和配置设置"
+  - public: 
+      description: "包含所有静态资源"
+      files:
+        - index.html:
+            description: "简易的 HTML 页面，展示 API 使用方式"
+  - Dockerfile: 
+      description: "Docker 配置文件"
+  - .gitignore: 
+      description: "Git 忽略文件，确保不提交不必要的文件"
+  - README.md: 
+      description: "项目说明文档，描述项目的安装、运行和使用方式"
+  - package.json:
+      description: "Node.js 项目的配置文件，管理依赖项"
+  - package-lock.json: 
+      description: "确保依赖版本一致"
+
+# ---- 编码规范 ----
+coding_standards:
+  indentation:
+    spaces: 2
+    description: "代码缩进使用 2 个空格"
+  line_length:
+    max: 120
+    description: "每行最多 120 个字符"
+  function_names:
+    camelCase: 
+      description: "函数命名采用 camelCase 风格"
+  variable_names:
+    camelCase: 
+      description: "变量命名采用 camelCase 风格"
+  constants:
+    upperSnakeCase: 
+      description: "常量命名采用 UPPER_SNAKE_CASE 风格"
+  comments:
+    single_line: 
+      description: "单行注释使用 //，放在代码行上方或旁边"
+    multi_line: 
+      description: "多行注释使用 /* 注释内容 */ 形式"
+    docstrings:
+      description: "函数和类需要使用 JSDoc 风格的文档注释"
+  code_blocks:
+    max_lines: 50
+    description: "函数和方法的代码块不能超过 50 行，避免过长函数"
+
+# ---- 文件命名规范 ----
+file_naming_conventions:
+  camelCase: 
+    description: "文件和文件夹命名采用 camelCase 风格"
+    examples:
+      - "puppeteerService.js"
+      - "index.js"
+      - "scrape.js"
+  folder_naming:
+    camelCase: 
+      description: "文件夹命名采用 camelCase 风格"
+    examples:
+      - "routes"
+      - "services"
+  config_naming:
+    UPPER_SNAKE_CASE: 
+      description: "配置文件命名采用 UPPER_SNAKE_CASE 风格"
+    examples:
+      - "ENV_CONFIG.js"
+
+# ---- API 接口命名规范 ----
+api_endpoints:
+  http_methods:
+    get:
+      description: "用于获取资源，使用小写路径"
+    post:
+      description: "用于提交数据，路径使用小写和复数形式"
+  route_naming:
+    description: "路由名称应该描述清楚功能，使用小写并用 - 连接"
+    examples:
+      - "/scrape"
+      - "/healthz"
+
+# ---- 日志规范 ----
+logging:
+  log_level:
+    description: "日志级别分为 debug, info, warn, error"
+    levels:
+      debug: "用于开发调试"
+      info: "记录重要操作或系统状态"
+      warn: "记录警告信息"
+      error: "记录错误信息"
+  log_format:
+    timestamp: 
+      description: "日志应该包含时间戳"
+    json_format: 
+      description: "日志应以 JSON 格式输出，方便后期分析"
+  log_destination:
+    file: 
+      description: "生产环境下，日志应输出到文件"
+    console: 
+      description: "开发环境下，可以输出到控制台"
+
+# ---- 安全规范 ----
+security:
+  puppeteer:
+    no_sandbox:
+      description: "由于容器环境的限制，必须在启动 Puppeteer 时添加 --no-sandbox 参数"
+    headless: 
+      description: "Puppeteer 启动时应使用 headless: true 来避免浏览器界面弹出"
+  environment_variables:
+    sensitive_data:
+      description: "所有敏感数据（如 API 密钥、数据库密码等）应使用环境变量存储，避免硬编码"
+    examples:
+      - "PUPPETEER_EXECUTABLE_PATH"
+      - "API_KEY"
+      - "DB_PASSWORD"
+
+# ---- 版本控制规范 ----
+git_workflow:
+  commit_messages:
+    description: "提交信息需要简洁明了，遵循以下格式："
+    format: 
+      - "feat: 新功能"
+      - "fix: 修复 bug"
+      - "docs: 更新文档"
+      - "style: 格式调整"
+      - "refactor: 代码重构"
+      - "test: 添加/修改测试"
+      - "chore: 其他更新（如更新依赖等）"
+  branch_naming:
+    description: "分支命名应遵循功能或修复目的，常见格式："
+    examples:
+      - "feature/新增用户功能"
+      - "fix/修复登录问题"
+  pull_requests:
+    description: "每次提交代码前需先创建 Pull Request，并遵循以下步骤："
+    steps:
+      - "确保代码无报错，已通过本地测试"
+      - "编写清晰的 PR 描述，简述所做的修改"
+      - "确保没有多余的未提交的代码"
+      - "PR 标题应简洁明了，包含修复的功能或问题"
+
+# ---- 其他开发规范 ----
+testing:
+  unit_tests:
+    description: "所有核心功能应编写单元测试，使用 Jest 或 Mocha 等测试框架"
+  integration_tests:
+    description: "对外部 API 或服务的交互应进行集成测试"
+  code_coverage:
+    description: "代码覆盖率应达到至少 80%" 
